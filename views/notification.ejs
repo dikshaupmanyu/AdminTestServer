@@ -326,7 +326,7 @@ window.history.forward();
         } 
 function test(a) {
     var x = (a.value || a.options[a.selectedIndex].value);  //crossbrowser solution =)
-    alert(x);
+    //alert(x);
 }
 window.addEventListener("load", function() {
 
@@ -440,7 +440,7 @@ window.addEventListener("load", function() {
   var e = document.getElementById("userFull");
 var value=e.options[e.selectedIndex].value;// get selected option value
 var filterdata=e.options[e.selectedIndex].text;
-  alert(filterdata);
+  //alert(filterdata);
   var table = $('#dataTables').DataTable();
   var row = table.row(this.closest('tr')).data();
   // var id = $(this).attr('id');
