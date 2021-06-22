@@ -1,0 +1,530 @@
+          <!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>TradeTips UI</title>
+
+  <!-- Custom fonts for this template-->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+ <link rel="stylesheet" href="style.css">
+  <!-- Custom styles for this template-->
+  <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+</head>
+
+
+
+        <div class="container-fluid">
+
+          <!-- Page Heading -->
+         <!--  <h1 class="h3 mb-2 text-gray-800">Tables</h1>
+          <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
+ -->
+          <!-- DataTales Example -->
+
+      <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Make A Tip</h6>
+            </div>
+            <div class="card-body">
+  
+
+
+<form id="formoid" enctype="multipart/form-data" onsubmit="return false">
+
+
+  <div class="form-group">
+    <label for="exampleInputEmail1">Enter Company Name or Symbol Name</label>
+  
+    <input type="text" id="search-box" class="form-control" placeholder="Company Name or Symbol Name" style="text-transform:uppercase"/>
+    <ul id="suggesstion-box">
+    </ul>
+
+  </div>
+
+  <div class="form-group">
+    <label for="exampleInputEmail1">Set Entry</label>
+    <input type="text" class="form-control" id="setEntry" placeholder="Set Entry" readonly="readonly" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" >
+
+
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Set Exit</label>
+    <input type="text" class="form-control" id="setExit" placeholder="Set Exit" readonly="readonly" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" >
+    <input type="hidden" id="createprice">
+    <input type="hidden" id="loginId">
+  </div>
+   <div class="form-group">
+    <label for="exampleInputEmail1">Set Stop</label>
+    <input type="text" class="form-control" id="setStop" placeholder="Set Stop" readonly="readonly" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" >
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Enter Comment</label>
+    <textarea class="form-control" id="commentdata" placeholder="Enter Comment"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">File</label>
+    <input id="file" type="file" accepts="image/*" /><br />
+    <label for="file"></label><br />
+    <img id="preview" />
+
+  </div>
+ 
+  <input type="submit" id="datasubmit" class="btn btn-primary" value="Submit">
+
+  <input type="reset" class="btn btn-primary" value="Cancel">
+  
+</form>
+
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+      <!-- End of Main Content -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary" href="/">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="js/sb-admin-2.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+
+ <!-- Page level plugins -->
+  <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="js/demo/datatables-demo.js"></script>
+ 
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script> 
+    <script type="text/javascript" src="https://twitter.github.io/typeahead.js/releases/latest/typeahead.bundle.js"></script> 
+ 
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+  var url_string = window.location.href; 
+  var urlst = new URL(url_string);
+  var tokens = urlst.searchParams.get("tokendata");
+  var userids = urlst.searchParams.get("uid");
+
+  // alert(userids);
+
+//  $("input[type=file]").on("change", function() {
+//   $("[for=file]").html(this.files[0].name);
+//   alert(URL.createObjectURL(this.files[0]));
+// });
+
+  $('form input').keydown(function (e) {
+    if (e.keyCode == 13) {
+        e.preventDefault();
+        return false;
+    }
+});
+
+
+ 
+
+  // $('input:radio[name="symbolName"]').click(function () {
+ 
+ 
+
+  // });
+
+  $("#formoid").submit(function(event){
+
+    // alert("function 3");
+  var stockName = $('#search-box').val();
+  // alert(stockName);
+  var userids = userids;
+  var entryPoint = $('#setEntry').val();
+  // alert(entryPoint);
+  var exitPoint = $('#setExit').val();
+  // alert(exitPoint);
+  var stopPoint = $('#setStop').val();
+  // alert(stopPoint);
+  var tipComment = $('#commentdata').val();
+  var imageDetails = $('#image').val();
+  var status = "Pending";
+  var timeFrame = "15 days";
+  var stockSuggestion;
+  var createTipPrice = $('#createprice').val();
+  
+//   $("input[type=file]").on("change", function() {
+//   $("[for=file]").html(this.files[0].name);
+//   alert(URL.createObjectURL(this.files[0]));
+// });
+  
+  var file = document.getElementById("file").files[0];
+  // alert(file);
+  var fullPath = $("#file").val();    
+  var filename = fullPath.replace(/^.*[\\\/]/, '');
+  // alert(filename);
+
+  if(entryPoint == exitPoint || entryPoint == stopPoint){
+
+      alert("Your entryPoint or exitPoint will not be same");
+
+
+  }else{
+
+    var formdata = new FormData();
+
+    if(entryPoint < exitPoint) {
+
+         // alert("Buy");
+
+      formdata.append("stockSuggestion", "Buy");
+
+    } else if(entryPoint > exitPoint) {
+
+        // alert("Sell");
+
+      formdata.append("stockSuggestion", "Sell");
+
+  
+    } else {
+
+      formdata.append("stockSuggestion", "Avoid");
+
+    }
+
+    formdata.append("tipComment", tipComment);
+    formdata.append("entryPoint", entryPoint);
+    formdata.append("exitPoint", exitPoint);
+    formdata.append("stopPoint", stopPoint);
+    formdata.append("stockName", stockName);
+    formdata.append("status", "Approved");
+    // formdata.append("imageDetails", "/path/to/file");
+
+    if(filename == ""){
+    // alert("null");
+      formdata.append("imageDetails", "");
+
+    }else{
+    // alert("not null");
+      formdata.append("imageDetails", file , filename);
+
+    }
+    formdata.append("timeFrame", "15 days");
+    formdata.append("createTipPrice", createTipPrice);
+    formdata.append("userId", userids);
+
+    // alert("tip add");
+
+    var requestOptions = {
+      method: 'POST',
+      headers: {
+              Authorization: 'Bearer '+ tokens
+            },
+      body: formdata,
+      redirect: 'follow'
+    };
+
+    // alert("neww");
+
+    fetch("https://apistest.tradetipsapp.com/api/tip/addTip", requestOptions)
+      .then(response => response.json())
+      .then(result => {
+
+                var datak = JSON.stringify(result);
+                // alert(datak);
+                var dataResultp = JSON.parse(datak); 
+                // alert(dataResultp.stockName);
+                alert("Your tip for "+dataResultp.stockName+" was submitted successfully");
+                window.location.reload();
+
+       })
+      .catch(error => console.log('error', error));
+
+
+  }
+
+  
+
+  
+
+  
+  // var stockName = $('#search-box').val();
+  // alert(stockName);
+  // var userids = userids;
+  // var entryPoint = $('#setEntry').val();
+  // var exitPoint = $('#setExit').val();
+  // var stopPoint = $('#setStop').val();
+  // var tipComment = $('#commentdata').val();
+  // var imageDetails = $('#image').val();
+  // var status = "Pending";
+  // var timeFrame = "15 days";
+  // var stockSuggestion;
+  // var createTipPrice = $('#createprice').val();
+  // var imageDetails = "public/upload/image.jpg";
+  // alert(imageDetails);
+  // event.stopPropagation();
+
+//   var formdatas;
+
+   
+
+//   if(entryPoint < exitPoint) {
+
+//       alert("1");
+
+//      formdatas = {stockName : stockName ,userId : userids, entryPoint : entryPoint ,exitPoint:exitPoint,stopPoint:stopPoint,tipComment:tipComment,imageDetails:"/C:/cameraApp/public/images/blog/1.jpg",status:status,timeFrame:timeFrame,stockSuggestion:"Buy",createTipPrice:createTipPrice};
+
+// } else if (entryPoint > exitPoint) {
+
+//         alert("2");
+
+
+//      formdatas = {stockName : stockName ,userId : userids, entryPoint : entryPoint ,exitPoint:exitPoint,stopPoint:stopPoint,tipComment:tipComment,imageDetails:"/C:/cameraApp/public/images/blog/1.jpg",status:status,timeFrame:timeFrame,stockSuggestion:"Sell",createTipPrice:createTipPrice};
+
+//   } else {
+
+//           alert("3");
+
+//      formdatas = {stockName : stockName ,userId : userids, entryPoint : entryPoint ,exitPoint:exitPoint,stopPoint:stopPoint,tipComment:tipComment,imageDetails:"/C:/cameraApp/public/images/blog/1.jpg",status:status,timeFrame:timeFrame,stockSuggestion:"Avoid",createTipPrice:createTipPrice};
+
+//      alert(formdatas);
+
+//    }
+
+
+ 
+
+
+
+
+
+
+//  var urlss = "https://apistest.tradetipsapp.com/api/tip/addTip";
+
+// alert(urlss);
+
+//    $.ajax({
+//         url: urlss,
+//         type: "POST",
+//         headers: {
+//           Authorization: 'Bearer '+ tokens
+//         },
+//         data: formdatas,
+//         success: function(data, textStatus, jqXHR)
+//         {
+//             //data - response from server
+//             var datak = JSON.stringify(data);
+//             alert(datak);
+//             var dataResultp = JSON.parse(datak); 
+//             alert(dataResultp);
+//             // alert(dataResultp.stockName);
+//             alert("Your tip for "+dataResultp.stockName+" was submitted successfully");
+//             window.location.reload();
+
+//         },
+//         error: function (jqXHR, textStatus, errorThrown)
+//         {
+//            // alert("Not updated !!");
+//            alert(errorThrown);
+//         }
+
+//       });
+
+ });
+
+});
+
+ </script>
+ 
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script type="text/javascript">
+
+
+
+    window.history.forward(); 
+        function noBack() { 
+            window.history.forward(); 
+        } 
+
+
+  var url_string = window.location.href; 
+  var urls = new URL(url_string);
+  var tokens = urls.searchParams.get("tokendata");
+  // alert(tokens);
+   var userid = urls.searchParams.get("id");
+  $('#loginId').val(userid);
+   var timer;
+$(document).ready(function(){
+    $("#search-box").keyup(function(){
+        // alert($(this).val());
+      // alert("timeset");
+
+     clearTimeout(timer);
+
+    timer = setTimeout(() => {
+          // alert("timeout");
+          // alert($(this).val());
+        $.ajax({
+        type: "POST",
+        url: "https://apistest.tradetipsapp.com/api/stocksearchdetails/searchStockSymbol",
+        data:'stockSymbol='+$(this).val(),
+        headers: { Authorization: 'Bearer '+ tokens},
+        beforeSend: function(){
+            // $("#search-box").css("background","#FFF url(LoaderIcon.gif) no-repeat 165px");
+             $("#suggesstion-box").css("overflow-y", "none");
+             // clearTimeout(timer);
+
+        },
+        success: function(data){
+            // alert(data);
+
+           var datak = JSON.stringify(data);
+           var dataResult = JSON.parse(datak);
+           var len = dataResult.length;
+           // alert(len);
+          
+      
+            // $("#suggesstion-box").show();
+              $("#suggesstion-box").css("overflow-y", "scroll");
+              $("#suggesstion-box").css("height", "200px");
+              $("#suggesstion-box").empty();
+
+                  
+                  clearTimeout(timer);
+             
+                 for( var i = 0; i<len; i++){
+                    // alert(len);
+                    var id = dataResult[i]['id'];
+                    var symbol = dataResult[i]['stockSymbol'];
+                    var name = dataResult[i]['stockName'];
+                     // alert(name);
+
+                     clearTimeout(timer);  
+
+                    $("#suggesstion-box").append("<li style='    list-style: none;' value='"+symbol+"'><input id='radiobtn"+symbol+"' type='radio' name='symbolName' value='"+symbol+"'>&nbsp;"+symbol+"</li>");
+
+                    clearTimeout(timer);
+
+                    $(':radio[name="symbolName"]').change(function(){
+                        $(this).parent('li').addClass('selected').siblings().removeClass('selected');
+
+                    }).filter(':checked').change();   
+
+
+                }
+
+                   
+                $('input:radio[name="symbolName"]').click(function () {
+                    // alert("hi");
+                    // alert($(this).val());
+
+                    var dataset = $(this).val();
+
+                    // alert(dataset);
+
+                     document.getElementById("setEntry").readOnly  = false;
+                    document.getElementById("setStop").readOnly  = false;
+                     document.getElementById("setExit").readOnly  = false;
+                     document.getElementById("search-box").readOnly  = true;
+
+                    var url = "https://cloud.iexapis.com/stable/stock/market/batch?token=pk_dd324da3fb5f4428a47b05ab12f23ce2&types=quote&symbols="+dataset;
+                          $.ajax({
+                            url : url,
+                            type: "GET",
+                            success: function(data)
+                            {
+                                     // alert(data[symbol]);
+
+                                document.getElementById("search-box").value  = dataset;
+
+                                 document.getElementById("setEntry").value = JSON.stringify(data[dataset].quote.latestPrice);
+                                 document.getElementById("setStop").value = JSON.stringify(data[dataset].quote.latestPrice);
+                                 document.getElementById("setExit").value = JSON.stringify(data[dataset].quote.latestPrice);
+                                  document.getElementById("createprice").value = JSON.stringify(data[dataset].quote.latestPrice);
+                              
+                            }
+
+                          });
+                });
+     
+                             
+        }
+        });
+         }  , 1000 );
+    });
+});
+
+//To select country name
+function selectCountry(val) {
+$("#search-box").val(val);
+$("#suggesstion-box").hide();
+}
+
+ 
+ </script>
+
+ 
+ <script type="text/javascript">
+  window.addEventListener("load", function() {
+  var url_string = window.location.href; 
+  var urls = new URL(url_string);
+  var tokens = urls.searchParams.get("tokendata");
+  var jwtTokens = urls.searchParams.get("chatToken");
+  var username = urls.searchParams.get("uname");
+  $('#loginName').html(username);
+  var userid = urls.searchParams.get("id");
+  $('#loginId').val(userid);
+ // document.getElementById("HomeLink").href = "/tipPage?tokendata="+tokens+"&uname="+username+"&id="+userid;
+  // document.getElementById("UserLink").href = "/addMentor?tokendata="+tokens+"&uname="+username+"&id="+userid;
+  // document.getElementById("ChatManageLink").href = "/chatManage?tokendata="+tokens+"&uname="+username+"&id="+userid+"&chatToken="+jwtTokens;
+});
+</script>
+
+</body>
+
+</html>
