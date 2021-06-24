@@ -395,7 +395,7 @@ window.addEventListener("load", function() {
                 {
                    "data": "id",
                    "render": function (data) {
-                       return '<input type="checkbox" id="'+ data +'" checked/>';
+                       return '<input type="checkbox" id="'+ data +'" class="locationthemes" value="'+ data +'" />';
                        }
                 },
                 { "data": "title" },
@@ -448,7 +448,7 @@ var filterdata=e.options[e.selectedIndex].text;
 
 
 
-  var bannerids = row.id;
+   var bannerids = $('.locationthemes:checked').val();
 
   if(title == "" || description == ""  || bannerids == ""){
     alert("Please fill all the field");
