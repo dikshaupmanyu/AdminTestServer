@@ -489,7 +489,7 @@ var filterdata=e.options[e.selectedIndex].text;
                 var dataResultp = JSON.parse(datak); 
                 // alert(dataResultp.title);
                 alert("Notification has been sent");
-                window.location.reload("/notification?tokendata="+tokens); 
+                // window.location.reload("/notification?tokendata="+tokens); 
           
 
        })
@@ -531,6 +531,7 @@ document.getElementById("TipLink").href = "/tipList?tokendata="+tokens;
  document.getElementById("NotifyLink").href = "/notification?tokendata="+tokens;
     document.getElementById("changePassLink").href = "/changePassword?tokendata="+tokens;  
    document.getElementById("AccountLink").href = "/account?tokendata="+tokens;  
+    document.getElementById("NotifyListLink").href = "/notificationlist?tokendata="+tokens;
 
 });
 </script>
