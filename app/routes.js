@@ -16,6 +16,12 @@ module.exports = function(app, passport) {
     res.render('notificationlist.ejs');
   });
 
+    app.get('/notificationTypeAdd', function(req, res) {
+
+    res.render('notificationTypeAdd.ejs');
+  });
+
+
    app.get('/account', function(req, res) {
 
     res.render('account.ejs');
