@@ -396,7 +396,7 @@ window.addEventListener("load", function() {
                 {
                    "data": "id",
                    "render": function (data) {
-                       return '<input type="checkbox" id="'+ data +'" class="locationthemes" value="'+ data +'" />';
+                       return '<input type="radio" name="selectBanner" id="'+ data +'" class="locationthemes" value="'+ data +'" />';
                        }
                 },
                 { "data": "title" },
@@ -424,7 +424,7 @@ window.addEventListener("load", function() {
     data[table.row($(this).parents('tr').get(0)).index()] = this.checked;
 
     var id = $(this).attr('id');
-    // alert(id);
+    alert(id);
    
    });
 
@@ -450,6 +450,11 @@ var filterdata=e.options[e.selectedIndex].text;
 
 
    var bannerids = $('.locationthemes:checked').val();
+   // alert(bannerids);
+
+// $('input[type=radio][name=selectBanner]').on('change', function() {
+//   alert ($(this).val());
+// });
 
   if(title == "" || description == ""  || bannerids == ""){
     alert("Please fill all the field");
