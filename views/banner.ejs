@@ -24,7 +24,54 @@
                 <h3 class="mb-0">Add Banner</h3>
               </div>
               <div class="card-body">
-                <form autocomplete="off" class="form" role="form" method="post">
+              <form autocomplete="off" class="form" role="form" method="post">
+
+              <br>
+               <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">Slider 1</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab">Slider 2</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab">Slider 3</a>
+                </li>
+                </ul>
+                <br>
+                <div class="tab-content">
+                <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                    <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">Image 1</label>
+                    <div class="col-lg-9">
+                     <!--  <select class="chosen form-control" id="sel_user" placeholder="Pick a User">
+                      </select> -->
+                      <input type="file" id="imageDetailss1" name="imageDetails1" required />
+                    </div>
+                </div>
+                </div>
+                <div class="tab-pane" id="tabs-2" role="tabpanel">
+                  <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">Image 2</label>
+                    <div class="col-lg-9">
+                     <!--  <select class="chosen form-control" id="sel_user" placeholder="Pick a User">
+                      </select> -->
+                      <input type="file" id="imageDetailss2" name="imageDetails2" required />
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane" id="tabs-3" role="tabpanel">
+                    <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">Image 3</label>
+                    <div class="col-lg-9">
+                     <!--  <select class="chosen form-control" id="sel_user" placeholder="Pick a User">
+                      </select> -->
+                      <input type="file" id="imageDetailss3" name="imageDetails3" required />
+                    </div>
+                  </div>
+                </div>
+                </div>
+                <br>
                   <div class="form-group row">
                     <label class="col-lg-3 col-form-label form-control-label">Title</label>
                     <div class="col-lg-7">
@@ -47,14 +94,14 @@
                        <textarea class="form-control" id="longDescriptions" name="Long_text_editor" required /></textarea>
                     </div>
                   </div>
-                  <div class="form-group row">
+               <!--    <div class="form-group row">
                     <label class="col-lg-3 col-form-label form-control-label">Image</label>
                     <div class="col-lg-9">
-                     <!--  <select class="chosen form-control" id="sel_user" placeholder="Pick a User">
-                      </select> -->
+                      <select class="chosen form-control" id="sel_user" placeholder="Pick a User">
+                      </select>
                       <input type="file" id="imageDetailss" name="imageDetails" required />
                     </div>
-                  </div>
+                  </div> -->
                   
                   <!--  <div class="form-group row">
                     <label class="col-lg-3 col-form-label form-control-label">Url or Info</label>
@@ -378,20 +425,34 @@ $("#bannerSubmit").on('click', function (e) {
   // alert(shortDescription);
   var longDescription = tinymce.get("longDescriptions").getContent();
   // alert(longDescriptions);
-  var file = document.getElementById("imageDetailss").files[0];
+  // var file = document.getElementById("imageDetailss").files[0];
   //alert(file);
   // alert(file);
   // if(file == undefined){
   //   readURLs(file);
   // }
+
+
  
-  var fullPath = $("#imageDetailss").val();
+  // var fullPath = $("#imageDetailss").val();
   // alert(fullPath);   
-  var filename = fullPath.replace(/^.*[\\\/]/, '');
+  // var filename = fullPath.replace(/^.*[\\\/]/, '');
   // alert(filename);
 
-  
-  if(title == "" || shortDescription == ""  || longDescription == ""  || filename == ""){
+   var file1 = document.getElementById("imageDetailss1").files[0];
+   var fullPath1 = $("#imageDetailss1").val();
+   var filename1 = fullPath1.replace(/^.*[\\\/]/, '');
+   var file2 = document.getElementById("imageDetailss2").files[0];
+   var fullPath2 = $("#imageDetailss2").val();
+   var filename2 = fullPath2.replace(/^.*[\\\/]/, '');
+   var file3 = document.getElementById("imageDetailss3").files[0];
+   var fullPath3 = $("#imageDetailss3").val();
+   var filename3 = fullPath3.replace(/^.*[\\\/]/, '');
+
+ 
+  // if(title == "" || shortDescription == ""  || longDescription == ""  || filename == ""){
+  if(title == "" || shortDescription == ""  || longDescription == ""  || filename1 == "" || filename2 == "" || filename3 == ""){
+
     alert("Please fill all the field");
   }else {
 
@@ -400,13 +461,45 @@ $("#bannerSubmit").on('click', function (e) {
     formdata.append("shortDescription", shortDescription);
     formdata.append("longDescription", longDescription);
 
-  if(filename == ""){
+  // if(filename == ""){
+  //   // alert("null");
+  //     formdata.append("imageDetails", "");
+
+  //   }else{
+  //   // alert("not null");
+  //     formdata.append("imageDetails", file , filename);
+
+  //   }
+    
+  if(filename1 == ""){
     // alert("null");
-      formdata.append("imageDetails", "");
+      formdata.append("imageDetails1", "");
 
     }else{
     // alert("not null");
-      formdata.append("imageDetails", file , filename);
+      formdata.append("imageDetails1", file1 , filename1);
+
+    }
+
+
+  if(filename2 == ""){
+    // alert("null");
+      formdata.append("imageDetails2", "");
+
+    }else{
+    // alert("not null");
+      formdata.append("imageDetails2", file2 , filename2);
+
+    }
+
+
+  if(filename3 == ""){
+    // alert("null");
+      formdata.append("imageDetails3", "");
+
+    }else{
+    // alert("not null");
+      formdata.append("imageDetails3", file3 , filename3);
 
     }
 
@@ -580,7 +673,7 @@ var formdata = new FormData();
                 { "data": "shortDescription" },
                 { "data": "longDescription" },
                 {
-                   "data": "image",
+                   "data": "image1",
                    "render": function (data) {
                        return '<img src="https://apistest.tradetipsapp.com' + data + '" class="avatar" width="50" height="50"/>';
                        }
