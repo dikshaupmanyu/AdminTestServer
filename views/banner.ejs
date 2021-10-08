@@ -24,108 +24,169 @@
                 <h3 class="mb-0">Add Banner</h3>
               </div>
               <div class="card-body">
-              <form autocomplete="off" class="form" role="form" method="post">
-
               <br>
                <ul class="nav nav-tabs" role="tablist">
                 <li class="nav-item">
-                  <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">Slider 1</a>
+                  <a class="nav-link active" data-toggle="tab" href="#tabs-banner1" role="tab">Banner 1</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab">Slider 2</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab">Slider 3</a>
+                  <a class="nav-link" data-toggle="tab" href="#tabs-banner2" role="tab">Banner 2</a>
                 </li>
                 </ul>
                 <br>
                 <div class="tab-content">
-                <div class="tab-pane active" id="tabs-1" role="tabpanel">
-                    <div class="form-group row">
-                    <label class="col-lg-3 col-form-label form-control-label">Image 1</label>
-                    <div class="col-lg-9">
-                     <!--  <select class="chosen form-control" id="sel_user" placeholder="Pick a User">
-                      </select> -->
-                      <input type="file" id="imageDetailss1" name="imageDetails1" required />
-                    </div>
-                </div>
-                </div>
-                <div class="tab-pane" id="tabs-2" role="tabpanel">
-                  <div class="form-group row">
-                    <label class="col-lg-3 col-form-label form-control-label">Image 2</label>
-                    <div class="col-lg-9">
-                     <!--  <select class="chosen form-control" id="sel_user" placeholder="Pick a User">
-                      </select> -->
-                      <input type="file" id="imageDetailss2" name="imageDetails2" required />
-                    </div>
-                  </div>
-                </div>
-                <div class="tab-pane" id="tabs-3" role="tabpanel">
-                    <div class="form-group row">
-                    <label class="col-lg-3 col-form-label form-control-label">Image 3</label>
-                    <div class="col-lg-9">
-                     <!--  <select class="chosen form-control" id="sel_user" placeholder="Pick a User">
-                      </select> -->
-                      <input type="file" id="imageDetailss3" name="imageDetails3" required />
-                    </div>
-                  </div>
-                </div>
-                </div>
-                <br>
+               
+                <div class="tab-pane active" id="tabs-banner1" role="tabpanel">
+                  <form autocomplete="off" class="form" role="form" method="post">
                   <div class="form-group row">
                     <label class="col-lg-3 col-form-label form-control-label">Title</label>
                     <div class="col-lg-7">
-                      <input type="text" class="form-control" id="titles" name="title" required />
+                      <input type="text" class="form-control" id="title" name="title" required />
                     </div>
                     <div class="col-lg-2">
                       <button id="emoji-button">😀</button>
                     </div>
                   </div>
-                   <div class="form-group row">
+                  <div class="form-group row">
                     <label class="col-lg-3 col-form-label form-control-label">Short Description</label>
                     <div class="col-lg-9">
-                      <textarea class="form-control" id="shortDescriptions" name="Short_text_editor" required /></textarea>                     
-                    </div>
-                    
+                      <textarea class="form-control" id="shortDescription" name="Short_text_editor" required /></textarea>                     
+                    </div>                    
                   </div>
-                   <div class="form-group row">
+                  <div class="form-group row">
                     <label class="col-lg-3 col-form-label form-control-label">Long Description</label>
                     <div class="col-lg-9">
-                       <textarea class="form-control" id="longDescriptions" name="Long_text_editor" required /></textarea>
+                       <textarea class="form-control" id="longDescription" name="Long_text_editor" required /></textarea>
                     </div>
                   </div>
-               <!--    <div class="form-group row">
+                  <div class="form-group row">
                     <label class="col-lg-3 col-form-label form-control-label">Image</label>
                     <div class="col-lg-9">
-                      <select class="chosen form-control" id="sel_user" placeholder="Pick a User">
-                      </select>
-                      <input type="file" id="imageDetailss" name="imageDetails" required />
+                      
+                      <input type="file" id="imageDetail" name="imageDetails" required />
                     </div>
-                  </div> -->
-                  
-                  <!--  <div class="form-group row">
-                    <label class="col-lg-3 col-form-label form-control-label">Url or Info</label>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label"></label>
                     <div class="col-lg-9">
-                       
-                          <div class="slot_subclass">
-                              <button class="add_form_field">Add New Field &nbsp; 
-                                <span style="font-size:16px; font-weight:bold;">+ </span>
-                              </button>
-                              <div class="item"><input type="text" name="key" class="item_name">&nbsp;<input type="text" name="value" class="item_qty"> </div>
-                          </div>
+                      <input class="btn btn-secondary" type="button" value="Preview" id="bannerPreviewData">
+                      <input class="btn btn-secondary" type="reset" value="Cancel"> 
+                      <input class="btn btn-primary" type="button" value="Submit" id="bannerSubmitbannerone">
+                     </div>
+                  </div>
+                 </form>
+                </div>
+                <div class="tab-pane" id="tabs-banner2" role="tabpanel">
+                  <br>
+                   <ul class="nav nav-tabs" role="tablist">
+                     <li class="nav-item">
+                       <a class="nav-link active" data-toggle="tab" href="#tabs-banner21" role="tab">Slider 1</a>
+                     </li>
+                     <li class="nav-item">
+                       <a class="nav-link" data-toggle="tab" href="#tabs-banner22" role="tab">Slider 2</a>
+                     </li>
+                     <li class="nav-item">
+                      <a class="nav-link" data-toggle="tab" href="#tabs-banner23" role="tab">Slider 3</a>
+                     </li>
+                   </ul>
+                  <br>
+                <div class="tab-content">
+                  <div class="tab-pane active" id="tabs-banner21" role="tabpanel">
+                    <br>
+                    <div class="form-group row">
+                      <label class="col-lg-3 col-form-label form-control-label">Title 1</label>
+                      <div class="col-lg-7">
+                        <input type="text" class="form-control" id="titles1" name="title" required />
+                      </div>
+                      <div class="col-lg-2">
+                        <button id="emoji-button">😀</button>
+                      </div>
                     </div>
-                  </div> -->
-
-
-
-
-              
-                 <!-- <div class="form-group row">
-                    <label class="col-lg-3 col-form-label form-control-label">Limit</label>
-                    <div class="col-lg-9">
-                      <input class="form-control" type="text" id="limit">
+                    <div class="form-group row">
+                        <label class="col-lg-3 col-form-label form-control-label">Short Description 1</label>
+                        <div class="col-lg-9">
+                        <textarea class="form-control" id="shortDescriptions1" name="Short_text_editor" required /></textarea>                     
+                        </div>
                     </div>
-                  </div> -->
+                    <div class="form-group row">
+                      <label class="col-lg-3 col-form-label form-control-label">Long Description 1</label>
+                      <div class="col-lg-9">
+                         <textarea class="form-control" id="longDescriptions1" name="Long_text_editor" required /></textarea>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-lg-3 col-form-label form-control-label">Image 1</label>
+                      <div class="col-lg-9">
+                        <input type="file" id="imageDetailss1" name="imageDetails" required />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tab-pane" id="tabs-banner22" role="tabpanel">
+                    <br>
+                    <div class="form-group row">
+                      <label class="col-lg-3 col-form-label form-control-label">Title 2</label>
+                      <div class="col-lg-7">
+                        <input type="text" class="form-control" id="titless2" name="title" required />
+                      </div>
+                      <div class="col-lg-2">
+                        <button id="emoji-button">😀</button>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-lg-3 col-form-label form-control-label">Short Description 2</label>
+                      <div class="col-lg-9">
+                        <textarea class="form-control" id="shortDescriptionss2" name="Short_text_editor" required /></textarea>                     
+                      </div>                      
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-lg-3 col-form-label form-control-label">Long Description 2</label>
+                      <div class="col-lg-9">
+                         <textarea class="form-control" id="longDescriptionss2" name="Long_text_editor" required /></textarea>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-lg-3 col-form-label form-control-label">Image 2</label>
+                      <div class="col-lg-9">
+                        <input type="file" id="imageDetailss2" name="imageDetailss" required />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tab-pane" id="tabs-banner23" role="tabpanel">
+                    <div class="form-group row">
+                      <label class="col-lg-3 col-form-label form-control-label">Title 3</label>
+                      <div class="col-lg-7">
+                        <input type="text" class="form-control" id="titlesss3" name="title" required />
+                      </div>
+                      <div class="col-lg-2">
+                        <button id="emoji-button">😀</button>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-lg-3 col-form-label form-control-label">Short Description 3</label>
+                      <div class="col-lg-9">
+                        <textarea class="form-control" id="shortDescriptionsss3" name="Short_text_editor" required /></textarea>                     
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-lg-3 col-form-label form-control-label">Long Description 3</label>
+                      <div class="col-lg-9">
+                         <textarea class="form-control" id="longDescriptionsss3" name="Long_text_editor" required /></textarea>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-lg-3 col-form-label form-control-label">Image 3</label>
+                      <div class="col-lg-9">
+                        <input type="file" id="imageDetailssss3" name="imageDetailss" required />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+
+                <br>
+
+
+
                   <div class="form-group row">
                     <label class="col-lg-3 col-form-label form-control-label"></label>
                     <div class="col-lg-9">
@@ -135,7 +196,9 @@
                      </div>
                   </div>
                 </form>
-                 <div class="table-responsive">
+                
+              </div>
+               <div class="table-responsive">
                   <table class="table table-bordered" id="dataTables" width="100%" cellspacing="0">
                     <thead>
                       <tr>
@@ -150,7 +213,6 @@
                     </tbody>
                   </table>
                 </div>
-              </div>
             </div><!-- /form user info -->
 
         
@@ -416,60 +478,142 @@ $("#bannerPreviewData").on('click', function (e) {
 // $('textarea[name="Short_text_editor"]').ckeditor();
 //  $('textarea[name="Long_text_editor"]').ckeditor();
 
+$("#bannerSubmitbannerone").on('click', function (e) {
+
+
+  var title = $('#title').val();
+  //alert(title);
+  var shortDescription = tinymce.get("shortDescription").getContent();
+  // alert(shortDescription);
+  var longDescription = tinymce.get("longDescription").getContent();
+  // alert(longDescriptions);
+   var file = document.getElementById("imageDetail").files[0];
+   var fullPath = $("#imageDetail").val();
+   var filename = fullPath.replace(/^.*[\\\/]/, '');
+
+   if(title == "" || shortDescription == ""  || longDescription == ""  || filename == ""){
+
+    alert("Please fill all the field");
+
+    }else {
+
+       var formdata = new FormData();
+          formdata.append("title1", title);
+          formdata.append("shortDescription1", shortDescription);
+          formdata.append("longDescription1", longDescription);
+
+       if(filename == ""){
+        // alert("null");
+          formdata.append("imageDetails1", "");
+
+        }else{
+        // alert("not null");
+          formdata.append("imageDetails1", file , filename);
+
+        }
+
+    var requestOptions = {
+      method: 'POST',
+      headers: {
+              Authorization: 'Bearer '+ tokens
+            },
+      body: formdata,
+      redirect: 'follow'
+    };
+
+    fetch("https://apistest.tradetipsapp.com/api/adBannerSimple/addSimpleAdBanner", requestOptions)
+      .then(response => response.json())
+      .then(result => {
+            
+                var datak = JSON.stringify(result);
+               // alert(datak);
+                var dataResultp = JSON.parse(datak); 
+                // alert(dataResultp.title);
+                alert("Your banner "+dataResultp.title1+" was submitted successfully");
+                window.location.reload("/banner?tokendata="+tokens); 
+
+       })
+      .catch(error => console.log('error', error));
+
+
+    }
+
+  });
+
+
+
 $("#bannerSubmit").on('click', function (e) {
 
-
-  var title = $('#titles').val();
+  var title1 = $('#titles1').val();
   //alert(title);
-  var shortDescription = tinymce.get("shortDescriptions").getContent();
+  var shortDescription1 = tinymce.get("shortDescriptions1").getContent();
   // alert(shortDescription);
-  var longDescription = tinymce.get("longDescriptions").getContent();
+  var longDescription1 = tinymce.get("longDescriptions1").getContent();
   // alert(longDescriptions);
-  // var file = document.getElementById("imageDetailss").files[0];
-  //alert(file);
-  // alert(file);
-  // if(file == undefined){
-  //   readURLs(file);
-  // }
-
-
+  var file1 = document.getElementById("imageDetailss1").files[0];
  
-  // var fullPath = $("#imageDetailss").val();
-  // alert(fullPath);   
-  // var filename = fullPath.replace(/^.*[\\\/]/, '');
-  // alert(filename);
+  var fullPath1 = $("#imageDetailss1").val();
+  var filename1 = fullPath1.replace(/^.*[\\\/]/, '');
 
-   var file1 = document.getElementById("imageDetailss1").files[0];
-   var fullPath1 = $("#imageDetailss1").val();
-   var filename1 = fullPath1.replace(/^.*[\\\/]/, '');
+  /////////////////////////////////////////////////////////////////////////
+
+
+  var title2 = $('#titless2').val();
+  //alert(title);
+  var shortDescription2 = tinymce.get("shortDescriptionss2").getContent();
+  // alert(shortDescription);
+  var longDescription2 = tinymce.get("longDescriptionss2").getContent();
+  // alert(longDescriptions);
    var file2 = document.getElementById("imageDetailss2").files[0];
    var fullPath2 = $("#imageDetailss2").val();
    var filename2 = fullPath2.replace(/^.*[\\\/]/, '');
-   var file3 = document.getElementById("imageDetailss3").files[0];
-   var fullPath3 = $("#imageDetailss3").val();
+
+   ///////////////////////////////////////////////////////////////////////
+
+
+
+  var title3 = $('#titlesss3').val();
+  //alert(title);
+  var shortDescription3 = tinymce.get("shortDescriptionsss3").getContent();
+  // alert(shortDescription);
+  var longDescription3 = tinymce.get("longDescriptionsss3").getContent();
+  // alert(longDescriptions);
+   var file3 = document.getElementById("imageDetailssss3").files[0];
+   var fullPath3 = $("#imageDetailssss3").val();
    var filename3 = fullPath3.replace(/^.*[\\\/]/, '');
+
+   ///////////////////////////////////////////////////////////////////////
+
+
+
+  //  var title = $('#titles1').val();
+  // //alert(title);
+  // var shortDescription = tinymce.get("shortDescriptions1").getContent();
+  // // alert(shortDescription);
+  // var longDescription = tinymce.get("longDescriptions1").getContent();
+  // // alert(longDescriptions);
+  //  var file1 = document.getElementById("imageDetailss1").files[0];
+  //  var fullPath1 = $("#imageDetailss1").val();
+  //  var filename1 = fullPath1.replace(/^.*[\\\/]/, '');
+
+  //  var file2 = document.getElementById("imageDetailss2").files[0];
+  //  var fullPath2 = $("#imageDetailss2").val();
+  //  var filename2 = fullPath2.replace(/^.*[\\\/]/, '');
+  //  var file3 = document.getElementById("imageDetailss3").files[0];
+  //  var fullPath3 = $("#imageDetailss3").val();
+  //  var filename3 = fullPath3.replace(/^.*[\\\/]/, '');
 
  
   // if(title == "" || shortDescription == ""  || longDescription == ""  || filename == ""){
-  if(title == "" || shortDescription == ""  || longDescription == ""  || filename1 == "" || filename2 == "" || filename3 == ""){
+  if(title1 == "" || shortDescription1 == ""  || longDescription1 == ""  || filename1 == "" || title2 == "" || shortDescription2 == ""  || longDescription2 == ""  || filename2 == "" || title3 == "" || shortDescription3 == ""  || longDescription3 == ""  || filename3 == ""){
 
     alert("Please fill all the field");
   }else {
 
-     var formdata = new FormData();
-    formdata.append("title", title);
-    formdata.append("shortDescription", shortDescription);
-    formdata.append("longDescription", longDescription);
-
-  // if(filename == ""){
-  //   // alert("null");
-  //     formdata.append("imageDetails", "");
-
-  //   }else{
-  //   // alert("not null");
-  //     formdata.append("imageDetails", file , filename);
-
-  //   }
+    
+    formdata.append("title1", title1);
+    formdata.append("shortDescription1", shortDescription1);
+    formdata.append("longDescription1", longDescription1);
     
   if(filename1 == ""){
     // alert("null");
@@ -480,6 +624,9 @@ $("#bannerSubmit").on('click', function (e) {
       formdata.append("imageDetails1", file1 , filename1);
 
     }
+    formdata.append("title2", title2);
+    formdata.append("shortDescription2", shortDescription2);
+    formdata.append("longDescription2", longDescription2);
 
 
   if(filename2 == ""){
@@ -492,6 +639,9 @@ $("#bannerSubmit").on('click', function (e) {
 
     }
 
+    formdata.append("title3", title3);
+    formdata.append("shortDescription3", shortDescription3);
+    formdata.append("longDescription3", longDescription3);
 
   if(filename3 == ""){
     // alert("null");
@@ -530,7 +680,7 @@ $("#bannerSubmit").on('click', function (e) {
                // alert(datak);
                 var dataResultp = JSON.parse(datak); 
                 // alert(dataResultp.title);
-                alert("Your banner "+dataResultp.title+" was submitted successfully");
+                alert("Your banner "+dataResultp.title1+" was submitted successfully");
                 window.location.reload("/banner?tokendata="+tokens); 
 
                  // fetch("https://apistest.tradetipsapp.com/api/adBannerSimple/disableAllOtherthanBannerById?adBannerId="+dataResultp.id, requestOptions1)
@@ -669,9 +819,9 @@ var formdata = new FormData();
             // } ],
             "columns": [
                 
-                { "data": "title" },
-                { "data": "shortDescription" },
-                { "data": "longDescription" },
+                { "data": "title1" },
+                { "data": "shortDescription1" },
+                { "data": "longDescription1" },
                 {
                    "data": "image1",
                    "render": function (data) {
