@@ -63,7 +63,7 @@
                     <label class="col-lg-3 col-form-label form-control-label">Image</label>
                     <div class="col-lg-9">
                       
-                      <input type="file" id="imageDetail" name="imageDetails" required />
+                      <input type="file" id="imageDetails1banner" name="imageDetails" required />
                     </div>
                   </div>
                   <div class="form-group row">
@@ -408,20 +408,20 @@ window.history.forward();
  // $('textarea[name="Long_text_editor"]').ckeditor();
 $("#bannerPreviewData").on('click', function (e) {
 
-  var title = $('#titles').val();
+  var title = $('#title').val();
   // alert(title);
-  var shortDescription = tinymce.get("shortDescriptions").getContent();
+  var shortDescription = tinymce.get("shortDescription").getContent();
   // alert(shortDescription);
-  var longDescription = tinymce.get("longDescriptions").getContent();
+  var longDescription = tinymce.get("longDescription").getContent();
   // alert(longDescription);
-  var file = document.getElementById("imageDetailss").files[0];
+  var file = document.getElementById("imageDetails1banner").files[0];
   //alert(file);
   // alert(readURLs(file));
   // if(file == undefined){
   //   readURLs(file);
   // }
  
-  var fullPath = $("#imageDetailss").val();
+  var fullPath = $("#imageDetails1banner").val();
   // alert(fullPath);   
   var filename = fullPath.replace(/^.*[\\\/]/, '');
   // alert(filename);
@@ -487,8 +487,8 @@ $("#bannerSubmitbannerone").on('click', function (e) {
   // alert(shortDescription);
   var longDescription = tinymce.get("longDescription").getContent();
   // alert(longDescriptions);
-   var file = document.getElementById("imageDetail").files[0];
-   var fullPath = $("#imageDetail").val();
+   var file = document.getElementById("imageDetails1banner").files[0];
+   var fullPath = $("#imageDetails1banner").val();
    var filename = fullPath.replace(/^.*[\\\/]/, '');
 
    if(title == "" || shortDescription == ""  || longDescription == ""  || filename == ""){
@@ -504,11 +504,11 @@ $("#bannerSubmitbannerone").on('click', function (e) {
 
        if(filename == ""){
         // alert("null");
-          formdata.append("image1", "");
+          formdata.append("imageDetails", "");
 
         }else{
         // alert("not null");
-          formdata.append("image1", file , filename);
+          formdata.append("imageDetails", file , filename);
 
         }
 
