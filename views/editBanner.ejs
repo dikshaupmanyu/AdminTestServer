@@ -367,15 +367,15 @@ $("#bannerSubmitbannerone").on('click', function (e) {
 
   if(filename1 == "" || filename2 == "" || filename3 == ""){
     // alert("null");
-      formdata.append("imageDetailss1", "");
-      formdata.append("imageDetailss2", "");
-      formdata.append("imageDetailssss3", "");
+      formdata.append("image1", "");
+      formdata.append("image2", "");
+      formdata.append("image3", "");
 
     }else{
     // alert("not null");
-      formdata.append("imageDetailss1", file1 , filename1);
-      formdata.append("imageDetailss2", file2 , filename2);
-      formdata.append("imageDetailssss3", file3 , filename3);
+      formdata.append("image1", file1 , filename1);
+      formdata.append("image2", file2 , filename2);
+      formdata.append("image3", file3 , filename3);
 
 
 
@@ -531,12 +531,13 @@ $("#bannerSubmit").on('click', function (e) {
 
   if(filename == ""){
     // alert("null");
-      formdata.append("imageDetails", "");
+      formdata.append("image1", "");
     
 
     }else{
     // alert("not null");
-      formdata.append("imageDetails", file , filename);
+      formdata.append("image1", file , filename);
+      
     }
 
     var requestOptions = {
