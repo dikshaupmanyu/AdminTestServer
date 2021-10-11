@@ -21,6 +21,17 @@ module.exports = function(app, passport) {
     res.render('notificationTypeAdd.ejs');
   });
 
+    app.get('/editNotification', function(req, res) {
+
+      var notifyId = req.query.id;
+      var title = req.query.title;
+      var description = req.query.description;
+      var type = req.query.type;
+
+
+    res.render('editNotification.ejs', {notificationIds : notifyId , notificationTitle : title , description : description , usertype : type});
+  });
+
 
    app.get('/account', function(req, res) {
 
