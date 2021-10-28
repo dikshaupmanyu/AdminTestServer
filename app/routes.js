@@ -62,6 +62,14 @@ app.get('/editBanner', function(req, res) {
     res.render('editBanner.ejs', {bannersId : bannerId });
   });
 
+app.get('/viewBanner', function(req, res) {
+
+      var bannerId = req.query.id;
+
+
+    res.render('viewBanner.ejs', {bannersId : bannerId });
+  });
+
   app.get('/tipList', function(req, res) {
 
     res.render('tipList.ejs');

@@ -149,7 +149,7 @@
                   <div class="form-group row">
                     <label class="col-lg-3 col-form-label form-control-label"></label>
                     <div class="col-lg-9">
-                      <input class="btn btn-secondary" type="button" value="Preview" id="bannerPreviewData">
+                      <input class="btn btn-secondary" type="button" value="Preview" id="bannerPreviewData" style="display: none;">
                       <input class="btn btn-secondary" type="reset" value="Cancel"> 
                       <input class="btn btn-primary" type="button" value="Submit" id="bannerSubmitbannerone">
                      </div>
@@ -270,7 +270,7 @@
                   <div class="form-group row">
                     <label class="col-lg-3 col-form-label form-control-label"></label>
                     <div class="col-lg-9">
-                      <input class="btn btn-secondary" type="button" value="Preview" id="bannerPreviewData">
+                      <input class="btn btn-secondary" type="button" value="Preview" id="bannerPreviewData" style="display: none;">
                       <input class="btn btn-secondary" type="reset" value="Cancel"> 
                       <input class="btn btn-primary" type="button" value="Submit" id="bannerSubmit">
                      </div>
@@ -562,14 +562,16 @@ $("#bannerSubmitbannerone").on('click', function (e) {
 
 
   var title = $('#title').val();
-  //alert(title);
+  // alert(title);
   var shortDescription = tinymce.get("shortDescription").getContent();
   // alert(shortDescription);
   var longDescription = tinymce.get("longDescription").getContent();
-  // alert(longDescriptions);
+  // alert(longDescription);
    var file = document.getElementById("imageDetails1banner").files[0];
    var fullPath = $("#imageDetails1banner").val();
    var filename = fullPath.replace(/^.*[\\\/]/, '');
+
+   // alert(filename);
 
    if(title == "" || shortDescription == ""  || longDescription == ""  || filename == ""){
 
@@ -578,17 +580,17 @@ $("#bannerSubmitbannerone").on('click', function (e) {
     }else {
 
        var formdata = new FormData();
-          formdata.append("title1", title);
-          formdata.append("shortDescription1", shortDescription);
-          formdata.append("longDescription1", longDescription);
+          formdata.append("title", title);
+          formdata.append("shortDescription", shortDescription);
+          formdata.append("longDescription", longDescription);
 
        if(filename == ""){
         // alert("null");
-          formdata.append("image1", "");
+          formdata.append("imageDetails", "");
 
         }else{
         // alert("not null");
-          formdata.append("image1", file , filename);
+          formdata.append("imageDetails", file , filename);
 
         }
 
@@ -609,7 +611,7 @@ $("#bannerSubmitbannerone").on('click', function (e) {
                // alert(datak);
                 var dataResultp = JSON.parse(datak); 
                 // alert(dataResultp.title);
-                alert("Your banner "+dataResultp.title1+" was submitted successfully");
+                alert("Your banner "+dataResultp.title+" was submitted successfully");
                 window.location.reload("/banner?tokendata="+tokens); 
 
        })
@@ -899,19 +901,50 @@ var formdata = new FormData();
             // } ],
               "columns": [
                 
-                { "data": "title1" },
+                { "data": "title",
+                render: function(data, type, row) {
+
+                  // alert(row.title1);
+
+                  return row.title = (row.title== null) ? row.title1 : row.title;
+
+                 }
+
+                 },
+
                 { "data": "",
                    "render" : function(data , type, row){
                     // return ' <div class="accordion" id="faqExample"><div class="card"><div class="card-header p-2" id="heading' + row.id + '"><h5 class="mb-0"><button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">'+ data +'</button></h5></div><div id="collapseOne" class="collapse show" aria-labelledby="heading' + row.id + '" data-parent="#faqExample"><div class="card-body">'+ row.longDescription +'</div></div></div></div>'
-                    return '<div><input type="checkbox" id="' + row.id + '" name="q"  class="questions"><div class="plus">+</div><label for="' + row.id + '" class="question">'+ row.shortDescription1 +'</label><div class="answers">'+ row.longDescription1 +'</div></div>'
+                    if(row.shortDescription == null){
+
+                       return '<div><input type="checkbox" id="' + row.id + '" name="q"  class="questions"><div class="plus">+</div><label for="' + row.id + '" class="question">'+ row.shortDescription1 +'</label><div class="answers">'+ row.longDescription1 +'</div></div>'
+
+                    }else{
+
+                       return '<div><input type="checkbox" id="' + row.id + '" name="q"  class="questions"><div class="plus">+</div><label for="' + row.id + '" class="question">'+ row.shortDescription +'</label><div class="answers">'+ row.longDescription +'</div></div>'
+
+                    }
+                   
                     // return '<div> <input type="checkbox" id="question' + row.id + '" name="q" class="questions"><div class="plus">+</div><label for="question' + row.id + '" class="question">Keep answers short. But in case of...If the question is long, the text wraps.  </label><div class="answers">This is the answer!</div></div>'
                    }
                  },
                 // { "data": "longDescription" },
                 {
-                   "data": "image1",
-                   "render": function (data) {
-                       return '<img src="https://apistest.tradetipsapp.com' + data + '" class="avatar" width="50" height="50"/>';
+                   "data": "image",
+                   "render": function (data,type,row) {
+
+                    // alert(row.image1);
+
+                      if(data == null){
+
+                         return '<img src="https://apistest.tradetipsapp.com' + row.image1 + '" class="avatar" width="50" height="50"/>';
+
+                      }else{
+
+                         return '<img src="https://apistest.tradetipsapp.com' + data + '" class="avatar" width="50" height="50"/>';
+
+                      }
+                      
                        }
                 },
               //   { 'data': null,
@@ -942,7 +975,7 @@ var formdata = new FormData();
               },
               { 'data': null,
                  'render': function (data, type, row) {
-                        return '<a href="editBanner?id='+row.id+'&tokendata='+tokens+'"><button>Edit</button></a> | <button id="' + row.id + '" class="deleteButtonsBanner">Delete</button>';
+                        return '<a href="editBanner?id='+row.id+'&tokendata='+tokens+'"><button>Edit</button></a> | <button id="' + row.id + '" class="deleteButtonsBanner">Delete</button> | <a href="viewBanner?id='+row.id+'&tokendata='+tokens+'"><button>View</button></a>';
                }
               }              
             ],

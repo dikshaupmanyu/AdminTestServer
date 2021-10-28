@@ -524,19 +524,19 @@ $("#bannerSubmit").on('click', function (e) {
 
   var formdata = new FormData();
     formdata.append("adBannerId", ids);
-    formdata.append("title1", title);
-    formdata.append("shortDescription1", shortDescription);
-    formdata.append("longDescription1", longDescription);
+    formdata.append("title", title);
+    formdata.append("shortDescription", shortDescription);
+    formdata.append("longDescription", longDescription);
     
 
   if(filename == ""){
     // alert("null");
-      formdata.append("image1", "");
+      formdata.append("imageDetails", "");
     
 
     }else{
     // alert("not null");
-      formdata.append("image1", file , filename);
+      formdata.append("imageDetails", file , filename);
       
     }
 
@@ -557,7 +557,7 @@ $("#bannerSubmit").on('click', function (e) {
                 // alert(datak);
                 var dataResultp = JSON.parse(datak); 
                 // alert(dataResultp.title);
-                alert("Your banner "+dataResultp.title1+" Updated successfully");
+                alert("Your banner "+dataResultp.title+" Updated successfully");
 
                 window.location.href = "/banner?tokendata="+tokens; 
                 // window.location.reload("/banner?tokendata="+tokens); 
@@ -680,30 +680,49 @@ $("#bannerSubmit").on('click', function (e) {
                 },
             success: function(data) {
                const dataResult = data;              
-                  // alert(JSON.stringify(dataResult));
-                  document.getElementById("titles").value = dataResult.title1;
+                  // alert(dataResult.shortDescription1);
+                  // alert(dataResult.longDescription1);
+                  document.getElementById("titles").value = dataResult.title;
+                  document.getElementById("newImage").src = "https://apistest.tradetipsapp.com"+dataResult.image;
+
+                  $('#shortDescriptions').html(dataResult.shortDescription);
+                  $('#longDescriptions').html(dataResult.longDescription);
+
+
+
+                  // tinymce.get("shortDescriptions").setContent(dataResult.shortDescription);
+                  // tinymce.get("longDescriptions").setContent(dataResult.longDescription);
+               
+
                    document.getElementById("titles1").value = dataResult.title1;
                   document.getElementById("titless2").value = dataResult.title2;
                   document.getElementById("titlesss3").value = dataResult.title3;
 
+                  $('#shortDescriptions1').html(dataResult.shortDescription1);
+                  $('#longDescriptions1').html(dataResult.longDescription1);
+                  $('#shortDescriptionss2').html(dataResult.shortDescription2);
+                  $('#longDescriptionss2').html(dataResult.longDescription2);
+                  $('#shortDescriptionsss3').html(dataResult.shortDescription3);
+                  $('#longDescriptionsss3').html(dataResult.longDescription3);
 
-                  // var s = document.getElementById("shortDescriptions").value; 
-                  // alert(s);
-                  tinymce.get("shortDescriptions").setContent(dataResult.shortDescription1);
-                  tinymce.get("shortDescriptions1").setContent(dataResult.shortDescription1);
+                 
+                  // tinymce.get("shortDescriptions1").setContent(dataResult.shortDescription1);
 
-                  tinymce.get("shortDescriptionss2").setContent(dataResult.shortDescription2);
-                  tinymce.get("shortDescriptionsss3").setContent(dataResult.shortDescription3);
+                  // tinymce.get("shortDescriptionss2").setContent(dataResult.shortDescription2);
+                  // tinymce.get("shortDescriptionsss3").setContent(dataResult.shortDescription3);
 
 
-                  tinymce.get("longDescriptions").setContent(dataResult.longDescription1);
-                  tinymce.get("longDescriptions1").setContent(dataResult.longDescription1);
-                  tinymce.get("longDescriptionss2").setContent(dataResult.longDescription2);
-                  tinymce.get("longDescriptionsss3").setContent(dataResult.longDescription3);
+                  // tinymce.get("longDescriptions1").setContent(dataResult.longDescription1);
+                  // tinymce.get("longDescriptionss2").setContent(dataResult.longDescription2);
+                  // tinymce.get("longDescriptionsss3").setContent(dataResult.longDescription3);
                   // document.getElementById("shortDescriptions").text = dataResult.shortDescription;
                   // document.getElementById("longDescriptions").text = dataResult.longDescription;
+
+                   
+                   
+
                 
-                  document.getElementById("newImage").src = "https://apistest.tradetipsapp.com"+dataResult.image1;
+                 
                   document.getElementById("newImage1").src = "https://apistest.tradetipsapp.com"+dataResult.image1;
                   document.getElementById("newImage2").src = "https://apistest.tradetipsapp.com"+dataResult.image2;                   
                   document.getElementById("newImage3").src = "https://apistest.tradetipsapp.com"+dataResult.image3;
