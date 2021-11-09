@@ -66,7 +66,6 @@ app.get('/viewBanner', function(req, res) {
 
       var bannerId = req.query.id;
 
-
     res.render('viewBanner.ejs', {bannersId : bannerId });
   });
 
