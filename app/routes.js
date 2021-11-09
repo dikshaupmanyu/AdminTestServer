@@ -33,7 +33,7 @@ module.exports = function(app, passport) {
   });
 
 
-app.get('/viewBanner', function(req, res) {
+app.get('/viewBannerDetail', function(req, res) {
 
       var bannerId = req.query.id;
 
