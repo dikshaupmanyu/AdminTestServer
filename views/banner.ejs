@@ -143,7 +143,7 @@
                     <label class="col-lg-3 col-form-label form-control-label">Image</label>
                     <div class="col-lg-9">
                       
-                      <input type="file" id="imageDetails1banner" name="imageDetails" required />
+                      <input type="file" id="imageDetails1banner" name="imageDetails" accept="image/*" required />
                     </div>
                   </div>
                   <div class="form-group row">
@@ -197,7 +197,7 @@
                     <div class="form-group row">
                       <label class="col-lg-3 col-form-label form-control-label">Image 1</label>
                       <div class="col-lg-9">
-                        <input type="file" id="imageDetailss1" name="imageDetails" required />
+                        <input type="file" id="imageDetailss1" name="imageDetails" accept="image/*"  required />
                       </div>
                     </div>
                   </div>
@@ -227,7 +227,7 @@
                     <div class="form-group row">
                       <label class="col-lg-3 col-form-label form-control-label">Image 2</label>
                       <div class="col-lg-9">
-                        <input type="file" id="imageDetailss2" name="imageDetailss" required />
+                        <input type="file" id="imageDetailss2" name="imageDetailss" accept="image/*"  required />
                       </div>
                     </div>
                   </div>
@@ -256,7 +256,7 @@
                     <div class="form-group row">
                       <label class="col-lg-3 col-form-label form-control-label">Image 3</label>
                       <div class="col-lg-9">
-                        <input type="file" id="imageDetailssss3" name="imageDetailss" required />
+                        <input type="file" id="imageDetailssss3" name="imageDetailss" accept="image/*"  required />
                       </div>
                     </div>
                   </div>
@@ -500,6 +500,7 @@ $("#bannerPreviewData").on('click', function (e) {
   // if(file == undefined){
   //   readURLs(file);
   // }
+
  
   var fullPath = $("#imageDetails1banner").val();
   // alert(fullPath);   
@@ -558,6 +559,8 @@ $("#bannerPreviewData").on('click', function (e) {
 // $('textarea[name="Short_text_editor"]').ckeditor();
 //  $('textarea[name="Long_text_editor"]').ckeditor();
 
+
+
 $("#bannerSubmitbannerone").on('click', function (e) {
 
 
@@ -568,12 +571,17 @@ $("#bannerSubmitbannerone").on('click', function (e) {
   var longDescription = tinymce.get("longDescription").getContent();
   // alert(longDescription);
    var file = document.getElementById("imageDetails1banner").files[0];
-   var fullPath = $("#imageDetails1banner").val();
+   // alert(file);
+
+     var fullPath = $("#imageDetails1banner").val();
    var filename = fullPath.replace(/^.*[\\\/]/, '');
 
-   // alert(filename);
 
-   if(title == "" || shortDescription == ""  || longDescription == ""  || filename == ""){
+    var idxDot = filename.lastIndexOf(".") + 1;
+    var extFile = filename.substr(idxDot, filename.length).toLowerCase();
+    if (extFile=="jpg" || extFile=="jpeg" || extFile=="png"){
+            //TO DO
+            if(title == "" || shortDescription == ""  || longDescription == ""  || filename == ""){
 
     alert("Please fill all the field");
 
@@ -594,31 +602,40 @@ $("#bannerSubmitbannerone").on('click', function (e) {
 
         }
 
-    var requestOptions = {
-      method: 'POST',
-      headers: {
-              Authorization: 'Bearer '+ tokens
-            },
-      body: formdata,
-      redirect: 'follow'
-    };
+          var requestOptions = {
+            method: 'POST',
+            headers: {
+                    Authorization: 'Bearer '+ tokens
+                  },
+            body: formdata,
+            redirect: 'follow'
+          };
 
-    fetch("https://apistest.tradetipsapp.com/api/adBannerSimple/addSimpleAdBanner", requestOptions)
-      .then(response => response.json())
-      .then(result => {
-            
-                var datak = JSON.stringify(result);
-               // alert(datak);
-                var dataResultp = JSON.parse(datak); 
-                // alert(dataResultp.title);
-                alert("Your banner "+dataResultp.title+" was submitted successfully");
-                window.location.reload("/banner?tokendata="+tokens); 
+          fetch("https://apistest.tradetipsapp.com/api/adBannerSimple/addSimpleAdBanner", requestOptions)
+            .then(response => response.json())
+            .then(result => {
+                  
+                      var datak = JSON.stringify(result);
+                     // alert(datak);
+                      var dataResultp = JSON.parse(datak); 
+                      // alert(dataResultp.title);
+                      alert("Your banner "+dataResultp.title+" was submitted successfully");
+                      window.location.reload("/banner?tokendata="+tokens); 
 
-       })
-      .catch(error => console.log('error', error));
+             })
+            .catch(error => console.log('error', error));
 
 
-    }
+          }
+        }else{
+            alert("Only jpg/jpeg and png files are allowed!");
+            window.location.reload("/banner?tokendata="+tokens); 
+        }   
+
+ 
+   // // alert(filename);
+
+   
 
   });
 
@@ -637,6 +654,11 @@ $("#bannerSubmit").on('click', function (e) {
   var fullPath1 = $("#imageDetailss1").val();
   var filename1 = fullPath1.replace(/^.*[\\\/]/, '');
 
+
+    var idxDot1 = filename1.lastIndexOf(".") + 1;
+    var extFile1 = filename1.substr(idxDot1, filename1.length).toLowerCase();
+
+   
   /////////////////////////////////////////////////////////////////////////
 
 
@@ -649,6 +671,11 @@ $("#bannerSubmit").on('click', function (e) {
    var file2 = document.getElementById("imageDetailss2").files[0];
    var fullPath2 = $("#imageDetailss2").val();
    var filename2 = fullPath2.replace(/^.*[\\\/]/, '');
+
+    var idxDot2 = filename2.lastIndexOf(".") + 1;
+    var extFile2 = filename2.substr(idxDot2, filename2.length).toLowerCase();
+
+    
 
    ///////////////////////////////////////////////////////////////////////
 
@@ -663,6 +690,12 @@ $("#bannerSubmit").on('click', function (e) {
    var file3 = document.getElementById("imageDetailssss3").files[0];
    var fullPath3 = $("#imageDetailssss3").val();
    var filename3 = fullPath3.replace(/^.*[\\\/]/, '');
+
+   var idxDot3 = filename3.lastIndexOf(".") + 1;
+    var extFile3 = filename3.substr(idxDot3, filename3.length).toLowerCase();
+
+    
+
 
    ///////////////////////////////////////////////////////////////////////
 
@@ -687,6 +720,9 @@ $("#bannerSubmit").on('click', function (e) {
 
  
   // if(title == "" || shortDescription == ""  || longDescription == ""  || filename == ""){
+  if (extFile1=="jpg" || extFile1=="jpeg" || extFile1=="png" || extFile2=="jpg" || extFile2=="jpeg" || extFile2=="png" || extFile3=="jpg" || extFile3=="jpeg" || extFile3=="png" ){
+
+   
   if(title1 == "" || shortDescription1 == ""  || longDescription1 == ""  || filename1 == "" || title2 == "" || shortDescription2 == ""  || longDescription2 == ""  || filename2 == "" || title3 == "" || shortDescription3 == ""  || longDescription3 == ""  || filename3 == ""){
 
     alert("Please fill all the field");
@@ -787,7 +823,10 @@ $("#bannerSubmit").on('click', function (e) {
 
   }
  
-
+ }else{
+            alert("Only jpg/jpeg and png files are allowed!");
+            window.location.reload("/banner?tokendata="+tokens); 
+    }
 
 
 // // set values for demo
