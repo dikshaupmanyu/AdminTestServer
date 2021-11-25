@@ -328,11 +328,19 @@ $("#bannerSubmitbannerone").on('click', function (e) {
   var longDescription3 = tinymce.get("longDescriptionsss3").getContent();
 
   var file1 = document.getElementById("imageDetailss1").files[0];
-  // alert(file);
+
+  // var youtubeimcsrc = $('#newImage1').attr('src');
+  // alert(youtubeimcsrc);
+
   var fullPath1 = $("#imageDetailss1").val();
   // alert(fullPath);   
   var filename1 = fullPath1.replace(/^.*[\\\/]/, '');
   // alert(filename);
+
+  var idxDot1 = filename1.lastIndexOf(".") + 1;
+  var extFile1 = filename1.substr(idxDot1, filename1.length).toLowerCase();
+  alert(extFile1);
+   
   
   var file2 = document.getElementById("imageDetailss2").files[0];
   // alert(file);
@@ -341,6 +349,11 @@ $("#bannerSubmitbannerone").on('click', function (e) {
   var filename2 = fullPath2.replace(/^.*[\\\/]/, '');
   // alert(filename);
 
+  var idxDot2 = filename2.lastIndexOf(".") + 1;
+  var extFile2 = filename2.substr(idxDot2, filename2.length).toLowerCase();
+  alert(extFile2);
+    
+
   var file3 = document.getElementById("imageDetailssss3").files[0];
   // alert(file);
   var fullPath3 = $("#imageDetailssss3").val();
@@ -348,74 +361,71 @@ $("#bannerSubmitbannerone").on('click', function (e) {
   var filename3 = fullPath3.replace(/^.*[\\\/]/, '');
   // alert(filename);
 
-  if(title1 == "" || shortDescription1 == ""  || longDescription1 == "" || title2 == "" || shortDescription2 == ""  || longDescription2 == "" || title3 == "" || shortDescription3 == ""  || longDescription3 == ""){
-    alert("Please fill all the field");
+  var idxDot3 = filename3.lastIndexOf(".") + 1;
+  var extFile3 = filename3.substr(idxDot3, filename3.length).toLowerCase();
+  alert(extFile3);
 
-  }else {
+   // if (extFile1=="jpg" || extFile1=="jpeg" || extFile1=="png" || extFile2=="jpg" || extFile2=="jpeg" || extFile2=="png" || extFile3=="jpg" || extFile3=="jpeg" || extFile3=="png" ){
 
-  var formdata = new FormData();
-    formdata.append("adBannerId", ids);
-    formdata.append("title1", title1);
-    formdata.append("shortDescription1", shortDescription1);
-    formdata.append("longDescription1", longDescription1);
-    formdata.append("title2", title2);
-    formdata.append("shortDescription2", shortDescription2);
-    formdata.append("longDescription2", longDescription2);
-    formdata.append("title3", title3);
-    formdata.append("shortDescription3", shortDescription3);
-    formdata.append("longDescription3", longDescription3);
+    
 
-  if(filename1 == "" || filename2 == "" || filename3 == ""){
-    // alert("null");
-      formdata.append("image1", "");
-      formdata.append("image2", "");
-      formdata.append("image3", "");
+    var formdata = new FormData();
+      formdata.append("adBannerId", ids);
+      formdata.append("title1", title1);
+      formdata.append("shortDescription1", shortDescription1);
+      formdata.append("longDescription1", longDescription1);
+      formdata.append("title2", title2);
+      formdata.append("shortDescription2", shortDescription2);
+      formdata.append("longDescription2", longDescription2);
+      formdata.append("title3", title3);
+      formdata.append("shortDescription3", shortDescription3);
+      formdata.append("longDescription3", longDescription3);
 
-    }else{
-    // alert("not null");
-      formdata.append("image1", file1 , filename1);
-      formdata.append("image2", file2 , filename2);
-      formdata.append("image3", file3 , filename3);
+      if(filename1 == "" || filename2 == "" || filename3 == ""){
+        // alert("null");
+          formdata.append("image1", "");
+          formdata.append("image2", "");
+          formdata.append("image3", "");
 
+        }else{
+        // alert("not null");
+          formdata.append("image1", file1 , filename1);
+          formdata.append("image2", file2 , filename2);
+          formdata.append("image3", file3 , filename3);
 
+        }
 
+        var requestOptions = {
+          method: 'POST',
+            headers: {
+                  Authorization: 'Bearer '+ tokens,
+                },
+          body: formdata,
+          redirect: 'follow'
+        };
 
-    }
-
-    var requestOptions = {
-      method: 'POST',
-        headers: {
-              Authorization: 'Bearer '+ tokens,
-            },
-      body: formdata,
-      redirect: 'follow'
-    };
-
-    fetch("https://apistest.tradetipsapp.com/api/adBannerSimple/modifySimpleAdBanner", requestOptions)
-      .then(response => response.json())
-      .then(result => {
-            
-                var datak = JSON.stringify(result);
-                // alert(datak);
-                var dataResultp = JSON.parse(datak); 
-                // alert(dataResultp.title);
-                alert("Your banner "+dataResultp.title1+" Updated successfully");
-
-                window.location.href = "/banner?tokendata="+tokens; 
-                // window.location.reload("/banner?tokendata="+tokens); 
-              // $(".successmsg").html('<spa>"Your banner '+dataResultp.title+' was submitted successfully"</span>');
-              //  setTimeout(function(){$(".successmsg").empty()}, 2000);
-              //  //window.location.reload();
-              //  setTimeout(function(){
-              //  // window.location.reload(1);
-              //  window.location.href = "/banner"; 
-              //  }, 2000);
+        fetch("https://apistest.tradetipsapp.com/api/adBannerSimple/modifySimpleAdBanner", requestOptions)
+          .then(response => response.json())
+          .then(result => {
                 
+                    var datak = JSON.stringify(result);
+                    // alert(datak);
+                    var dataResultp = JSON.parse(datak); 
+                    // alert(dataResultp.title);
+                    alert("Your banner "+dataResultp.title1+" Updated successfully");
 
-       })
-      .catch(error => console.log('error', error));
+                    window.location.href = "/banner?tokendata="+tokens; 
+                  
 
- }
+           })
+          .catch(error => console.log('error', error));
+
+   
+
+   // } else{
+   //          alert("Only jpg/jpeg and png files are allowed!");
+   //          window.location.reload("/banner?tokendata="+tokens); 
+   //  }
 
 // // set values for demo
  // setDemoValues()
@@ -497,8 +507,6 @@ $("#bannerSubmitbannerone").on('click', function (e) {
 
 // var json = JSON.stringify(arr);
 // console.log(json);
-
-
    
 });
 
@@ -517,6 +525,10 @@ $("#bannerSubmit").on('click', function (e) {
   var filename = fullPath.replace(/^.*[\\\/]/, '');
   // alert(filename);
 
+  var idxDot = filename.lastIndexOf(".") + 1;
+  var extFile = filename.substr(idxDot, filename.length).toLowerCase();
+  // if (extFile=="jpg" || extFile=="jpeg" || extFile=="png"){
+            //TO DO
   if(title == "" || shortDescription == ""  || longDescription == "" ){
     alert("Please fill all the field");
 
@@ -573,8 +585,12 @@ $("#bannerSubmit").on('click', function (e) {
        })
       .catch(error => console.log('error', error));
 
- }
+}
 
+// }else{
+//             alert("Only jpg/jpeg and png files are allowed!");
+//             window.location.reload("/banner?tokendata="+tokens); 
+//         }  
 // // set values for demo
  // setDemoValues()
 // // get data based on above values
