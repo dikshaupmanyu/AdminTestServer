@@ -1395,7 +1395,7 @@ app.get('/backmale', isLoggedIn, function(req, res) {
         var arr2 = [];
         snapshot.docChanges().forEach(function(change) {
           // if(change.doc.data().messageFlag == "true"){
-            console.log(change.doc.data().messageFlag);
+            // console.log(change.doc.data().messageFlag);
             arr2.push(change.doc.data());
           // }
         });
