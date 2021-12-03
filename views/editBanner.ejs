@@ -29,16 +29,16 @@
               <br>
                <ul class="nav nav-tabs" role="tablist">
                 <li class="nav-item">
-                  <a class="nav-link active" data-toggle="tab" href="#tabs-banner1" role="tab">Banner 1</a>
+                  <a class="nav-link banner1 active" id="banner1" data-toggle="tab" href="#tabs-banner1" role="tab">Banner 1</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" data-toggle="tab" href="#tabs-banner2" role="tab">Banner 2</a>
+                  <a class="nav-link banner2" id="banner2" data-toggle="tab" href="#tabs-banner2" role="tab">Banner 2</a>
                 </li>
                 </ul>
                 <br>
                 <div class="tab-content">
                
-                <div class="tab-pane active" id="tabs-banner1" role="tabpanel">
+                <div class="tab-pane" id="tabs-banner1" role="tabpanel">
                   <form autocomplete="off" class="form" role="form" method="post">
                   <div class="form-group row">
                        <input type="text" class="form-control" placeholder="Enter your title here" name="bannerId" id="bannerIds" value="<%= bannersId %>" style="display: none;">
@@ -380,6 +380,8 @@ $("#bannerSubmitbannerone").on('click', function (e) {
       formdata.append("title3", title3);
       formdata.append("shortDescription3", shortDescription3);
       formdata.append("longDescription3", longDescription3);
+      formdata.append("singleBanner" , "false");
+
 
       if(filename1 == "" || filename2 == "" || filename3 == ""){
         // alert("null");
@@ -539,6 +541,8 @@ $("#bannerSubmit").on('click', function (e) {
     formdata.append("title", title);
     formdata.append("shortDescription", shortDescription);
     formdata.append("longDescription", longDescription);
+    formdata.append("singleBanner" , "true");
+
     
 
   if(filename == ""){
@@ -696,7 +700,23 @@ $("#bannerSubmit").on('click', function (e) {
                 },
             success: function(data) {
                const dataResult = data;              
-                  // alert(dataResult.shortDescription1);
+                  // alert(dataResult.isSingleBanner);
+
+                  if(dataResult.isSingleBanner == true){
+                     // $('#banner2').addClass('nav-link disabled');
+                     $('a#banner2').addClass('nav-link disabled');
+
+                     }else{
+
+                       $('a#banner2').addClass('nav-link banner2 active');
+                       $('div#tabs-banner1').css('display','none');
+
+                        $('div#tabs-banner2').css('display','block');
+                       $('a#banner1').addClass('nav-link banner1 disabled');
+
+                     }
+                    
+                
                   // alert(dataResult.longDescription1);
                   document.getElementById("titles").value = dataResult.title;
                   document.getElementById("newImage").src = "https://apistest.tradetipsapp.com"+dataResult.image;
@@ -797,6 +817,7 @@ document.getElementById("TipLink").href = "/tipList?tokendata="+tokens;
            document.getElementById("changePassLink").href = "/changePassword?tokendata="+tokens;  
    document.getElementById("AccountLink").href = "/account?tokendata="+tokens;  
     document.getElementById("NotifyListLink").href = "/notificationlist?tokendata="+tokens;
+  document.getElementById("FlagChatLink").href = "/flagChatlist?tokendata="+tokens;
 
 });
 </script>

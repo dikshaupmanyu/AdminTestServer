@@ -14,8 +14,8 @@
                  
                 <div class="table-responsive">
                 <br>
-                <table class="table table-bordered" id="dataTables" width="100%" cellspacing="0">
-                   <p>Detail for single banner</p>
+                <table class="table table-bordered singleBannerCss" id="dataTables" width="100%" cellspacing="0">
+                   <p class="singleBannerCssName">Detail for single banner</p>
                    <tr>
                     <td>Title</td>
                     <td id="title"></td>
@@ -33,9 +33,9 @@
                     <td><img src="" id="newImage" class="image-responsive" style="height: 200px;width: 200px;">&nbsp;<a href="#" id="newImageurl" target="_blank">View Full Image</a></td>
                   </tr>
                 </table>
-                <table class="table table-bordered" id="dataTables" width="100%" cellspacing="0">
+                <table class="table table-bordered multipleBannerCss" id="dataTables" width="100%" cellspacing="0">
                  
-                  <p>Detail for multiple banner</p>
+                  <p class="multipleBannerCssName">Detail for multiple banner</p>
                   <tr>
                     <td>Title 1</td>
                     <td id="title1"></td>
@@ -207,7 +207,27 @@ window.history.forward();
                   adBannerId : bannerIdd,
                 },
             success: function(data) {
-               const dataResult = data;              
+               const dataResult = data;             
+               // alert(dataResult.isSingleBanner); 
+
+                if(dataResult.isSingleBanner == true){
+
+                   $('.singleBannerCss').css('display','block');
+
+                   $('.multipleBannerCss').css('display','none');
+
+                   $('.singleBannerCssName').css('display','block');
+                   
+                   $('.multipleBannerCssName').css('display','none');
+
+                     }else{
+
+                    $('.singleBannerCss').css('display','none');
+                   $('.multipleBannerCss').css('display','block');
+                     $('.singleBannerCssName').css('display','none');
+                   $('.multipleBannerCssName').css('display','block');
+
+                     }
                   
                   // alert(JSON.stringify(dataResult));
                   document.getElementById("title").innerHTML = dataResult.title;
@@ -286,6 +306,8 @@ document.getElementById("TipLink").href = "/tipList?tokendata="+tokens;
            document.getElementById("changePassLink").href = "/changePassword?tokendata="+tokens;  
    document.getElementById("AccountLink").href = "/account?tokendata="+tokens;  
     document.getElementById("NotifyListLink").href = "/notificationlist?tokendata="+tokens;
+      document.getElementById("FlagChatLink").href = "/flagChatlist?tokendata="+tokens;
+
 
 });
 </script>

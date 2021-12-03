@@ -1,0 +1,176 @@
+           <%- include partials/header %>
+
+<!--  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+ --> 
+ <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap.min.css"> -->
+<!--  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/fixedheader/3.2.0/css/fixedHeader.bootstrap.min.css">
+ --> 
+ <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap.min.css"> -->
+
+        <div class="container-fluid">
+
+
+      <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Flag Chat  List</h6>
+            </div>
+           <!--  <div class="card-body">
+              <div class="table-responsive">
+ -->
+
+                <table id="example" class="table table-striped table-bordered nowrap" cellspacing="0" width="100%">
+                  <thead>
+                    <tr>
+                      <th>Username</th>
+                      <th>Message Source</th>
+                      <th>Message Type</th>
+                      <th>Date</th>
+                    </tr>
+                  </thead>
+                 <tbody>
+                 <% for(i=0; i < chatdata.length;i++) if(chatdata[i].messageFlag == true){ %>
+                 <tr>
+                    <td><%= chatdata[i].userName %></td>
+                    <td><%= chatdata[i].messageSource %></td>
+                    <td><%= chatdata[i].messageType %></td>
+                    <td><%= chatdata[i].createdDate %></td>
+                  </tr>
+                  <% } %>                   
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                     <th>Username</th>
+                      <th>Message Source</th>
+                      <th>Message Type</th>
+                      <th>Date</th>
+                    </tr>
+                  </tfoot>
+                </table>
+            <!--   </div>
+            </div> -->
+          </div>
+
+        </div>
+
+      </div>
+      <!-- End of Main Content -->
+
+                 <%- include partials/footer %>
+<!-- <script type="text/javascript">
+                        var data = "1638184526561";
+                        var date = new Date(data).toLocaleString("en-US", {timeZone: "Europe/London"});
+alert(date);
+// document.write(date);
+</script> -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary" href="/">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap core JavaScript-->
+ <!--  <script src="vendor/jquery/jquery.min.js"></script>
+
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+ -->  <!-- Core plugin JavaScript-->
+<!--   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+ -->
+  <!-- Custom scripts for all pages-->
+<!--   <script src="js/sb-admin-2.min.js"></script>
+ -->  
+
+ <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+ <!-- Page level plugins -->
+  
+ 
+  <!-- <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+  
+  <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap.min.js"></script>
+ <script src="https://cdn.datatables.net/fixedheader/3.2.0/js/dataTables.fixedHeader.min.js"></script>
+  <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+  Page level custom scripts
+  <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap.min.js"></script>
+
+  <script src="js/demo/datatables-demo.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    var table = $('#example').DataTable( {
+        responsive: true
+    } );
+ 
+    new $.fn.dataTable.FixedHeader( table );
+} );
+</script> -->
+
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+  <script type="text/javascript">
+
+    window.history.forward(); 
+        function noBack() { 
+            window.history.forward(); 
+        } 
+
+
+ </script>
+
+ <script type="text/javascript">
+  window.addEventListener("load", function() {
+  var url_string = window.location.href; 
+  var urls = new URL(url_string);
+  var tokens = urls.searchParams.get("tokendata");
+ document.getElementById("dashboardLink").href = "/home?tokendata="+tokens;
+
+  // alert(tokens);
+   document.getElementById("HomeLink").href = "/home?tokendata="+tokens;
+  document.getElementById("UserLink").href = "/userlist?tokendata="+tokens;
+  // document.getElementById("UserCallLink").href = "/userlist?tokendata="+tokens;
+  document.getElementById("TipLink").href = "/tipList?tokendata="+tokens;
+  
+   document.getElementById("CommentLink").href = "/commentlist?tokendata="+tokens;
+
+  document.getElementById("CSVLink").href = "/csvlist?tokendata="+tokens;
+  document.getElementById("FlagCallLink").href = "/flaglist?tokendata="+tokens;
+   document.getElementById("BannerLink").href = "/banner?tokendata="+tokens;
+document.getElementById("NotifyLink").href = "/notification?tokendata="+tokens;
+   document.getElementById("changePassLink").href = "/changePassword?tokendata="+tokens;  
+   document.getElementById("AccountLink").href = "/account?tokendata="+tokens;  
+    document.getElementById("NotifyListLink").href = "/notificationlist?tokendata="+tokens;
+  document.getElementById("FlagChatLink").href = "/flagChatlist?tokendata="+tokens;
+
+    
+});
+</script>
+
+</body>
+
+</html>

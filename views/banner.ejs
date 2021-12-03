@@ -591,6 +591,7 @@ $("#bannerSubmitbannerone").on('click', function (e) {
           formdata.append("title", title);
           formdata.append("shortDescription", shortDescription);
           formdata.append("longDescription", longDescription);
+          formdata.append("singleBanner" , "true");
 
        if(filename == ""){
         // alert("null");
@@ -770,6 +771,9 @@ $("#bannerSubmit").on('click', function (e) {
       formdata.append("image3", file3 , filename3);
 
     }
+
+    formdata.append("singleBanner" , "false");
+
 
     var requestOptions = {
       method: 'POST',
@@ -1255,7 +1259,8 @@ document.getElementById("TipLink").href = "/tipList?tokendata="+tokens;
            document.getElementById("changePassLink").href = "/changePassword?tokendata="+tokens;  
    document.getElementById("AccountLink").href = "/account?tokendata="+tokens;
        document.getElementById("NotifyListLink").href = "/notificationlist?tokendata="+tokens;
-  
+    document.getElementById("FlagChatLink").href = "/flagChatlist?tokendata="+tokens;
+
 
 });
 </script>
