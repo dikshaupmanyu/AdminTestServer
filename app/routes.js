@@ -1401,7 +1401,6 @@ app.get('/backmale', isLoggedIn, function(req, res) {
         });
         // console.log(arr2);
         // return arr2;
-
         res.render('flagChatlist.ejs' ,{chatdata : arr2});
 
         // snapshot.docChanges().forEach(function(change) {
