@@ -18,6 +18,17 @@ var http = require('http');
 var Base64 = require('Base64');
 var expressJwt = require('express-jwt');
 var jwt = require('jsonwebtoken');
+const admin = require('firebase-admin');
+const serviceAccount = require('./serviceAccountKey.json');
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://tradetips-9baa3.firebaseio.com"
+
+});
+
+
+
+const db = admin.firestore();
 // var glob = require('glob');
 // var getDirectories = function (src, callback) {
 //   glob(src + '/csv/', callback);
