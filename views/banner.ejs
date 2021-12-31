@@ -1,589 +1,1168 @@
-           <%- include partials/header %>
- <script src="https://cdn.jsdelivr.net/npm/emoji-button@0.6.0/dist/index.min.js"></script>
-    <script>
-      window.addEventListener('DOMContentLoaded', () => {
-  EmojiButton(document.querySelector('#emoji-button'), function (emoji) {
-    document.querySelector('input').value += emoji;
-  });
+<%- include partials/header %>
+<script src="https://cdn.jsdelivr.net/npm/emoji-button@0.6.0/dist/index.min.js"></script>
+
+<script>
+     window.addEventListener('DOMContentLoaded', () => {
+ EmojiButton(document.querySelector('#emoji-button'), function (emoji) {
+   document.querySelector('input').value += emoji;
+ });
+});
+</script>
+   <script>
+     window.addEventListener('DOMContentLoaded', () => {
+ EmojiButton(document.querySelector('#emoji-button1'), function (emoji) {
+   document.querySelector('#titles1').value += emoji;
+ });
+});
+</script>
+   <script>
+     window.addEventListener('DOMContentLoaded', () => {
+ EmojiButton(document.querySelector('#emoji-button2'), function (emoji2) {
+   document.querySelector('#titless2').value += emoji2;
+ });
+});
+</script>
+   <script>
+     window.addEventListener('DOMContentLoaded', () => {
+ EmojiButton(document.querySelector('#emoji-button3'), function (emoji) {
+   document.querySelector('#titlesss3').value += emoji;
+ });
 });
 </script>
 <style type="text/css">
-  .emoji-picker{
-    z-index: 111;
-  }
-  .emoji-picker__emojis {
-    height: 16rem !important;
-  }
+ .emoji-picker{
+   z-index: 111;
+ }
+ .emoji-picker__emojis {
+   height: 16rem !important;
+ }
 </style>
 <style type="text/css">
-  .content {
-  width: 80%;
-  padding: 0;
-  margin: 0 auto;
+ .content {
+ width: 80%;
+ padding: 0;
+ margin: 0 auto;
 }
 
 .centerplease {
-  margin: 0 auto;
-  max-width: 270px;
-  font-size: 40px;
+ margin: 0 auto;
+ max-width: 270px;
+ font-size: 40px;
 }
 
 /*Question*/
 .question {
-  position: relative;
-  background: #f9f9f9;
-  margin: 0;
-  padding: 10px 10px 10px 50px;
-  display: block;
-  width:100%;
-  cursor: pointer;
+ position: relative;
+ background: #f9f9f9;
+ margin: 0;
+ padding: 10px 10px 10px 50px;
+ display: block;
+ width:100%;
+ cursor: pointer;
 }
 /*Answer*/
 .answers {
-  padding: 0px 15px;
-  margin: 5px 0;
-  width:100%!important;
-  height: 0;
-  overflow: hidden;
-  z-index: -1;
-  position: relative;
-  opacity: 0;
-  -webkit-transition: .3s ease;
-  -moz-transition: .3s ease;
-  -o-transition: .3s ease;
-  transition: .3s ease;
+ padding: 0px 15px;
+ margin: 5px 0;
+ width:100%!important;
+ height: 0;
+ overflow: hidden;
+ z-index: -1;
+ position: relative;
+ opacity: 0;
+ -webkit-transition: .3s ease;
+ -moz-transition: .3s ease;
+ -o-transition: .3s ease;
+ transition: .3s ease;
 }
 
 .questions:checked ~ .answers{
-  height: auto;
-  opacity: 0;
-  padding: 15px;
-  display: contents;
-  
+ height: auto;
+ opacity: 0;
+ padding: 15px;
+ display: contents;
+ 
+}
+
+.btn{
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  vertical-align: middle;
+  user-select: none;
+  border: 1px solid transparent;
+  padding-top: 0.375rem;
+  padding-bottom: 0.375rem;
+  padding-right: 0.75rem;
+  padding-left: 0.75rem;
+  font-size:1rem;
+  line-height: 1.5;
+  border-radius:0.35rem;
+  transition:color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+input{
+  overflow:visible;
+  margin:0;
 }
 
 /*FAQ Toggle*/
 .plus {
-  position: absolute;
-  margin-left: 10px;
-  z-index: 5;
-  font-size: 2em;
-  line-height: 100%;
-  -webkit-user-select: none;    
-  -moz-user-select: none;
-  -ms-user-select: none;
-  -o-user-select: none;
-  user-select: none;
-  -webkit-transition: .3s ease;
-  -moz-transition: .3s ease;
-  -o-transition: .3s ease;
-  transition: .3s ease;
+ position: absolute;
+ margin-left: 10px;
+ z-index: 5;
+ font-size: 2em;
+ line-height: 100%;
+ -webkit-user-select: none;    
+ -moz-user-select: none;
+ -ms-user-select: none;
+ -o-user-select: none;
+ user-select: none;
+ -webkit-transition: .3s ease;
+ -moz-transition: .3s ease;
+ -o-transition: .3s ease;
+ transition: .3s ease;
 
 }
 
 .questions:checked ~ .plus {
-  -webkit-transform: rotate(45deg);
-  -moz-transform: rotate(45deg);
-  -o-transform: rotate(45deg);
-  transform: rotate(45deg);
+ -webkit-transform: rotate(45deg);
+ -moz-transform: rotate(45deg);
+ -o-transform: rotate(45deg);
+ transform: rotate(45deg);
 
 }
 
 .questions {
-  display: none;
-  
+ display: none;
+ 
 }
+
+.next-slide {
+  cursor: pointer;
+  position: absolute;
+  top:180px;
+  margin-right: 7px;
+  color: black;
+  font-weight: bold;
+  font-size: 8px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+.prev-slide{
+  cursor: pointer;
+  position:absolute;
+  top: 180px;
+  display:flex;
+  justify-content:left;
+  margin-left: 7px;
+  color: black;
+  font-weight: bold;
+  font-size: 8px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+
+.prev:hover{
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.next:hover{
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* .dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 3px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+} */
+
+
+/* ///////////////////////// demo /////////////////// */
+
+.tab {
+    display: none
+}
+
+.pt{
+  display: none;
+}
+
+
+button:hover {
+    opacity: 0.8
+}
+
+/* .step {
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #4e73df;
+    border: none;
+    border-radius: 50%;
+    display: inline-block;
+    opacity: 0.5
+} */
+
+/* .step{
+  background-color: #4e73df;
+
+} */
+
+.step.active {
+    opacity: 1
+}
+
+/* .step.finish {
+    background-color: #4e73df;
+} */
+
+.all-steps {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px
+}
+.all-steps1 {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px
+}
+
+.thanks-message {
+    display: none
+}
+
+
+
+
 
 </style>
 
-        <div class="container-fluid">
 
-           <!-- form user info -->
-            <div class="card card-outline-secondary">
-              <div class="card-header">
-                <h3 class="mb-0">Add Banner</h3>
+
+
+       <div class="container-fluid">
+
+          <!-- form user info -->
+           <div class="card card-outline-secondary">
+             <div class="card-header">
+               <h3 class="mb-0">Add Banner</h3>
+             </div>
+             <div class="card-body">
+             <br>
+              <ul class="nav nav-tabs" role="tablist">
+               <li class="nav-item">
+                 <a class="nav-link active" data-toggle="tab" href="#tabs-banner1" role="tab">Banner 1</a>
+               </li>
+               <li class="nav-item">
+                 <a class="nav-link" data-toggle="tab" href="#tabs-banner2" role="tab">Banner 2</a>
+               </li>
+               </ul>
+               <br>
+               <div class="tab-content">
+              
+               <div class="tab-pane active" id="tabs-banner1" role="tabpanel">
+                <form autocomplete="off" class="form" role="form" method="post">
+                 <div class="form-group row">
+                   <label class="col-lg-3 col-form-label form-control-label">Title</label>
+                   <div class="col-lg-7">
+                     <input type="text" class="form-control" id="title" name="title" required />
+                   </div>
+                   <div class="col-lg-2">
+                     <button id="emoji-button">😀</button>
+                   </div>
+                 </div>
+                 <div class="form-group row">
+                   <label class="col-lg-3 col-form-label form-control-label">Short Description</label>
+                   <div class="col-lg-9">
+                     <textarea class="form-control" id="shortDescription" name="Short_text_editor" required /></textarea>                     
+                   </div>                    
+                 </div>
+                 <div class="form-group row">
+                   <label class="col-lg-3 col-form-label form-control-label">Long Description</label>
+                   <div class="col-lg-9">
+                      <textarea class="form-control" id="longDescription" name="Long_text_editor" required /></textarea>
+                   </div>
+                 </div>
+                 <div class="form-group row">
+                   <label class="col-lg-3 col-form-label form-control-label">Image</label>
+                   <div class="col-lg-9">
+                     
+                     <input type="file" id="imageDetails1banner" name="imageDetails" accept="image/*" required />
+                   </div>
+                 </div>
+                 <div class="form-group row">
+                   <label class="col-lg-3 col-form-label form-control-label"></label>
+                   <div class="col-lg-9">
+                     <input class="btn btn-secondary" type="button" value="Preview" id="bannerPreviewDataone">
+                     <input class="btn btn-secondary" type="reset" value="Cancel"> 
+                     <input class="btn btn-primary" type="button" value="Submit" id="bannerSubmitbannerone">
+                    </div>
+                 </div>
+                
+                
+              </form>
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTablesone" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                    
+                      <th>Title</th>
+                      <th>Description</th>
+                     <!--  <th>Long Description</th> -->
+                      <th>Image</th>
+                      <th>Status</th>
+                      <th>Action</th>
+                  <tbody>
+                    
+                  </tbody>
+                </table>
               </div>
-              <div class="card-body">
-              <br>
-               <ul class="nav nav-tabs" role="tablist">
-                <li class="nav-item">
-                  <a class="nav-link active" data-toggle="tab" href="#tabs-banner1" role="tab">Banner 1</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" data-toggle="tab" href="#tabs-banner2" role="tab">Banner 2</a>
-                </li>
-                </ul>
-                <br>
-                <div class="tab-content">
+            </div>
+
+               <!-- banner  2-->
+            <div class="tab-pane" id="tabs-banner2" role="tabpanel">
+              <div class="tab-content">
+              
+                        <form id="regForm">
+                            <div class="all-steps" id="all-steps">
+                              <!-- <ul class="nav nav-tabs" role="tablist">
+                                <span class="step">
+                                  <li class="nav-item">
+                                    <a class="nav-link active">Slider 1</a>
+                                 </li>
+                                 </span> 
+                                <span class="step">
+                                <li class="nav-item">
+                                  <span class="nav-link">Slider 2</s>
+                                </li>
+                              </span>
+                              <span>
+                                <li class="nav-item">
+                                 <span class="nav-link">Slider 3</span>
+                                </li>
+                              </span>
+                              </ul> -->
+                              
+                              <span class="step"></span> <span class="step"></span><span class="step"></span>
+                            </div>
+                            
+                            <div class="tab">
+                              <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Title 1</label>
+                                <div class="col-lg-7">
+                                  <input type="text" class="form-control" id="titles1" name="title" required />
+                                </div>
+                                <div class="col-lg-2">
+                                  <button id="emoji-button1">😀</button>
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                  <label class="col-lg-3 col-form-label form-control-label">Short Description 1</label>
+                                  <div class="col-lg-9">
+                                  <textarea class="form-control" id="shortDescriptions1" name="Short_text_editor" required /></textarea>                     
+                                  </div>
+                              </div>
+                              <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Long Description 1</label>
+                                <div class="col-lg-9">
+                                   <textarea class="form-control" id="longDescriptions1" name="Long_text_editor" required /></textarea>
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Image 1</label>
+                                <div class="col-lg-9">
+                                  <input type="file" id="imageDetailss1" name="imageDetails" accept="image/*"  required />
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label"></label>
+                                <div class="col-lg-9">
+                                  <input class="btn btn-secondary" type="reset" value="Cancel"> 
+                                  <!-- <input class="btn btn-secondary" type="button" value="Preview" id="bannerPreviewData1"> -->
+                                  <button type="button" class="btn btn-primary"id="nextBtn" onclick="nextPrev(1)">Next</button> 
+                                </div>
+                              </div>
+                            </div>
+                            <div class="tab">
+                              <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Title 2</label>
+                                <div class="col-lg-7">
+                                  <input type="text" class="form-control" id="titless2" name="title" required />
+                                </div>
+                                <div class="col-lg-2">
+                                  <button id="emoji-button2">😀</button>
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Short Description 2</label>
+                                <div class="col-lg-9">
+                                  <textarea class="form-control" id="shortDescriptionss2" name="Short_text_editor" required /></textarea>                     
+                                </div>                      
+                              </div>
+                              <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Long Description 2</label>
+                                <div class="col-lg-9">
+                                   <textarea class="form-control" id="longDescriptionss2" name="Long_text_editor" required /></textarea>
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Image 2</label>
+                                <div class="col-lg-9">
+                                  <input type="file" id="imageDetailss2" name="imageDetailss" accept="image/*"  required />
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label"></label>
+                                <div class="col-lg-9">
+                                  <button type="button" class="btn btn-secondary"id="prevBtn" onclick="nextPrev(-1)">Previous</button> 
+                                  <input class="btn btn-secondary" type="reset" value="Cancel"> 
+                                  <!-- <input class="btn btn-secondary" type="button" value="Preview" id="bannerPreviewData2"> -->
+                                  <button type="button" class="btn btn-primary" id="nextBtn" onclick="nextPrev(1)">Next</button> 
+                                </div>
+                              </div>
+                            </div>
+                            <div class="tab">
+                              <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Title 3</label>
+                                <div class="col-lg-7">
+                                  <input type="text" class="form-control" id="titlesss3" name="title" required />
+                                </div>
+                                <div class="col-lg-2">
+                                  <button id="emoji-button3">😀</button>
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Short Description 3</label>
+                                <div class="col-lg-9">
+                                  <textarea class="form-control" id="shortDescriptionsss3" name="Short_text_editor" required /></textarea>                     
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Long Description 3</label>
+                                <div class="col-lg-9">
+                                   <textarea class="form-control" id="longDescriptionsss3" name="Long_text_editor" required /></textarea>
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Image 3</label>
+                                <div class="col-lg-9">
+                                  <input type="file" id="imageDetailssss3" name="imageDetailss" accept="image/*"  required />
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label"></label>
+                                <div class="col-lg-9">
+                                  <button type="button" class="btn btn-secondary"id="prevBtn" onclick="nextPrev(-1)">Previous</button> 
+                                  <input class="btn btn-secondary" type="reset" value="Cancel">
+                                  <input class="btn btn-secondary" type="button" value="Preview" id="bannerPreviewData">
+                                  <input class="btn btn-primary" type="button" value="Submit" id="bannerSubmit">
+                                </div>
+                              </div>
+                            </div>
+
+                          
+                            <!-- <div class="form-group row" id="nextprevious">
+                              <label class="col-lg-3 col-form-label form-control-label"></label>
+                              <div class="col-lg-9">
+                                <button type="button" class="btn btn-secondary"id="prevBtn" onclick="nextPrev(-1)">Previous</button> 
+                                <input class="btn btn-secondary" type="reset" value="Cancel"> 
+                                <input class="btn btn-secondary" type="button" value="Preview" id="bannerPreviewData">
+                                <button type="button" class="btn btn-primary"id="nextBtn" onclick="nextPrev(1)">Next</button> 
+                                <input class="btn btn-primary" type="button" value="Submit" id="bannerSubmit">
+                              </div>
+                            </div> -->
+
+                        </form>
+                        <div class="table-responsive">
+                          <table class="table table-bordered" id="dataTables" width="100%" cellspacing="0">
+                            <thead>
+                              <tr>
+                              
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th>Image</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            <tbody>
+                            </tbody>
+                          </table>
+                       </div>
+            </div>
+            </div>
+            <br>
+   
+            </div>  <!--closing div of tab-content-->  
+
+               <br>
+
                
-                <div class="tab-pane active" id="tabs-banner1" role="tabpanel">
-                  <form autocomplete="off" class="form" role="form" method="post">
-                  <div class="form-group row">
-                    <label class="col-lg-3 col-form-label form-control-label">Title</label>
-                    <div class="col-lg-7">
-                      <input type="text" class="form-control" id="title" name="title" required />
-                    </div>
-                    <div class="col-lg-2">
-                      <button id="emoji-button">😀</button>
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label class="col-lg-3 col-form-label form-control-label">Short Description</label>
-                    <div class="col-lg-9">
-                      <textarea class="form-control" id="shortDescription" name="Short_text_editor" required /></textarea>                     
-                    </div>                    
-                  </div>
-                  <div class="form-group row">
-                    <label class="col-lg-3 col-form-label form-control-label">Long Description</label>
-                    <div class="col-lg-9">
-                       <textarea class="form-control" id="longDescription" name="Long_text_editor" required /></textarea>
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label class="col-lg-3 col-form-label form-control-label">Image</label>
-                    <div class="col-lg-9">
-                      
-                      <input type="file" id="imageDetails1banner" name="imageDetails" accept="image/*" required />
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label class="col-lg-3 col-form-label form-control-label"></label>
-                    <div class="col-lg-9">
-                      <input class="btn btn-secondary" type="button" value="Preview" id="bannerPreviewData" style="display: none;">
-                      <input class="btn btn-secondary" type="reset" value="Cancel"> 
-                      <input class="btn btn-primary" type="button" value="Submit" id="bannerSubmitbannerone">
-                     </div>
-                  </div>
-                 </form>
-                </div>
-                <div class="tab-pane" id="tabs-banner2" role="tabpanel">
-                  <br>
-                   <ul class="nav nav-tabs" role="tablist">
-                     <li class="nav-item">
-                       <a class="nav-link active" data-toggle="tab" href="#tabs-banner21" role="tab">Slider 1</a>
-                     </li>
-                     <li class="nav-item">
-                       <a class="nav-link" data-toggle="tab" href="#tabs-banner22" role="tab">Slider 2</a>
-                     </li>
-                     <li class="nav-item">
-                      <a class="nav-link" data-toggle="tab" href="#tabs-banner23" role="tab">Slider 3</a>
-                     </li>
-                   </ul>
-                  <br>
-                <div class="tab-content">
-                  <div class="tab-pane active" id="tabs-banner21" role="tabpanel">
-                    <br>
-                    <div class="form-group row">
-                      <label class="col-lg-3 col-form-label form-control-label">Title 1</label>
-                      <div class="col-lg-7">
-                        <input type="text" class="form-control" id="titles1" name="title" required />
-                      </div>
-                      <div class="col-lg-2">
-                        <button id="emoji-button">😀</button>
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-lg-3 col-form-label form-control-label">Short Description 1</label>
-                        <div class="col-lg-9">
-                        <textarea class="form-control" id="shortDescriptions1" name="Short_text_editor" required /></textarea>                     
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                      <label class="col-lg-3 col-form-label form-control-label">Long Description 1</label>
-                      <div class="col-lg-9">
-                         <textarea class="form-control" id="longDescriptions1" name="Long_text_editor" required /></textarea>
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label class="col-lg-3 col-form-label form-control-label">Image 1</label>
-                      <div class="col-lg-9">
-                        <input type="file" id="imageDetailss1" name="imageDetails" accept="image/*"  required />
-                      </div>
-                    </div>
-                  </div>
-                  <div class="tab-pane" id="tabs-banner22" role="tabpanel">
-                    <br>
-                    <div class="form-group row">
-                      <label class="col-lg-3 col-form-label form-control-label">Title 2</label>
-                      <div class="col-lg-7">
-                        <input type="text" class="form-control" id="titless2" name="title" required />
-                      </div>
-                      <div class="col-lg-2">
-                        <button id="emoji-button">😀</button>
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label class="col-lg-3 col-form-label form-control-label">Short Description 2</label>
-                      <div class="col-lg-9">
-                        <textarea class="form-control" id="shortDescriptionss2" name="Short_text_editor" required /></textarea>                     
-                      </div>                      
-                    </div>
-                    <div class="form-group row">
-                      <label class="col-lg-3 col-form-label form-control-label">Long Description 2</label>
-                      <div class="col-lg-9">
-                         <textarea class="form-control" id="longDescriptionss2" name="Long_text_editor" required /></textarea>
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label class="col-lg-3 col-form-label form-control-label">Image 2</label>
-                      <div class="col-lg-9">
-                        <input type="file" id="imageDetailss2" name="imageDetailss" accept="image/*"  required />
-                      </div>
-                    </div>
-                  </div>
-                  <div class="tab-pane" id="tabs-banner23" role="tabpanel">
-                    <div class="form-group row">
-                      <label class="col-lg-3 col-form-label form-control-label">Title 3</label>
-                      <div class="col-lg-7">
-                        <input type="text" class="form-control" id="titlesss3" name="title" required />
-                      </div>
-                      <div class="col-lg-2">
-                        <button id="emoji-button">😀</button>
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label class="col-lg-3 col-form-label form-control-label">Short Description 3</label>
-                      <div class="col-lg-9">
-                        <textarea class="form-control" id="shortDescriptionsss3" name="Short_text_editor" required /></textarea>                     
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label class="col-lg-3 col-form-label form-control-label">Long Description 3</label>
-                      <div class="col-lg-9">
-                         <textarea class="form-control" id="longDescriptionsss3" name="Long_text_editor" required /></textarea>
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label class="col-lg-3 col-form-label form-control-label">Image 3</label>
-                      <div class="col-lg-9">
-                        <input type="file" id="imageDetailssss3" name="imageDetailss" accept="image/*"  required />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                
-
-                <br>
-
-
-
-                  <div class="form-group row">
-                    <label class="col-lg-3 col-form-label form-control-label"></label>
-                    <div class="col-lg-9">
-                      <input class="btn btn-secondary" type="button" value="Preview" id="bannerPreviewData" style="display: none;">
-                      <input class="btn btn-secondary" type="reset" value="Cancel"> 
-                      <input class="btn btn-primary" type="button" value="Submit" id="bannerSubmit">
-                     </div>
-                  </div>
-                </form>
-                
-              </div>
-               <div class="table-responsive">
-                  <table class="table table-bordered" id="dataTables" width="100%" cellspacing="0">
-                    <thead>
-                      <tr>
-                      
-                        <th>Title</th>
-                        <th>Description</th>
-                       <!--  <th>Long Description</th> -->
-                        <th>Image</th>
-                        <th>Status</th>
-                        <th>Action</th>
-                    <tbody>
-                    </tbody>
-                  </table>
-                </div>
-            </div><!-- /form user info -->
-
-        
-        </div>
-
-      </div>
-      <!-- End of Main Content -->
-
-                 <%- include partials/footer %>
-
-
+               
+          </div> <!--closing div of card-body-->  
+              
+              
+           </div><!-- /form user info -->
     </div>
-    <!-- End of Content Wrapper -->
+     <!-- End of Main Content -->
 
-  </div>
-  <!-- End of Page Wrapper -->
+                <%- include partials/footer %>
 
-  <!-- Scroll to Top Button-->
-  <a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-  </a>
 
-  <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="/">Logout</a>
-        </div>
-      </div>
-    </div>
-  </div>
+   </div>
+   <!-- End of Content Wrapper -->
 
-  <div class="modal fade" id="previewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content preview-phone">
-        <div class="modal-body preview-card-body p-0"><main>
-    <div class="pt-5" style="position: relative;">
-      <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">×</span>
-      </button>
-      
-                <div class=" text-center"> <img style="max-width: 200px;" src="https://www.freepnglogos.com/uploads/notebook-png/download-laptop-notebook-png-image-png-image-pngimg-2.png" id="previewImgSrc" class="card-img-top" alt="...">
+ </div>
+ <!-- End of Page Wrapper -->
+
+ <!-- Scroll to Top Button-->
+ <a class="scroll-to-top rounded" href="#page-top">
+   <i class="fas fa-angle-up"></i>
+ </a>
+
+ <!-- Logout Modal-->
+ <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="`">
+   <div class="modal-dialog" role="document">
+     <div class="modal-content">
+       <div class="modal-header">
+         <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+           <span aria-hidden="true">×</span>
+         </button>
+       </div>
+       <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+       <div class="modal-footer">
+         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+         <a class="btn btn-primary" href="/">Logout</a>
+       </div>
+     </div>
+   </div>
+ </div>
+
+ <div class="modal fade" id="previewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal-dialog" role="document">
+     <div class="modal-content preview-phone">
+       <div class="modal-body preview-card-body p-0"><main>
+   <div class="pt-5" style="position: relative;">
+     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+       <span aria-hidden="true">×</span>
+     </button>
+     
+               <div class=" text-center"> <img style="max-width: 200px;" src="https://www.freepnglogos.com/uploads/notebook-png/download-laptop-notebook-png-image-png-image-pngimg-2.png" id="previewImgSrc" class="card-img-top" alt="...">
+                
                     <div class="card-body text-dark">
-                        <div class="min-height-360">
-                        <h3 class="clearfix text-gray-900 mb-3 font-weight-bold" id="previewTitle"></h3>
-                        <h5 id="previewShortDescription"></h5>
-                        <h5 class="show-more-less-dec" style="display: none;" id="previewLongDescription"> </h5>
-                        <a class="show-more-less-btn" href="javascript:void(0);">Show More</a>
-                      </div>
-                        <div class="text-center mt-4"> <a href="#" class="btn btn-primary btn-block btn-lg">Got It!</a> </div>
-                    </div>
-                </div>
+                       <div class="min-height-360">
+                       <h3 class="clearfix text-gray-900 mb-3 font-weight-bold" id="previewTitle"></h3>
+                       <h5 id="previewShortDescription"></h5>
+                       <h5 class="show-more-less-dec" style="display: none;" id="previewLongDescription"> </h5>
+                       <a class="show-more-less-btn" href="javascript:void(0);">Show More</a>
+                     </div>
+                       <div class="text-center mt-4"> <a href="#" class="btn btn-primary btn-block btn-lg">Got It!</a> </div>
+                   </div>
+               </div>
 
-    </div>
+   </div>
 </main></div>
-        <!-- <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="#">Submit</a>
-        </div> -->
-      </div>
-    </div>
-  </div>
+       <!-- <div class="modal-footer">
+         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+         <a class="btn btn-primary" href="#">Submit</a>
+       </div> -->
+     </div>
+   </div>
+ </div>
 
 
-  <!-- Bootstrap core JavaScript-->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+ <div class="modal fade" id="previewModals" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal-dialog" role="document">
+     <div class="modal-content preview-phone">
+       <div class="modal-body preview-card-body p-0"><main>
+   <div class="pt-5" style="position: relative;">
+     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+       <span aria-hidden="true">×</span>
+     </button>
+     <div class="all-steps1"> <span class="step"></span> <span class="step"></span> <span class="step"></span> <span class="step"></span> </div>
+               <div class="text-center">
+                 <div>
+                   <button type="button" class="prev-slide w3-light-grey" id="prevPrev"  onclick="plusSlides(-1)">❮ Prev</button>
+                   <button type="button" class="next-slide w3-light-grey" id="nextPrev"  onclick="plusSlides(1)">Next ❯</button>
+                 </div>
+                    <div class="card-body text-dark">
+                        <div class="mySlides min-height-360">
+                          <!-- <span>Slider 1</span> -->
+                          <img style="max-width: 200px;" id="previewImgSrcs" class="card-img-top" alt="..."></br>
+                          <h3 class="clearfix text-gray-900 mb-3 font-weight-bold" id="previewTitles"></h3>
+                          <h5 id="previewShortDescriptions"></h5>
+                          <h5 class="show-more-less-dec" style="display: none;" id="previewLongDescriptions"> </h5>
+                          <a class="show-more-less-btn" href="javascript:void(0);">Show More</a>
+                        </div>
+                        <div class="mySlides min-height-360">
+                          <!-- <span>Slider 2</span> -->
+                          <img style="max-width: 200px;"  id="previewImgSrc2" class="card-img-top" alt="..."></br>
+                          <h3 class="clearfix text-gray-900 mb-3 font-weight-bold" id="previewTitle2"></h3>
+                          <h5 id="previewShortDescription2"></h5>
+                          <h5 class="show-more-less-dec" style="display: none;" id="previewLongDescription2"> </h5>
+                          <a class="show-more-less-btn" href="javascript:void(0);">Show More</a>
+                        </div>
+                        <div class="mySlides min-height-360">
+                          <!-- <span>Slider 3</span> -->
+                          <img style="max-width: 200px;"  id="previewImgSrc3" class="card-img-top" alt="..."></br>
+                          <h3 class="clearfix text-gray-900 mb-3 font-weight-bold" id="previewTitle3"></h3>
+                          <h5 id="previewShortDescription3"></h5>
+                          <h5 class="show-more-less-dec" style="display: none;" id="previewLongDescription3"> </h5>
+                          <a class="show-more-less-btn" href="javascript:void(0);">Show More</a>
+                        </div>
+                       <div class="text-center mt-4"> <a href="#" class="btn btn-primary btn-block btn-lg">Got It!</a> </div>
+                   </div>
+               </div>
 
-  <!-- Core plugin JavaScript-->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+   </div>
+</main></div>
+       <!-- <div class="modal-footer">
+         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+         <a class="btn btn-primary" href="#">Submit</a>
+       </div> -->
+     </div>
+   </div>
+ </div>
+
+
+ 
+
+
+ <!-- <script>
+   let imagePreview = document.querySelector('#previewImgSrc1');
+ let sliderImages = document.querySelectorAll(".slide"),
+  arrowLeft = document.querySelector("#arrow-left"),
+  arrowRight = document.querySelector("#arrow-right"),
+  current = 0;
+  
+// Clear all images
+
+let preview = ""
+for (let i = 0; i < imagePreview.length; i++) {
+  preview += imagePreview[i];
+}
+
+function reset() {
+  for (let i = 0; i < sliderImages.length; i++) {
+    sliderImages[i].style.display = "none";
+  } 
+}
+  
+// Initial slide
+function startSlide() {
+  reset();
+  sliderImages[0].style.display = "block";
+}
+  
+// Show previous
+function slideLeft() {
+  reset();
+  sliderImages[current - 1].style.display = "block";
+  current--;
+}
+  
+// Show next
+function slideRight() {
+  reset();
+  sliderImages[current + 1].style.display = "block";
+  current++;
+}
+  
+// Left arrow click
+arrowLeft.addEventListener("click", function () {
+  if (current === 0) {
+    current = sliderImages.length;
+  }
+  slideLeft();
+  
+});
+  
+// Right arrow click
+arrowRight.addEventListener("click", function () {
+  if (current === sliderImages.length - 1) {
+    current = -1;
+  }
+  slideRight();
+});
+  
+startSlide();
+ </script> -->
+
+
+
+ <!-- Bootstrap core JavaScript-->
+ <script src="vendor/jquery/jquery.min.js"></script>
+ <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+ <!-- Core plugin JavaScript-->
+ <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
- --><link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+--><link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
 
 <script type="text/javascript">
-  $(document).ready(function () {
+ $(document).ready(function () {
 //change selectboxes to selectize mode to be searchable
-   $("select").select2();
+  $("select").select2();
 });
 </script>
 
+
+
 <!-- <script src="//cdn.ckeditor.com/4.5.9/standard/ckeditor.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/ckeditor/4.5.9/adapters/jquery.js"></script>
- -->
-  <!-- Custom scripts for all pages-->
-  <script src="js/sb-admin-2.min.js"></script>
+-->
+ <!-- Custom scripts for all pages-->
+ <script src="js/sb-admin-2.min.js"></script>
 <script src="js/choosen.js"></script>
 
- <!-- Page level plugins -->
-  <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-  <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+<!-- Page level plugins -->
+ <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+ <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
-  <!-- Page level custom scripts -->
-  <script src="js/demo/datatables-demo.js"></script>
+ <!-- Page level custom scripts -->
+ <script src="js/demo/datatables-demo.js"></script>
 <script src="https://cdn.tiny.cloud/1/it3ify0z40t5vo6kcajgeiy9u1wusf5nsuhp3h6j4a585vko/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-  <script type="text/javascript">
+ <script type="text/javascript">
 tinymce.init({
-    selector: "textarea",
-    plugins: [
-        "advlist autolink lists link image charmap print preview anchor",
-        "searchreplace visualblocks code fullscreen",
-        "insertdatetime media table paste",
-    "emoticons" , "textcolor"
-    ],
-  toolbar_location: "top",
-  menubar : "false",
-    toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | emoticons | forecolor backcolor",
-  content_style:
-    "body { background: #fff; color: #000; font-size: 14pt; font-family: Arial; }"
+   selector: "textarea",
+   plugins: [
+       "advlist autolink lists link image charmap print preview anchor",
+       "searchreplace visualblocks code fullscreen",
+       "insertdatetime media table paste",
+   "emoticons" , "textcolor"
+   ],
+ toolbar_location: "top",
+ menubar : "false",
+   toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | emoticons | forecolor backcolor",
+ content_style:
+   "body { background: #fff; color: #000; font-size: 14pt; font-family: Arial; }"
 });
 
 </script>
 <style type="text/css">
-  span.tox-statusbar__branding {
-    display: none;
+ span.tox-statusbar__branding {
+   display: none;
 }
 </style>
+<!-- ////////////////////////////// PREVIEW //////////////////////////////// -->
 
 
-  <script type="text/javascript">
+<script>
+var slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+
+  if (n > slides.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";  
+  }
+ 
+  slides[slideIndex-1].style.display = "block";  
+}
+
+
+</script>
+
+<!-- ////////////////////////// NEXT PREVIOUS SLIDE   //////////////////////////////////////////// -->
+
+
+<script>
+  var currentTab = 0;
+document.addEventListener("DOMContentLoaded", function(event) {
+
+
+showTab(currentTab);
+
+});
+
+function showTab(n) {
+var x = document.getElementsByClassName("tab");
+x[n].style.display = "block";
+if (n == 0) {
+document.getElementById("prevBtn").style.display = "none";
+} else {
+document.getElementById("prevBtn").style.display = "inline";
+}
+// var z = document.getElementById("nextBtn").textContent;
+// alert(z)
+
+if (n == (x.length - 1)) {
+  document.getElementById("nextBtn").innerHTML = "Submit"
+} else {
+  document.getElementById("nextBtn").innerHTML = "Next";
+  // document.getElementById("nextBtn").style.display = "none";
+}
+
+fixStepIndicator(n)
+}
+
+function nextPrev(n) {
+var x = document.getElementsByClassName("tab");
+if (n == 1 && !validateForm()) return false;
+x[currentTab].style.display = "none";
+currentTab = currentTab + n;
+if (currentTab >= x.length) {
+document.getElementById("regForm").submit();
+return true;
+//alert("sdf");
+document.getElementById("nextprevious").style.display = "none";
+document.getElementById("all-steps").style.display = "none";
+document.getElementById("register").style.display = "none";
+document.getElementById("text-message").style.display = "block";
+
+
+
+
+}
+showTab(currentTab);
+}
+
+function validateForm() {
+var title1 = $('#titles1').val();
+ //alert(title);
+ var shortDescription1 = tinymce.get("shortDescriptions1").getContent();
+ // alert(shortDescription);
+ var longDescription1 = tinymce.get("longDescriptions1").getContent();
+ // alert(longDescriptions);
+ var file1 = document.getElementById("imageDetailss1").files[0];
+
+ var fullPath1 = $("#imageDetailss1").val();
+ var filename1 = fullPath1.replace(/^.*[\\\/]/, '');
+
+
+   var idxDot1 = filename1.lastIndexOf(".") + 1;
+   var extFile1 = filename1.substr(idxDot1, filename1.length).toLowerCase();
+
+
+var x, y, i, valid = true;
+x = document.getElementsByClassName("tab");
+// y = x[currentTab].getElementsByTagName("input");
+// for (i = 0; i < y.length; i++) {
+//   if (y[i].value=="" ){
+//     alert("Please fill all the field aaaaaaaaaaa")
+//      y[i].className +=" invalid" ; valid=false;
+//   }}
+
+if( title1 == "" || shortDescription1 == ""  || longDescription1 == ""  || filename1 == ""){
+    alert("Please fill all the field of title 1"); valid = false;
+
+}else{
+  if (extFile1=="jpg" || extFile1=="jpeg" || extFile1=="png"){
+    if (valid) {
+      document.getElementsByClassName("step")[currentTab].className +="finish" ; 
+    } return valid; 
+  }else{
+    alert("Only jpg/jpeg and png files are allowed!");
+  }
+}
+// if(title2 != ""){
+//   if( title2 == "" || shortDescription2 == ""  || longDescription2 == ""  || filename2 == "")
+// }    
+    } 
+  function fixStepIndicator(n) {
+    var i, x=document.getElementsByClassName("step");
+    for (i=0; i < x.length; i++) {
+      x[i].className=x[i].className.replace(" active", "" );
+    } 
+    // x[n].className +=" active" ; 
+  
+  }
+</script>
+
+
+
+<script type="text/javascript">
 
 window.history.forward(); 
-        function noBack() { 
-            window.history.forward(); 
-        } 
- var url_string = window.location.href; 
-  var urls = new URL(url_string);
-  var tokens = urls.searchParams.get("tokendata");
+       function noBack() { 
+           window.history.forward(); 
+       } 
+var url_string = window.location.href; 
+ var urls = new URL(url_string);
+ var tokens = urls.searchParams.get("tokendata");
 
 
 
-  // var tokens = "eyJhbGciOiJIUzUxMiJ9.eyJlbWFpbCI6Im1haGVzaHdhcmkwNmdvdmluZEBnbWFpbC5jb20iLCJzdWIiOiJmMTQ4NmIzMy03YTM0LTQ1MDYtYWFhMS1kM2Y0YmYzOGQzNjYiLCJpYXQiOjE2MjAwMzIwMjcsImV4cCI6MTYyMDYzNjgyN30.BSmCDBqWEf4FKxTsTgVe7-zTjHqRr6HYjglEUvlyUHx03rUfrp9N75pedAre1LQsdYtF7eyViM-5xaempJ68Ew";
+//  var tokens = "eyJhbGciOiJIUzUxMiJ9.eyJlbWFpbCI6Im1haGVzaHdhcmkwNmdvdmluZEBnbWFpbC5jb20iLCJzdWIiOiJmMTQ4NmIzMy03YTM0LTQ1MDYtYWFhMS1kM2Y0YmYzOGQzNjYiLCJpYXQiOjE2MjAwMzIwMjcsImV4cCI6MTYyMDYzNjgyN30.BSmCDBqWEf4FKxTsTgVe7-zTjHqRr6HYjglEUvlyUHx03rUfrp9N75pedAre1LQsdYtF7eyViM-5xaempJ68Ew";
 
 // $('.test').on('click', function() {
 //   var obj = {}
-  
+ 
 //   $(".slot_subclass").each(function() {
 //     var $slots = $(this).find('.slot');
 
 //     obj[$slots.eq(0).val()] = $slots.eq(1).val()
 //   })
-  
+ 
 //   console.log(obj)
 // })
 
- // CKEDITOR.replace( 'Long_text_editor' );
- // CKEDITOR.replace( 'Short_text_editor' );
- // $('textarea[name="Short_text_editor"]').ckeditor({
- //      // Define the toolbar groups as it is a more accessible solution.
- //      toolbarGroups: [{
- //          "name": "basicstyles",
- //          "groups": ["basicstyles"]
- //        },
- //        {
- //          "name": "links",
- //          "groups": ["links"]
- //        },
- //        {
- //          "name": "paragraph",
- //          "groups": ["list", "blocks"]
- //        },
- //        {
- //          "name": "document",
- //          "groups": ["mode"]
- //        },
- //        {
- //          "name": "insert",
- //          "groups": ["insert"]
- //        },
- //        {
- //          "name": "styles",
- //          "groups": ["styles"]
- //        },
- //        {
- //          "name": "about",
- //          "groups": ["about"]
- //        }
- //      ],
- //      // Remove the redundant buttons from toolbar groups defined above.
- //      removeButtons: 'Underline,Strike,Subscript,Superscript,Anchor,Styles,Specialchar'
- //    });
-
- // // $('textarea[name="Short_text_editor"]').ckeditor();
- // $('textarea[name="Long_text_editor"]').ckeditor();
-$("#bannerPreviewData").on('click', function (e) {
-
-  var title = $('#title').val();
-  // alert(title);
-  var shortDescription = tinymce.get("shortDescription").getContent();
-  // alert(shortDescription);
-  var longDescription = tinymce.get("longDescription").getContent();
-  // alert(longDescription);
-  var file = document.getElementById("imageDetails1banner").files[0];
-  //alert(file);
-  // alert(readURLs(file));
-  // if(file == undefined){
-  //   readURLs(file);
-  // }
-
- 
-  var fullPath = $("#imageDetails1banner").val();
-  // alert(fullPath);   
-  var filename = fullPath.replace(/^.*[\\\/]/, '');
-  // alert(filename);
-   
-
-    var fr = new FileReader();
-    
-    fr.onload = function(ev2) {
-        console.dir(ev2);
-        $('#previewImgSrc').attr('src', ev2.target.result);
-    };
-    
-    fr.readAsDataURL(file);
-  
-  if(title == "" || shortDescription == ""  || longDescription == ""  || filename == ""){
-    alert("Please fill all the field");
-  }else {
-
-    $("#previewModal").modal('show');
-
-      document.getElementById("previewTitle").innerHTML  = title;
-      document.getElementById("previewShortDescription").innerHTML  = shortDescription;
-      document.getElementById("previewLongDescription").innerHTML  = longDescription;
-      // document.getElementById("previewImgSrc").src = filename;
-
-
-
-  //    var formdata = new FormData();
-  //   formdata.append("title", title);
-  //   formdata.append("shortDescription", shortDescription);
-  //   formdata.append("longDescription", longDescription);
-
-  // if(filename == ""){
-  //   // alert("null");
-  //     formdata.append("imageDetails", "");
-
-  //   }else{
-  //   // alert("not null");
-  //     formdata.append("imageDetails", file , filename);
-
-  //   }
-
-   //alert(title);
-   //alert(shortDescription);
-   //alert(longDescription);
-
- }
-    
- });
-
-
-///////////////////////////////////////////////////////
+// CKEDITOR.replace( 'Long_text_editor' );
+// CKEDITOR.replace( 'Short_text_editor' );
+// $('textarea[name="Short_text_editor"]').ckeditor({
+//      // Define the toolbar groups as it is a more accessible solution.
+//      toolbarGroups: [{
+//          "name": "basicstyles",
+//          "groups": ["basicstyles"]
+//        },
+//        {
+//          "name": "links",
+//          "groups": ["links"]
+//        },
+//        {
+//          "name": "paragraph",
+//          "groups": ["list", "blocks"]
+//        },
+//        {
+//          "name": "document",
+//          "groups": ["mode"]
+//        },
+//        {
+//          "name": "insert",
+//          "groups": ["insert"]
+//        },
+//        {
+//          "name": "styles",
+//          "groups": ["styles"]
+//        },
+//        {
+//          "name": "about",
+//          "groups": ["about"]
+//        }
+//      ],
+//      // Remove the redundant buttons from toolbar groups defined above.
+//      removeButtons: 'Underline,Strike,Subscript,Superscript,Anchor,Styles,Specialchar'
+//    });
 
 // $('textarea[name="Short_text_editor"]').ckeditor();
-//  $('textarea[name="Long_text_editor"]').ckeditor();
+// $('textarea[name="Long_text_editor"]').ckeditor();
+$("#bannerPreviewDataone").on('click', function (e) {
+
+ var title = $('#title').val();
+//  alert(title);
+ var shortDescription = tinymce.get("shortDescription").getContent();
+//  alert(shortDescription);
+ var longDescription = tinymce.get("longDescription").getContent();
+ // alert(longDescription);
+ var file = document.getElementById("imageDetails1banner").files[0];
+ //alert(file);
+ // alert(readURLs(file));
+ // if(file == undefined){
+ //   readURLs(file);
+ // }
 
 
+ var fullPath = $("#imageDetails1banner").val();
+ // alert(fullPath);   
+ var filename = fullPath.replace(/^.*[\\\/]/, '');
+ // alert(filename);
+  
+
+   var fr = new FileReader();
+   
+   fr.onload = function(ev2) {
+       console.dir(ev2);
+       $('#previewImgSrc').attr('src', ev2.target.result);
+   };
+   
+   fr.readAsDataURL(file);
+ 
+ if(title == "" || shortDescription == ""  || longDescription == ""  || filename == ""){
+   alert("Please fill all the field");
+ }else {
+
+   $("#previewModal").modal('show');
+
+     document.getElementById("previewTitle").innerHTML  = title;
+     document.getElementById("previewShortDescription").innerHTML  = shortDescription;
+     document.getElementById("previewLongDescription").innerHTML  = longDescription;
+     // document.getElementById("previewImgSrc").src = filename;
+
+
+
+ //    var formdata = new FormData();
+ //   formdata.append("title", title);
+ //   formdata.append("shortDescription", shortDescription);
+ //   formdata.append("longDescription", longDescription);
+
+ // if(filename == ""){
+ //   // alert("null");
+ //     formdata.append("imageDetails", "");
+
+ //   }else{
+ //   // alert("not null");
+ //     formdata.append("imageDetails", file , filename);
+
+ //   }
+
+  //alert(title);
+  //alert(shortDescription);
+  //alert(longDescription);
+
+}
+   
+});
+
+////////////////////////////////////  PREVIEW MULTIPLE BANNER ///////////////////////////////////
+$("#bannerPreviewData").on('click', function (e) {
+  var title1 = $('#titles1').val();
+  //  alert(title1);
+  var shortDescription1 = tinymce.get("shortDescriptions1").getContent();
+  //  alert(shortDescription1);
+  var longDescription1 = tinymce.get("longDescriptions1").getContent();
+  //  alert(longDescriptions1);
+  var file1 = document.getElementById("imageDetailss1").files[0];
+
+  var fullPath1 = $("#imageDetailss1").val();
+  var filename1 = fullPath1.replace(/^.*[\\\/]/, '');
+
+
+  var idxDot1 = filename1.lastIndexOf(".") + 1;
+  var extFile1 = filename1.substr(idxDot1, filename1.length).toLowerCase();
+
+  var title2 = $('#titless2').val();
+  //  alert(title2);
+  var shortDescription2 = tinymce.get("shortDescriptionss2").getContent();
+  // alert(shortDescription);
+  var longDescription2 = tinymce.get("longDescriptionss2").getContent();
+  // alert(longDescriptions);
+  var file2 = document.getElementById("imageDetailss2").files[0];
+  var fullPath2 = $("#imageDetailss2").val();
+  // alert(fullPath2);
+  var filename2 = fullPath2.replace(/^.*[\\\/]/, '');
+
+
+  var idxDot2 = filename2.lastIndexOf(".") + 1;
+  var extFile2 = filename2.substr(idxDot2, filename2.length).toLowerCase();
+
+  var title3 = $('#titlesss3').val();
+  // alert(title3);
+  var shortDescription3 = tinymce.get("shortDescriptionsss3").getContent();
+  // alert(shortDescription);
+  var longDescription3 = tinymce.get("longDescriptionsss3").getContent();
+  // alert(longDescriptions);
+  var file3 = document.getElementById("imageDetailssss3").files[0];
+  var fullPath3 = $("#imageDetailssss3").val();
+  var filename3 = fullPath3.replace(/^.*[\\\/]/, '');
+
+  var idxDot3 = filename3.lastIndexOf(".") + 1;
+  var extFile3 = filename3.substr(idxDot3, filename3.length).toLowerCase();
+
+
+if(title1){
+  alert('title 1')
+   var fr = new FileReader();
+   
+   fr.onload = function(ev2) {
+       console.dir(ev2);
+       $('#previewImgSrcs').attr('src', ev2.target.result);
+   };
+   
+   fr.readAsDataURL(file1);
+
+   if(title1 == "" || shortDescription1 == ""  || longDescription1 == ""  || filename1 == ""){
+      alert("Please fill all the field");
+    }else {
+
+      $("#previewModals").modal('show');
+
+        document.getElementById("previewTitles").innerHTML  = title1;
+        document.getElementById("previewShortDescriptions").innerHTML  = shortDescription1;
+        document.getElementById("previewLongDescriptions").innerHTML  = longDescription1;
+        // document.getElementById("previewImgSrc").src = filename;
+    }
+
+    var fr = new FileReader();
+   
+   fr.onload = function(ev2) {
+       console.dir(ev2);
+       $('#previewImgSrc2').attr('src', ev2.target.result);
+   };
+  //  alert(previewImgSrc2)
+   fr.readAsDataURL(file2);
+
+   if(title2 == "" || shortDescription2 == ""  || longDescription2 == ""  || filename2 == ""){
+      alert("Please fill all the field");
+    }else {
+
+      $("#previewModals").modal('show');
+
+        document.getElementById("previewTitle2").innerHTML  = title2;
+        document.getElementById("previewShortDescription2").innerHTML  = shortDescription2;
+        document.getElementById("previewLongDescription2").innerHTML  = longDescription2;
+        // document.getElementById("previewImgSrc").src = filename;
+  }
+
+  var fr = new FileReader();
+   
+   fr.onload = function(ev2) {
+       console.dir(ev2);1 
+       $('#previewImgSrc3').attr('src', ev2.target.result);
+   };
+
+   fr.readAsDataURL(file3);
+
+   if(title3 == "" || shortDescription3 == ""  || longDescription3 == ""  || filename3 == ""){
+      alert("Please fill all the field");
+    }else {
+
+      $("#previewModals").modal('show');
+
+        document.getElementById("previewTitle3").innerHTML  = title3;
+        document.getElementById("previewShortDescription3").innerHTML  = shortDescription3;
+        document.getElementById("previewLongDescription3").innerHTML  = longDescription3;
+        // document.getElementById("previewImgSrc").src = filename;
+    }
+  }
+
+});
+
+
+///////////////////////////////////////     SINGLE BANNER SUBMIT    ////////////////////////////////////////////////////////////////////////
 
 $("#bannerSubmitbannerone").on('click', function (e) {
 
 
-  var title = $('#title').val();
-  // alert(title);
-  var shortDescription = tinymce.get("shortDescription").getContent();
-  // alert(shortDescription);
-  var longDescription = tinymce.get("longDescription").getContent();
-  // alert(longDescription);
-   var file = document.getElementById("imageDetails1banner").files[0];
-   // alert(file);
+ var title = $('#title').val();
+ // alert(title);
+ var shortDescription = tinymce.get("shortDescription").getContent();
+ // alert(shortDescription);
+ var longDescription = tinymce.get("longDescription").getContent();
+ // alert(longDescription);
+  var file = document.getElementById("imageDetails1banner").files[0];
+  // alert(file);
 
-     var fullPath = $("#imageDetails1banner").val();
-   var filename = fullPath.replace(/^.*[\\\/]/, '');
+  var fullPath = $("#imageDetails1banner").val();
+  var filename = fullPath.replace(/^.*[\\\/]/, '');
 
 
-    var idxDot = filename.lastIndexOf(".") + 1;
-    var extFile = filename.substr(idxDot, filename.length).toLowerCase();
-    if (extFile=="jpg" || extFile=="jpeg" || extFile=="png"){
-            //TO DO
-            if(title == "" || shortDescription == ""  || longDescription == ""  || filename == ""){
-
-    alert("Please fill all the field");
+   var idxDot = filename.lastIndexOf(".") + 1;
+   var extFile = filename.substr(idxDot, filename.length).toLowerCase();
+   
+   if(title == "" || shortDescription == ""  || longDescription == ""  || filename == ""){
+        alert("Please fill all the field");
 
     }else {
 
@@ -596,12 +1175,12 @@ $("#bannerSubmitbannerone").on('click', function (e) {
        if(filename == ""){
         // alert("null");
           formdata.append("imageDetails", "");
-
-        }else{
-        // alert("not null");
-          formdata.append("imageDetails", file , filename);
-
+          
         }
+        else{
+        // alert("not null");
+          if (extFile=="jpg" || extFile=="jpeg" || extFile=="png"){
+            formdata.append("imageDetails", file , filename);
 
           var requestOptions = {
             method: 'POST',
@@ -625,555 +1204,557 @@ $("#bannerSubmitbannerone").on('click', function (e) {
 
              })
             .catch(error => console.log('error', error));
-
-
-          }
         }else{
-            alert("Only jpg/jpeg and png files are allowed!");
-            window.location.reload("/banner?tokendata="+tokens); 
-        }   
+          alert("Only jpg/jpeg and png files are allowed!");
+          // window.location.reload("/banner?tokendata="+tokens);
+        }
+      }
+      }
+ });
 
- 
-   // // alert(filename);
-
-   
-
-  });
-
-
+// ///////////////////////////////////  MULTIPLE BANNER SUBMIT  ////////////////////////////////////////////
 
 $("#bannerSubmit").on('click', function (e) {
 
   var title1 = $('#titles1').val();
-  //alert(title);
-  var shortDescription1 = tinymce.get("shortDescriptions1").getContent();
-  // alert(shortDescription);
-  var longDescription1 = tinymce.get("longDescriptions1").getContent();
-  // alert(longDescriptions);
-  var file1 = document.getElementById("imageDetailss1").files[0];
- 
-  var fullPath1 = $("#imageDetailss1").val();
-  var filename1 = fullPath1.replace(/^.*[\\\/]/, '');
+   //alert(title);
+ var shortDescription1 = tinymce.get("shortDescriptions1").getContent();
+ // alert(shortDescription);
+ var longDescription1 = tinymce.get("longDescriptions1").getContent();
+ // alert(longDescriptions);
+ var file1 = document.getElementById("imageDetailss1").files[0];
+
+ var fullPath1 = $("#imageDetailss1").val();
+ var filename1 = fullPath1.replace(/^.*[\\\/]/, '');
 
 
-    var idxDot1 = filename1.lastIndexOf(".") + 1;
-    var extFile1 = filename1.substr(idxDot1, filename1.length).toLowerCase();
-
-   
-  /////////////////////////////////////////////////////////////////////////
+   var idxDot1 = filename1.lastIndexOf(".") + 1;
+   var extFile1 = filename1.substr(idxDot1, filename1.length).toLowerCase();
+ /////////////////////////////////////////////////////////////////////////
 
 
-  var title2 = $('#titless2').val();
-  //alert(title);
-  var shortDescription2 = tinymce.get("shortDescriptionss2").getContent();
-  // alert(shortDescription);
-  var longDescription2 = tinymce.get("longDescriptionss2").getContent();
-  // alert(longDescriptions);
-   var file2 = document.getElementById("imageDetailss2").files[0];
-   var fullPath2 = $("#imageDetailss2").val();
-   var filename2 = fullPath2.replace(/^.*[\\\/]/, '');
+ var title2 = $('#titless2').val();
+ //alert(title);
+ var shortDescription2 = tinymce.get("shortDescriptionss2").getContent();
+ // alert(shortDescription);
+ var longDescription2 = tinymce.get("longDescriptionss2").getContent();
+ // alert(longDescriptions);
+  var file2 = document.getElementById("imageDetailss2").files[0];
+  var fullPath2 = $("#imageDetailss2").val();
+  var filename2 = fullPath2.replace(/^.*[\\\/]/, '');
 
-    var idxDot2 = filename2.lastIndexOf(".") + 1;
-    var extFile2 = filename2.substr(idxDot2, filename2.length).toLowerCase();
-
-    
-
-   ///////////////////////////////////////////////////////////////////////
-
-
-
-  var title3 = $('#titlesss3').val();
-  //alert(title);
-  var shortDescription3 = tinymce.get("shortDescriptionsss3").getContent();
-  // alert(shortDescription);
-  var longDescription3 = tinymce.get("longDescriptionsss3").getContent();
-  // alert(longDescriptions);
-   var file3 = document.getElementById("imageDetailssss3").files[0];
-   var fullPath3 = $("#imageDetailssss3").val();
-   var filename3 = fullPath3.replace(/^.*[\\\/]/, '');
-
-   var idxDot3 = filename3.lastIndexOf(".") + 1;
-    var extFile3 = filename3.substr(idxDot3, filename3.length).toLowerCase();
-
-    
-
-
-   ///////////////////////////////////////////////////////////////////////
-
-
-
-  //  var title = $('#titles1').val();
-  // //alert(title);
-  // var shortDescription = tinymce.get("shortDescriptions1").getContent();
-  // // alert(shortDescription);
-  // var longDescription = tinymce.get("longDescriptions1").getContent();
-  // // alert(longDescriptions);
-  //  var file1 = document.getElementById("imageDetailss1").files[0];
-  //  var fullPath1 = $("#imageDetailss1").val();
-  //  var filename1 = fullPath1.replace(/^.*[\\\/]/, '');
-
-  //  var file2 = document.getElementById("imageDetailss2").files[0];
-  //  var fullPath2 = $("#imageDetailss2").val();
-  //  var filename2 = fullPath2.replace(/^.*[\\\/]/, '');
-  //  var file3 = document.getElementById("imageDetailss3").files[0];
-  //  var fullPath3 = $("#imageDetailss3").val();
-  //  var filename3 = fullPath3.replace(/^.*[\\\/]/, '');
-
- 
-  // if(title == "" || shortDescription == ""  || longDescription == ""  || filename == ""){
-  if (extFile1=="jpg" || extFile1=="jpeg" || extFile1=="png" || extFile2=="jpg" || extFile2=="jpeg" || extFile2=="png" || extFile3=="jpg" || extFile3=="jpeg" || extFile3=="png" ){
+   var idxDot2 = filename2.lastIndexOf(".") + 1;
+   var extFile2 = filename2.substr(idxDot2, filename2.length).toLowerCase();
 
    
-  if(title1 == "" || shortDescription1 == ""  || longDescription1 == ""  || filename1 == "" || title2 == "" || shortDescription2 == ""  || longDescription2 == ""  || filename2 == "" || title3 == "" || shortDescription3 == ""  || longDescription3 == ""  || filename3 == ""){
 
-    alert("Please fill all the field");
-  }else {
-
-    
-    formdata.append("title1", title1);
-    formdata.append("shortDescription1", shortDescription1);
-    formdata.append("longDescription1", longDescription1);
-    
-  if(filename1 == ""){
-    // alert("null");
-      formdata.append("imag1", "");
-
-    }else{
-    // alert("not null");
-      formdata.append("image1", file1 , filename1);
-
-    }
-    formdata.append("title2", title2);
-    formdata.append("shortDescription2", shortDescription2);
-    formdata.append("longDescription2", longDescription2);
+  ///////////////////////////////////////////////////////////////////////
 
 
-  if(filename2 == ""){
-    // alert("null");
-      formdata.append("image2", "");
 
-    }else{
-    // alert("not null");
-      formdata.append("image2", file2 , filename2);
+ var title3 = $('#titlesss3').val();
+ //alert(title);
+ var shortDescription3 = tinymce.get("shortDescriptionsss3").getContent();
+ // alert(shortDescription);
+ var longDescription3 = tinymce.get("longDescriptionsss3").getContent();
+ // alert(longDescriptions);
+  var file3 = document.getElementById("imageDetailssss3").files[0];
+  var fullPath3 = $("#imageDetailssss3").val();
+  var filename3 = fullPath3.replace(/^.*[\\\/]/, '');
 
-    }
+  var idxDot3 = filename3.lastIndexOf(".") + 1;
+   var extFile3 = filename3.substr(idxDot3, filename3.length).toLowerCase();
 
-    formdata.append("title3", title3);
-    formdata.append("shortDescription3", shortDescription3);
-    formdata.append("longDescription3", longDescription3);
-
-  if(filename3 == ""){
-    // alert("null");
-      formdata.append("image3", "");
-
-    }else{
-    // alert("not null");
-      formdata.append("image3", file3 , filename3);
-
-    }
-
-    formdata.append("singleBanner" , "false");
+   
 
 
-    var requestOptions = {
-      method: 'POST',
-      headers: {
-              Authorization: 'Bearer '+ tokens
-            },
-      body: formdata,
-      redirect: 'follow'
-    };
-
-
-    // var requestOptions1 = {
-    //   method: 'POST',
-    //   headers: {
-    //           Authorization: 'Bearer '+ tokens
-    //         },
-    //   // body: formdata,
-    //   redirect: 'follow'
-    // };
-
-    fetch("https://apistest.tradetipsapp.com/api/adBannerSimple/addSimpleAdBanner", requestOptions)
-      .then(response => response.json())
-      .then(result => {
-            
-                var datak = JSON.stringify(result);
-               // alert(datak);
-                var dataResultp = JSON.parse(datak); 
-                // alert(dataResultp.title);
-                alert("Your banner "+dataResultp.title1+" was submitted successfully");
-                window.location.reload("/banner?tokendata="+tokens); 
-
-                 // fetch("https://apistest.tradetipsapp.com/api/adBannerSimple/disableAllOtherthanBannerById?adBannerId="+dataResultp.id, requestOptions1)
-                 //    .then(response => response.json())
-                 //    .then(results => {
-                          
-                 //              var dataks = JSON.stringify(results);
-                 //             // alert(datak);
-                 //              var dataResultps = JSON.parse(dataks); 
-                 //              // alert(dataResultp.title);
-                 //              alert("Your banner "+dataResultp.title+" was submitted successfully");
-                 //              window.location.reload("/banner?tokendata="+tokens); 
-                         
-                              
-
-                 //        })
-           
-                
-
-       })
-      .catch(error => console.log('error', error));
-
-  }
- 
- }else{
-            alert("Only jpg/jpeg and png files are allowed!");
-            window.location.reload("/banner?tokendata="+tokens); 
-    }
-
-
-// // set values for demo
- // setDemoValues()
-// // get data based on above values
-// var res = {};
-// $('.slot_subclass').each(function() {
-//   var $inputs = $(this).find('.slot');      
-//   res[$inputs[0].value] = $inputs[1].value;      
-// })
-
-// console.log(res)
-
-// function setDemoValues() {
-//   $('.slot_subclass').each(function(i) {
-//     $(this).find('.slot').val(function() {
-//       return this.name + (i + 1);
-//     })
-//   });
-
-// }
-
-// var details = $('.item_name').map(function() {
-
-//   var name = $(this).val();
-//   var vales =  $(this).next('.item_qty').val(); 
-//   return {
-
+  ///////////////////////////////////////////////////////////////////////
+  // if (extFile1=="jpg" || extFile1=="jpeg" || extFile1=="png" || extFile2=="jpg" || extFile2=="jpeg" || extFile2=="png" || extFile3=="jpg" || extFile3=="jpeg" || extFile3=="png" ){
+   
+   if(title1 == "" || shortDescription1 == ""  || longDescription1 == ""  || filename1 == "" || title2 == "" || shortDescription2 == ""  || longDescription2 == ""  || filename2 == "" || title3 == "" || shortDescription3 == ""  || longDescription3 == ""  || filename3 == ""){
+     alert("Please fill all the field");
+   }else {
      
-//      // name: $(this).val(),
-//     // qty: $(this).next('.item_qty').val()
-//      name : $(this).next('.item_qty').val()
-//     // qty: $(this).next('.item_qty').val()
-//   };
-// }).get();
+     formdata.append("title1", title1);
+     formdata.append("shortDescription1", shortDescription1);
+     formdata.append("longDescription1", longDescription1);
+     
+   if(filename1 == ""){
+     // alert("null");
+       formdata.append("imag1", "");
+     }else{
+     // alert("not null");
+       formdata.append("image1", file1 , filename1);
+     }
+     formdata.append("title2", title2);
+     formdata.append("shortDescription2", shortDescription2);
+     formdata.append("longDescription2", longDescription2);
+   if(filename2 == ""){
+     // alert("null");
+       formdata.append("image2", "");
+     }else{
+     // alert("not null");
+       formdata.append("image2", file2 , filename2);
+     }
+     formdata.append("title3", title3);
+     formdata.append("shortDescription3", shortDescription3);
+     formdata.append("longDescription3", longDescription3);
+   if(filename3 == ""){
+     // alert("null");
+       formdata.append("image3", "");
+     }else{
+     // alert("not null");
+       formdata.append("image3", file3 , filename3);
+     }
+     formdata.append("singleBanner" , "false");
+     var requestOptions = {
+       method: 'POST',
+       headers: {
+               Authorization: 'Bearer '+ tokens
+             },
+       body: formdata,
+       redirect: 'follow'
+     };
+     // var requestOptions1 = {
+     //   method: 'POST',
+     //   headers: {
+     //           Authorization: 'Bearer '+ tokens
+     //         },
+     //   // body: formdata,
+     //   redirect: 'follow'
+     // };
+     fetch("https://apistest.tradetipsapp.com/api/adBannerSimple/addSimpleAdBanner", requestOptions)
+       .then(response => response.json())
+       .then(result => {
+             
+                 var datak = JSON.stringify(result);
+                // alert(datak);
+                 var dataResultp = JSON.parse(datak); 
+                 // alert(dataResultp.title);
+                 alert("Your banner "+dataResultp.title1+" was submitted successfully");
+                 window.location.reload("/banner?tokendata="+tokens); 
+                  // fetch("https://apistest.tradetipsapp.com/api/adBannerSimple/disableAllOtherthanBannerById?adBannerId="+dataResultp.id, requestOptions1)
+                  //    .then(response => response.json())
+                  //    .then(results => {
+                           
+                  //              var dataks = JSON.stringify(results);
+                  //             // alert(datak);
+                  //              var dataResultps = JSON.parse(dataks); 
+                  //              // alert(dataResultp.title);
+                  //              alert("Your banner "+dataResultp.title+" was submitted successfully");
+                  //              window.location.reload("/banner?tokendata="+tokens); 
+                          
+                               
+                  //        })
+            
+                 
+        })
+       .catch(error => console.log('error', error));
+   }
+  // }else{
+  //           alert("Only jpg/jpeg and png files are allowed!");
+  //           window.location.reload("/banner?tokendata="+tokens); 
+  //   } 
+////////////////////////////////////////////////////////////////////
+  // if (extFile1=="jpg" || extFile1=="jpeg" || extFile1=="png" || extFile2=="jpg" || extFile2=="jpeg" || extFile2=="png" || extFile3=="jpg" || extFile3=="jpeg" || extFile3=="png" ){
+    // if(title1 == "" || shortDescription1 == ""  || longDescription1 == ""  || filename1 == ""){
+    //   alert("Please fill all the field")
 
-// console.log(details);
-// var val = $("input.item_name").map(function(){
-// obj = {}
+    // }else{
 
-// obj[$(this).val()] = $(this).next("input.item_qty").val();
+      
+//   if(title1){
+//     formdata.append("title1", title1);
+//           formdata.append("shortDescription1", shortDescription1);
+//           formdata.append("longDescription1", longDescription1);
+//           if(filename1 == ""){
+//           //  alert("title2")
+//           // alert("null");
+//             formdata.append("image1", "");
+//           }else{
+//           // alert("not null");
+//             formdata.append("image1", file1 , filename1);
+//           }
+//   }else if(title2){
+//     alert("title2");
+//     if(title2 != "" || shortDescription2 != "" || longDescription2 != ""|| filename2 != ""){
+//       if( title2 == "" || shortDescription2 == ""  || longDescription2 == ""  || filename2 == ""){
+//         alert("Please fill all the fields of title 2")
+//       }else{
+//         formdata.append("title1", title1);
+//           formdata.append("shortDescription1", shortDescription1);
+//           formdata.append("longDescription1", longDescription1);
+//           if(filename1 == ""){
+//           //  alert("title2")
+//           // alert("null");
+//             formdata.append("image1", "");
+//           }else{
+//           // alert("not null");
+//             formdata.append("image1", file1 , filename1);
+//           }
 
-// return obj;
+//         formdata.append("title2", title2);
+//         formdata.append("shortDescription2", shortDescription2);
+//         formdata.append("longDescription2", longDescription2);
+        
+//         if (extFile2=="jpg" || extFile2=="jpeg" || extFile2=="png"){
+//             formdata.append("image2", file2 , filename2);
 
-// // console.log(obj)
+//     formdata.append("singleBanner" , "false");
+//     var requestOptions = {
+//       method: 'POST',
+//       headers: {
+//               Authorization: 'Bearer '+ tokens
+//             },
+//       body: formdata,
+//       redirect: 'follow'
+//     };
 
-// }).get()
+//     fetch("https://apistest.tradetipsapp.com/api/adBannerSimple/addSimpleAdBanner", requestOptions)
+//       .then(response => response.json())
+//       .then(result => {
+            
+//                 var datak = JSON.stringify(result);
+//                // alert(datak);
+//                 var dataResultp = JSON.parse(datak); 
+//                 // alert(dataResultp.title);
+//                 alert("Your banner "+dataResultp.title1+" was submitted successfully");
+//                 window.location.reload("/banner?tokendata="+tokens);           
+//        })
+//       .catch(error => console.log('error', error));
+//         }else{
+//             alert("Only jpg/jpeg and png files are allowed!");
+//         } 
+//       }
+//     }  
+    
+    
+//   }else{
+//     if(title3 != ""){
+//         if(title3 == "" || shortDescription3 == ""  || longDescription3 == ""  || filename3 == ""){
+//           alert("Please fill all the field of title 3");
+//         }else{
+//           // title 1  ------------------------
+//           if(filename3 == ""){
+//         // alert("null");
+//           formdata.append("image3", "");
+//         }else{
+//           if (extFile3!="jpg" || extFile3!="jpeg" || extFile3!="png"){
+//             alert("Only jpg/jpeg and png files are allowed!");
+//           }else{
+//             formdata.append("title1", title1);
+//           formdata.append("shortDescription1", shortDescription1);
+//           formdata.append("longDescription1", longDescription1);
+//           if(filename1 == ""){
+//             formdata.append("image1", "");
+//           }else{
+//             formdata.append("image1", file1 , filename1);
+//           }
 
-//  console.log(val.length)
-
-//  function myCustomMerge() {
-//     var return_obj = {};
-//     for (i in arguments) {
-//         obj = arguments[i];
-//         for (j in obj) {
-//             if (return_obj[j] == undefined) {
-//                 return_obj[j] = [obj[j]];
-//             } else {
-//                 return_obj[j].push(obj[j]);
-//             }
-//         }
-//     }
-//     return return_obj;
-// }
-
-// var merged_obj = myCustomMerge(val);
-// console.log(merged_obj);
+//           formdata.append("title2", title2);
+//           formdata.append("shortDescription2", shortDescription2);
+//           formdata.append("longDescription2", longDescription2);
+//           formdata.append("image2", file2 , filename2);
 
 
+//             formdata.append("title3", title3);
+//             formdata.append("shortDescription3", shortDescription3);
+//             formdata.append("longDescription3", longDescription3);
+//             formdata.append("image3", file3 , filename3);
 
-// var arr = $('.slot_subclass').map(function() {
-//   var obj = {};
-//   $(this).find('.slot').each(function() {
-//     obj[this.name] = this.value;
-//   });
-//   return obj;
-// }).get();
+//             formdata.append("singleBanner" , "false");
+//     var requestOptions = {
+//       method: 'POST',
+//       headers: {
+//               Authorization: 'Bearer '+ tokens
+//             },
+//       body: formdata,
+//       redirect: 'follow'
+//     };
 
-// console.log(arr);
+//     fetch("https://apistest.tradetipsapp.com/api/adBannerSimple/addSimpleAdBanner", requestOptions)
+//       .then(response => response.json())
+//       .then(result => {
+            
+//                 var datak = JSON.stringify(result);
+//                // alert(datak);
+//                 var dataResultp = JSON.parse(datak); 
+//                 // alert(dataResultp.title);
+//                 alert("Your banner "+dataResultp.title1+" was submitted successfully");
+//                 window.location.reload("/banner?tokendata="+tokens);           
+//        })
+//       .catch(error => console.log('error', error));
+//           }
+//         }}  
+//       };
+//   } 
+  
+})
 
-// var json = JSON.stringify(arr);
-// console.log(json);
-   
-});
 
+
+$("#nextBtn").on("click", function(){
+
+ var title2 = $('#titless2').val();
+ //alert(title);
+ var shortDescription2 = tinymce.get("shortDescriptionss2").getContent();
+ // alert(shortDescription);
+ var longDescription2 = tinymce.get("longDescriptionss2").getContent();
+ // alert(longDescriptions);
+  var file2 = document.getElementById("imageDetailss2").files[0];
+  var fullPath2 = $("#imageDetailss2").val();
+  var filename2 = fullPath2.replace(/^.*[\\\/]/, '');
+
+   var idxDot2 = filename2.lastIndexOf(".") + 1;
+   var extFile2 = filename2.substr(idxDot2, filename2.length).toLowerCase();
+
+
+   /////////////////////////////
+  if(title2){
+
+    if(title2 == "" || shortDescription2 == ""  || longDescription2 == ""  || filename2 == ""){
+       alert("Please fill all the field of title 2");
+     }else {}
+  }
+})
+
+// DATATABLE 1
 
 var formdata = new FormData();
-  formdata.append("offset", "0");
-  formdata.append("limit", "500");
+ formdata.append("offset", "0");
+ formdata.append("limit", "500");
 
-  var requestOptions = {
-    method: 'POST',
-    headers: {
-           Authorization: 'Bearer '+ tokens
-        },
-    body: formdata,
-    redirect: 'follow'
-  };
+ var requestOptions = {
+   method: 'POST',
+   headers: {
+          Authorization: 'Bearer '+ tokens
+       },
+   body: formdata,
+   redirect: 'follow'
+ };
 
-  fetch("https://apistest.tradetipsapp.com/api/adBannerSimple/getAllSimpleAdBanner", requestOptions)
-  .then(resp => resp.json())
-    .then(function(data) {
-           $('#dataTables').dataTable( {
-            "aaData": data, 
-            "lengthMenu": [ 500, 1000, 2000, 3000, 4000, 5000 ],
-            "pageLength": 500,
-            // "aaSorting": [[ 0, "desc" ]],
-            // "columnDefs": [ {
-            // "targets": 4,
-            // "orderable": false
-            // } ],
-              "columns": [
-                
-                { "data": "title",
-                render: function(data, type, row) {
+ fetch("https://apistest.tradetipsapp.com/api/adBannerSimple/getAllSimpleAdBanner", requestOptions)
+ .then(resp => resp.json())
+   .then(function(data) {
+    var datak = JSON.stringify(data);
+    var data_Result = JSON.parse(datak);
+     var countdataa = data_Result.filter(function(s) { return s.isSingleBanner == true } ); 
+          $('#dataTablesone').dataTable( {
+           "aaData": countdataa, 
+           "lengthMenu": [ 500, 1000, 2000, 3000, 4000, 5000 ],
+           "pageLength": 500,
+           // "aaSorting": [[ 0, "desc" ]],
+           // "columnDefs": [ {
+           // "targets": 4,
+           // "orderable": false
+           // } ],
+             "columns": [
+               
+               { "data": "title",
+               render: function(data, type, row) {
 
-                  // alert(row.title1);
-
-                  return row.title = (row.title== null) ? row.title1 : row.title;
-
+                 // alert(row.title1);
+                 if(type === "display"){
+                  return row.title
                  }
+                 return data;
+                }
 
-                 },
-
-                { "data": "",
-                   "render" : function(data , type, row){
-                    // return ' <div class="accordion" id="faqExample"><div class="card"><div class="card-header p-2" id="heading' + row.id + '"><h5 class="mb-0"><button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">'+ data +'</button></h5></div><div id="collapseOne" class="collapse show" aria-labelledby="heading' + row.id + '" data-parent="#faqExample"><div class="card-body">'+ row.longDescription +'</div></div></div></div>'
-                    if(row.shortDescription == null){
-
-                       return '<div><input type="checkbox" id="' + row.id + '" name="q"  class="questions"><div class="plus">+</div><label for="' + row.id + '" class="question">'+ row.shortDescription1 +'</label><div class="answers">'+ row.longDescription1 +'</div></div>'
-
-                    }else{
-
-                       return '<div><input type="checkbox" id="' + row.id + '" name="q"  class="questions"><div class="plus">+</div><label for="' + row.id + '" class="question">'+ row.shortDescription +'</label><div class="answers">'+ row.longDescription +'</div></div>'
-
-                    }
-                   
-                    // return '<div> <input type="checkbox" id="question' + row.id + '" name="q" class="questions"><div class="plus">+</div><label for="question' + row.id + '" class="question">Keep answers short. But in case of...If the question is long, the text wraps.  </label><div class="answers">This is the answer!</div></div>'
-                   }
-                 },
-                // { "data": "longDescription" },
-                {
-                   "data": "image",
-                   "render": function (data,type,row) {
-
-                    // alert(row.image1);
-
-                      if(data == null){
-
-                         return '<img src="https://apistest.tradetipsapp.com' + row.image1 + '" class="avatar" width="50" height="50"/>';
-
-                      }else{
-
-                         return '<img src="https://apistest.tradetipsapp.com' + data + '" class="avatar" width="50" height="50"/>';
-
-                      }
-                      
-                       }
                 },
-              //   { 'data': null,
-              //    'render': function (data, type, row) {
-              //          return '<button id="' + row.id + '" class="deleteButtons">Delete</button>'
-              //  }
-              // },  
+
+               { "data": "",
+                  "render" : function(data , type, row){
+                    return '<div><input type="checkbox" id="' + row.id + '" name="q"  class="questions"><div class="plus">+</div><label for="' + row.id + '" class="question">'+ row.shortDescription +'</label><div class="answers">'+ row.longDescription +'</div></div>'
+                  }
+                },
+               // { "data": "longDescription" },
                {
-                "data":   "isActive",
-                render: function ( data, type, row ) {
-                    if ( type === 'display' ) {
+                  "data": "image",
+                  "render": function (data,type,row) {
+                   return '<img src="https://apistest.tradetipsapp.com' + row.image + '" class="avatar" width="50" height="50"/>';  
+                  }
+               },
+             //   { 'data': null,
+             //    'render': function (data, type, row) {
+             //          return '<button id="' + row.id + '" class="deleteButtons">Delete</button>'
+             //  }
+             // },  
+              {
+               "data":   "isActive",
+               render: function ( data, type, row ) {
+                   if ( type === 'display' ) {
 
-                       if(data == true) {
+                      if(data == true) {
 
-                           return '<button id="' + row.id + '" class="deleteButtonsactive btn btn-success">Active</button>';
-                        //   return '<a href="updateData?id='+row.id+'&username='+row.userName+'&tokendata='+tokens+'&status=1" id="userStatus">UnBlock</a>';
+                          return '<button id="' + row.id + '" class="deleteButtonsactive btn btn-success">Active</button>';
+                       //   return '<a href="updateData?id='+row.id+'&username='+row.userName+'&tokendata='+tokens+'&status=1" id="userStatus">UnBlock</a>';
 
-                        }else {
-                        //   return '<a href="updateData?id='+row.id+'&username='+row.userName+'&tokendata='+tokens+'&status=0" id="userStatus">Block</a>';
-                          return '<button id="' + row.id + '" class="deleteButtonsdeactive btn btn-danger">Deactive</button>';
+                       }else {
+                       //   return '<a href="updateData?id='+row.id+'&username='+row.userName+'&tokendata='+tokens+'&status=0" id="userStatus">Block</a>';
+                         return '<button id="' + row.id + '" class="deleteButtonsdeactive btn btn-danger">Deactive</button>';
 
-                        }
-                       
-                    }
-                    return data;
-                },
+                       }
+                      
+                   }
+                   return data;
+               },
 
-              },
-              { 'data': null,
-                 'render': function (data, type, row) {
-                        return '<a href="editBanner?id='+row.id+'&tokendata='+tokens+'"><button>Edit</button></a> | <button id="' + row.id + '" class="deleteButtonsBanner">Delete</button> | <a href="viewBannerDetail?id='+row.id+'&tokendata='+tokens+'"><button>View</button></a>';
-               }
-              }              
-            ],
-            "deferRender": true,
-            rowCallback: function ( row, data ) {
-            
-        }
-
-        });
-
-      $('#dataTables').on('click', 'button.deleteButtonsactive', function () {
-
-      // alert("fff");
-
-      var id = $(this).attr('id');
-      // alert(id);
-
-      var url ;
-      var result = confirm("Are you sure you want to Update?");
-      if(result){
-      // alert(result);
-      var formData = {adBannerId:id};
-       url = "https://apistest.tradetipsapp.com/api/adBannerSimple/disableSimpleAdBannerById";
-      $.ajax({
-        url : url,
-        type: "POST",
-        headers: {
-             Authorization: 'Bearer ' + tokens,
-        },
-        data : formData,
-        success: function(data, textStatus, jqXHR)
-        {
-           //data - response from server
-            var datak = JSON.stringify(data);
-            // alert(datak);
-            var dataResultp = JSON.parse(datak); 
-            // alert(dataResultp);
-
-              // var requestOptions1 = {
-              //   method: 'POST',
-              //   headers: {
-              //           Authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJlbWFpbCI6Im1haGVzaHdhcmkwNmdvdmluZEBnbWFpbC5jb20iLCJzdWIiOiJmMTQ4NmIzMy03YTM0LTQ1MDYtYWFhMS1kM2Y0YmYzOGQzNjYiLCJpYXQiOjE2MjAyODE4MTYsImV4cCI6MTYyMDg4NjYxNn0.wRkAckmjXoCvRtVLzmSz_6EnvtOTwxKj3Q05Bzf7NVamW9wDB6CAZ-2p6gfeSwvXEevAHkVXMoocsZWwWciLzA'
-              //         },
-              //   body: formdata,
-              //   redirect: 'follow'
-              // };
-              //  fetch("https://apistest.tradetipsapp.com/api/adBannerSimple/disableAllOtherthanBannerById", requestOptions1)
-              //       .then(response => response.json())
-              //       .then(results => {
-                          
-              //                 var dataks = JSON.stringify(results);
-              //                // alert(datak);
-              //                 var dataResultps = JSON.parse(dataks); 
-              //                 // alert(dataResultp.title);
-              //       })
-            
-            alert("Status Updated Successfully !!");
-            window.location.reload();
-
-        },
-        error: function (jqXHR, textStatus, errorThrown)
-        {
-           alert("Not updated !!");
-        }
+             },
+             { 'data': null,
+                'render': function (data, type, row) {
+                       return '<a href="editBanner?id='+row.id+'&tokendata='+tokens+'"><button>Edit</button></a> | <button id="' + row.id + '" class="deleteButtonsBanner">Delete</button> | <a href="viewBannerDetail?id='+row.id+'&tokendata='+tokens+'"><button>View</button></a>';
+              }
+             }              
+           ],
+           "deferRender": true,
+           rowCallback: function ( row, data ) {
+           
+       }
 
        });
-      
 
-      } else {
+     $('#dataTablesone').on('click', 'button.deleteButtonsactive', function () {
 
-          window.location.reload();
+     // alert("fff");
 
-      }
+     var id = $(this).attr('id');
+     // alert(id);
 
-      });  
+     var url ;
+     var result = confirm("Are you sure you want to Update?");
+     if(result){
+     // alert(result);
+     var formData = {adBannerId:id};
+      url = "https://apistest.tradetipsapp.com/api/adBannerSimple/disableSimpleAdBannerById";
+     $.ajax({
+       url : url,
+       type: "POST",
+       headers: {
+            Authorization: 'Bearer ' + tokens,
+       },
+       data : formData,
+       success: function(data, textStatus, jqXHR)
+       {
+          //data - response from server
+           var datak = JSON.stringify(data);
+           // alert(datak);
+           var dataResultp = JSON.parse(datak); 
+           // alert(dataResultp);
 
-
-       $('#dataTables').on('click', 'button.deleteButtonsdeactive', function () {
-
-      // alert("fff");
-
-      var id = $(this).attr('id');
-      // alert(id);
-
-      // var url ;
-      var result = confirm("Are you sure you want to Update?");
-      if(result){
-      // //alert(result);
-      // var formData = {adBannerId:id};
-      //  url = "https://apistest.tradetipsapp.com/api/adBannerSimple/activeSimpleAdBannerById";
-      // $.ajax({
-      //   url : url,
-      //   type: "POST",
-      //    headers: {
-      //        Authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJlbWFpbCI6Im1haGVzaHdhcmkwNmdvdmluZEBnbWFpbC5jb20iLCJzdWIiOiJmMTQ4NmIzMy03YTM0LTQ1MDYtYWFhMS1kM2Y0YmYzOGQzNjYiLCJpYXQiOjE2MjAyODE4MTYsImV4cCI6MTYyMDg4NjYxNn0.wRkAckmjXoCvRtVLzmSz_6EnvtOTwxKj3Q05Bzf7NVamW9wDB6CAZ-2p6gfeSwvXEevAHkVXMoocsZWwWciLzA',
-      //   },
-      //   data : formData,
-      //   success: function(data, textStatus, jqXHR)
-      //   {
-
-
-      //       //data - response from server
-      //       var datak = JSON.stringify(data);
-      //       // alert(datak);
-      //       var dataResultp = JSON.parse(datak); 
-      //        // alert(dataResultp);
-             
+             // var requestOptions1 = {
+             //   method: 'POST',
+             //   headers: {
+             //           Authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJlbWFpbCI6Im1haGVzaHdhcmkwNmdvdmluZEBnbWFpbC5jb20iLCJzdWIiOiJmMTQ4NmIzMy03YTM0LTQ1MDYtYWFhMS1kM2Y0YmYzOGQzNjYiLCJpYXQiOjE2MjAyODE4MTYsImV4cCI6MTYyMDg4NjYxNn0.wRkAckmjXoCvRtVLzmSz_6EnvtOTwxKj3Q05Bzf7NVamW9wDB6CAZ-2p6gfeSwvXEevAHkVXMoocsZWwWciLzA'
+             //         },
+             //   body: formdata,
+             //   redirect: 'follow'
+             // };
+             //  fetch("https://apistest.tradetipsapp.com/api/adBannerSimple/disableAllOtherthanBannerById", requestOptions1)
+             //       .then(response => response.json())
+             //       .then(results => {
+                         
+             //                 var dataks = JSON.stringify(results);
+             //                // alert(datak);
+             //                 var dataResultps = JSON.parse(dataks); 
+             //                 // alert(dataResultp.title);
+             //       })
            
-      //       alert("Status Updated Successfully !!");
-           
-               var requestOptions1 = {
-                method: 'POST',
-                headers: {
-                        Authorization: 'Bearer '+ tokens
-                      },
-                // body: formdata,
-                redirect: 'follow'
-              };
-               fetch("https://apistest.tradetipsapp.com/api/adBannerSimple/disableAllOtherthanBannerById?adBannerId="+id, requestOptions1)
-                    .then(response => response.json())
-                   .then(results => {
-                             // alert("hiii calll");
-                              var dataks = JSON.stringify(results);
-                               // alert(datak);
-                              var dataResultps = JSON.parse(dataks); 
-                              // alert(dataResultp.title);
-                              alert("Status Updated Successfully !!");
-                              window.location.reload();
-                    });
-                 // window.location.reload();
-    
-        // },
-        // error: function (jqXHR, textStatus, errorThrown)
-        // {
-        //    alert("Not updated !!");
-        // }
+           alert("Status Updated Successfully !!");
+           window.location.reload();
 
-       // });
-      
-
-      } else {
-
-          window.location.reload();
-
-      }
+       },
+       error: function (jqXHR, textStatus, errorThrown)
+       {
+          alert("Not updated !!");
+       }
 
       });
+     
 
-      $('#dataTables').on('click', 'button.deleteButtonsBanner', function () {
+     } else {
 
+         window.location.reload();
+
+     }
+
+     });  
+
+
+      $('#dataTablesone').on('click', 'button.deleteButtonsdeactive', function () {
+
+     // alert("fff");
+
+     var id = $(this).attr('id');
+     // alert(id);
+
+     // var url ;
+     var result = confirm("Are you sure you want to Update?");
+     if(result){
+     // //alert(result);
+     // var formData = {adBannerId:id};
+     //  url = "https://apistest.tradetipsapp.com/api/adBannerSimple/activeSimpleAdBannerById";
+     // $.ajax({
+     //   url : url,
+     //   type: "POST",
+     //    headers: {
+     //        Authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJlbWFpbCI6Im1haGVzaHdhcmkwNmdvdmluZEBnbWFpbC5jb20iLCJzdWIiOiJmMTQ4NmIzMy03YTM0LTQ1MDYtYWFhMS1kM2Y0YmYzOGQzNjYiLCJpYXQiOjE2MjAyODE4MTYsImV4cCI6MTYyMDg4NjYxNn0.wRkAckmjXoCvRtVLzmSz_6EnvtOTwxKj3Q05Bzf7NVamW9wDB6CAZ-2p6gfeSwvXEevAHkVXMoocsZWwWciLzA',
+     //   },
+     //   data : formData,
+     //   success: function(data, textStatus, jqXHR)
+     //   {
+
+
+     //       //data - response from server
+     //       var datak = JSON.stringify(data);
+     //       // alert(datak);
+     //       var dataResultp = JSON.parse(datak); 
+     //        // alert(dataResultp);
+            
+          
+     //       alert("Status Updated Successfully !!");
+          
+              var requestOptions1 = {
+               method: 'POST',
+               headers: {
+                       Authorization: 'Bearer '+ tokens
+                     },
+               // body: formdata,
+               redirect: 'follow'
+             };
+              fetch("https://apistest.tradetipsapp.com/api/adBannerSimple/disableAllOtherthanBannerById?adBannerId="+id, requestOptions1)
+                   .then(response => response.json())
+                  .then(results => {
+                            // alert("hiii calll");
+                             var dataks = JSON.stringify(results);
+                              // alert(datak);
+                             var dataResultps = JSON.parse(dataks); 
+                             // alert(dataResultp.title);
+                             alert("Status Updated Successfully !!");
+                             window.location.reload();
+                   });
+                // window.location.reload();
+   
+       // },
+       // error: function (jqXHR, textStatus, errorThrown)
+       // {
+       //    alert("Not updated !!");
+       // }
+
+      // });
+     
+
+     } else {
+
+         window.location.reload();
+
+     }
+
+     });
+
+     $('#dataTablesone').on('click', 'button.deleteButtonsBanner', function () {
       // alert("fff");
-
       var id = $(this).attr('id');
       // alert(id);
-
       var url ;
       var result = confirm("Are you sure you want to Delete?");
       if(result){
@@ -1195,90 +1776,393 @@ var formdata = new FormData();
             var dataResultp = JSON.parse(datak); 
             // alert(dataResultp);
             alert("Delete Successfully !!");
-            window.location.reload();
-
+            // window.location.reload();
         },
         error: function (jqXHR, textStatus, errorThrown)
         {
            alert("Not updated !!");
         }
-
        });
       
-
       } else {
-
           window.location.reload();
-
       }
-
       });
 
-      });  
+     });  
 
-   $(document).ready(function() {
-    var max_fields = 50;
-    var wrapper = $(".slot_subclass");
-    var add_button = $(".add_form_field");
+// DATATABLE 2 
 
-    var x = 1;
-    $(add_button).click(function(e) {
-        e.preventDefault();
-        if (x < max_fields) {
-            x++;
-            $(wrapper).append('<div class="item"><input type="text" name="key" class="item_name"/>&nbsp;<input type="text" name="value" class="item_qty"/><a href="#" class="delete">Delete</a></div>'); //add input box
-        } else {
-            alert('You Reached the limits')
-        }
-    });
+var formdata = new FormData();
+ formdata.append("offset", "0");
+ formdata.append("limit", "500");
 
-    $(wrapper).on("click", ".delete", function(e) {
-        e.preventDefault();
-        $(this).parent('div').remove();
-        x--;
-    })
- });
- </script>
- 
- <script type="text/javascript">
-  window.addEventListener("load", function() {
-  var url_string = window.location.href; 
-  var urls = new URL(url_string);
-  var tokens = urls.searchParams.get("tokendata");
-  document.getElementById("dashboardLink").href = "/home?tokendata="+tokens;
+ var requestOptions = {
+   method: 'POST',
+   headers: {
+          Authorization: 'Bearer '+ tokens
+       },
+   body: formdata,
+   redirect: 'follow'
+ };
+
+ fetch("https://apistest.tradetipsapp.com/api/adBannerSimple/getAllSimpleAdBanner", requestOptions)
+ .then(resp => resp.json())
+   .then(function(data) {
+    var datak = JSON.stringify(data);
+    var data_Result = JSON.parse(datak);
+     var countdataa = data_Result.filter(function(s) { return s.isSingleBanner == false } ); 
+          $('#dataTables').dataTable( {
+           "aaData": countdataa, 
+           "lengthMenu": [ 500, 1000, 2000, 3000, 4000, 5000 ],
+           "pageLength": 500,
+           // "aaSorting": [[ 0, "desc" ]],
+           // "columnDefs": [ {
+           // "targets": 4,
+           // "orderable": false
+           // } ],
+             "columns": [
+               
+               { "data": "title",
+               render: function(data, type, row) {
+
+                 // alert(row.title1);
+                 if(row.title1 != null){
+                   return row.title1
+                 }else if(row.title2 != null){
+                   return row.title2
+                 }else{
+                   return row.title3
+                 }
+                  
+                  
+                //  return row.title = (row.title== null) ? row.title2 : row.title;
+                }
+
+                },
+
+               { "data": "",
+                  "render" : function(data , type, row){
+                    // return '<div><input type="checkbox" id="' + row.id + '" name="q"  class="questions"><div class="plus">+</div><label for="' + row.id + '" class="question">'+ row.shortDescription +'</label><div class="answers">'+ row.longDescription +'</div></div>'
+                   if(row.shortDescription1 != null){
+                     return '<div><input type="checkbox" id="' + row.id + '" name="q"  class="questions"><div class="plus">+</div><label for="' + row.id + '" class="question">'+ row.shortDescription1 +'</label><div class="answers">'+ row.longDescription1 +'</div></div>'
+                   }else if(row.shortDescription2 != null){
+                     return '<div><input type="checkbox" id="' + row.id + '" name="q"  class="questions"><div class="plus">+</div><label for="' + row.id + '" class="question">'+ row.shortDescription2 +'</label><div class="answers">'+ row.longDescription2 +'</div></div>'
+                   }else{
+                    return '<div><input type="checkbox" id="' + row.id + '" name="q"  class="questions"><div class="plus">+</div><label for="' + row.id + '" class="question">'+ row.shortDescription3 +'</label><div class="answers">'+ row.longDescription3 +'</div></div>'
+                   }
+                  
+                  
+                   // return '<div> <input type="checkbox" id="question' + row.id + '" name="q" class="questions"><div class="plus">+</div><label for="question' + row.id + '" class="question">Keep answers short. But in case of...If the question is long, the text wraps.  </label><div class="answers">This is the answer!</div></div>'
+                  }
+                },
+               // { "data": "longDescription" },
+               {
+                  "data": "image",
+                  "render": function (data,type,row) {
+
+                   // alert(row.image1);
+                   if(row.title1 != null){
+                    return '<img src="https://apistest.tradetipsapp.com' + row.image1 + '" class="avatar" width="50" height="50"/>';
+                  }else if(row.title2 != null){
+                    return '<img src="https://apistest.tradetipsapp.com' + row.image2 + '" class="avatar" width="50" height="50"/>';
+                  }else{
+                    return '<img src="https://apistest.tradetipsapp.com' + row.image3 + '" class="avatar" width="50" height="50"/>';
+                  }
+                   
+                     
+                      }
+               },
+             //   { 'data': null,
+             //    'render': function (data, type, row) {
+             //          return '<button id="' + row.id + '" class="deleteButtons">Delete</button>'
+             //  }
+             // },  
+              {
+               "data":   "isActive",
+               render: function ( data, type, row ) {
+                   if ( type === 'display' ) {
+
+                      if(data == true) {
+
+                          return '<button id="' + row.id + '" class="deleteButtonsactive btn btn-success">Active</button>';
+                       //   return '<a href="updateData?id='+row.id+'&username='+row.userName+'&tokendata='+tokens+'&status=1" id="userStatus">UnBlock</a>';
+
+                       }else {
+                       //   return '<a href="updateData?id='+row.id+'&username='+row.userName+'&tokendata='+tokens+'&status=0" id="userStatus">Block</a>';
+                         return '<button id="' + row.id + '" class="deleteButtonsdeactive btn btn-danger">Deactive</button>';
+
+                       }
+                      
+                   }
+                   return data;
+               },
+
+             },
+             { 'data': null,
+                'render': function (data, type, row) {
+                       return '<a href="editBanner?id='+row.id+'&tokendata='+tokens+'"><button>Edit</button></a> | <button id="' + row.id + '" class="deleteButtonsBanner">Delete</button> | <a href="viewBannerDetail?id='+row.id+'&tokendata='+tokens+'"><button>View</button></a>';
+              }
+             }              
+           ],
+           "deferRender": true,
+           rowCallback: function ( row, data ) {
+           
+       }
+
+       });
+
+     $('#dataTables').on('click', 'button.deleteButtonsactive', function () {
+
+     // alert("fff");
+
+     var id = $(this).attr('id');
+     // alert(id);
+
+     var url ;
+     var result = confirm("Are you sure you want to Update?");
+     if(result){
+     // alert(result);
+     var formData = {adBannerId:id};
+      url = "https://apistest.tradetipsapp.com/api/adBannerSimple/disableSimpleAdBannerById";
+     $.ajax({
+       url : url,
+       type: "POST",
+       headers: {
+            Authorization: 'Bearer ' + tokens,
+       },
+       data : formData,
+       success: function(data, textStatus, jqXHR)
+       {
+          //data - response from server
+           var datak = JSON.stringify(data);
+           // alert(datak);
+           var dataResultp = JSON.parse(datak); 
+           // alert(dataResultp);
+
+             // var requestOptions1 = {
+             //   method: 'POST',
+             //   headers: {
+             //           Authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJlbWFpbCI6Im1haGVzaHdhcmkwNmdvdmluZEBnbWFpbC5jb20iLCJzdWIiOiJmMTQ4NmIzMy03YTM0LTQ1MDYtYWFhMS1kM2Y0YmYzOGQzNjYiLCJpYXQiOjE2MjAyODE4MTYsImV4cCI6MTYyMDg4NjYxNn0.wRkAckmjXoCvRtVLzmSz_6EnvtOTwxKj3Q05Bzf7NVamW9wDB6CAZ-2p6gfeSwvXEevAHkVXMoocsZWwWciLzA'
+             //         },
+             //   body: formdata,
+             //   redirect: 'follow'
+             // };
+             //  fetch("https://apistest.tradetipsapp.com/api/adBannerSimple/disableAllOtherthanBannerById", requestOptions1)
+             //       .then(response => response.json())
+             //       .then(results => {
+                         
+             //                 var dataks = JSON.stringify(results);
+             //                // alert(datak);
+             //                 var dataResultps = JSON.parse(dataks); 
+             //                 // alert(dataResultp.title);
+             //       })
+           
+           alert("Status Updated Successfully !!");
+           window.location.reload();
+
+       },
+       error: function (jqXHR, textStatus, errorThrown)
+       {
+          alert("Not updated !!");
+       }
+
+      });
+     
+
+     } else {
+
+         window.location.reload();
+
+     }
+
+     });  
+
+
+      $('#dataTables').on('click', 'button.deleteButtonsdeactive', function () {
+
+     // alert("fff");
+
+     var id = $(this).attr('id');
+     // alert(id);
+
+     // var url ;
+     var result = confirm("Are you sure you want to Update?");
+     if(result){
+     // //alert(result);
+     // var formData = {adBannerId:id};
+     //  url = "https://apistest.tradetipsapp.com/api/adBannerSimple/activeSimpleAdBannerById";
+     // $.ajax({
+     //   url : url,
+     //   type: "POST",
+     //    headers: {
+     //        Authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJlbWFpbCI6Im1haGVzaHdhcmkwNmdvdmluZEBnbWFpbC5jb20iLCJzdWIiOiJmMTQ4NmIzMy03YTM0LTQ1MDYtYWFhMS1kM2Y0YmYzOGQzNjYiLCJpYXQiOjE2MjAyODE4MTYsImV4cCI6MTYyMDg4NjYxNn0.wRkAckmjXoCvRtVLzmSz_6EnvtOTwxKj3Q05Bzf7NVamW9wDB6CAZ-2p6gfeSwvXEevAHkVXMoocsZWwWciLzA',
+     //   },
+     //   data : formData,
+     //   success: function(data, textStatus, jqXHR)
+     //   {
+
+
+     //       //data - response from server
+     //       var datak = JSON.stringify(data);
+     //       // alert(datak);
+     //       var dataResultp = JSON.parse(datak); 
+     //        // alert(dataResultp);
+            
+          
+     //       alert("Status Updated Successfully !!");
+          
+              var requestOptions1 = {
+               method: 'POST',
+               headers: {
+                       Authorization: 'Bearer '+ tokens
+                     },
+               // body: formdata,
+               redirect: 'follow'
+             };
+              fetch("https://apistest.tradetipsapp.com/api/adBannerSimple/disableAllOtherthanBannerById?adBannerId="+id, requestOptions1)
+                   .then(response => response.json())
+                  .then(results => {
+                            // alert("hiii calll");
+                             var dataks = JSON.stringify(results);
+                              // alert(datak);
+                             var dataResultps = JSON.parse(dataks); 
+                             // alert(dataResultp.title);
+                             alert("Status Updated Successfully !!");
+                             window.location.reload();
+                   });
+                // window.location.reload();
+   
+       // },
+       // error: function (jqXHR, textStatus, errorThrown)
+       // {
+       //    alert("Not updated !!");
+       // }
+
+      // });
+     
+
+     } else {
+
+         window.location.reload();
+
+     }
+
+     });
+
+     $('#dataTables').on('click', 'button.deleteButtonsBanner', function () {
+
+     // alert("fff");
+
+     var id = $(this).attr('id');
+     // alert(id);
+
+     var url ;
+     var result = confirm("Are you sure you want to Delete?");
+     if(result){
+     // alert(result);
+     var formData = {adBannerId:id};
+      url = "https://apistest.tradetipsapp.com/api/adBannerSimple/deleteSimpleAdBannerById";
+     $.ajax({
+       url : url,
+       type: "POST",
+       headers: {
+            Authorization: 'Bearer ' + tokens,
+       },
+       data : formData,
+       success: function(data, textStatus, jqXHR)
+       {
+           //data - response from server
+           var datak = JSON.stringify(data);
+           // alert(datak);
+           var dataResultp = JSON.parse(datak); 
+           // alert(dataResultp);
+           alert("Delete Successfully !!");
+           window.location.reload();
+
+       },
+       error: function (jqXHR, textStatus, errorThrown)
+       {
+          alert("Not updated !!");
+       }
+
+      });
+     
+
+     } else {
+
+         window.location.reload();
+
+     }
+
+     });
+
+     });  
+
+  $(document).ready(function() {
+   var max_fields = 50;
+   var wrapper = $(".slot_subclass");
+   var add_button = $(".add_form_field");
+
+   var x = 1;
+   $(add_button).click(function(e) {
+       e.preventDefault();
+       if (x < max_fields) {
+           x++;
+           $(wrapper).append('<div class="item"><input type="text" name="key" class="item_name"/>&nbsp;<input type="text" name="value" class="item_qty"/><a href="#" class="delete">Delete</a></div>'); //add input box
+       } else {
+           alert('You Reached the limits')
+       }
+   });
+
+   $(wrapper).on("click", ".delete", function(e) {
+       e.preventDefault();
+       $(this).parent('div').remove();
+       x--;
+   })
+});
+</script>
+
+
+<script type="text/javascript">
+ window.addEventListener("load", function() {
+ var url_string = window.location.href; 
+ var urls = new URL(url_string);
+ var tokens = urls.searchParams.get("tokendata");
+ document.getElementById("dashboardLink").href = "/home?tokendata="+tokens;
 document.getElementById("TipLink").href = "/tipList?tokendata="+tokens;
-  
-   document.getElementById("HomeLink").href = "/home?tokendata="+tokens;
-  document.getElementById("UserLink").href = "/userlist?tokendata="+tokens;
-  // document.getElementById("UserCallLink").href = "/userlist?tokendata="+tokens;
-   document.getElementById("CommentLink").href = "/commentlist?tokendata="+tokens;
-   document.getElementById("CSVLink").href = "/csvlist?tokendata="+tokens;
- document.getElementById("FlagCallLink").href = "/flaglist?tokendata="+tokens;
-       document.getElementById("BannerLink").href = "/banner?tokendata="+tokens;
-        document.getElementById("NotifyLink").href = "/notification?tokendata="+tokens;
-           document.getElementById("changePassLink").href = "/changePassword?tokendata="+tokens;  
-   document.getElementById("AccountLink").href = "/account?tokendata="+tokens;
-       document.getElementById("NotifyListLink").href = "/notificationlist?tokendata="+tokens;
-    document.getElementById("FlagChatLink").href = "/flagChatlist?tokendata="+tokens;
+ 
+  document.getElementById("HomeLink").href = "/home?tokendata="+tokens;
+ document.getElementById("UserLink").href = "/userlist?tokendata="+tokens;
+ // document.getElementById("UserCallLink").href = "/userlist?tokendata="+tokens;
+  document.getElementById("CommentLink").href = "/commentlist?tokendata="+tokens;
+  document.getElementById("CSVLink").href = "/csvlist?tokendata="+tokens;
+document.getElementById("FlagCallLink").href = "/flaglist?tokendata="+tokens;
+      document.getElementById("BannerLink").href = "/banner?tokendata="+tokens;
+       document.getElementById("NotifyLink").href = "/notification?tokendata="+tokens;
+          document.getElementById("changePassLink").href = "/changePassword?tokendata="+tokens;  
+  document.getElementById("AccountLink").href = "/account?tokendata="+tokens;
+      document.getElementById("NotifyListLink").href = "/notificationlist?tokendata="+tokens;
+   document.getElementById("FlagChatLink").href = "/flagChatlist?tokendata="+tokens;
 
 
 });
 </script>
 
 <script>
-   $(document).on("click", ".show-more-less-btn", function(e) {
-    if ($(".show-more-less-dec").is(":hidden")) {
-      $(this).text('Show Less');
-      $('.show-more-less-dec').slideDown();
-      $("#previewShortDescription").css('display','none');
-    }
-    else{
-      $(this).text('Show More');
-      $('.show-more-less-dec').slideUp();
-      $("#previewShortDescription").css('display','block');
-    }
-        
-    })
+  $(document).on("click", ".show-more-less-btn", function(e) {
+   if ($(".show-more-less-dec").is(":hidden")) {
+     $(this).text('Show Less');
+     $('.show-more-less-dec').slideDown();
+     $("#previewShortDescription").css('display','none');
+   }
+   else{
+     $(this).text('Show More');
+     $('.show-more-less-dec').slideUp();
+     $("#previewShortDescription").css('display','block');
+   }
+       
+   })
 </script>
 
 </body>

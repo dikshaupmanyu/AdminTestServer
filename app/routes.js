@@ -1385,23 +1385,33 @@ app.get('/backmale', isLoggedIn, function(req, res) {
     
   });
 
+   app.get('/waitinglist',  function(req, res) {
+
+        res.render('waitinglist.ejs');
+     
+    
+  });
+
+
    app.get('/flagChatlist',  function(req, res) {
     
-    const admin = require('firebase-admin');
-    const db = admin.firestore();
-    const docRef = db.collection("/openGroups/demoOpenGroup1/messages/");
-       docRef.orderBy("createdDate", "desc").onSnapshot(function(snapshot) {
+    // const admin = require('firebase-admin');
+    // const db = admin.firestore();
+    // const docRef = db.collection("/openGroups/demoOpenGroup1/messages/");
+    //    docRef.orderBy("createdDate", "desc").onSnapshot(function(snapshot) {
 
-        var arr2 = [];
-        snapshot.docChanges().forEach(function(change) {
-          // if(change.doc.data().messageFlag == "true"){
-            // console.log(change.doc.data().messageFlag);
-            arr2.push(change.doc.data());
-          // }
-        });
+    //     var arr2 = [];
+    //     snapshot.docChanges().forEach(function(change) {
+    //       // if(change.doc.data().messageFlag == "true"){
+    //         // console.log(change.doc.data().messageFlag);
+    //         arr2.push(change.doc.data());
+    //       // }
+    //     });
         // console.log(arr2);
         // return arr2;
-        res.render('flagChatlist.ejs' ,{chatdata : arr2});
+        // res.render('flagChatlist.ejs' ,{chatdata : arr2});
+
+        res.render('flagChatlist.ejs');
 
         // snapshot.docChanges().forEach(function(change) {
         //     // if (change.type === "added") {
@@ -1414,25 +1424,52 @@ app.get('/backmale', isLoggedIn, function(req, res) {
 
         // });
     });
-  
-    //  if(req.session.loggedIn) 
-    //  { 
-    // var fdata = req.session.tokens;
-    // var fusername = req.session.username;
-    // var fuid = req.session.uid; 
-    // var femail = req.session.email; 
-    // var Chat_fcmtoken = req.session.fcmtoken;
 
-    // res.render('chatWindow.ejs', {tokens : fdata , fcmToken : Chat_fcmtoken , userName : fusername , userid : fuid , email :femail});
-
-    //  } else {
-    //    res.redirect('/')
-    //  }
-
-
-
-     
+    app.post('/flagData',  function(req, res) {
     
+    const admin = require('firebase-admin');
+    const db = admin.firestore();
+    const docRef = db.collection("/openGroups/demoOpenGroup1/messages/");
+       docRef.orderBy("createdDate", "desc").onSnapshot(function(snapshot) {
+
+        var arr2 = [];
+        // var idns = [];
+        snapshot.docChanges().forEach(function(change) {
+           // if(change.doc.data().messageFlag == "true"){
+             // console.log(change.doc.messageSocialReferenceId);
+            arr2.push(change.doc.data());
+            // idns.push(change.doc.id);
+
+           // }
+        });
+        // console.log(arr2);
+        // console.log(idns);
+        // return arr2;
+        res.send(arr2);
+
+    });
+  
+  });
+
+
+
+    app.post('/editflagData',  function(req, res) {
+
+      console.log(req.body);
+
+    var messageId = req.body.id;
+    
+    const admin = require('firebase-admin');
+    const db = admin.firestore();
+    const docRef = db.collection("/openGroups/demoOpenGroup1/messages/");
+
+      const arr2s = docRef.doc(messageId).update({
+    messageFlag: false
+    });
+
+      res.send(arr2s);
+
+        
   });
 
 

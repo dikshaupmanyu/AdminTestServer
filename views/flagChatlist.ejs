@@ -1,60 +1,45 @@
            <%- include partials/header %>
 
-<!--  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
- --> 
- <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap.min.css"> -->
-<!--  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/fixedheader/3.2.0/css/fixedHeader.bootstrap.min.css">
- --> 
- <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap.min.css"> -->
 
+       
         <div class="container-fluid">
 
 
       <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Flag Chat  List</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Flag Chat List</h6>
             </div>
-           <!--  <div class="card-body">
+            <div class="card-body">
               <div class="table-responsive">
- -->
-
-                <table id="example" class="table table-striped table-bordered nowrap" cellspacing="0" width="100%">
+                <table class="table table-bordered" id="dataTables" width="100%" cellspacing="0">
                   <thead>
                     <tr>
+                     <!--  <th>Id</th>
+                      <th>Reason</th> -->
                       <th>Username</th>
                       <th>Message</th>
                       <th>Flag Status</th>
+                      <th>Flagged By</th>
                       <th>Date</th>
+                      <!-- <th>Action</th> -->
+                     <!--  <th>Status</th> -->
                     </tr>
                   </thead>
-                 <tbody>
-                 <% for(i=0; i < chatdata.length;i++) if(chatdata[i].messageFlag == true){ %>
-                 <tr>
-                    <td><%= chatdata[i].userName %></td>
-                    <td><%= chatdata[i].message %></td>
-                    <td><%= chatdata[i].messageFlag %></td>
-                    <td><script type="text/javascript">
-                      var timestamp = <%= chatdata[i].createdDate %>;
- var todate=new Date(timestamp).getDate();
-    var tomonth=new Date(timestamp).getMonth()+1;
-    var toyear=new Date(timestamp).getFullYear();
-    var original_date=tomonth+'/'+todate+'/'+toyear;
-    document.write(original_date);
-                    </script></td>
-                  </tr>
-                  <% } %>                   
-                  </tbody>
-                  <tfoot>
+                 <!--  <tfoot>
                     <tr>
-                     <th>Username</th>
-                      <th>Message</th>
-                      <th>Flag Status</th>
-                      <th>Date</th>
+                      <th>Name</th>
+                      <th>Position</th>
+                      <th>Office</th>
+                      <th>Age</th>
+                      <th>Start date</th>
+                      <th>Salary</th>
                     </tr>
-                  </tfoot>
+                  </tfoot> -->
+                  <tbody>
+                  </tbody>
                 </table>
-            <!--   </div>
-            </div> -->
+              </div>
+            </div>
           </div>
 
         </div>
@@ -63,12 +48,7 @@
       <!-- End of Main Content -->
 
                  <%- include partials/footer %>
-<!-- <script type="text/javascript">
-                        var data = "1638184526561";
-                        var date = new Date(data).toLocaleString("en-US", {timeZone: "Europe/London"});
-alert(date);
-// document.write(date);
-</script> -->
+
 
     </div>
     <!-- End of Content Wrapper -->
@@ -101,48 +81,25 @@ alert(date);
   </div>
 
   <!-- Bootstrap core JavaScript-->
- <!--  <script src="vendor/jquery/jquery.min.js"></script>
-
+  <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
- -->  <!-- Core plugin JavaScript-->
-<!--   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
- -->
-  <!-- Custom scripts for all pages-->
-<!--   <script src="js/sb-admin-2.min.js"></script>
- -->  
+  <!-- Core plugin JavaScript-->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
- <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <!-- Custom scripts for all pages-->
+  <script src="js/sb-admin-2.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 
  <!-- Page level plugins -->
-  
- 
-  <!-- <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-  
-  <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap.min.js"></script>
- <script src="https://cdn.datatables.net/fixedheader/3.2.0/js/dataTables.fixedHeader.min.js"></script>
-  <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
-  Page level custom scripts
-  <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap.min.js"></script>
+  <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
+  <!-- Page level custom scripts -->
   <script src="js/demo/datatables-demo.js"></script>
-<script type="text/javascript">
-$(document).ready(function() {
-    var table = $('#example').DataTable( {
-        responsive: true
-    } );
- 
-    new $.fn.dataTable.FixedHeader( table );
-} );
-</script> -->
-
-
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-
+  
 
   <script type="text/javascript">
-
-  
 
     window.history.forward(); 
         function noBack() { 
@@ -150,8 +107,115 @@ $(document).ready(function() {
         } 
 
 
- </script>
+window.addEventListener("load", function() {
 
+   // alert(window.location.href);
+
+  var url_string = window.location.href; 
+  var urls = new URL(url_string);
+  var tokens = urls.searchParams.get("tokendata");
+  // alert(tokens);
+
+const url = "/flagData";
+fetch(url, {
+  method: "POST"
+})
+  .then(resp => resp.json())
+    .then(function(data) {
+
+        var datak = JSON.stringify(data);
+       var dataResult = JSON.parse(datak); 
+       // alert(JSON.stringify(dataResult));
+        var len = dataResult.length;
+
+          var countdataa = dataResult.filter(function(s) { return s.messageFlag == true });
+
+           $('#dataTables').dataTable( {
+            "aaData": countdataa, 
+            "columns": [
+                { "data": "userName"},
+                { "data": "message" },
+                {
+                "data":   "messageFlag",
+                render: function ( data, type, row ) {
+                    // alert(row.messageSocialReferenceId);
+                    if ( type === 'display' ) {
+                        return '<input id="' + row.messageSocialReferenceId + '" type="checkbox" class="editor-active">';
+                    }
+                    return data;
+                  }
+                },
+                { "data" : "messageFlagedUserName"},
+                { 
+                "data": "createdDate",
+                 "name":"date",
+                 "visible":true,
+                 "title":"Date Created",
+                 "render": function(data, type, full, meta){
+                  if(type == "display"){
+                          var date = new Date(data);
+                          var options = {year: "numeric", month: "long", day: "numeric"};
+
+                          return date.toLocaleDateString('en-US', options);
+                  }
+
+                  return data;
+                }
+               },        
+              ],
+            "deferRender": true,
+            rowCallback: function ( row, data ) {
+            // Set the checked state of the checkbox in the table
+            $('input.editor-active', row).prop( 'checked', data.messageFlag == true );
+        }
+
+        });
+
+   
+  })
+ 
+  .catch(function(error) {
+    console.log(error);
+  });  
+
+});
+
+   $('#dataTables').on('click', 'input.editor-active', function () {
+
+    var id = $(this).attr('id');
+    // alert(id);
+    var table = $('#dataTables').DataTable();
+    var row = table.row(this.closest('tr')).data();
+    var result = confirm("Are you sure you want to unflag the comment?");
+    if(result){
+    var ids = id;
+    // alert(ids);
+    var formData = {id:ids};
+       $.ajax({
+        url : "/editflagData",
+        type: "POST",
+        data : formData,
+        success: function(data, textStatus, jqXHR)
+        {
+            //data - response from server
+            var datak = JSON.stringify(data);
+            var dataResultp = JSON.parse(datak); 
+            alert("Comment Unflag Sucessfully !!");
+        },
+        error: function (jqXHR, textStatus, errorThrown)
+        {
+           alert("Not updated !!");
+        }
+
+    });
+    } else {
+
+       window.location.reload();
+
+    }
+
+   });
+ </script>
  <script type="text/javascript">
   window.addEventListener("load", function() {
   var url_string = window.location.href; 
@@ -175,6 +239,7 @@ document.getElementById("NotifyLink").href = "/notification?tokendata="+tokens;
    document.getElementById("AccountLink").href = "/account?tokendata="+tokens;  
     document.getElementById("NotifyListLink").href = "/notificationlist?tokendata="+tokens;
   document.getElementById("FlagChatLink").href = "/flagChatlist?tokendata="+tokens;
+    document.getElementById("WaitingLink").href = "/waitinglist?tokendata="+tokens;
 
     
 });
