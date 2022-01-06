@@ -4,15 +4,15 @@
     <script>
       window.addEventListener('DOMContentLoaded', () => {
   EmojiButton(document.querySelector('#emoji-button'), function (emoji) {
-    document.querySelector('input').value += emoji;
+    document.querySelector('#titles').value += emoji;
   });
 });
 </script>
 </script>
 <script>
   window.addEventListener('DOMContentLoaded', () => {
-EmojiButton(document.querySelector('#emoji-button1'), function (emoji) {
-document.querySelector('#titles1').value += emoji;
+EmojiButton(document.querySelector('#emoji-button1'), function (emoji1) {
+document.querySelector('#titles1').value += emoji1;
 });
 });
 </script>
@@ -25,8 +25,8 @@ document.querySelector('#titless2').value += emoji2;
 </script>
 <script>
   window.addEventListener('DOMContentLoaded', () => {
-EmojiButton(document.querySelector('#emoji-button3'), function (emoji) {
-document.querySelector('#titlesss3').value += emoji;
+EmojiButton(document.querySelector('#emoji-button3'), function (emoji3) {
+document.querySelector('#titlesss3').value += emoji3;
 });
 });
 </script>
@@ -52,6 +52,24 @@ document.querySelector('#titlesss3').value += emoji;
     border-radius: 10px
 }
 
+#newImage1{
+  vertical-align: center;
+  border-style: none;
+  height: 100%;
+  width: 50%;
+}
+#newImage2{
+  vertical-align: center;
+  border-style: none;
+  height: 100%;
+  width: 50%;
+}
+#newImage3{
+  vertical-align: center;
+  border-style: none;
+  height: 100%;
+  width: 50%;
+}
 /* 
 input {
     padding: 10px;
@@ -88,14 +106,16 @@ button:hover {
 }
 
 .step {
-    height: 15px;
-    width: 15px;
+    height: 35px;
+    width: 95px;
     margin: 0 2px;
-    background-color: #bbbbbb;
+    background-color: #bebebe;
     border: none;
-    border-radius: 50%;
+    border-radius: 1%;
     display: inline-block;
-    opacity: 0.5
+    opacity: 0.5;
+    color : black;
+    padding-top:0.3rem;
 }
 
 .step.active {
@@ -116,11 +136,6 @@ button:hover {
     display: none
 }
 
-#newImage1{
-width: 100%;
-height: 100%;
-
-}
 
 .next-slide {
   cursor: pointer;
@@ -221,16 +236,13 @@ height: 100%;
 
                 <div class="tab-pane" id="tabs-banner2" role="tabpanel">
                   <ul class="nav nav-tabs" role="tablist">
-                    <!-- <li class="nav-item">
-                      <a class="nav-link banner1 active" id="banner1" data-toggle="tab" href="#tabs-banner1" role="tab">Banner 1</a>
-                    </li> -->
                     <li class="nav-item">
                       <a class="nav-link banner2" id="banner2" data-toggle="tab" href="#tabs-banner2" role="tab">Banner 2</a>
                     </li>
                     </ul>
                       <div class="tab-content">
                           <form id="regForm">
-                              <div class="all-steps" id="all-steps"> <span class="step"></span> <span class="step"></span> <span class="step"></span>  </div>
+                              <div class="all-steps" id="all-steps"> <span class="step">Slider 1</span> <span class="step">Slider 2</span> <span class="step">Slider 3</span>  </div>
                               <div class="tab">
                                 <div class="form-group row">
                                   <label class="col-lg-3 col-form-label form-control-label">Title 1</label>
@@ -296,7 +308,7 @@ height: 100%;
                                   <label class="col-lg-3 col-form-label form-control-label">Image 2</label>
                                   <div class="col-lg-9">
                                     <img id="newImage2">
-                                    <input type="file" id="imageDetailss2" name="imageDetailss" accept="image/*"  required />
+                                    <input type="file" id="imageDetailss2" name="imageDetailss" accept="image/*" />
                                   </div>
                                 </div>
                                 <br>
@@ -336,7 +348,7 @@ height: 100%;
                                   <label class="col-lg-3 col-form-label form-control-label">Image 3</label>
                                   <div class="col-lg-9">
                                     <img id="newImage3">
-                                    <input type="file" id="imageDetailssss3" name="imageDetailss" accept="image/*"  required />
+                                    <input type="file" id="imageDetailssss3" name="imageDetailss" accept="image/*" />
                                   </div>
                                 </div>
                                 <br>
@@ -399,7 +411,7 @@ height: 100%;
     </div>
   </div>
 
-  <div class="modal fade" id="previewModals" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="previewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content preview-phone">
         <div class="modal-body preview-card-body p-0"><main>
@@ -409,7 +421,8 @@ height: 100%;
       </button>
       
                 <div class=" text-center"> <img style="max-width: 200px;" src="https://www.freepnglogos.com/uploads/notebook-png/download-laptop-notebook-png-image-png-image-pngimg-2.png" id="previewImgSrcone" class="card-img-top" alt="...">
-                    <div class="card-body text-dark">
+                 
+                     <div class="card-body text-dark">
                         <div class="min-height-360">
                         <h3 class="clearfix text-gray-900 mb-3 font-weight-bold" id="previewTitles"></h3>
                         <h5 id="previewShortDescriptions"></h5>
@@ -432,7 +445,7 @@ height: 100%;
 
 
   <!-- ///////////////// PREVIEW 1 BANNER 2 -->
-  <div class="modal fade" id="previewModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="previewModals" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content preview-phone">
         <div class="modal-body preview-card-body p-0"><main>
@@ -599,11 +612,20 @@ var file = document.getElementById("imageDetailss").files[0];
 
 
 var fullPath = $("#imageDetailss").val();
+// var fullPath = $("#newImage").val();
 // alert(fullPath);   
 var filename = fullPath.replace(/^.*[\\\/]/, '');
 // alert(filename);
  
 
+ 
+
+if(title == "" || shortDescription == ""  || longDescription == "" ){
+
+  alert("Please fill all the field");
+}else {
+
+  
   var fr = new FileReader();
   
   fr.onload = function(ev2) {
@@ -612,12 +634,8 @@ var filename = fullPath.replace(/^.*[\\\/]/, '');
   };
   
   fr.readAsDataURL(file);
-
-if(title == "" || shortDescription == ""  || longDescription == "" ){
-  alert("Please fill all the field");
-}else {
-
-  $("#previewModals").modal('show');
+  
+  $("#previewModal").modal('show');
 
     document.getElementById("previewTitles").innerHTML  = title;
     document.getElementById("previewShortDescriptions").innerHTML  = shortDescription;
@@ -695,6 +713,64 @@ $("#bannerPreviewData").on('click', function (e) {
   var extFile3 = filename3.substr(idxDot3, filename3.length).toLowerCase();
 
 
+
+//   if(title1 == "" || shortDescription1 == ""  || longDescription1 == "" || title2 == "" || shortDescription2 == ""  || longDescription2 == "" || title3 == "" || shortDescription3 == ""  || longDescription3 == "" ){
+//    alert("Please fill all the field")
+//   }else{
+//     var fr = new FileReader();
+
+// fr.onload = function(ev2){
+//   console.dir(ev2);
+//   $('#previewImgSrc1').attr('src', ev2.target.result);
+// };
+
+// fr.readAsDataURL(file1);
+
+// fr.onload = function(ev2) {
+//    console.dir(ev2);
+//    $('#previewImgSrc2').attr('src', ev2.target.result);
+// };
+// //  alert(previewImgSrc2)
+// fr.readAsDataURL(file2);
+
+
+// fr.onload = function(ev2) {
+//    console.dir(ev2);1 
+//    $('#previewImgSrc3').attr('src', ev2.target.result);
+// };
+
+// fr.readAsDataURL(file3);
+
+// $("#previewModal1").modal('show');
+
+//     document.getElementById("previewTitle1").innerHTML  = title1;
+//     document.getElementById("previewShortDescription1").innerHTML  = shortDescription1;
+//     document.getElementById("previewLongDescription1").innerHTML  = longDescription1;
+
+// // var fr = new FileReader();
+
+
+
+
+//   // $("#previewModal1").modal('show');
+
+//     document.getElementById("previewTitle2").innerHTML  = title2;
+//     document.getElementById("previewShortDescription2").innerHTML  = shortDescription2;
+//     document.getElementById("previewLongDescription2").innerHTML  = longDescription2;
+
+//     // var fr = new FileReader();
+
+
+
+//   // $("#previewModal1").modal('show');
+
+//     document.getElementById("previewTitle3").innerHTML  = title3;
+//     document.getElementById("previewShortDescription3").innerHTML  = shortDescription3;
+//     document.getElementById("previewLongDescription3").innerHTML  = longDescription3;
+//     // document.getElementById("previewImgSrc").src = filename;
+//   }
+
+  
 if(title1){
   // alert('title 1')
    var fr = new FileReader();
@@ -706,18 +782,18 @@ if(title1){
    
    fr.readAsDataURL(file1);
 
-   if(title1 == "" || shortDescription1 == ""  || longDescription1 == "" ){
+   if(title1 == "" || shortDescription1 == ""  || longDescription1 == ""){
       alert("Please fill all the field");
     }else {
 
-      $("#previewModal1").modal('show');
+      $("#previewModals").modal('show');
 
         document.getElementById("previewTitle1").innerHTML  = title1;
         document.getElementById("previewShortDescription1").innerHTML  = shortDescription1;
         document.getElementById("previewLongDescription1").innerHTML  = longDescription1;
         // document.getElementById("previewImgSrc").src = filename;
     }
-    // alert("title2")
+
     var fr = new FileReader();
    
    fr.onload = function(ev2) {
@@ -727,11 +803,11 @@ if(title1){
   //  alert(previewImgSrc2)
    fr.readAsDataURL(file2);
 
-   if(title2 == "" || shortDescription2 == ""  || longDescription2 == "" ){
+   if(title2 == "" || shortDescription2 == ""  || longDescription2 == ""){
       alert("Please fill all the field");
     }else {
 
-      $("#previewModal1").modal('show');
+      $("#previewModals").modal('show');
 
         document.getElementById("previewTitle2").innerHTML  = title2;
         document.getElementById("previewShortDescription2").innerHTML  = shortDescription2;
@@ -739,7 +815,6 @@ if(title1){
         // document.getElementById("previewImgSrc").src = filename;
   }
 
-  // alert('title3')
   var fr = new FileReader();
    
    fr.onload = function(ev2) {
@@ -753,7 +828,7 @@ if(title1){
       alert("Please fill all the field");
     }else {
 
-      $("#previewModal1").modal('show');
+      $("#previewModals").modal('show');
 
         document.getElementById("previewTitle3").innerHTML  = title3;
         document.getElementById("previewShortDescription3").innerHTML  = shortDescription3;
@@ -761,6 +836,7 @@ if(title1){
         // document.getElementById("previewImgSrc").src = filename;
     }
   }
+
 
 });
 
@@ -810,67 +886,41 @@ $("#bannerSubmitbannerone").on('click', function (e) {
   var idxDot3 = filename3.lastIndexOf(".") + 1;
   var extFile3 = filename3.substr(idxDot3, filename3.length).toLowerCase();
   // alert(extFile3);
-  //  if (extFile1=="jpg" || extFile1=="jpeg" || extFile1=="png" || extFile2=="jpg" || extFile2=="jpeg" || extFile2=="png" || extFile3=="jpg" || extFile3=="jpeg" || extFile3=="png" ){
 
-    var formdata = new FormData();
-        formdata.append("adBannerId", ids);
-        formdata.append("title1", title1);
-        formdata.append("shortDescription1", shortDescription1);
-        formdata.append("longDescription1", longDescription1);
-        formdata.append("singleBanner" , "false");
 
-        var formdata = new FormData();
-          formdata.append("adBannerId", ids);
-          formdata.append("title2", title2);
-          formdata.append("shortDescription2", shortDescription2);
-          formdata.append("longDescription2", longDescription2);
-          formdata.append("singleBanner" , "false");
-
-          var formdata = new FormData();
-        formdata.append("adBannerId", ids);
-        formdata.append("title3", title3);
-        formdata.append("shortDescription3", shortDescription3);
-        formdata.append("longDescription3", longDescription3);
-        formdata.append("singleBanner" , "false");
-
-        var requestOptions = {
-              method: 'POST',
-                headers: {
-                      Authorization: 'Bearer '+ tokens,
-                    },
-              body: formdata,
-              redirect: 'follow'
-            };
-            fetch("https://apistest.tradetipsapp.com/api/adBannerSimple/modifySimpleAdBanner", requestOptions)
-            .then(response => response.json())
-            .then(result => {
-                  
-                      var datak = JSON.stringify(result);
-                      // alert(datak);
-                      var dataResultp = JSON.parse(datak); 
-                      // alert(dataResultp.title);
-                      alert("Your banner "+dataResultp.title1+" Updated successfully");
-                      window.location.href = "/banner?tokendata="+tokens;        
-            })
-            .catch(error => console.log('error', error));
-
-    // if(title1){
-    //   if ( title1 == "" || shortDescription1 == ""  || longDescription1 == "" ){
-    //     alert("Please fill all the field");
-    //   }else{
-        
-    //     var formdata = new FormData();
+    // if(title1 == "" || shortDescription1 == ""  || longDescription1 == "" || title2 == "" || shortDescription2 == ""  || longDescription2 == "" ||  title3 == "" || shortDescription3 == ""  || longDescription3 == ""){
+    //   alert("Please fill all the field")
+    // }else{
+    //   var formdata = new FormData();
     //     formdata.append("adBannerId", ids);
     //     formdata.append("title1", title1);
     //     formdata.append("shortDescription1", shortDescription1);
     //     formdata.append("longDescription1", longDescription1);
     //     formdata.append("singleBanner" , "false");
+    //     // var formdata = new FormData();
+    //       // formdata.append("adBannerId", ids);
+    //       formdata.append("title2", title2);
+    //       formdata.append("shortDescription2", shortDescription2);
+    //       formdata.append("longDescription2", longDescription2);
+    //       formdata.append("singleBanner" , "false");
+    //     //   var formdata = new FormData();
+    //     // formdata.append("adBannerId", ids);
+    //     formdata.append("title3", title3);
+    //     formdata.append("shortDescription3", shortDescription3);
+    //     formdata.append("longDescription3", longDescription3);
 
-    //     if(filename1 != ""){
-    //       if(extFile1 =="jpg" || extFile1 == "jpeg" || extFile1 == "png"){
-    //         formdata.append("image1", file1 , filename1);
-            
-    //         var requestOptions = {
+    //     formdata.append("singleBanner" , "false");
+    //     if(filename1 == "" || filename2 == "" || filename3 == ""){
+    //       formdata.append("image1", "");
+    //       formdata.append("image2", "");
+    //       formdata.append("image3", "");
+    //     }else{
+    //       formdata.append("image1", file1 , filename1);
+    //       formdata.append("image2", file2 , filename2);
+    //       formdata.append("image3", file3 , filename3);
+    //     }
+
+    //     var requestOptions = {
     //           method: 'POST',
     //             headers: {
     //                   Authorization: 'Bearer '+ tokens,
@@ -887,179 +937,97 @@ $("#bannerSubmitbannerone").on('click', function (e) {
     //                   // alert(datak);
     //                   var dataResultp = JSON.parse(datak); 
     //                   // alert(dataResultp.title);
-    //                   alert("Your banner "+dataResultp.title1+" Updated successfully");
+    //                   alert("Your multiple banner Updated successfully");
     //                   window.location.href = "/banner?tokendata="+tokens;        
     //         })
     //         .catch(error => console.log('error', error));
 
-    //       }else{alert("Only jpg/jpeg and png files are allowed!")}
-    //     }else{
-    //       formdata.append("image1", "");
-        
-    //       var requestOptions = {
-    //         method: 'POST',
-    //           headers: {
-    //                 Authorization: 'Bearer '+ tokens,
-    //               },
-    //         body: formdata,
-    //         redirect: 'follow'
-    //         };
-    //       fetch("https://apistest.tradetipsapp.com/api/adBannerSimple/modifySimpleAdBanner", requestOptions)
-    //       .then(response => response.json())
-    //       .then(result => {
+    // }
+
+    if( title1 == "" || shortDescription1 == ""  || longDescription1 == "" || title2 == "" || shortDescription2 == ""  || longDescription2 == "" || title3 == "" || shortDescription3 == ""  || longDescription3 == ""){
+      alert("Please fill all the field")
+         
+      }else{
+        var formdata = new FormData();
+        formdata.append("adBannerId", ids);
+        formdata.append("title1", title1);
+        formdata.append("shortDescription1", shortDescription1);
+        formdata.append("longDescription1", longDescription1);
+        formdata.append("singleBanner" , "false");
+
+        // var formdata = new FormData();
+          // formdata.append("adBannerId", ids);
+          formdata.append("title2", title2);
+          formdata.append("shortDescription2", shortDescription2);
+          formdata.append("longDescription2", longDescription2);
+          formdata.append("singleBanner" , "false");
+
+
+          formdata.append("title3", title3);
+        formdata.append("shortDescription3", shortDescription3);
+        formdata.append("longDescription3", longDescription3);
+        formdata.append("singleBanner" , "false");
+
+        if(filename1 != ""){
+          if(extFile1 =="jpg" || extFile1 == "jpeg" || extFile1 == "png"){
+            formdata.append("image1", file1 , filename1);
+            formdata.append("image2", file2 , filename2); 
+            formdata.append("image3", file3 , filename3);  
+            var requestOptions = {
+          method: 'POST',
+            headers: {
+                  Authorization: 'Bearer '+ tokens,
+                },
+          body: formdata,
+          redirect: 'follow'
+          };
+          fetch("https://apistest.tradetipsapp.com/api/adBannerSimple/modifySimpleAdBanner", requestOptions)
+          .then(response => response.json())
+          .then(result => {
                 
-    //                 var datak = JSON.stringify(result);
-    //                 // alert(datak);
-    //                 var dataResultp = JSON.parse(datak); 
-    //                 // alert(dataResultp.title);
-    //                 alert("Your banner "+dataResultp.title1+" Updated successfully");
-    //                 window.location.href = "/banner?tokendata="+tokens;        
-    //       })
-    //       .catch(error => console.log('error', error));
-    //     }    
-    //   };
-
-
-    // }else if(title2){
-
-    //   if (title2 == "" || shortDescription2 == ""  || longDescription2 == ""){
-    //     alert("Please fill all the field");
-    //   }else{
-    //       var formdata = new FormData();
-    //       formdata.append("adBannerId", ids);
-    //       formdata.append("title2", title2);
-    //       formdata.append("shortDescription2", shortDescription2);
-    //       formdata.append("longDescription2", longDescription2);
-    //       formdata.append("singleBanner" , "false");
-
-    //     if(filename2 != ""){
-    //       if(extFile2 =="jpg" || extFile2 == "jpeg" || extFile2 == "png"){
-
-    //         formdata.append("image2", file2 , filename2); 
-
-    //         var requestOptions = {
-    //           method: 'POST',
-    //             headers: {
-    //                   Authorization: 'Bearer '+ tokens,
-    //                 },
-    //           body: formdata,
-    //           redirect: 'follow'
-    //         };
-    //         fetch("https://apistest.tradetipsapp.com/api/adBannerSimple/modifySimpleAdBanner", requestOptions)
-    //         .then(response => response.json())
-    //         .then(result => {
-                
-    //             var datak = JSON.stringify(result);
-    //                 // alert(datak);
-    //             var dataResultp = JSON.parse(datak); 
-    //                 // alert(dataResultp.title);
-    //             alert("Your banner "+dataResultp.title2+" Updated successfully");
-    //             window.location.href = "/banner?tokendata="+tokens; 
+                    var datak = JSON.stringify(result);
+                    // alert(datak);
+                    var dataResultp = JSON.parse(datak); 
+                    // alert(dataResultp.title);
+                    alert("Your Multiple Banner Updated Successfully");
+                    window.location.href = "/banner?tokendata="+tokens; 
                   
-    //         })
-    //         .catch(error => console.log('error', error));
-    //       }else{
-    //       alert("Only jpg/jpeg and png files are allowed!");
-    //       } 
-    //     }
-    //     else{
-    //     // alert("null");
-    //       formdata.append("image2", "");
-    //       var requestOptions = {
-    //       method: 'POST',
-    //         headers: {
-    //               Authorization: 'Bearer '+ tokens,
-    //             },
-    //       body: formdata,
-    //       redirect: 'follow'
-    //       };
-    //       fetch("https://apistest.tradetipsapp.com/api/adBannerSimple/modifySimpleAdBanner", requestOptions)
-    //       .then(response => response.json())
-    //       .then(result => {
+          })
+          .catch(error => console.log('error', error));          
+
+          }else{alert("Only jpg/jpeg and png files are allowed!")}
+        }else{
+          formdata.append("image1", "");
+          formdata.append("image2", "");
+          formdata.append("image3", "");
+
+          var requestOptions = {
+          method: 'POST',
+            headers: {
+                  Authorization: 'Bearer '+ tokens,
+                },
+          body: formdata,
+          redirect: 'follow'
+          };
+          fetch("https://apistest.tradetipsapp.com/api/adBannerSimple/modifySimpleAdBanner", requestOptions)
+          .then(response => response.json())
+          .then(result => {
                 
-    //                 var datak = JSON.stringify(result);
-    //                 // alert(datak);
-    //                 var dataResultp = JSON.parse(datak); 
-    //                 // alert(dataResultp.title);
-    //                 alert("Your banner "+dataResultp.title2+" Updated successfully");
-    //                 window.location.href = "/banner?tokendata="+tokens; 
+                    var datak = JSON.stringify(result);
+                    // alert(datak);
+                    var dataResultp = JSON.parse(datak); 
+                    // alert(dataResultp.title);
+                    alert("Your Multiple Banner Updated Successfully");
+                    window.location.href = "/banner?tokendata="+tokens; 
                   
-    //       })
-    //       .catch(error => console.log('error', error));
-    //     }
-    // };
-
-
-    // }else{
-    //   if ( title3 == "" || shortDescription3 == ""  || longDescription3 == ""){
-    //     alert("Please fill all the field");
-    //   }else{
-        
-    //       var formdata = new FormData();
-    //     formdata.append("adBannerId", ids);
-    //     formdata.append("title3", title3);
-    //     formdata.append("shortDescription3", shortDescription3);
-    //     formdata.append("longDescription3", longDescription3);
-    //     formdata.append("singleBanner" , "false");
-
-
-    //     if(filename3 != ""){
-    //       if(extFile3 =="jpg" || extFile3 =="jpeg" || extFile3 == "png" ){
-    //         formdata.append("image3", file3 , filename3);
-          
-    //       var requestOptions = {
-    //       method: 'POST',
-    //         headers: {
-    //               Authorization: 'Bearer '+ tokens,
-    //             },
-    //       body: formdata,
-    //       redirect: 'follow'
-    //       };
-    //       fetch("https://apistest.tradetipsapp.com/api/adBannerSimple/modifySimpleAdBanner", requestOptions)
-    //       .then(response => response.json())
-    //       .then(result => {
-                
-    //                 var datak = JSON.stringify(result);
-    //                 // alert(datak);
-    //                 var dataResultp = JSON.parse(datak); 
-    //                 // alert(dataResultp.title);
-    //                 alert("Your banner "+dataResultp.title3+" Updated successfully");
-    //                 window.location.href = "/banner?tokendata="+tokens; 
-                  
-    //       })
-    //       .catch(error => console.log('error', error));
-    //       }else{
-    //       alert("Only jpg/jpeg and png files are allowed!"); 
-    //     }
-    //     }else{
-    //     formdata.append("image3", "");
-    //     var requestOptions = {
-    //       method: 'POST',
-    //         headers: {
-    //               Authorization: 'Bearer '+ tokens,
-    //             },
-    //       body: formdata,
-    //       redirect: 'follow'
-    //       };
-    //       fetch("https://apistest.tradetipsapp.com/api/adBannerSimple/modifySimpleAdBanner", requestOptions)
-    //       .then(response => response.json())
-    //       .then(result => {
-                
-    //                 var datak = JSON.stringify(result);
-    //                 // alert(datak);
-    //                 var dataResultp = JSON.parse(datak); 
-    //                 // alert(dataResultp.title);
-    //                 alert("Your banner "+dataResultp.title3+" Updated successfully");
-    //                 window.location.href = "/banner?tokendata="+tokens; 
-                  
-    //       })
-    //       .catch(error => console.log('error', error));
-    //     }
-    //   }
-    // };
+          })
+          .catch(error => console.log('error', error));
+        } 
+      };
+    
    
 // // set values for demo
- // setDemoValues()
+//  setDemoValues()
 // // get data based on above values
 // var res = {};
 // $('.slot_subclass').each(function() {
@@ -1475,7 +1443,7 @@ x = document.getElementsByClassName("tab");
     { 
       x[i].className=x[i].className.replace(" active", "" );
     }
-    // x[n].className +=" active" ; 
+    x[n].className +=" active" ; 
     }
 </script>
 

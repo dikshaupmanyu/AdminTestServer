@@ -1,10 +1,10 @@
-<%- include partials/header %>
+<% include partials/header %>
 <script src="https://cdn.jsdelivr.net/npm/emoji-button@0.6.0/dist/index.min.js"></script>
 
 <script>
      window.addEventListener('DOMContentLoaded', () => {
  EmojiButton(document.querySelector('#emoji-button'), function (emoji) {
-   document.querySelector('input').value += emoji;
+   document.querySelector('title').value += emoji;
  });
 });
 </script>
@@ -202,16 +202,18 @@ button:hover {
     opacity: 0.8
 }
 
-/* .step {
-    height: 15px;
-    width: 15px;
+.step {
+    height: 35px;
+    width: 95px;
     margin: 0 2px;
-    background-color: #4e73df;
+    background-color: #bebebe;
     border: none;
-    border-radius: 50%;
+    border-radius: 1%;
     display: inline-block;
-    opacity: 0.5
-} */
+    opacity: 0.5;
+    color: black;
+    padding-top: 0.3rem;
+}
 
 /* .step{
   background-color: #4e73df;
@@ -222,9 +224,9 @@ button:hover {
     opacity: 1
 }
 
-/* .step.finish {
-    background-color: #4e73df;
-} */
+.step.finish {
+    background-color: #25379e;
+}
 
 .all-steps {
     text-align: center;
@@ -336,24 +338,21 @@ button:hover {
                         <form id="regForm">
                             <div class="all-steps" id="all-steps">
                               <!-- <ul class="nav nav-tabs" role="tablist">
-                                <span class="step">
+                                
                                   <li class="nav-item">
                                     <a class="nav-link active">Slider 1</a>
-                                 </li>
-                                 </span> 
-                                <span class="step">
+                                 </li> 
                                 <li class="nav-item">
-                                  <span class="nav-link">Slider 2</s>
+                                  <a class="nav-link">Slider 2</a>
                                 </li>
-                              </span>
-                              <span>
                                 <li class="nav-item">
-                                 <span class="nav-link">Slider 3</span>
+                                 <a class="nav-link">Slider 3</a>
                                 </li>
-                              </span>
                               </ul> -->
                               
-                              <span class="step"></span> <span class="step"></span><span class="step"></span>
+                              <span class="step">Slider 1</span> 
+                             <span class="step">Slider 2</span>              
+                             <span class="step">Slider 3</span> 
                             </div>
                             
                             <div class="tab">
@@ -588,7 +587,7 @@ button:hover {
      <button class="close" type="button" data-dismiss="modal" aria-label="Close">
        <span aria-hidden="true">×</span>
      </button>
-     <div class="all-steps1"> <span class="step"></span> <span class="step"></span> <span class="step"></span> <span class="step"></span> </div>
+     <!-- <div class="all-steps1"> <span class="step"></span> <span class="step"></span> <span class="step"></span> <span class="step"></span> </div> -->
                <div class="text-center">
                  <div>
                    <button type="button" class="prev-slide w3-light-grey" id="prevPrev"  onclick="plusSlides(-1)">❮ Prev</button>
@@ -789,58 +788,52 @@ function showSlides(n) {
 
 
 <script>
-  var currentTab = 0;
-document.addEventListener("DOMContentLoaded", function(event) {
+    var currentTab = 0;
+      document.addEventListener("DOMContentLoaded", function(event) {
 
+      showTab(currentTab);
 
-showTab(currentTab);
+    });
 
-});
+    function showTab(n) {
+    var x = document.getElementsByClassName("tab");
 
-function showTab(n) {
-var x = document.getElementsByClassName("tab");
-x[n].style.display = "block";
-if (n == 0) {
-document.getElementById("prevBtn").style.display = "none";
-} else {
-document.getElementById("prevBtn").style.display = "inline";
-}
-// var z = document.getElementById("nextBtn").textContent;
-// alert(z)
+    x[n].style.display = "block";
+    if (n == 0) {
+      document.getElementById("prevBtn").style.display = "none";
+    }else{
+      document.getElementById("prevBtn").style.display = "inline";
+    }
 
-if (n == (x.length - 1)) {
-  document.getElementById("nextBtn").innerHTML = "Submit"
-} else {
-  document.getElementById("nextBtn").innerHTML = "Next";
-  // document.getElementById("nextBtn").style.display = "none";
-}
+    if (n == (x.length - 1)) {
+      document.getElementById("nextBtn").innerHTML = "Submit";
+    }else{
+      document.getElementById("nextBtn").innerHTML = "Next";
+    }
+      fixStepIndicator(n)
+  }
 
-fixStepIndicator(n)
-}
+    function nextPrev(n) {
+    var x = document.getElementsByClassName("tab");
 
-function nextPrev(n) {
-var x = document.getElementsByClassName("tab");
-if (n == 1 && !validateForm()) return false;
-x[currentTab].style.display = "none";
-currentTab = currentTab + n;
-if (currentTab >= x.length) {
-document.getElementById("regForm").submit();
-return true;
-//alert("sdf");
-document.getElementById("nextprevious").style.display = "none";
-document.getElementById("all-steps").style.display = "none";
-document.getElementById("register").style.display = "none";
-document.getElementById("text-message").style.display = "block";
+    if (n == 1 && !validateForm()) return false;
 
-
-
-
-}
-showTab(currentTab);
-}
+    x[currentTab].style.display = "none";
+    currentTab = currentTab + n;
+    if (currentTab >= x.length) {
+    // document.getElementById("regForm").submit();
+    // return false;
+    //alert("sdf");
+      document.getElementById("nextprevious").style.display = "none";
+      document.getElementById("all-steps").style.display = "none";
+      document.getElementById("register").style.display = "none";
+      document.getElementById("text-message").style.display = "block";
+    }
+      showTab(currentTab);
+  }
 
 function validateForm() {
-var title1 = $('#titles1').val();
+  var title1 = $('#titles1').val();
  //alert(title);
  var shortDescription1 = tinymce.get("shortDescriptions1").getContent();
  // alert(shortDescription);
@@ -855,43 +848,41 @@ var title1 = $('#titles1').val();
    var idxDot1 = filename1.lastIndexOf(".") + 1;
    var extFile1 = filename1.substr(idxDot1, filename1.length).toLowerCase();
 
-
 var x, y, i, valid = true;
 x = document.getElementsByClassName("tab");
-// y = x[currentTab].getElementsByTagName("input");
-// for (i = 0; i < y.length; i++) {
-//   if (y[i].value=="" ){
-//     alert("Please fill all the field aaaaaaaaaaa")
-//      y[i].className +=" invalid" ; valid=false;
-//   }}
+// y = x[currentTab].getElementsByTagName("");
+// for (i = 0; i < y.length; i++) { if (y[i].value=="" )
+// {
+//    y[i].className +=" invalid" ; valid=false; 
+//   } 
+// }
 
 if( title1 == "" || shortDescription1 == ""  || longDescription1 == ""  || filename1 == ""){
-    alert("Please fill all the field of title 1"); valid = false;
+    alert("Please fill all the fields of Slider 1"); valid = false;
 
 }else{
-  if (extFile1=="jpg" || extFile1=="jpeg" || extFile1=="png"){
-    if (valid) {
-      document.getElementsByClassName("step")[currentTab].className +="finish" ; 
-    } return valid; 
+
+  if (extFile1 =="jpg" || extFile1=="jpeg" || extFile1=="png"){
+    valid = true;
   }else{
-    alert("Only jpg/jpeg and png files are allowed!");
+    alert("Only jpg/jpeg and png files are allowed!"); valid = false;
   }
 }
-// if(title2 != ""){
-//   if( title2 == "" || shortDescription2 == ""  || longDescription2 == ""  || filename2 == "")
-// }    
-    } 
-  function fixStepIndicator(n) {
-    var i, x=document.getElementsByClassName("step");
-    for (i=0; i < x.length; i++) {
+
+  if (valid) { 
+    document.getElementsByClassName("step")[currentTab].className +=" finish" ; 
+    } return valid; 
+   
+}
+  function fixStepIndicator(n)
+  { var i, x=document.getElementsByClassName("step"); 
+    for (i=0; i < x.length; i++) 
+    { 
       x[i].className=x[i].className.replace(" active", "" );
-    } 
-    // x[n].className +=" active" ; 
-  
-  }
+    }
+    x[n].className +=" active" ; 
+    }
 </script>
-
-
 
 <script type="text/javascript">
 
@@ -990,7 +981,7 @@ $("#bannerPreviewDataone").on('click', function (e) {
    fr.readAsDataURL(file);
  
  if(title == "" || shortDescription == ""  || longDescription == ""  || filename == ""){
-   alert("Please fill all the field");
+   alert("Please fill all the fields");
  }else {
 
    $("#previewModal").modal('show');
@@ -1083,7 +1074,7 @@ if(title1){
    fr.readAsDataURL(file1);
 
    if(title1 == "" || shortDescription1 == ""  || longDescription1 == ""  || filename1 == ""){
-      alert("Please fill all the field");
+      alert("Please fill all the fields of Slider 1");
     }else {
 
       $("#previewModals").modal('show');
@@ -1104,7 +1095,7 @@ if(title1){
    fr.readAsDataURL(file2);
 
    if(title2 == "" || shortDescription2 == ""  || longDescription2 == ""  || filename2 == ""){
-      alert("Please fill all the field");
+      alert("Please fill all the fields of Slider 2");
     }else {
 
       $("#previewModals").modal('show');
@@ -1125,7 +1116,7 @@ if(title1){
    fr.readAsDataURL(file3);
 
    if(title3 == "" || shortDescription3 == ""  || longDescription3 == ""  || filename3 == ""){
-      alert("Please fill all the field");
+      alert("Please fill all the fields of Slider 3");
     }else {
 
       $("#previewModals").modal('show');
@@ -1331,8 +1322,10 @@ $("#bannerSubmit").on('click', function (e) {
                 // alert(datak);
                  var dataResultp = JSON.parse(datak); 
                  // alert(dataResultp.title);
-                 alert("Your banner "+dataResultp.title1+" was submitted successfully");
-                 window.location.reload("/banner?tokendata="+tokens); 
+                 alert("Your Multiple Banner was submitted successfully");
+
+                  location.reload("#tabs-banner2")
+                //  window.location.reload("/banner?tokendata="+tokens); 
                   // fetch("https://apistest.tradetipsapp.com/api/adBannerSimple/disableAllOtherthanBannerById?adBannerId="+dataResultp.id, requestOptions1)
                   //    .then(response => response.json())
                   //    .then(results => {
@@ -1776,7 +1769,7 @@ var formdata = new FormData();
             var dataResultp = JSON.parse(datak); 
             // alert(dataResultp);
             alert("Delete Successfully !!");
-            // window.location.reload();
+            window.location.reload();
         },
         error: function (jqXHR, textStatus, errorThrown)
         {
