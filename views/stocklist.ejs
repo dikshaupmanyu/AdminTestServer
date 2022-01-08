@@ -7,13 +7,54 @@
            <!-- form user info -->
             <div class="card card-outline-secondary">
               <div class="card-header">
-                <h3 class="mb-0">Tips Management</h3>
+                <h3 class="mb-0">Stock list of User</h3>
+              </div>
+              <div class="card-header">
+                <h5 class="mb-0"><a id="StockSearchLink">Search Stock By Date</a></h5>
+                <h5 class="mb-0"><a id="TipSearchLink">Search Tip By Date</a></h5>
+
+              </div>
+              <div class="card-body">
+                <form autocomplete="off" class="form" role="form">
+                  <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">Choose User</label>
+                    <div class="col-lg-9">
+                      <select class="chosen form-control" id="sel_user" placeholder="Pick a User">
+                      </select>
+                    </div>
+                  </div>
+                  <!-- <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">Offset</label>
+                    <div class="col-lg-9">
+                      <input class="form-control" type="text" id="offset">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">Limit</label>
+                    <div class="col-lg-9">
+                      <input class="form-control" type="text" id="limit">
+                    </div>
+                  </div> -->
+                  <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label"></label>
+                    <div class="col-lg-9">
+                      <input class="btn btn-secondary" type="reset" value="Cancel"> 
+                      <input class="btn btn-primary" type="button" value="Search Stocks" id="butSaveData">
+                     </div>
+                  </div>
+                </form>
               </div>
             </div><!-- /form user info -->
 
+          <!-- Page Heading -->
+         <!--  <h1 class="h3 mb-2 text-gray-800">Tables</h1>
+          <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
+ -->
+          <!-- DataTales Example -->
+
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Tips List</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Stock List</h6>
             </div>
 
 
@@ -29,14 +70,10 @@
                     <tr>
                       <!-- <th>Id</th> -->
                      <!--  <th></th> -->
+                      <th>Id</th>
                       <th>Stock Symbol</th>
-                      <th>Entry Point</th>
-                      <th>Exit Point</th>
-                      <th>Stop Point</th>
-                      <th>Mentor</th>
                       <!-- <th>Action</th> -->
-                      <th>Created Date</th>
-                      <th>Action</th>
+                      <th>Stock Name</th>
  <!--                       <th>Authenticate by Email</th>
                     </tr>
                   </thead>
@@ -137,132 +174,6 @@ window.addEventListener("load", function() {
   var url_string = window.location.href; 
   var urls = new URL(url_string);
   var tokens = urls.searchParams.get("tokendata");
-  var formdata = new FormData();
-  formdata.append("offset", "0");
-  formdata.append("limit", "500");
-
-  var requestOptions = {
-    method: 'POST',
-    headers: {
-          Authorization: 'Bearer ' + tokens,
-        },
-    body: formdata,
-    redirect: 'follow'
-  };
-
-  fetch("https://apistest.tradetipsapp.com/api/tip/getAllTipsWithoutCommentsPagination", requestOptions)
-  .then(resp => resp.json())
-    .then(function(data) {
-           $('#dataTables').dataTable( {
-            "aaData": data, 
-            "lengthMenu": [ 500, 1000, 2000, 3000, 4000, 5000 ],
-            "pageLength": 500,
-            "aaSorting": [[ 5, "desc" ]],
-            // "columnDefs": [ {
-            // "targets": ,
-            // "orderable": false
-            // } ],
-            "oLanguage": {
-              "sSearch": "<span>Search Tips</span> _INPUT_" //search
-            },
-            "columns": [
-                
-                { "data": "stockName" },
-                { "data": "entryPoint",
-                 "render": function (data, type, full) {
-                       return parseFloat(data).toFixed(2);
-                  }
-                 },
-                { "data": "exitPoint" ,
-                 "render": function (data, type, full) {
-                       return parseFloat(data).toFixed(2);
-                  }
-                },
-                { "data": "stopPoint" ,
-                 "render": function (data, type, full) {
-                       return parseFloat(data).toFixed(2);
-                  }
-                },
-                { "data": "appUser.userName" },
-                { 
-                 "data": "createdOn",
-                 "name":"date",
-                 "visible":true,
-                 "title":"Date Created",
-                 "render": function(data, type, full, meta){
-                  if(type == "display"){
-                          var date = new Date(data);
-                          var options = {year: "numeric", month: "long", day: "numeric"};
-
-                          return date.toLocaleDateString('en-US', options);
-                  }
-
-                  return data;
-                }
-
-                },
-                { 'data': null,
-                 'render': function (data, type, row) {
-                       return '<button id="' + row.id + '" class="deleteButtons">Remove</button>'
-               }
-              },               
-            ],
-            "deferRender": true,
-            rowCallback: function ( row, data ) {
-            
-        }
-
-        });
-
-
-    $('#dataTables').on('click', 'button.deleteButtons', function () {
-
-      // alert("fff");
-
-      var id = $(this).attr('id');
-      // alert(id);
-
-      var url ;
-      var result = confirm("Are you sure you want to delete?");
-      if(result){
-      var formData = {tipId:id};
-       url = "https://apistest.tradetipsapp.com/api/tip/deleteTipByTipId";
-      $.ajax({
-        url : url,
-        type: "POST",
-        headers: {
-             Authorization: 'Bearer ' + tokens,
-        },
-        data : formData,
-        success: function(data, textStatus, jqXHR)
-        {
-            //data - response from server
-            var datak = JSON.stringify(data);
-            var dataResultp = JSON.parse(datak); 
-            // alert(dataResultp);
-            alert("Delete Sucessfully !!");
-            window.location.reload();
-
-        },
-        error: function (jqXHR, textStatus, errorThrown)
-        {
-           alert("Not updated !!");
-        }
-
-       });
-      
-
-      } else {
-
-          window.location.reload();
-
-      }
-
-      });
-
-
-      });
-
  
 const url = "https://apistest.tradetipsapp.com/api/appUserWebModify/getAllAppUsers";
 fetch(url, {
@@ -289,8 +200,75 @@ fetch(url, {
     console.log(error);
   });
 
+$('#butSaveData').on('click', function() {
+    var UserSelect = $('#sel_user').val();
+    var formdata = {userName : UserSelect};
+    if(UserSelect!=""){
+      $.ajax({
+        type: 'POST',
+        url: 'https://apistest.tradetipsapp.com/api/dataAnalytics/getAllSearchStockOfUserByUserName',
+        headers: {
+          Authorization: 'Bearer '+ tokens
+        },
+        data: formdata,
+        success: function(data, textStatus, jqXHR){
+          var datak = JSON.stringify(data);
+          var dataResultp = JSON.parse(datak); 
+          var len = dataResultp.length;
+           $('#dataTables').empty();
+
+           if ( $.fn.DataTable.isDataTable('#dataTables') ) {
+               $('#dataTables').DataTable().destroy();
+              }
+
+           $('#dataTables').dataTable( {
+                "aaData": data,   
+                "lengthMenu": [ 500, 1000, 2000, 3000, 4000, 5000 ],
+                "pageLength": 500,
+                "oLanguage": {
+                  "sSearch": "<span>Search Comments</span> _INPUT_" //search
+                },
+                "columns": [
+                    { "data": "id" ,
+                      "title" : "Id",
+                     "render": function(data, type, full, meta){
+                      return data;
+                    }
+                    },
+                    { "data": "stockSymbol" ,
+                      "title" : "Stock Symbol",
+                       "render": function(data, type, full, meta){
+                        return data;
+                      }
+                     },
+                    { "data": "stockName" ,
+                    "title" : "Stock Name",
+                   "render": function(data, type, full, meta){
+                    return data;
+                    }
+                   },             
+                ],
+                "deferRender": true,
+                rowCallback: function ( row, data ) {
+                // Set the checked state of the checkbox in the table
+                // $('input.editor-active', row).prop( 'checked', data.isFlag == true );
+                }
+
+          });
+
+        }
+
+    });
+
+    }
+
+    });
+
+
 });
-   
+
+
+
  </script>
  
  <script type="text/javascript">
@@ -299,13 +277,12 @@ fetch(url, {
   var urls = new URL(url_string);
   var tokens = urls.searchParams.get("tokendata");
   document.getElementById("dashboardLink").href = "/home?tokendata="+tokens;
+document.getElementById("TipLink").href = "/tipList?tokendata="+tokens;
+      document.getElementById("WaitingLink").href = "/waitinglist?tokendata="+tokens;
 
    document.getElementById("HomeLink").href = "/home?tokendata="+tokens;
   document.getElementById("UserLink").href = "/userlist?tokendata="+tokens;
   // document.getElementById("UserCallLink").href = "/userlist?tokendata="+tokens;
-  document.getElementById("TipLink").href = "/tipList?tokendata="+tokens;
-  document.getElementById("StockLink").href = "/stocklist?tokendata="+tokens;
-   document.getElementById("StockSearchLink").href = "/searchStock?tokendata="+tokens;
    document.getElementById("CommentLink").href = "/commentlist?tokendata="+tokens;
    document.getElementById("CSVLink").href = "/csvlist?tokendata="+tokens;
  document.getElementById("FlagCallLink").href = "/flaglist?tokendata="+tokens;
@@ -313,9 +290,12 @@ fetch(url, {
 document.getElementById("NotifyLink").href = "/notification?tokendata="+tokens;
    document.getElementById("changePassLink").href = "/changePassword?tokendata="+tokens;  
        document.getElementById("AccountLink").href = "/account?tokendata="+tokens;  
-    document.getElementById("NotifyListLink").href = "/notificationlist?tokendata="+tokens;
+           document.getElementById("NotifyListLink").href = "/notificationlist?tokendata="+tokens;
   document.getElementById("FlagChatLink").href = "/flagChatlist?tokendata="+tokens;
-    document.getElementById("WaitingLink").href = "/waitinglist?tokendata="+tokens;
+   document.getElementById("StockLink").href = "/stocklist?tokendata="+tokens;
+   document.getElementById("StockSearchLink").href = "/searchStock?tokendata="+tokens;
+   document.getElementById("TipSearchLink").href = "/alltipByDate?tokendata="+tokens;
+
 
 });
 </script>

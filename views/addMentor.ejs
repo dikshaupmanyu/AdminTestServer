@@ -519,6 +519,9 @@ $("#suggesstion-box").hide();
   $('#loginName').html(username);
   var userid = urls.searchParams.get("id");
   $('#loginId').val(userid);
+document.getElementById("StockLink").href = "/stocklist?tokendata="+tokens;
+   document.getElementById("StockSearchLink").href = "/searchStock?tokendata="+tokens;
+
  // document.getElementById("HomeLink").href = "/tipPage?tokendata="+tokens+"&uname="+username+"&id="+userid;
   // document.getElementById("UserLink").href = "/addMentor?tokendata="+tokens+"&uname="+username+"&id="+userid;
   // document.getElementById("ChatManageLink").href = "/chatManage?tokendata="+tokens+"&uname="+username+"&id="+userid+"&chatToken="+jwtTokens;

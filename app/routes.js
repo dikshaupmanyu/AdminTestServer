@@ -11,6 +11,23 @@ module.exports = function(app, passport) {
 
     res.render('commentlist.ejs');
   });
+
+  app.get('/stocklist', function(req, res) {
+
+    res.render('stocklist.ejs');
+  });
+
+  app.get('/alltipByDate', function(req, res) {
+
+    res.render('alltipByDate.ejs');
+  });
+
+
+  app.get('/searchStock', function(req, res) {
+
+    res.render('searchStock.ejs');
+  });
+  
    app.get('/notificationlist', function(req, res) {
 
     res.render('notificationlist.ejs');

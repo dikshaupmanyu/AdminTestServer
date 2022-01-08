@@ -1,5 +1,8 @@
            <%- include partials/header %>
-
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
        
         <div class="container-fluid">
@@ -7,30 +10,11 @@
 
       <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Account Management</h6>
+              <h6 class="m-0 font-weight-bold text-primary">All Tip List Management</h6>
             </div>
-
-                <div class="card-header">
-                    <ul class="nav nav-tabs card-header-tabs" id="tabs">
-                        <li class="nav-item">
-                            <a class="active nav-link active" href="#post" data-toggle="tab">Mentor</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#link" data-toggle="tab">User</a>
-                        </li>
-                    </ul>
-                </div>
                 <div class="card-body">
                     <div class="tab-content">
-                        <div class="tab-pane active" id="post">
                           <form autocomplete="off" class="form" role="form">
-                            <div class="form-group row">
-                              <label class="col-lg-3 col-form-label form-control-label">Choose Mentor</label>
-                              <div class="col-lg-9">
-                                <select class="choosen form-control" id="sel_user" placeholder="Pick a User" style="background-color: #fff;" required="required">
-                                </select>
-                              </div>
-                            </div>
                             <div class="form-row">                        
                                 <label class="col-lg-2 col-form-label form-control-label">Start Date</label>
                                 <div class="col-lg-3">
@@ -50,7 +34,7 @@
                               <label class="col-lg-3 col-form-label form-control-label"></label>
                               <div class="col-lg-9">
                                 <input class="btn btn-secondary" type="reset" value="Cancel"> 
-                                <input class="btn btn-primary" type="button" value="Search Mentor" id="MentorBtnData">
+                                <input class="btn btn-primary" type="button" value="Search All Tip" id="MentorBtnData">
                                </div>
                             </div>
                           </form>
@@ -74,67 +58,16 @@
                           <table class="table table-stripped" id="dataTablesf" width="100%" cellspacing="0">
                             <thead>
                             <tr>
-                              <th>Mentor Name</th>
-                              <th>User Name</th>
+                              <th>Stock Name</th>
+                              <th>Symbol</th>
+                              <th>Created Price</th>
                               <th>Date</th>
-                              <th>Subscription</th>
-                              <th>Service Type</th>
-                              <th>Price</th>
-                              <th>Mentor Share</th>
-                              <th>Tradetips Share</th>
                             </tr>
                             </thead>
                             <tbody>
                            
                             </tbody>
-                          </table>
-                        </div>
-                        <div class="tab-pane" id="link">
-                          <form autocomplete="off" class="form" role="form">
-                            <div class="form-group row">
-                              <label class="col-lg-3 col-form-label form-control-label">Choose User</label>
-                              <div class="col-lg-9">
-                                <select class="choosen form-control" id="sel_mentor" placeholder="Pick a User" style="width: 100%!important;">
-                                </select>
-                              </div>
-                            </div>
-                            <div class="form-group row">
-                              <label class="col-lg-3 col-form-label form-control-label"></label>
-                              <div class="col-lg-9">
-                                <input class="btn btn-secondary" type="reset" value="Cancel"> 
-                                <input class="btn btn-primary" type="button" value="Search Users" id="UserbutSaveData">
-                             </div>
-                            </div>                                                
-                          </form>
-                           <div class="form-group row">
-                              <div class="col-lg-9">
-                               
-                              </div>
-                              <div class="col-lg-3">
-                                <span style="margin-left: 20px;" class="containerk"></span>
-
-                              </div>
-                           </div>
-                         
-                          <br>
-                           <table class="table table-stripped" id="dataTabless" width="100%" cellspacing="0">
-                            <thead>
-                            <tr>
-                              <!-- <th>Mentor Name</th> -->
-                              <th>User Name</th>
-                              <th>Date</th>
-                              <th>Subscription</th>
-                              <th>Service Type</th>
-                              <th>Price</th>
-                              <!-- <th>Percent Off</th>
-                              <th>Discount Price</th> -->
-                            </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                          </table>
-
-                        </div>
+                          </table>                        
                     </div>
                 </div>
              
@@ -222,40 +155,6 @@
   var url_string = window.location.href; 
   var urls = new URL(url_string);
   var tokens = urls.searchParams.get("tokendata");
-  const url = "https://apistest.tradetipsapp.com/api/appUserWebModify/getAllAppUsers";
-fetch(url, {
-  method: "POST",
-  headers: {
-          Authorization: 'Bearer ' + tokens,
-        },
-})
-  .then(resp => resp.json())
-    .then(function(data) {
-       var datak = JSON.stringify(data);
-       var dataResult = JSON.parse(datak); 
-        var len = dataResult.length;
-          $("#sel_user").empty();
-           $("#sel_mentor").empty();
-                for( var i = 0; i<len; i++){
-                   var id = dataResult[i]['id'];
-                    var name = dataResult[i]['userName'];
-                    $("#sel_mentor").append("<option value='"+id+"'>"+name+"</option>");
-
-                    if(data[i].isMentor == true){
-                        var id = dataResult[i]['id'];
-                        var name = dataResult[i]['userName'];
-                        $("#sel_user").append("<option value='"+id+"'>"+name+"</option>");
-                    }
-                    
-                    
-                   
-                }
-
-       
-  })
-  .catch(function(error) {
-    console.log(error);
-  });
 
  document.getElementById("dashboardLink").href = "/home?tokendata="+tokens;
 
@@ -277,7 +176,6 @@ document.getElementById("NotifyLink").href = "/notification?tokendata="+tokens;
    document.getElementById("AccountLink").href = "/account?tokendata="+tokens;  
 document.getElementById("StockLink").href = "/stocklist?tokendata="+tokens;
    document.getElementById("StockSearchLink").href = "/searchStock?tokendata="+tokens;
-
         document.getElementById("NotifyListLink").href = "/notificationlist?tokendata="+tokens;
 
 });
@@ -287,22 +185,22 @@ document.getElementById("StockLink").href = "/stocklist?tokendata="+tokens;
 
 
 </script>
+<script src="https://momentjs.com/downloads/moment.js"></script>
 
 <script type="text/javascript">
+  var url_string = window.location.href; 
+  var urls = new URL(url_string);
+  var tokens = urls.searchParams.get("tokendata");
   $('#MentorBtnData').on('click', function() {
-    var UserSelect = $('#sel_user').val();
     var startDates = $('#start_date').val();
-    // alert(startDates);
+    // alert(moment(startDates).format("YYYY-MM-DD HH:mm:ss"));
+    var finalstartdate = moment(startDates).format("YYYY-MM-DD HH:mm:ss");
     var endDates = $('#end_date').val();
-    // alert(endDates);
-    // var formdata = {userName : UserSelect};
-    var tokens = "eyJhbGciOiJIUzUxMiJ9.eyJlbWFpbCI6ImphaW4uYWthc2hAbm92YXNvZnRjb3Jwcy5jb20iLCJzdWIiOiI3ZmM5MjRiNy05YTE4LTRhNDctYjJkMS01NDI4ZDNiYzE2MWQiLCJpYXQiOjE2MjMzMTI0ODAsImV4cCI6MTYyMzkxNzI4MH0.xyQVU5Qs9lX3MP7FE0wCW-vf2YtQ_rppCVbrBn_EydlawagF-8f-W10ThlyubVPfD8nSlQSwNIoDdX3YU62I1Q";
-
-    var formdata = {mentorId : UserSelect,startDate : startDates , endDate : endDates};
-    if(UserSelect!=""){
+    var finalenddate = moment(endDates).format("YYYY-MM-DD HH:mm:ss");
+    var formdata = {fromDate : finalstartdate , toDate : finalenddate};
       $.ajax({
         type: 'POST',
-        url: 'https://apistest.tradetipsapp.com/api/stripe/getAllInvoicesByMentorId',
+        url: 'https://apistest.tradetipsapp.com/api/dataAnalytics/getAllTipDetailsByDate',
         headers: {
           Authorization: 'Bearer '+ tokens
         },
@@ -312,8 +210,6 @@ document.getElementById("StockLink").href = "/stocklist?tokendata="+tokens;
           // alert(data);
           var datak = JSON.stringify(data);
           var dataResultp = JSON.parse(datak); 
-          // if($('#dataTablesf').is(':empty'))
-          // alert(dataResultp);
           var len = dataResultp.length;
           // // alert(len);
           if(len > 0){
@@ -327,33 +223,26 @@ document.getElementById("StockLink").href = "/stocklist?tokendata="+tokens;
 
           }
          
-          // var serviceData = dataResultp.filter(function(s) { return s.productSubscription == null });
-
-          // var productData = dataResultp.filter(function(s) { return s.serviceSubscription == null });
-
-           $('#dataTablesf').dataTable( {
+            $('#dataTablesf').dataTable( {
             "aaData": data,   
             "lengthMenu": [ 500, 1000, 2000, 3000, 4000, 5000 ],
             "pageLength": 500,
-            // "aaSorting": [[ 0, "desc" ]],
-            // "columnDefs": [ {
-            // "targets": 4,
-            // "orderable": false
-            // } ],
-            // "oLanguage": {
-            //   "sSearch": "<span>Search Comments</span> _INPUT_" //search
-            // },
-
             "columns": [
             
-                { "data": "serviceSubscription.userName",
-                  "title":"Username",
+                { "data": "stockName",
+                   "title" : "Stock Name",
                    "render": function(data, type, full, meta){
                     return data;
                 }
                 },
-                 { "data": "serviceSubscription.serviceSubscriptionPlan.mentorName",
-                  "title":"Mentorname",
+                 { "data": "stockSuggestion",
+                   "title" : "Stock Suggestion",
+                   "render": function(data, type, full, meta){
+                    return data;
+                }
+                },
+                { "data": "createTipPrice",
+                   "title" : "Created price",
                    "render": function(data, type, full, meta){
                     return data;
                 }
@@ -376,138 +265,15 @@ document.getElementById("StockLink").href = "/stocklist?tokendata="+tokens;
                     return data;
                   }
                 },
-                { "data": "serviceSubscription.serviceSubscriptionPlan.stripeProductName",
-                  "title":"Subscription ",
-                   "render": function(data, type, full, meta){
-                    return data;
-                }
-                },
-                 { "data": "serviceSubscription.serviceSubscriptionPlan.serviceTypeMaster.serviceType",
-                  "title":"Service Type ",
-                   "render": function(data, type, full, meta){
-                    return data;
-                }
-                },
-                {
-                  "data": "amountPaid" ,
-                  "title": "Price",                  
-                  render: function (data, type, row, meta) {
-                     if(type === 'display'){
-                        var symbol = "$";
-
-                        var num = $.fn.dataTable.render.number(',', '.', 2, symbol).display(data);              
-                        return num ;           
-                     } else {           
-                        return data;
-                     }
-                  }
-              },
-              {
-                  "data": "amountPaid" , "sClass": "pricessMentor", "title": "Mentor Share", 
-                  render: function (data, type, row, meta) {
-                     if(type === 'display'){
-                        var num = "$" + data * 20/100;              
-                        return num ;           
-                     } else {           
-                        return data;
-                     }
-                  }
-              },
-                {
-                  "data": "amountPaid" , "sClass": "pricessTradetips" , "title": "TradeTips Share",
-                  render: function (data, type, row, meta) {
-                     if(type === 'display'){
-                        var num = "$" + data * 80/100;              
-                        return num ;           
-                     } else {           
-                        return data;
-                     }
-                  }
-              },          
-            ],
-            // "aoData": productData,   
-            // "aocolumns": [
-            
-            //     { "data": "productSubscription.userId" },
-            //     { "data" : "productSubscription.userName"},
-            //     { 
-            //   "data": "createdOn",
-            //    "name":"date",
-            //    "visible":true,
-            //    "title":"Date Created",
-            //    "render": function(data, type, full, meta){
-            //     if(type == "display"){
-            //             var date = new Date(data);
-            //             var options = {year: "numeric", month: "long", day: "numeric"};
-
-            //             return date.toLocaleDateString('en-US', options);
-            //     }
-
-            //     return data;
-            //   }
-            // },
-            //     { "data":  "productSubscription.subscriptionPlanId" },
-            //     { "data" : "stripeSubscriptionId"}, 
-            //     // { "data": "amountPaid" , "sClass": "price"}, 
-            //     {
-            //       "data": "amountPaid" , "sClass": "pricessMentor",
-            //       render: function (data, type, row, meta) {
-            //          if(type === 'display'){
-            //             var num = "$" + data * 20/100;              
-            //             return num ;           
-            //          } else {           
-            //             return data;
-            //          }
-            //       }
-            //   },
-            //     {
-            //       "data": "amountPaid" , "sClass": "pricessTradetips",
-            //       render: function (data, type, row, meta) {
-            //          if(type === 'display'){
-            //             var num = "$" + data * 80/100;              
-            //             return num ;           
-            //          } else {           
-            //             return data;
-            //          }
-            //       }
-            //   }, 
-
-
-            //   // { "data" : "percentOff"},
-            //   // { "data" : "amountPaid" * "percentOff" / 100},              
-            // ], 
+            ], 
             "deferRender": true,
             rowCallback: function ( row, data ) {
-            // Set the checked state of the checkbox in the table
-            // $('input.editor-active', row).prop( 'checked', data.isFlag == true );
+          
         }
 
 
 
         });
-
-           var totalf = 0;
-           var totalft = 0;
-      $("td.pricessMentor").each(function() {
-        // parseInt(num.replace(/[$,]/g, ''))
-       // alert("hii");
-        totalf += parseInt($(this).text().replace(/[$,]/g, ''));
-        // alert(totalf);
-      });
-
-      $("td.pricessTradetips").each(function() {
-        // parseInt(num.replace(/[$,]/g, ''))
-       // alert("hii");
-        totalft += parseInt($(this).text().replace(/[$,]/g, ''));
-        // alert(totalf);
-      
-      });
-
-       $('.containeruser').append("<b>Total Mentor Share<b> :<b><span> $" + totalf + "</span></b>");
-       $('.containertrade').append("<b>Total TradeTips Share<b> :<b><span> $" + totalft + "</span></b>");
-        
-    
-       
 
 
         },
@@ -519,15 +285,6 @@ document.getElementById("StockLink").href = "/stocklist?tokendata="+tokens;
 
 
       });
-
-
-      
-    }
-    else{
-      alert('Please fill all the field !');
-    }
-
-  
   
   });
 

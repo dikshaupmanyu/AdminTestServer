@@ -491,8 +491,8 @@ window.addEventListener("load", function() {
   var title = $('#titles').val();
   var description = $('#description').val();
   var filterdata = $('#userFull option:selected')
-                .toArray().map(item => item.text);
-  alert(filterdata);
+                .toArray().map(item => item.value);
+  // alert(filterdata);
   var filterUser = $('input[name="optradio"]:checked').val();
   // alert(filterUser);
   var table = $('#dataTables').DataTable();
@@ -521,6 +521,7 @@ window.addEventListener("load", function() {
     }else{
 
        formdata.append("userType", "SelectedUser");
+       formdata.append("userIDs" , filterdata);
     }
     
 
@@ -542,7 +543,7 @@ window.addEventListener("load", function() {
                 var dataResultp = JSON.parse(datak); 
                 // alert(dataResultp.title);
                 alert("Notification has been sent");
-                window.location.reload("/notificationTypeAdd?tokendata="+tokens); 
+                // window.location.reload("/notificationTypeAdd?tokendata="+tokens); 
           
 
        })
@@ -575,7 +576,8 @@ window.addEventListener("load", function() {
   document.getElementById("dashboardLink").href = "/home?tokendata="+tokens;
 document.getElementById("TipLink").href = "/tipList?tokendata="+tokens;
       document.getElementById("WaitingLink").href = "/waitinglist?tokendata="+tokens;
-
+document.getElementById("StockLink").href = "/stocklist?tokendata="+tokens;
+   document.getElementById("StockSearchLink").href = "/searchStock?tokendata="+tokens;
    document.getElementById("HomeLink").href = "/home?tokendata="+tokens;
   document.getElementById("UserLink").href = "/userlist?tokendata="+tokens;
   // document.getElementById("UserCallLink").href = "/userlist?tokendata="+tokens;

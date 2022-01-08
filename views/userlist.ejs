@@ -562,7 +562,8 @@ $.ajax({
   var tokens = urls.searchParams.get("tokendata");
   document.getElementById("dashboardLink").href = "/home?tokendata="+tokens;
     document.getElementById("WaitingLink").href = "/waitinglist?tokendata="+tokens;
-
+document.getElementById("StockLink").href = "/stocklist?tokendata="+tokens;
+   document.getElementById("StockSearchLink").href = "/searchStock?tokendata="+tokens;
    document.getElementById("HomeLink").href = "/home?tokendata="+tokens;
   document.getElementById("UserLink").href = "/userlist?tokendata="+tokens;
   // document.getElementById("UserCallLink").href = "/userlist?tokendata="+tokens;
