@@ -950,9 +950,19 @@ $("#bannerSubmitbannerone").on('click', function (e) {
       }else{
         var formdata = new FormData();
         formdata.append("adBannerId", ids);
+        
         formdata.append("title1", title1);
         formdata.append("shortDescription1", shortDescription1);
         formdata.append("longDescription1", longDescription1);
+        if(filename1 == ""){
+          formdata.append("image1", "");
+        }else{
+          if(extFile1 =="jpg" || extFile1 == "jpeg" || extFile1 == "png"){
+            formdata.append("image1", file1 , filename1);
+          }else{
+            alert("Only jpg/jpeg and png files are allowed!")
+          }
+        }
         formdata.append("singleBanner" , "false");
 
         // var formdata = new FormData();
@@ -960,69 +970,110 @@ $("#bannerSubmitbannerone").on('click', function (e) {
           formdata.append("title2", title2);
           formdata.append("shortDescription2", shortDescription2);
           formdata.append("longDescription2", longDescription2);
+          if(filename2 == ""){
+          formdata.append("image2", "");
+        }else{
+          if(extFile2 =="jpg" || extFile2 == "jpeg" || extFile2 == "png"){
+            formdata.append("image2", file2 , filename2);
+          }else{
+            alert("Only jpg/jpeg and png files are allowed!")
+          }
+        }
           formdata.append("singleBanner" , "false");
 
 
           formdata.append("title3", title3);
         formdata.append("shortDescription3", shortDescription3);
         formdata.append("longDescription3", longDescription3);
+        if(filename3 == ""){
+          formdata.append("image3", "");
+        }else{
+          if(extFile3 =="jpg" || extFile3 == "jpeg" || extFile3 == "png"){
+            formdata.append("image3", file3 , filename3);
+          }else{
+            alert("Only jpg/jpeg and png files are allowed!")
+          }
+        }
         formdata.append("singleBanner" , "false");
 
-        if(filename1 != ""){
-          if(extFile1 =="jpg" || extFile1 == "jpeg" || extFile1 == "png"){
-            formdata.append("image1", file1 , filename1);
-            formdata.append("image2", file2 , filename2); 
-            formdata.append("image3", file3 , filename3);  
-            var requestOptions = {
-          method: 'POST',
-            headers: {
-                  Authorization: 'Bearer '+ tokens,
-                },
-          body: formdata,
-          redirect: 'follow'
-          };
-          fetch("https://apistest.tradetipsapp.com/api/adBannerSimple/modifySimpleAdBanner", requestOptions)
-          .then(response => response.json())
-          .then(result => {
-                
-                    var datak = JSON.stringify(result);
-                    // alert(datak);
-                    var dataResultp = JSON.parse(datak); 
-                    // alert(dataResultp.title);
-                    alert("Your Multiple Banner Updated Successfully");
-                    window.location.href = "/banner?tokendata="+tokens; 
-                  
-          })
-          .catch(error => console.log('error', error));          
+        var requestOptions = {
+                method: 'POST',
+                  headers: {
+                        Authorization: 'Bearer '+ tokens,
+                      },
+                body: formdata,
+                redirect: 'follow'
+                };
+                fetch("https://apistest.tradetipsapp.com/api/adBannerSimple/modifySimpleAdBanner", requestOptions)
+                .then(response => response.json())
+                .then(result => {
+                      
+                          var datak = JSON.stringify(result);
+                          // alert(datak);
+                          var dataResultp = JSON.parse(datak); 
+                          // alert(dataResultp.title);
+                          alert("Your Multiple Banner Updated Successfully");
+                          window.location.href = "/banner?tokendata="+tokens; 
+                        
+                })
+                .catch(error => console.log('error', error)); 
 
-          }else{alert("Only jpg/jpeg and png files are allowed!")}
-        }else{
-          formdata.append("image1", "");
-          formdata.append("image2", "");
-          formdata.append("image3", "");
+        // if(filename1 != ""){
+        //   if(extFile1 =="jpg" || extFile1 == "jpeg" || extFile1 == "png"){
+        //     formdata.append("image1", file1 , filename1);
+        //     formdata.append("image2", file2 , filename2); 
+        //     formdata.append("image3", file3 , filename3);  
+        //       var requestOptions = {
+        //         method: 'POST',
+        //           headers: {
+        //                 Authorization: 'Bearer '+ tokens,
+        //               },
+        //         body: formdata,
+        //         redirect: 'follow'
+        //         };
+        //         fetch("https://apistest.tradetipsapp.com/api/adBannerSimple/modifySimpleAdBanner", requestOptions)
+        //         .then(response => response.json())
+        //         .then(result => {
+                      
+        //                   var datak = JSON.stringify(result);
+        //                   // alert(datak);
+        //                   var dataResultp = JSON.parse(datak); 
+        //                   // alert(dataResultp.title);
+        //                   alert("Your Multiple Banner Updated Successfully");
+        //                   window.location.href = "/banner?tokendata="+tokens; 
+                        
+        //         })
+        //         .catch(error => console.log('error', error));    
+           
 
-          var requestOptions = {
-          method: 'POST',
-            headers: {
-                  Authorization: 'Bearer '+ tokens,
-                },
-          body: formdata,
-          redirect: 'follow'
-          };
-          fetch("https://apistest.tradetipsapp.com/api/adBannerSimple/modifySimpleAdBanner", requestOptions)
-          .then(response => response.json())
-          .then(result => {
+        //   }else{alert("Only jpg/jpeg and png files are allowed!")}
+        // }else{
+        //   formdata.append("image1", "");
+        //   formdata.append("image2", "");
+        //   formdata.append("image3", "");
+
+        //   var requestOptions = {
+        //   method: 'POST',
+        //     headers: {
+        //           Authorization: 'Bearer '+ tokens,
+        //         },
+        //   body: formdata,
+        //   redirect: 'follow'
+        //   };
+        //   fetch("https://apistest.tradetipsapp.com/api/adBannerSimple/modifySimpleAdBanner", requestOptions)
+        //   .then(response => response.json())
+        //   .then(result => {
                 
-                    var datak = JSON.stringify(result);
-                    // alert(datak);
-                    var dataResultp = JSON.parse(datak); 
-                    // alert(dataResultp.title);
-                    alert("Your Multiple Banner Updated Successfully");
-                    window.location.href = "/banner?tokendata="+tokens; 
+        //             var datak = JSON.stringify(result);
+        //             // alert(datak);
+        //             var dataResultp = JSON.parse(datak); 
+        //             // alert(dataResultp.title);
+        //             alert("Your Multiple Banner Updated Successfully");
+        //             window.location.href = "/banner?tokendata="+tokens; 
                   
-          })
-          .catch(error => console.log('error', error));
-        } 
+        //   })
+        //   .catch(error => console.log('error', error));
+        // } 
       };
     
    
