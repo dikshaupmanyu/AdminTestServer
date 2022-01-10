@@ -432,12 +432,12 @@ window.addEventListener("load", function() {
   .then(resp => resp.json())
     .then(function(data) {
        var datak = JSON.stringify(data);
-       var dataResult = JSON.parse(datak); 
-        var len = dataResult.length;
+       var dataResults = JSON.parse(datak); 
+        var len = dataResults.length;
          // var countdataa = dataResult.filter(function(s) { return s.isActive; });
 
            $('#dataTables').dataTable( {
-            "aaData": dataResult, 
+            "aaData": dataResults, 
             "lengthMenu": [ 500, 1000, 2000, 3000, 4000, 5000 ],
             "pageLength": 500,
             // "aaSorting": [[ 0, "desc" ]],
@@ -453,12 +453,35 @@ window.addEventListener("load", function() {
                        return '<input type="checkbox" id="'+ data +'" class="locationthemes" value="'+ data +'"/>';
                        }
                 },
-                { "data": "title" },
-                { "data": "shortDescription" },
+                { "data": "title",
+                  "render": function (data,type,row) {
+                       if(row.title == null){
+                          return row.title1
+                         }
+                         return data;
+                      
+                       }
+
+                 },
+                { "data": "shortDescription" ,
+                 "render": function (data,type,row) {
+                       if(row.shortDescription == null){
+                         return row.shortDescription1;
+                       }else{
+                         return data;
+                       }
+                      
+                       }
+                },
                 {
                    "data": "image",
-                   "render": function (data) {
-                       return '<img src="https://apistest.tradetipsapp.com' + data + '" class="avatar" width="50" height="50"/>';
+                   "render": function (data,type,row) {
+                       if(row.image == null){
+                         return '<img src="https://apistest.tradetipsapp.com' + row.image1 + '" class="avatar" width="50" height="50"/>';
+                       }else{
+                         return '<img src="https://apistest.tradetipsapp.com' + row.image + '" class="avatar" width="50" height="50"/>';
+                       }
+                      
                        }
                 },
             ],
@@ -521,7 +544,7 @@ window.addEventListener("load", function() {
     }else{
 
        formdata.append("userType", "SelectedUser");
-       formdata.append("userIDs" , filterdata);
+       formdata.append("userIds" , filterdata);
     }
     
 
@@ -543,7 +566,7 @@ window.addEventListener("load", function() {
                 var dataResultp = JSON.parse(datak); 
                 // alert(dataResultp.title);
                 alert("Notification has been sent");
-                // window.location.reload("/notificationTypeAdd?tokendata="+tokens); 
+                window.location.reload("/notificationTypeAdd?tokendata="+tokens); 
           
 
        })
@@ -577,7 +600,7 @@ window.addEventListener("load", function() {
 document.getElementById("TipLink").href = "/tipList?tokendata="+tokens;
       document.getElementById("WaitingLink").href = "/waitinglist?tokendata="+tokens;
 document.getElementById("StockLink").href = "/stocklist?tokendata="+tokens;
-   document.getElementById("StockSearchLink").href = "/searchStock?tokendata="+tokens;
+   // document.getElementById("StockSearchLink").href = "/searchStock?tokendata="+tokens;
    document.getElementById("HomeLink").href = "/home?tokendata="+tokens;
   document.getElementById("UserLink").href = "/userlist?tokendata="+tokens;
   // document.getElementById("UserCallLink").href = "/userlist?tokendata="+tokens;
