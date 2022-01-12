@@ -1,19 +1,62 @@
+           
+
            <%- include partials/header %>
 
+<style type="text/css">
 
-       
-        <div class="container-fluid">
+.sidebar li .submenu{ 
+  list-style: none; 
+  margin: 0; 
+  padding: 0; 
+  padding-left: 1rem; 
+  padding-right: 1rem;
+}
+.sidebar .nav-link {
+    font-weight: 500;
+    color: var(--bs-dark);
+}
+.sidebar .nav-link:hover {
+    color: var(--bs-primary);
+}
+li.nav-item.active {
+  background: black;
+  color: white;
+}
 
-           <!-- form user info -->
-            <div class="card card-outline-secondary">
-              <div class="card-header">
-                <h3 class="mb-0">Stock list of User</h3>
-              </div>
-              <div class="card-header">
-                <h5 class="mb-0"><a id="StockSearchLink">Search Stock By Date</a></h5>
-                <h5 class="mb-0"><a id="TipSearchLink">Search Tip By Date</a></h5>
+</style>
 
-              </div>
+
+</head>
+
+<div class="container">
+  <h2>Analytics</h2> 
+<section class="section-content py-3">
+  <div class="row">
+    <aside class="col-lg-3"> 
+<!-- ============= COMPONENT ============== -->
+      <nav class="sidebar card py-2 mb-4">
+      <ul class="nav flex-column" id="nav_accordion">
+        <li class="nav-item active">
+          <a class="nav-link" id="StockLinks">Search Stock By User </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="StockSearchLink"> Search Stock By Date </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="TipSearchLink"> Search Tip By Date </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="AISearchLink"> Search AI Count By Date</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="SoicalSearchLink"> Search Soical Chat Count By Date</a>
+        </li>
+      </ul>
+      </nav>
+<!-- ============= COMPONENT END// ============== --> 
+    </aside>
+    <main class="col-lg-9">
+              <h4>Search Stock By User</h4> 
               <div class="card-body">
                 <form autocomplete="off" class="form" role="form">
                   <div class="form-group row">
@@ -43,59 +86,87 @@
                      </div>
                   </div>
                 </form>
+
+                <div class="h5 mb-0 font-weight-bold text-gray-800">Total Counts : <span id="countStockListData">0</span></div>
               </div>
-            </div><!-- /form user info -->
 
-          <!-- Page Heading -->
-         <!--  <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-          <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
- -->
-          <!-- DataTales Example -->
+                <div class="card shadow mb-4">
+                  <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Stock List</h6>
+                  </div>
 
-          <div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Stock List</h6>
+
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <br>
+
+                      <table class="table table-bordered" id="dataTables" width="100%" cellspacing="0">
+                        <thead>
+                          <tr>
+                            <th>Id</th>
+                            <th>Stock Symbol</th>
+                            <th>Stock Name</th>
+                           </tr>
+                          <tbody>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+
+    </main>
+  </div>
+</section>
+
+</div><!-- container //  -->
+
+       
+        <!-- <div class="container-fluid">
+
+            <div class="card card-outline-secondary">
+              <div class="card-header">
+                <h3 class="mb-0">Stock list of User</h3>
+              </div>
+              <div class="card-header">
+                <h5 class="mb-0"><a id="StockSearchLink">Search Stock By Date</a></h5>
+                <h5 class="mb-0"><a id="TipSearchLink">Search Tip By Date</a></h5>
+
+              </div>
+              <div class="card-body">
+                <form autocomplete="off" class="form" role="form">
+                  <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">Choose User</label>
+                    <div class="col-lg-9">
+                      <select class="chosen form-control" id="sel_user" placeholder="Pick a User">
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">Offset</label>
+                    <div class="col-lg-9">
+                      <input class="form-control" type="text" id="offset">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">Limit</label>
+                    <div class="col-lg-9">
+                      <input class="form-control" type="text" id="limit">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label"></label>
+                    <div class="col-lg-9">
+                      <input class="btn btn-secondary" type="reset" value="Cancel"> 
+                      <input class="btn btn-primary" type="button" value="Search Stocks" id="butSaveData">
+                     </div>
+                  </div>
+                </form>
+              </div>
             </div>
 
-
-            <div class="card-body">
-              <div class="table-responsive">
-
-            <!--   <input type="button" class="btn btn-primary" id="btn_" value="Delete All Comment" /> -->
-
-                <br>
-
-                <table class="table table-bordered" id="dataTables" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
-                      <!-- <th>Id</th> -->
-                     <!--  <th></th> -->
-                      <th>Id</th>
-                      <th>Stock Symbol</th>
-                      <!-- <th>Action</th> -->
-                      <th>Stock Name</th>
- <!--                       <th>Authenticate by Email</th>
-                    </tr>
-                  </thead>
-                  <tfoot>
-                    <tr>
-                      <th>Name</th>
-                      <th>Position</th>
-                      <th>Office</th>
-                      <th>Age</th>
-                      <th>Start date</th>
-                      <th>Salary</th>
-                    </tr>
-                  </tfoot> -->
-                  <tbody>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
 
         </div>
-
+ -->
       </div>
       <!-- End of Main Content -->
 
@@ -217,6 +288,8 @@ $('#butSaveData').on('click', function() {
           var len = dataResultp.length;
            $('#dataTables').empty();
 
+           $("#countStockListData").text(len);
+
            if ( $.fn.DataTable.isDataTable('#dataTables') ) {
                $('#dataTables').DataTable().destroy();
               }
@@ -292,11 +365,12 @@ document.getElementById("NotifyLink").href = "/notification?tokendata="+tokens;
        document.getElementById("AccountLink").href = "/account?tokendata="+tokens;  
            document.getElementById("NotifyListLink").href = "/notificationlist?tokendata="+tokens;
   document.getElementById("FlagChatLink").href = "/flagChatlist?tokendata="+tokens;
+  document.getElementById("StockLinks").href = "/stocklist?tokendata="+tokens;
    document.getElementById("StockLink").href = "/stocklist?tokendata="+tokens;
    document.getElementById("StockSearchLink").href = "/searchStock?tokendata="+tokens;
    document.getElementById("TipSearchLink").href = "/alltipByDate?tokendata="+tokens;
-
-
+   document.getElementById("AISearchLink").href = "/aiSearchByDate?tokendata="+tokens;
+document.getElementById("SoicalSearchLink").href = "/soicalSearchByDate?tokendata="+tokens;
 });
 </script>
 

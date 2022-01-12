@@ -124,79 +124,7 @@
               </div>
             </div> -->
 
-            <!-- Pending Requests Card Example -->
-            <div class="col-xl-15 col-md-12 mb-4">
-              <div class="card border-left-warning shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Get AI Count By Date</div>
-                       <form autocomplete="off" class="form" role="form">
-                            <div class="form-row">                        
-                                <label class="col-lg-2 col-form-label form-control-label">Start Date</label>
-                                <div class="col-lg-3">
-                                  <input class="form-control" type="date" id="start_date" min="1997-01-01" max="2030-12-31" placeholder="yyyy-mm-dd">
-                                </div>
-
-                                 <div class="col-lg-2">
-                                </div>
-                              
-                                 <label class="col-lg-2 col-form-label form-control-label">End Date</label>
-                                <div class="col-lg-3">
-                                  <input class="form-control" type="date" id="end_date" min="1997-01-01" max="2030-12-31" placeholder="yyyy-mm-dd">
-                                </div>
-                            </div>
-                            <br>
-                            <div class="form-group row">
-                              <label class="col-lg-3 col-form-label form-control-label"></label>
-                              <div class="col-lg-9">
-                                <input class="btn btn-secondary" type="reset" value="Cancel"> 
-                                <input class="btn btn-primary" type="button" value="Get Count" id="MentorBtnData">
-                               </div>
-                            </div>
-                          </form>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">Total Counts : <span id="countAIData">0</span></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-15 col-md-12 mb-4">
-              <div class="card border-left-warning shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Get Soical Chat Count By Date</div>
-                       <form autocomplete="off" class="form" role="form">
-                            <div class="form-row">                        
-                                <label class="col-lg-2 col-form-label form-control-label">Start Date</label>
-                                <div class="col-lg-3">
-                                  <input class="form-control" type="date" id="start_dates" min="1997-01-01" max="2030-12-31" placeholder="yyyy-mm-dd">
-                                </div>
-
-                                 <div class="col-lg-2">
-                                </div>
-                              
-                                 <label class="col-lg-2 col-form-label form-control-label">End Date</label>
-                                <div class="col-lg-3">
-                                  <input class="form-control" type="date" id="end_dates" min="1997-01-01" max="2030-12-31" placeholder="yyyy-mm-dd">
-                                </div>
-                            </div>
-                            <br>
-                            <div class="form-group row">
-                              <label class="col-lg-3 col-form-label form-control-label"></label>
-                              <div class="col-lg-9">
-                                <input class="btn btn-secondary" type="reset" value="Cancel"> 
-                                <input class="btn btn-primary" type="button" value="Get Count" id="MentorBtnChatData">
-                               </div>
-                            </div>
-                          </form>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">Total Counts : <span id="countChatData">0</span></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+           
           </div>
 
 
@@ -276,82 +204,6 @@ window.addEventListener("load", function() {
   var tokens = urls.searchParams.get("tokendata");
   // alert(tokens);
 
-  $('#MentorBtnData').on('click', function() {
-    var startDates = $('#start_date').val();
-    var finalstartdate = moment(startDates).format("YYYY-MM-DD HH:mm:ss");
-    // alert(finalstartdate);
-    var endDates = $('#end_date').val();
-    var finalenddate = moment(endDates).format("YYYY-MM-DD HH:mm:ss");
-    // alert(finalenddate);
-    var formdata = {fromDate : finalstartdate , toDate : finalenddate};
-    // alert(JSON.stringify(formdata));
-      $.ajax({
-        type: 'POST',
-        url: 'https://apistest.tradetipsapp.com/api/dataAnalytics/getAITipsCountByDate',
-        headers: {
-          Authorization: 'Bearer '+ tokens
-        },
-        data: formdata,
-        success: function(data, textStatus, jqXHR)
-        {
-          $("#countAIData").text(data);
-          // alert(data);
-          // var datak = JSON.stringify(data);
-          // var dataResultp = JSON.parse(datak); 
-          // var len = dataResultp.length;
-          // // alert(len);
-
-        },
-
-        error: function (jqXHR, textStatus, errorThrown)
-        {
-           $("#countAIData").text('0');
-           // alert("No data");
-        }
-
-
-      });
-  
-  });
-
-   $('#MentorBtnChatData').on('click', function() {
-    var startDates = $('#start_dates').val();
-    var finalstartdate = moment(startDates).format("YYYY-MM-DD HH:mm:ss");
-    // alert(finalstartdate);
-    var endDates = $('#end_dates').val();
-    var finalenddate = moment(endDates).format("YYYY-MM-DD HH:mm:ss");
-    // alert(finalenddate);
-    var formdata = {fromDate : finalstartdate , toDate : finalenddate};
-    // alert(JSON.stringify(formdata));
-      $.ajax({
-        type: 'POST',
-        url: 'https://apistest.tradetipsapp.com/api/dataAnalytics/getSocialChatCountByDate',
-        headers: {
-          Authorization: 'Bearer '+ tokens
-        },
-        data: formdata,
-        success: function(data, textStatus, jqXHR)
-        {
-          $("#countChatData").text(data);
-          // alert(data);
-          // var datak = JSON.stringify(data);
-          // var dataResultp = JSON.parse(datak); 
-          // var len = dataResultp.length;
-          // // alert(len);
-
-        },
-
-        error: function (jqXHR, textStatus, errorThrown)
-        {
-           $("#countChatData").text('0');
-           // alert("No data");
-        }
-
-
-      });
-  
-  });
-
 const url = "https://apistest.tradetipsapp.com/api/appUserWebModify/getAllAppUsers";
 fetch(url, {
   method: "POST",
@@ -412,37 +264,6 @@ fetch(url1, {
     console.log(error);
   });
 
-// $.ajax({
-//         type: 'POST',
-//         url: 'https://apistest.tradetipsapp.com/api/appUser/getAllAppUsers',
-//         headers: {
-//           Authorization: 'Bearer '+ localStorage.getItem("token"),
-//           Authorization: 'Bearer '+ sessionStorage.getItem("token")
-//         },
-//         dataType:'json',
-//         // crossDomain: true,
-//         cache:false,
-//         // contentType: "application/json; charset=utf-8",
-//         success: function(data){
-          
-//           var datak = JSON.stringify(data);
-//            var dataResult = JSON.parse(datak); 
-//             // alert(dataResult.length);         
-//           // alert(dataResult);
-//           // if(dataResult){
-//           //   alert("true");
-//           // $("#success").show();
-//           $('#toatluser').html(dataResult.length);
-//           //   window.location.href = "/home";            
-//           // }
-//           // else if(dataResult.statusCode==201){
-//           //   alert("false");
-//           //   $("#error").show();
-//           //   $('#error').html('Invalid EmailId or Password !');
-//           // }
-          
-//         }
-//       });
  });
 
 function logout() {
@@ -477,7 +298,6 @@ document.getElementById("dashboardLink").href = "/home?tokendata="+tokens;
    document.getElementById("AccountLink").href = "/account?tokendata="+tokens; 
     document.getElementById("WaitingLink").href = "/waitinglist?tokendata="+tokens;
 document.getElementById("StockLink").href = "/stocklist?tokendata="+tokens;
-   document.getElementById("StockSearchLink").href = "/searchStock?tokendata="+tokens;
 
 
   

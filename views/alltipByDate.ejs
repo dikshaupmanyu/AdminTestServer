@@ -4,17 +4,62 @@
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-       
-        <div class="container-fluid">
+  <style type="text/css">
+
+.sidebar li .submenu{ 
+  list-style: none; 
+  margin: 0; 
+  padding: 0; 
+  padding-left: 1rem; 
+  padding-right: 1rem;
+}
+.sidebar .nav-link {
+    font-weight: 500;
+    color: var(--bs-dark);
+}
+.sidebar .nav-link:hover {
+    color: var(--bs-primary);
+}
+li.nav-item.active {
+  background: black;
+  color: white;
+}
+</style>
 
 
-      <div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">All Tip List Management</h6>
-            </div>
-                <div class="card-body">
-                    <div class="tab-content">
-                          <form autocomplete="off" class="form" role="form">
+</head>
+
+<div class="container">
+  <h2>Analytics</h2>
+<section class="section-content py-3">
+  <div class="row">
+    <aside class="col-lg-3"> 
+<!-- ============= COMPONENT ============== -->
+      <nav class="sidebar card py-2 mb-4">
+     <ul class="nav flex-column" id="nav_accordion">
+        <li class="nav-item">
+          <a class="nav-link" id="StockLinks">Search Stock By User </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="StockSearchLink"> Search Stock By Date </a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" id="TipSearchLink"> Search Tip By Date </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="AISearchLink"> Search AI Count By Date</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="SoicalSearchLink"> Search Soical Chat Count By Date</a>
+        </li>
+      </ul>
+      </nav>
+<!-- ============= COMPONENT END// ============== --> 
+    </aside>
+    <main class="col-lg-9">
+            <h4>Search Tip By Date</h4> 
+              <div class="card-body">
+                 <form autocomplete="off" class="form" role="form">
                             <div class="form-row">                        
                                 <label class="col-lg-2 col-form-label form-control-label">Start Date</label>
                                 <div class="col-lg-3">
@@ -38,42 +83,41 @@
                                </div>
                             </div>
                           </form>
-                           <div class="form-group row">
-                              <div class="col-lg-9">
-                               
-                              </div>
-                              <!-- <div class="col-lg-3">
-                                <span><b>TradeTips Total</b>: <b>$15</b></span>
-                                <br>
-                                 <span><b>Mentor Total</b>: <b>$15</b></span>
+                        
+                         <div class="h5 mb-0 font-weight-bold text-gray-800">Total Counts : <span id="countTipData">0</span></div>    
+                 </div>
 
-                              </div> -->
-                              <div class="col-lg-3">
-                                <span style="margin-left: 20px;" class="containeruser"></span>
-                                <span class="containertrade"></span>
-                              </div>
-                          </div>
-                         
-                          <br>
-                          <table class="table table-stripped" id="dataTablesf" width="100%" cellspacing="0">
-                            <thead>
-                            <tr>
+                <div class="card shadow mb-4">
+                  <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Stock List</h6>
+                  </div>
+
+
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <br>
+
+                      <table class="table table-bordered" id="dataTablesf" width="100%" cellspacing="0">
+                        <thead>
+                          <tr>
                               <th>Stock Name</th>
                               <th>Symbol</th>
                               <th>Created Price</th>
                               <th>Date</th>
                             </tr>
-                            </thead>
-                            <tbody>
-                           
-                            </tbody>
-                          </table>                        
+                          <tbody>
+                        </tbody>
+                      </table>
                     </div>
+                  </div>
                 </div>
-             
-          </div>
 
-        </div>
+    </main>
+  </div>
+</section>
+
+</div><!-- container //  -->
+
 
       </div>
       <!-- End of Main Content -->
@@ -175,8 +219,12 @@ document.getElementById("NotifyLink").href = "/notification?tokendata="+tokens;
    document.getElementById("changePassLink").href = "/changePassword?tokendata="+tokens;  
    document.getElementById("AccountLink").href = "/account?tokendata="+tokens;  
 document.getElementById("StockLink").href = "/stocklist?tokendata="+tokens;
+document.getElementById("StockLinks").href = "/stocklist?tokendata="+tokens;
    document.getElementById("StockSearchLink").href = "/searchStock?tokendata="+tokens;
+           document.getElementById("TipSearchLink").href = "/alltipByDate?tokendata="+tokens;
         document.getElementById("NotifyListLink").href = "/notificationlist?tokendata="+tokens;
+ document.getElementById("AISearchLink").href = "/aiSearchByDate?tokendata="+tokens;
+document.getElementById("SoicalSearchLink").href = "/soicalSearchByDate?tokendata="+tokens;
 
 });
 
@@ -215,6 +263,8 @@ document.getElementById("StockLink").href = "/stocklist?tokendata="+tokens;
           if(len > 0){
           $('#dataTablesf').empty();
 
+          $("#countTipData").text("0");
+
            if ( $.fn.DataTable.isDataTable('#dataTablesf') ) {
                $('#dataTablesf').DataTable().destroy();
                $('.containeruser').empty();
@@ -222,6 +272,8 @@ document.getElementById("StockLink").href = "/stocklist?tokendata="+tokens;
               }
 
           }
+
+           $("#countTipData").text(len);
          
             $('#dataTablesf').dataTable( {
             "aaData": data,   
@@ -288,157 +340,7 @@ document.getElementById("StockLink").href = "/stocklist?tokendata="+tokens;
   
   });
 
-   $('#UserbutSaveData').on('click', function() {
-    var UserSelect = $('#sel_mentor').val();
-    // alert(UserSelect);
-    // var formdata = {userName : UserSelect};
-    var tokens = "eyJhbGciOiJIUzUxMiJ9.eyJlbWFpbCI6ImphaW4uYWthc2hAbm92YXNvZnRjb3Jwcy5jb20iLCJzdWIiOiI3ZmM5MjRiNy05YTE4LTRhNDctYjJkMS01NDI4ZDNiYzE2MWQiLCJpYXQiOjE2MjMzMTI0ODAsImV4cCI6MTYyMzkxNzI4MH0.xyQVU5Qs9lX3MP7FE0wCW-vf2YtQ_rppCVbrBn_EydlawagF-8f-W10ThlyubVPfD8nSlQSwNIoDdX3YU62I1Q";
-
-    var formdata = {userId : UserSelect};
-    if(UserSelect!=""){
-      $.ajax({
-        type: 'POST',
-        url: 'https://apistest.tradetipsapp.com/api/stripe/getAllInvoicesByUserId',
-        headers: {
-          Authorization: 'Bearer '+ tokens
-        },
-        data: formdata,
-        success: function(data, textStatus, jqXHR)
-        {
-          // alert(data);
-          var datak = JSON.stringify(data);
-          // alert(datak);
-          // console.log(datak);
-          var dataResultp = JSON.parse(datak); 
-          
-          var len = dataResultp.length;
-           // $('#dataTabless').empty();
-
-           // if ( $.fn.DataTable.isDataTable('#dataTables') ) {
-           //     $('#dataTabless').DataTable().destroy();
-           //    }
-
-          //    var serviceDatas = dataResultp.filter(function(s) { return s.productSubscription == null });
-
-          // var productDatas = dataResultp.filter(function(s) { return s.serviceSubscription == null });
-           if(len > 0){
-          $('#dataTabless').empty();
-
-           if ( $.fn.DataTable.isDataTable('#dataTabless') ) {
-               $('#dataTabless').DataTable().destroy();
-               $('.containerk').empty();
-              }
-
-          }
-         
-
-           $('#dataTabless').dataTable( {
-            "aaData": data,   
-            "lengthMenu": [ 500, 1000, 2000, 3000, 4000, 5000 ],
-            "pageLength": 500,
-            // "aaSorting": [[ 0, "desc" ]],
-            // "columnDefs": [ {
-            // "targets": 4,
-            // "orderable": false
-            // } ],
-            "columns": [
-            
-                // { "data": "productSubscription.userId" },
-                // { "data": "serviceSubscription.userName" },
-                 { "data": "productSubscription.userName",
-                  "title":"Username",
-                   "render": function(data, type, full, meta){
-                    return data;
-                  }
-                },
-                { "data": "createdOn",
-                   "name":"date",
-                   "visible":true,
-                   "title":"Date Created",
-                   "render": function(data, type, full, meta){
-                    if(type == "display"){
-                            var date = new Date(data);
-                            var options = {year: "numeric", month: "long", day: "numeric"};
-
-                            return date.toLocaleDateString('en-US', options);
-                    }
-
-                    return data;
-                  }
-            },  
-            { "data": "productSubscription.subscriptionPlan.subscriptionType",
-                  "title":"Subscription",
-                   "render": function(data, type, full, meta){
-                    return data;
-                  }
-                },
-                 { "data": "stripeSubscriptionId",
-                  "title":"Service Type",
-                   "render": function(data, type, full, meta){
-                    return data;
-                  }
-                },
-                {
-                  "data": "amountPaid" , "sClass": "price", "title":"Price",
-                  render: function (data, type, row, meta) {
-                     if(type === 'display'){
-                        var symbol = "$";
-
-                        var num = $.fn.dataTable.render.number(',', '.', 2, symbol).display(data);              
-                        return num ;           
-                     } else {           
-                        return data;
-                     }
-                  }
-              },
-
-
-              // { "data" : "percentOff"},
-              // { "data" : "amountPaid" * "percentOff" / 100},              
-            ], 
-           
-            "deferRender": true,
-            rowCallback: function ( row, data ) {
-            // Set the checked state of the checkbox in the table
-            // $('input.editor-active', row).prop( 'checked', data.isFlag == true );
-        }
-
-
-
-        });
-
-var total = 0;
-$('td.price').each(function() {
-  // parseInt(num.replace(/[$,]/g, ''))
-
-  total += parseInt($(this).text().replace(/[$,]/g, ''));
-  // alert(total);
-});
-$('.containerk').append("<div class='sum' style='text-align:end;line-height:0px;'><b>Total<b> :<b><span> $" + total + "</span></b></div>");
-// alert(total);
-
-
-        },
-
-        error: function (jqXHR, textStatus, errorThrown)
-        {
-           alert("No data");
-        }
-
-
-      });
-
-
-
-
-      
-    }
-    else{
-      alert('Please fill all the field !');
-    }
   
-  
-  });
 </script>
 
 </body>

@@ -23,6 +23,18 @@ module.exports = function(app, passport) {
   });
 
 
+  app.get('/aiSearchByDate', function(req, res) {
+
+    res.render('aiSearchByDate.ejs');
+  });
+
+  
+  app.get('/soicalSearchByDate', function(req, res) {
+
+    res.render('soicalSearchByDate.ejs');
+  });
+
+
   app.get('/searchStock', function(req, res) {
 
     res.render('searchStock.ejs');

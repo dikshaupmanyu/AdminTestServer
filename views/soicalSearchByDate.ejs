@@ -24,23 +24,24 @@ li.nav-item.active {
   background: black;
   color: white;
 }
+
 </style>
 
 
 </head>
 
 <div class="container">
-  <h2>Analytics</h2> 
+  <h2>Analytics</h2>
 <section class="section-content py-3">
   <div class="row">
     <aside class="col-lg-3"> 
 <!-- ============= COMPONENT ============== -->
       <nav class="sidebar card py-2 mb-4">
-    <ul class="nav flex-column" id="nav_accordion">
+     <ul class="nav flex-column" id="nav_accordion">
         <li class="nav-item">
           <a class="nav-link" id="StockLinks">Search Stock By User </a>
         </li>
-        <li class="nav-item active">
+        <li class="nav-item">
           <a class="nav-link" id="StockSearchLink"> Search Stock By Date </a>
         </li>
         <li class="nav-item">
@@ -49,7 +50,7 @@ li.nav-item.active {
         <li class="nav-item">
           <a class="nav-link" id="AISearchLink"> Search AI Count By Date</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item active">
           <a class="nav-link" id="SoicalSearchLink"> Search Soical Chat Count By Date</a>
         </li>
       </ul>
@@ -57,13 +58,13 @@ li.nav-item.active {
 <!-- ============= COMPONENT END// ============== --> 
     </aside>
     <main class="col-lg-9">
-     <h4>Search Stock By Date</h4> 
+            <h4>Search Soical Chat Count By Date</h4> 
               <div class="card-body">
-                 <form autocomplete="off" class="form" role="form">
+                  <form autocomplete="off" class="form" role="form">
                             <div class="form-row">                        
                                 <label class="col-lg-2 col-form-label form-control-label">Start Date</label>
                                 <div class="col-lg-3">
-                                  <input class="form-control" type="date" id="start_date" min="1997-01-01" max="2030-12-31" placeholder="yyyy-mm-dd">
+                                  <input class="form-control" type="date" id="start_dates" min="1997-01-01" max="2030-12-31" placeholder="yyyy-mm-dd">
                                 </div>
 
                                  <div class="col-lg-2">
@@ -71,7 +72,7 @@ li.nav-item.active {
                               
                                  <label class="col-lg-2 col-form-label form-control-label">End Date</label>
                                 <div class="col-lg-3">
-                                  <input class="form-control" type="date" id="end_date" min="1997-01-01" max="2030-12-31" placeholder="yyyy-mm-dd">
+                                  <input class="form-control" type="date" id="end_dates" min="1997-01-01" max="2030-12-31" placeholder="yyyy-mm-dd">
                                 </div>
                             </div>
                             <br>
@@ -79,39 +80,14 @@ li.nav-item.active {
                               <label class="col-lg-3 col-form-label form-control-label"></label>
                               <div class="col-lg-9">
                                 <input class="btn btn-secondary" type="reset" value="Cancel"> 
-                                <input class="btn btn-primary" type="button" value="Search Stock" id="MentorBtnData">
+                                <input class="btn btn-primary" type="button" value="Get Count" id="MentorBtnChatData">
                                </div>
                             </div>
                           </form>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">Total Counts : <span id="countChatData">0</span></div>
                         
-                     <div class="h5 mb-0 font-weight-bold text-gray-800">Total Counts : <span id="countStockData">0</span></div>
-
+                          
                  </div>
-
-                <div class="card shadow mb-4">
-                  <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Stock List</h6>
-                  </div>
-
-
-                  <div class="card-body">
-                    <div class="table-responsive">
-                      <br>
-
-                      <table class="table table-bordered" id="dataTablesf" width="100%" cellspacing="0">
-                        <thead>
-                          <tr>
-                              <th>Stock Name</th>
-                              <th>Symbol</th>
-                              <th>Date</th>
-                            </tr>
-                          <tbody>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                </div>
-
     </main>
   </div>
 </section>
@@ -119,8 +95,6 @@ li.nav-item.active {
 </div><!-- container //  -->
 
 
-       
-        
       </div>
       <!-- End of Main Content -->
 
@@ -222,12 +196,12 @@ document.getElementById("NotifyLink").href = "/notification?tokendata="+tokens;
    document.getElementById("AccountLink").href = "/account?tokendata="+tokens;  
 document.getElementById("StockLink").href = "/stocklist?tokendata="+tokens;
 document.getElementById("StockLinks").href = "/stocklist?tokendata="+tokens;
-
    document.getElementById("StockSearchLink").href = "/searchStock?tokendata="+tokens;
+           document.getElementById("TipSearchLink").href = "/alltipByDate?tokendata="+tokens;
         document.getElementById("NotifyListLink").href = "/notificationlist?tokendata="+tokens;
-   document.getElementById("TipSearchLink").href = "/alltipByDate?tokendata="+tokens;
  document.getElementById("AISearchLink").href = "/aiSearchByDate?tokendata="+tokens;
 document.getElementById("SoicalSearchLink").href = "/soicalSearchByDate?tokendata="+tokens;
+
 });
 
 
@@ -241,95 +215,37 @@ document.getElementById("SoicalSearchLink").href = "/soicalSearchByDate?tokendat
   var url_string = window.location.href; 
   var urls = new URL(url_string);
   var tokens = urls.searchParams.get("tokendata");
-  $('#MentorBtnData').on('click', function() {
-    var startDates = $('#start_date').val();
-    // alert(moment(startDates).format("YYYY-MM-DD HH:mm:ss"));
+    $('#MentorBtnChatData').on('click', function() {
+    var startDates = $('#start_dates').val();
     var finalstartdate = moment(startDates).format("YYYY-MM-DD HH:mm:ss");
-    var endDates = $('#end_date').val();
+    // alert(finalstartdate);
+    var endDates = $('#end_dates').val();
     var finalenddate = moment(endDates).format("YYYY-MM-DD HH:mm:ss");
+    // alert(finalenddate);
     var formdata = {fromDate : finalstartdate , toDate : finalenddate};
+    // alert(JSON.stringify(formdata));
       $.ajax({
         type: 'POST',
-        url: 'https://apistest.tradetipsapp.com/api/dataAnalytics/getAllSearchStockByDate',
+        url: 'https://apistest.tradetipsapp.com/api/dataAnalytics/getSocialChatCountByDate',
         headers: {
           Authorization: 'Bearer '+ tokens
         },
         data: formdata,
         success: function(data, textStatus, jqXHR)
         {
+          $("#countChatData").text(data);
           // alert(data);
-          var datak = JSON.stringify(data);
-          var dataResultp = JSON.parse(datak); 
-          var len = dataResultp.length;
+          // var datak = JSON.stringify(data);
+          // var dataResultp = JSON.parse(datak); 
+          // var len = dataResultp.length;
           // // alert(len);
-          if(len > 0){
-
-           $("#countStockData").text("0");
-
-          $('#dataTablesf').empty();
-
-           if ( $.fn.DataTable.isDataTable('#dataTablesf') ) {
-               $('#dataTablesf').DataTable().destroy();
-               $('.containeruser').empty();
-               $('.containertrade').empty();
-              }
-
-          }
-
-           $("#countStockData").text(len);
-         
-            $('#dataTablesf').dataTable( {
-            "aaData": data,   
-            "lengthMenu": [ 500, 1000, 2000, 3000, 4000, 5000 ],
-            "pageLength": 500,
-            "columns": [
-            
-                { "data": "stockName",
-                   "title" : "Stock Name",
-                   "render": function(data, type, full, meta){
-                    return data;
-                }
-                },
-                 { "data": "stockSymbol",
-                   "title" : "Stock Symbol",
-                   "render": function(data, type, full, meta){
-                    return data;
-                }
-                },
-                { 
-                  "data": "createdOn",
-                   "name":"date",
-                   "visible":true,
-                   "title":"Date Created",
-                   "render": function(data, type, full, meta){
-                    if(type == "display"){
-                            var date = new Date(data);
-                            var options = {year: "numeric", month: "long", day: "numeric"};
-
-                            var sdates =  date.toUTCString('en-US', options);
-                            var fstring = sdates.substring(0,16);
-                            return fstring;
-                    }
-
-                    return data;
-                  }
-                },
-            ], 
-            "deferRender": true,
-            rowCallback: function ( row, data ) {
-          
-        }
-
-
-
-        });
-
 
         },
 
         error: function (jqXHR, textStatus, errorThrown)
         {
-           alert("No data");
+           $("#countChatData").text('0');
+           // alert("No data");
         }
 
 
@@ -337,7 +253,8 @@ document.getElementById("SoicalSearchLink").href = "/soicalSearchByDate?tokendat
   
   });
 
-  
+
+ 
 </script>
 
 </body>
