@@ -25,6 +25,84 @@
     background-color: black;
     background-image: none;
   }
+  *{
+    margin: 0;
+    padding:0;
+    box-sizing: border-box;
+}
+html,body{
+    height:100%;
+    /* background:linear-gradient(to top right, #80cbc4, #e1bee7,#80ddea,#d1c4e9); */
+}
+/* .sidebar{
+    width: 200px;
+    position: absolute;
+    top:0;
+    bottom:0;
+    border-radius:10px;
+   
+} */
+nav ul{
+    position: relative;
+    list-style-type:none;
+}
+.sidebar ul li a{
+    display:flex;
+    align-items: center;
+    font-family: arial;
+    font-size:1em;
+    text-decoration: none;
+    text-transform:capitalize;
+    color:#fff;
+    padding:30px 30px;
+    height:50px;
+    transition: .6s ease;
+    border-radius:0 30px; 
+}
+.sidebar ul li a:hover{
+    background: rgba(117, 117, 117, 0.993);
+    color:black;
+}
+.sidebar ul li ul{
+    position:absolute;
+    left:225px;
+    width:250px;
+    top:0;
+    display:none;
+    font-size:13px ;
+    background:rgb(17, 17, 17);
+    border-radius:5px;
+    box-shadow:2px 2px 10px rgba(26, 22, 22, 0.877);
+    z-index: 100;
+  }
+
+.sidebar ul li ul:hover {
+  color:black;
+  border-radius:5px;
+  background-color:rgb(15, 15, 15);
+  width:250px; 
+}
+
+
+.sidebar ul li{
+    position:relative;
+    top:10px;
+    margin-left:0.5px;
+}
+.sidebar ul li:hover ul{
+    display:initial;
+}
+
+sidebar .nav-item .nav-link i{
+  margin-right:0.50rem
+}
+
+.far{
+  color:#fff;
+ font-weight:bold;
+ margin-left: 80px;
+}
+
 </style>
 
 <body id="page-top">
@@ -47,74 +125,104 @@
       <hr class="sidebar-divider my-0">
 
       <!-- Nav Item - Dashboard -->
-      <li class="nav-item active">
-        <a class="nav-link" id="HomeLink">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span></a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" id="UserLink">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>UserList</span></a>
-      </li>
-       <li class="nav-item active">
-        <a class="nav-link" id="WaitingLink">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Waiting List</span></a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" id="StockLink">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Analytics</span></a>
-      </li>
-       <li class="nav-item active">
-        <a class="nav-link" id="CommentLink">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Comment List</span></a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" id="CSVLink">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>CSV List</span></a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" id="TipLink">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Tips Management</span></a>
-      </li>
+      <nav class="sidebar">
+        <ul>
+          <li class="nav-item active">
+            <a class="nav-link"  id="HomeLink">
+              <i class="fas fa-fw fa-tachometer-alt"></i>
+              <span>Dashboard</span>
+          </a>
+        </li>
         <li class="nav-item active">
-        <a class="nav-link" id="NotifyLink">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Notification Management</span></a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" id="NotifyListLink">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Send Notification List</span></a>
-      </li>
-       <li class="nav-item active">
-        <a class="nav-link" id="BannerLink">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Banner Management</span></a>
-      </li>
-    
+          <a class="nav-link" id="UserLink">
+            <i class="fas fa-fw fa-tachometer-alt"></i> 
+            <span>UserList</span>
+          </a>
+        </li>
         <li class="nav-item active">
-        <a class="nav-link" id="FlagCallLink">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Flag Comment List</span></a>
-      </li>
-
-       <li class="nav-item active">
-        <a class="nav-link" id="FlagChatLink">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Flag Chat Messages</span></a>
-      </li>
-       <li class="nav-item active">
-        <a class="nav-link" id="AccountLink">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Account Management</span></a>
-      </li>
-
+          <a class="nav-link" id="WaitingLink">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Waiting List</span>
+          </a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" id="StockLink">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Analytics <span><i class="far fa-greater-than"></i></span></span>
+          </a>
+            <ul class="nav flex-column" id="nav_accordion">
+              <li class="nav-item active">
+                <a class="nav-link" id="StockLinks">Search Stock By User </a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" id="StockSearchLink"> Search Stock By Date </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="TipSearchLink"> Search Tip By Date </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="AISearchLink"> Search AI Count By Date</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="SoicalSearchLink"> Search Soical Chat Count By Date</a>
+              </li>
+            </ul>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" id="CommentLink">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Comment List</span>
+          </a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" id="CSVLink">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>CSV List</span>
+          </a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" id="TipLink">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Tips Management</span>
+          </a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" id="NotifyLink">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Notification Management</span>
+          </a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" id="NotifyListLink">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Send Notification List</span>
+          </a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" id="BannerLink">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Banner Management</span>
+          </a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" id="FlagCallLink">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Flag Comment List</span>
+          </a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link"  id="FlagChatLink">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Flag Chat Messages</span>
+          </a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" id="AccountLink">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Account Management</span>
+          </a>
+        </li>
+        
       <!-- Divider -->
       <!-- <hr class="sidebar-divider"> -->
 
@@ -199,11 +307,14 @@
  -->
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
-
+    </ul>
+  </nav>
       <!-- Sidebar Toggler (Sidebar) -->
       <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
       </div>
+
+   
 
     </ul>
     <!-- End of Sidebar -->

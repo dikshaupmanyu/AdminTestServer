@@ -1369,6 +1369,7 @@ app.get('/backmale', isLoggedIn, function(req, res) {
     
   });
 
+
   app.get('/tipPage',  function(req, res) {
 
     // console.log(req);
