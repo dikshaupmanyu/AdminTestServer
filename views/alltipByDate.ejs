@@ -24,17 +24,44 @@ li.nav-item.active {
   background: black;
   color: white;
 }
+li.nav-item {
+    color: white;
+}
+
 </style>
 
 
 </head>
 
-<div class="container">
-  <h2>Analytics</h2>
+<div class="container" style="margin-top: -30px;">
 <section class="section-content py-3">
   <div class="row">
-    
-    <div class="container-fluid">
+     <aside class="col-lg-3"> 
+<!-- ============= COMPONENT ============== -->
+      <nav class="sidebar card py-2 mb-4" style="background: grey;color: black;border: grey;margin-left: -15px;">
+        <h2 style="color: white;margin-left: 10px;">Analytics</h2> 
+        <ul class="nav flex-column" id="nav_accordion">
+        <li class="nav-item">
+          <a class="nav-link" id="StockLinks">Stocks User Search </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="StockSearchLink"> Stock By Date </a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" id="TipSearchLink"> Tip By Date </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="AISearchLink"> AI Count By Date</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="SoicalSearchLink"> Soical Chat Count By Date</a>
+        </li>
+      </ul>
+      </nav>
+<!-- ============= COMPONENT END// ============== --> 
+    </aside>
+  
+     <main class="col-lg-9">
             <h4>Search Tip By Date</h4> 
               <div class="card-body">
                           <form autocomplete="off" class="form" role="form">
@@ -90,7 +117,7 @@ li.nav-item.active {
                   </div>
                 </div>
 
-    </div>
+    </main>
   </div>
 </section>
 
@@ -197,6 +224,7 @@ document.getElementById("NotifyLink").href = "/notification?tokendata="+tokens;
    document.getElementById("changePassLink").href = "/changePassword?tokendata="+tokens;  
    document.getElementById("AccountLink").href = "/account?tokendata="+tokens;  
 document.getElementById("StockLink").href = "/stocklist?tokendata="+tokens;
+document.getElementById("StockLinks").href = "/stocklist?tokendata="+tokens;
    document.getElementById("StockSearchLink").href = "/searchStock?tokendata="+tokens;
            document.getElementById("TipSearchLink").href = "/alltipByDate?tokendata="+tokens;
         document.getElementById("NotifyListLink").href = "/notificationlist?tokendata="+tokens;
