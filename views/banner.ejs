@@ -1531,7 +1531,7 @@ var formdata = new FormData();
    .then(function(data) {
     var datak = JSON.stringify(data);
     var data_Result = JSON.parse(datak);
-     var countdataa = data_Result.filter(function(s) { return s.isSingleBanner == true } ); 
+     var countdataa = data_Result.filter(function(s) { return s.singleBanner == true } ); 
           $('#dataTablesone').dataTable( {
            "aaData": countdataa, 
            "lengthMenu": [ 500, 1000, 2000, 3000, 4000, 5000 ],
@@ -1804,7 +1804,7 @@ var formdata = new FormData();
    .then(function(data) {
     var datak = JSON.stringify(data);
     var data_Result = JSON.parse(datak);
-     var countdataa = data_Result.filter(function(s) { return s.isSingleBanner == false } ); 
+     var countdataa = data_Result.filter(function(s) { return s.singleBanner == false } ); 
           $('#dataTables').dataTable( {
            "aaData": countdataa, 
            "lengthMenu": [ 500, 1000, 2000, 3000, 4000, 5000 ],

@@ -56,6 +56,9 @@ li.nav-item {
         <li class="nav-item">
           <a class="nav-link" id="SoicalSearchLink"> Soical Chat Count By Date</a>
         </li>
+          <li class="nav-item">
+          <a class="nav-link" id="PredictionLink"> 5-Day Prediction</a>
+        </li>
       </ul>
       </nav>
 <!-- ============= COMPONENT END// ============== --> 
@@ -230,6 +233,7 @@ document.getElementById("StockLinks").href = "/stocklist?tokendata="+tokens;
         document.getElementById("NotifyListLink").href = "/notificationlist?tokendata="+tokens;
  document.getElementById("AISearchLink").href = "/aiSearchByDate?tokendata="+tokens;
 document.getElementById("SoicalSearchLink").href = "/soicalSearchByDate?tokendata="+tokens;
+document.getElementById("PredictionLink").href = "/fiveDayPrediction?tokendata="+tokens;
 
 });
 

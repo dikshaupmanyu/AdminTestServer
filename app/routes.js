@@ -17,11 +17,16 @@ module.exports = function(app, passport) {
     res.render('stocklist.ejs');
   });
 
+  app.get('/fiveDayPrediction', function(req, res) {
+
+    res.render('fiveDayPrediction.ejs');
+  });
+
+
   app.get('/alltipByDate', function(req, res) {
 
     res.render('alltipByDate.ejs');
   });
-
 
   app.get('/aiSearchByDate', function(req, res) {
 
