@@ -12,6 +12,11 @@ module.exports = function(app, passport) {
     res.render('commentlist.ejs');
   });
 
+  app.get('/contactlist', function(req, res) {
+
+    res.render('contactlist.ejs');
+  });
+
   app.get('/stocklist', function(req, res) {
 
     res.render('stocklist.ejs');
@@ -72,6 +77,13 @@ app.get('/viewBannerDetail', function(req, res) {
       var bannerId = req.query.id;
 
     res.render('viewBanner.ejs', {bannersId : bannerId });
+  });
+
+app.get('/viewNotificationDetail', function(req, res) {
+
+      var bannerId = req.query.id;
+
+    res.render('viewNotification.ejs', {bannersId : bannerId });
   });
 
    app.get('/account', function(req, res) {
