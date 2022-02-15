@@ -296,7 +296,7 @@ document.getElementById("PredictionLink").href = "/fiveDayPrediction?tokendata="
           if(len > 0){
           $('#dataTablesf').empty();
 
-          $("#countTipData").text(len);
+          $("#countTipData").text("0");
 
            if ( $.fn.DataTable.isDataTable('#dataTablesf') ) {
                $('#dataTablesf').DataTable().destroy();
@@ -305,6 +305,8 @@ document.getElementById("PredictionLink").href = "/fiveDayPrediction?tokendata="
               }
             
           }
+
+          $("#countTipData").text(len);
 
          
             $('#dataTablesf').dataTable( {

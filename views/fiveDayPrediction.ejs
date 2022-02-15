@@ -263,7 +263,8 @@ window.addEventListener("load", function() {
           if(len > 0){
           $('#dataTableone').empty();
 
-          $("#countTipData").text(len);
+          $("#countTipData").text("0");
+
 
            if ( $.fn.DataTable.isDataTable('#dataTableone') ) {
                $('#dataTableone').DataTable().destroy();
@@ -271,6 +272,9 @@ window.addEventListener("load", function() {
               }
             
           }
+
+
+          $("#countTipData").text(len);
 
          
             $('#dataTableone').dataTable( {
@@ -338,6 +342,7 @@ var settings = {
 
 $.ajax(settings).done(function (response) {
        var dataResultsdetail = JSON.parse(response); 
+
            $('#dataTabletwo').dataTable( {
            "aaData": dataResultsdetail, 
            "lengthMenu": [ 500, 1000, 2000, 3000, 4000, 5000 ],
@@ -376,6 +381,10 @@ fetch(url1, {
       // alert(data);
        var datak = JSON.stringify(data);
        var dataResults = JSON.parse(datak); 
+        var totalds = dataResults.length;
+
+          $("#countTipData").text(totalds);
+
            $('#dataTableone').dataTable( {
            "aaData": dataResults, 
            "lengthMenu": [ 500, 1000, 2000, 3000, 4000, 5000 ],
