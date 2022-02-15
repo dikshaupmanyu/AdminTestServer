@@ -301,7 +301,7 @@ $('#butSaveData').on('click', function() {
 
     if(UserSelect!=""){
        var formdata = {userName : UserSelect,limit:"10000",offset:"0"};
-       alert(formdata.userName);
+       // alert(formdata.userName);
        if(formdata.userName == "ALL"){
         var formdata = {limit:"10000",offset:"0"};
           $.ajax({
