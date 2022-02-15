@@ -227,6 +227,7 @@ $.ajax(settings).done(function (response) {
            "aaData": dataResultsdetail, 
            "lengthMenu": [ 500, 1000, 2000, 3000, 4000, 5000 ],
            "pageLength": 500,
+           "order": [[ 1, "desc" ]],
              "columns": [
                
                { "data": "stockSymbol"},
@@ -264,7 +265,8 @@ fetch(url1, {
            "aaData": dataResults, 
            "lengthMenu": [ 500, 1000, 2000, 3000, 4000, 5000 ],
            "pageLength": 500,
-            "ordering": false,
+            // "ordering": false,
+            "order": [[ 2, "desc" ]],
              "columns": [
                
                { "data": "stockSymbol"},
