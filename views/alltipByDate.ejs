@@ -296,7 +296,7 @@ document.getElementById("PredictionLink").href = "/fiveDayPrediction?tokendata="
           if(len > 0){
           $('#dataTablesf').empty();
 
-          $("#countTipData").text("0");
+          $("#countTipData").text(len);
 
            if ( $.fn.DataTable.isDataTable('#dataTablesf') ) {
                $('#dataTablesf').DataTable().destroy();
