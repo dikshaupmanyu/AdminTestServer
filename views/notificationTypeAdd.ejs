@@ -546,6 +546,9 @@ window.addEventListener("load", function() {
        formdata.append("userType", "SelectedUser");
        formdata.append("userIds" , filterdata);
     }
+
+
+    alert(JSON.stringify(formdata));
     
 
     var requestOptions = {
@@ -556,6 +559,8 @@ window.addEventListener("load", function() {
       body: formdata,
       redirect: 'follow'
     };
+
+
 
     fetch("https://apistest.tradetipsapp.com/api/adBannerSimpleNotification/sendFCMNotificationForSimpleAdBannerWithUserType", requestOptions)
       .then(response => response.json())
