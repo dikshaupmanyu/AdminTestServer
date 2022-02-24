@@ -324,19 +324,19 @@ fetch(url, {
                              "sSearch": "<span>Search Stocks</span> _INPUT_" //search
                            },
                            "columns": [
-                               { "data": "id" ,
-                                 "title" : "Id",
+                               { "data": "userName" ,
+                                 "title" : "Username",
                                 "render": function(data, type, full, meta){
                                  return data;
                                }
                                },
-                               { "data": "stockSymbol" ,
+                               { "data": "userStockDetail.stockSymbol" ,
                                  "title" : "Stock Symbol",
                                   "render": function(data, type, full, meta){
                                    return data;
                                  }
                                 },
-                               { "data": "stockName" ,
+                               { "data": "userStockDetail.stockName" ,
                                "title" : "Stock Name",
                               "render": function(data, type, full, meta){
                                return data;
@@ -390,19 +390,19 @@ $('#butSaveData').on('click', function() {
                   "sSearch": "<span>Search Stocks</span> _INPUT_" //search
                 },
                 "columns": [
-                    { "data": "id" ,
-                      "title" : "Id",
+                    { "data": "userName" ,
+                      "title" : "Username",
                      "render": function(data, type, full, meta){
                       return data;
                     }
                     },
-                    { "data": "stockSymbol" ,
+                    { "data": "userStockDetail.stockSymbol" ,
                       "title" : "Stock Symbol",
                        "render": function(data, type, full, meta){
                         return data;
                       }
                      },
-                    { "data": "stockName" ,
+                    { "data": "userStockDetail.stockName" ,
                     "title" : "Stock Name",
                    "render": function(data, type, full, meta){
                     return data;
@@ -451,19 +451,19 @@ $('#butSaveData').on('click', function() {
                   "sSearch": "<span>Search Stocks</span> _INPUT_" //search
                 },
                 "columns": [
-                    { "data": "id" ,
-                      "title" : "Id",
+                    { "data": "userName" ,
+                      "title" : "Username",
                      "render": function(data, type, full, meta){
                       return data;
                     }
                     },
-                    { "data": "stockSymbol" ,
+                    { "data": "userStockDetail.stockSymbol" ,
                       "title" : "Stock Symbol",
                        "render": function(data, type, full, meta){
                         return data;
                       }
                      },
-                    { "data": "stockName" ,
+                    { "data": "userStockDetail.stockName" ,
                     "title" : "Stock Name",
                    "render": function(data, type, full, meta){
                     return data;
