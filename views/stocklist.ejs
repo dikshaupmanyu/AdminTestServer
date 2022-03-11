@@ -25,6 +25,26 @@ li.nav-item.active {
 li.nav-item {
     color: white;
 }
+.loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
 
 </style>
 
@@ -63,6 +83,7 @@ li.nav-item {
     </aside>
   
     <main class="col-lg-9">
+     
               <h4>Stock User Searched </h4> 
               <div class="card-body">
                 <form autocomplete="off" class="form" role="form">
@@ -93,7 +114,12 @@ li.nav-item {
                      </div>
                   </div>
                 </form>
-
+                <!-- <div class="loader"></div> -->
+                <div class="text-center">
+                  <div class="spinner-border" role="status" id="spinner-border">
+                    <span class="sr-only">Loading...</span>
+                  </div>
+                </div>
                 <div class="h5 mb-0 font-weight-bold text-gray-800">Total Counts : <span id="countStockListData">0</span></div>
               </div>
 
@@ -243,6 +269,19 @@ href=
 //change selectboxes to selectize mode to be searchable
    $("select").select2();
 });
+</script>
+
+
+<script type="text/javascript">
+  	$(".table.table-bordered").load(function() {
+		// Animate loader off screen
+		$("#spinner-border").fadeOut("slow");;
+	});
+// const myTimeout = setTimeout(myGreating, 200000);
+
+// function myGreating() {
+//   document.getElementById("spinner-border").style.display="none"
+// }
 </script>
 
   <!-- Custom scripts for all pages-->
