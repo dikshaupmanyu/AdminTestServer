@@ -30,6 +30,8 @@ li.nav-item {
 
 
 </head>
+  <link rel="stylesheet" type="text/css" href="dist/pagination.min.css">
+
 
 <div class="container" style="margin-top: -30px;">
 <section class="section-content py-3">
@@ -95,28 +97,51 @@ li.nav-item {
                 </form>
 
                 <div class="h5 mb-0 font-weight-bold text-gray-800">Total Counts : <span id="countStockListData">0</span></div>
-              </div>
 
+               
+              </div>
+               <div class="form-group row">
+                    <label class="col-lg-6 col-form-label form-control-label"></label>
+                    <div class="col-lg-6">
+                    <input type="text" class="form-control" id="myInput" placeholder="Enter keyword to search">
+                     </div>
+                  </div>
+              
                 <div class="card shadow mb-4">
                   <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">Stock List</h6>
+
                   </div>
 
-
+                
                   <div class="card-body">
-                    <div class="table-responsive">
-                      <br>
 
+
+                    <div class="table-responsive">
                       <table class="table table-bordered" id="dataTables" width="100%" cellspacing="0">
                         <thead>
                           <tr>
-                            <th>Id</th>
-                            <th>Stock Symbol</th>
+                            <th>Username</th>
                             <th>Stock Name</th>
+                            <th>Stock Symbol</th>
                            </tr>
-                          <tbody>
+                          <tbody id="dataTablesdata">
                         </tbody>
                       </table>
+<!-- <p>
+    <a href="#" id="btn-prev">Prev</a>
+    <a href="#" id="btn-next">Next</a>
+</p>
+<p>Page <span id="page"></span></p>
+                    </div> -->
+                       
+                       <div class="box">
+      <ul id="example-1" class="pagination"></ul>
+      <div class="show"></div>
+  </div>
+
+
+
                     </div>
                   </div>
                 </div>
@@ -210,9 +235,11 @@ li.nav-item {
     </div>
   </div>
 
+
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
 
   <!-- Core plugin JavaScript-->
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
@@ -257,7 +284,18 @@ href=
   <script src="js/demo/datatables-demo.js"></script>
 
 
+<script type="text/javascript" src="dist/pagination.min.js"></script>
+
   <script type="text/javascript">
+
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#dataTablesdata tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
 
 window.history.forward(); 
         function noBack() { 
@@ -295,65 +333,280 @@ fetch(url, {
   .catch(function(error) {
     console.log(error);
   });
-               var formdata = {limit:"1000000",offset:"0"};
-               alert("It will take few seconds to load data Loading...");
-                 $.ajax({
+
+  
+  var datasize = 50;
+  var datano = 0 ;
+
+    function showingdata(pageNo,pageSize){
+              alert(pageNo,pageSize);
+
+               var valdata = {pageSize:pageSize,pageNo:pageNo};
+
+               var form = new FormData();
+                form.append("pageSize", pageSize);
+                form.append("pageNo", pageNo);
+
+                var settings = {
+                  "async": true,
+                  "crossDomain": true,
+                  "url": "https://apistest.tradetipsapp.com/api/dataAnalytics/getAllSearchStockOfUserByUserNamePagination",
+                  "method": "POST",
+                  "headers": {
+                    "authorization": "Bearer "+ tokens,
+                    "cache-control": "no-cache",
+                    "postman-token": "2cc661ec-8140-df73-6bb1-494e836c9f15"
+                  },
+                  "processData": false,
+                  "contentType": false,
+                  "data": form
+                }
+
+                $.ajax(settings).done(function (response) {
+                    var datak = JSON.stringify(response);
+                      var dataResultps = JSON.parse(datak); 
+                     const listing_table = document.getElementById('dataTablesdata');
+                      var jsp_json_object = dataResultps.userStockDetailList; 
+                      // alert(jsp_json_object);
+                      for(let i = 0; i < jsp_json_object.length ; i++){
+                          // console.log(jsp_json_object[i].stockSymbol);
+                           listing_table.innerHTML += `<tr><td>${jsp_json_object[i].userName}</td><td>${jsp_json_object[i].userStockDetail.stockName}</td><td>${jsp_json_object[i].userStockDetail.stockSymbol}</td></tr>`;
+                        }
+                    
+                });
+
+               // $.ajax({
+               //     type: 'POST',
+               //     url: 'https://apistest.tradetipsapp.com/api/dataAnalytics/getAllSearchStockOfUserByUserNamePagination',
+               //     headers: {
+               //       Authorization: 'Bearer '+ tokens
+               //     },
+               //     data: valdata,
+               //      success: function (data) {
+                     //  var datak = JSON.stringify(data);
+                     //  var dataResultps = JSON.parse(datak); 
+
+                     //  var finalvalss = dataResultps.totalCount;
+                     //  $("#countStockListData").text(finalvalss);
+                     // const listing_table = document.getElementById('dataTablesdata');
+                     //  var jsp_json_object = dataResultps.userStockDetailList; 
+                     //  alert(jsp_json_object[50].id);
+                     //  for(let i = 51; i < 100 ; i++){
+                     //      console.log(jsp_json_object[i].id);
+                     //       listing_table.innerHTML += `${jsp_json_object[i].id}<br>`;
+                     //    }
+                      // }
+               //      });
+
+       }
+  
+
+              // function recursively_ajax(pageNo) {
+                  $.ajax({
                    type: 'POST',
-                   url: 'https://apistest.tradetipsapp.com/api/dataAnalytics/getAllSearchStockOfUserByUserName',
+                   url: 'https://apistest.tradetipsapp.com/api/dataAnalytics/getAllSearchStockOfUserByUserNamePagination',
                    headers: {
                      Authorization: 'Bearer '+ tokens
                    },
-                   data: formdata,
-                   success: function(data, textStatus, jqXHR){
-                     var datak = JSON.stringify(data);
-                     var dataResultp = JSON.parse(datak); 
-                     var len = dataResultp.length;
-                      $('#dataTables').empty();
-           
-                      $("#countStockListData").text(len);
-           
-                      if ( $.fn.DataTable.isDataTable('#dataTables') ) {
-                          $('#dataTables').DataTable().destroy();
-                         }
-           
-                      $('#dataTables').dataTable( {
-                           "aaData": data,   
-                           "lengthMenu": [ 500, 1000, 2000, 3000, 4000, 5000 ],
-                           "pageLength": 500,
-                           "oLanguage": {
-                             "sSearch": "<span>Search Stocks</span> _INPUT_" //search
-                           },
-                           "columns": [
-                               { "data": "userName" ,
-                                 "title" : "Username",
-                                "render": function(data, type, full, meta){
-                                 return data;
-                               }
-                               },
-                               { "data": "userStockDetail.stockSymbol" ,
-                                 "title" : "Stock Symbol",
-                                  "render": function(data, type, full, meta){
-                                   return data;
-                                 }
-                                },
-                               { "data": "userStockDetail.stockName" ,
-                               "title" : "Stock Name",
-                              "render": function(data, type, full, meta){
-                               return data;
-                               }
-                              },             
-                           ],
-                           "deferRender": true,
-                           rowCallback: function ( row, data ) {
-                           // Set the checked state of the checkbox in the table
-                           // $('input.editor-active', row).prop( 'checked', data.isFlag == true );
-                           }
-            
-                     });
-                
-               }
+                   data: {pageSize:50,pageNo:1},
+                    success: function (data) {
+                      var datak = JSON.stringify(data);
+                      var dataResultps = JSON.parse(datak); 
+                      var finalvalss = dataResultps.totalCount;
+                      $("#countStockListData").text(finalvalss);
+                       const listing_table = document.getElementById('dataTablesdata');
+                      var jsp_json_object = dataResultps.userStockDetailList; 
+                      for(let i = 0; i < jsp_json_object.length ; i++){
+                          console.log(jsp_json_object[i].stockSymbol);
+                           listing_table.innerHTML += `<tr><td>${jsp_json_object[i].userName}</td><td>${jsp_json_object[i].userStockDetail.stockName}</td><td>${jsp_json_object[i].userStockDetail.stockSymbol}</td></tr>`;
+                        }
+                      $('#example-1').pagination({
+                        total: finalvalss, // 总数据条数
+                        current: 1, // 当前页码
+                        length: 50, // 每页数据量
+                        size: 1, // 显示按钮个数
+                        globalSearch:true,
+                        click: function(options,$target) { // 点击按钮事件
+                          console.log(options);
+                            $target.next(".show").text('Current Page : '+options.current);
+                            showingdata(options.current,options.length);
+                        }
+                      });
+                    }
 
-             });
+                  }); 
+
+                // }
+
+            // var pageNo =1;
+            // var pageSize =100;
+
+            // var formdata = {pageSize:100,pageNo:1};
+
+            // recursively_ajax(pageNo);
+
+            // function recursively_ajax(pageNo) {
+                  // $.ajax({
+                  //  type: 'POST',
+                  //  url: 'https://apistest.tradetipsapp.com/api/dataAnalytics/getAllSearchStockOfUserByUserNamePagination',
+                  //  headers: {
+                  //    Authorization: 'Bearer '+ tokens
+                  //  },
+                  //  data: {pageSize:100,pageNo:1},
+            //         success: function (data) {
+            //            var datak = JSON.stringify(data);
+            //          var dataResultps = JSON.parse(datak); 
+            //          var finalvalss = dataResultps.totalCount;
+            //          var jsp_json_object = dataResultps.userStockDetailList; 
+            //          // var len = dataResultp.totalCount.length;
+            //           // alert(finalvalss);
+            //           // $('#dataTables').empty();
+           
+            //           $("#countStockListData").text(finalvalss);
+            //           const listing_table = document.getElementById('dataTablesdata');
+            //             // if (pageNo < pageSize) {
+            //             //     recursively_ajax(pageNo);
+            //             // }
+            //             for(i=0;i<finalvalss;i++){
+            //               console.log(jsp_json_object[i].stockSymbol);
+            //                listing_table.innerHTML += `${jsp_json_object[i].stockSymbol}<br>`;
+            //             }
+            //             // pageNo++;
+
+            //         }
+            //     });
+            // }
+
+
+
+             //   var formdata = {pageSize:100,pageNo:1};
+             //     $.ajax({
+             //       type: 'POST',
+             //       url: 'https://apistest.tradetipsapp.com/api/dataAnalytics/getAllSearchStockOfUserByUserNamePagination',
+             //       headers: {
+             //         Authorization: 'Bearer '+ tokens
+             //       },
+             //       data: formdata,
+             //       success: function(data, textStatus, jqXHR){
+                     // var datak = JSON.stringify(data);
+                     // var dataResultps = JSON.parse(datak); 
+                     // var finalvalss = dataResultps.totalCount;
+                     // // var len = dataResultp.totalCount.length;
+                     //  // alert(finalvalss);
+                     //  // $('#dataTables').empty();
+           
+                     //  $("#countStockListData").text(finalvalss);
+
+             //         var jsp_json_object = dataResultps.userStockDetailList; 
+             //         // var len = jsp_json_object.length;
+             //         let jsp_current_page = formdata.pageNo;
+             //         const jsp_records_per_page = formdata.pageSize;
+             //         function jsp_num_pages() {
+             //                return Math.ceil(finalvalss / jsp_records_per_page);
+             //            }
+
+             //            function jsp_prev_page() {
+             //                if (jsp_current_page > 1) {
+             //                    jsp_current_page--;
+             //                    jsp_change_page(jsp_current_page);
+             //                }
+             //            }
+
+             //            function jsp_next_page() {
+             //                if (jsp_current_page < jsp_num_pages()) {
+             //                    jsp_current_page++;
+             //                    // alert(jsp_current_page);
+             //                    jsp_change_page(jsp_current_page);
+             //                }
+             //            }
+
+             //            function jsp_change_page(page) {
+
+             //               alert(page);
+
+             //                const btn_prev = document.getElementById('btn-prev');
+             //                const btn_next = document.getElementById('btn-next');
+             //                const listing_table = document.getElementById('dataTablesdata');
+             //                let page_span = document.getElementById('page');
+                            
+             //                if (page < 1) {
+             //                    page = 1;
+             //                }
+             //                if (page > jsp_num_pages()) {
+             //                    page = jsp_num_pages();
+             //                }
+
+             //                listing_table.innerHTML = '';
+
+             //                for (let i = (page - 1) * jsp_records_per_page; i < (page * jsp_records_per_page) && i < finalvalss; i++) {
+             //                    // alert(jsp_json_object[0].json_item);
+             //                    listing_table.innerHTML += `${jsp_json_object[i]}<br>`;
+             //                }
+             //                page_span.innerHTML = `${page}/${jsp_num_pages()}`;
+
+             //                btn_prev.style.display = (page === 1) ? 'none' : 'inline-block';
+             //                btn_next.style.display = (page === jsp_num_pages()) ? 'none' : 'inline-block';
+             //            }
+
+             //            // window.onload = () => {
+             //                document.getElementById('btn-prev').addEventListener('click', (e) => {
+             //                    e.preventDefault();
+             //                    jsp_prev_page();
+             //                });
+
+             //                document.getElementById('btn-next').addEventListener('click', (e) => {
+             //                    e.preventDefault();
+             //                    jsp_next_page();
+             //                });
+
+             //                jsp_change_page(jsp_current_page);
+           
+             //          // if ( $.fn.DataTable.isDataTable('#dataTables') ) {
+             //          //     $('#dataTables').DataTable().destroy();
+             //          //    }
+           
+             //         //  $('#dataTables').dataTable( {
+             //         //       "aaData": data,   
+             //         //       "lengthMenu": [ 500, 1000, 2000, 3000, 4000, 5000 ,10000 , 100000 , 1000000 ],
+             //         //       "pageLength": 500,
+             //         //       "oLanguage": {
+             //         //         "sSearch": "<span>Search Stocks</span> _INPUT_" //search
+             //         //       },
+             //         //       "pagingType": "full_numbers",
+             //         //       "serverSide": true,
+             //         //       "loadingRecords": "Loading Records...<i class='fa fa-spinner fa-spin'/>",
+             //         //       "zeroRecords": "No records found",
+             //         //       "columns": [
+             //         //           { "data": "userName" ,
+             //         //             "title" : "Username",
+             //         //            "render": function(data, type, full, meta){
+             //         //             return data;
+             //         //           }
+             //         //           },
+             //         //           { "data": "userStockDetail.stockSymbol" ,
+             //         //             "title" : "Stock Symbol",
+             //         //              "render": function(data, type, full, meta){
+             //         //               return data;
+             //         //             }
+             //         //            },
+             //         //           { "data": "userStockDetail.stockName" ,
+             //         //           "title" : "Stock Name",
+             //         //          "render": function(data, type, full, meta){
+             //         //           return data;
+             //         //           }
+             //         //          },             
+             //         //       ],
+             //         //       "deferRender": true,
+             //         //       rowCallback: function ( row, data ) {
+             //         //       // Set the checked state of the checkbox in the table
+             //         //       // $('input.editor-active', row).prop( 'checked', data.isFlag == true );
+             //         //       }
+            
+             //         // });
+                
+             //   }
+
+             // });
 $('#butSaveData').on('click', function() {
     var UserSelect = $('#sel_user').val();
     alert("It will take few seconds to load data Loading...");
