@@ -7,7 +7,7 @@
 
       <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Flag Chat List</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Flag Chat Detail List</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -21,8 +21,8 @@
                       <th>Flag Status</th>
                       <th>Flagged By</th>
                       <th>Date</th>
-                      <!-- <th>Action</th> -->
-                     <!--  <th>Status</th> -->
+<!--                       <th>Action</th>
+ -->                     <!--  <th>Status</th> -->
                     </tr>
                   </thead>
                  <!--  <tfoot>
@@ -36,6 +36,24 @@
                     </tr>
                   </tfoot> -->
                   <tbody>
+                      <% for (var i = 0; i < chatdata.length; i++) { %>
+                      <tr>
+                      <td><%= chatdata[i].data.userName %></td>
+                      <td><%= chatdata[i].data.message %></td>
+                      <td><% if(chatdata[i].data.flag[0].messageFlag == true) { %> <input id="<%= chatdata[i].ids %>" type="checkbox" class="editor-active" checked="checked"> <% } else { %><input type="checkbox" class="editor-active" id="<%= chatdata[i].ids %>"> <% } %></td>
+                       <td><script type="text/javascript">
+                          window.addEventListener("load", function() {
+  var url_string = window.location.href; 
+  var urls = new URL(url_string);
+  var tokens = urls.searchParams.get("tokendata");
+ document.getElementById("flagChatdetaillink"+"<%= chatdata[i].ids %>").href = "/flagChatdetail?id=<%= chatdata[i].ids %>&tokendata="+tokens;
+});
+                       </script><a id="flagChatdetaillink<%= chatdata[i].ids %>"><%= chatdata[i].data.flag.length %> People</a> </td>
+                      <td><%= new Date(chatdata[i].data.createdDate).toLocaleDateString('en-US',{year: "numeric", month: "long", day: "numeric"}) %></td>
+                      
+                    </tr>
+                   <% } %>
+                   
                   </tbody>
                 </table>
               </div>
@@ -116,105 +134,73 @@ window.addEventListener("load", function() {
   var tokens = urls.searchParams.get("tokendata");
   // alert(tokens);
 
-const url = "/flagData";
-fetch(url, {
-  method: "POST"
-})
-  .then(resp => resp.json())
-    .then(function(data) {
-
-        var datak = JSON.stringify(data);
-       var dataResult = JSON.parse(datak); 
-       // alert(JSON.stringify(dataResult));
-        var len = dataResult.length;
-
-          var countdataa = dataResult.filter(function(s) { return s.messageFlag == true });
-
-           $('#dataTables').dataTable( {
-            "aaData": countdataa, 
-            "columns": [
-                { "data": "userName"},
-                { "data": "message" },
-                {
-                "data":   "messageFlag",
-                render: function ( data, type, row ) {
-                    // alert(row.messageSocialReferenceId);
-                    if ( type === 'display' ) {
-                        return '<input id="' + row.messageSocialReferenceId + '" type="checkbox" class="editor-active">';
-                    }
-                    return data;
-                  }
-                },
-                { "data" : "messageFlagedUserName"},
-                { 
-                "data": "createdDate",
-                 "name":"date",
-                 "visible":true,
-                 "title":"Date Created",
-                 "render": function(data, type, full, meta){
-                  if(type == "display"){
-                          var date = new Date(data);
-                          var options = {year: "numeric", month: "long", day: "numeric"};
-
-                          return date.toLocaleDateString('en-US', options);
-                  }
-
-                  return data;
-                }
-               },        
-              ],
-            "deferRender": true,
-            rowCallback: function ( row, data ) {
-            // Set the checked state of the checkbox in the table
-            $('input.editor-active', row).prop( 'checked', data.messageFlag == true );
-        }
-
-        });
-
-   
-  })
  
-  .catch(function(error) {
-    console.log(error);
-  });  
 
-});
+//  $.ajax({
+//         url : "/flagData",
+//         type: "POST",
+//         success: function(data, textStatus, jqXHR) {
 
-   $('#dataTables').on('click', 'input.editor-active', function () {
+//         var datak = JSON.stringify(data);
+//        var dataResult = JSON.parse(datak); 
+//        // alert(dataResult);
+//         var len = dataResult.length;
+//           var countdataa = dataResult.filter(function(s) { return s.data.flag  });
+//            $('#dataTables').dataTable( {
+//             "aaData": countdataa, 
+//             "columns": [
+//                 { "data": "data.userName"},
+//                 { "data": "data.message" },
+//                 {
+//                 "data":   "data.flag",
+//                 render: function ( data, type, row ) {
+//                    // alert(data[0].messageFlag);
+//                     if ( type === 'display' ) {
+//                         if(data[0].messageFlag == false){
 
-    var id = $(this).attr('id');
-    // alert(id);
-    var table = $('#dataTables').DataTable();
-    var row = table.row(this.closest('tr')).data();
-    var result = confirm("Are you sure you want to unflag the comment?");
-    if(result){
-    var ids = id;
-    // alert(ids);
-    var formData = {id:ids};
-       $.ajax({
-        url : "/editflagData",
-        type: "POST",
-        data : formData,
-        success: function(data, textStatus, jqXHR)
-        {
-            //data - response from server
-            var datak = JSON.stringify(data);
-            var dataResultp = JSON.parse(datak); 
-            alert("Comment Unflag Sucessfully !!");
-        },
-        error: function (jqXHR, textStatus, errorThrown)
-        {
-           alert("Not updated !!");
-        }
+//                         return '<input id="' + row.ids + '" type="checkbox" class="editor-active">';
 
-    });
-    } else {
+//                         }else{
 
-       window.location.reload();
+//                          return '<a href="/editflagData?id='+ row.ids +'&tokendata='+tokens+'"><input id="' + row.ids + '" type="checkbox" class="editor-active" checked></a>';
 
-    }
+//                         }
+//                     }
+//                     return data;
+//                   }
+//                 },
+//                 {
+//                 "data":   "data.flag.length",
+//                 render: function ( data, type, row ) {
+//                      // alert(JSON.stringify(row));
+//                     if ( type === 'display' ) {
+//                         return '<a href="/flagChatdetail?id='+ row.ids +'&tokendata='+tokens+'" target="_blank">' + data + ' People</a>';
+//                     }
+//                     return data;
+//                   }
+//                 },
+//                 { 
+//                 "data": "data.createdDate",
+//                  "name":"date",
+//                  "visible":true,
+//                  "title":"Date Created",
+//                  "render": function(data, type, full, meta){
+//                   if(type == "display"){
+//                           var date = new Date(data);
+//                           var options = {year: "numeric", month: "long", day: "numeric"};
 
-   });
+//                           return date.toLocaleDateString('en-US', options);
+//                   }
+
+//                   return data;
+//                 }
+//                },        
+//               ],
+//         });
+// }
+// });
+
+ }); 
  </script>
  <script type="text/javascript">
   window.addEventListener("load", function() {
@@ -241,16 +227,52 @@ document.getElementById("NotifyLink").href = "/notification?tokendata="+tokens;
   document.getElementById("FlagChatLink").href = "/flagChatlist?tokendata="+tokens;
     document.getElementById("WaitingLink").href = "/waitinglist?tokendata="+tokens;
      document.getElementById("StockLink").href = "/stocklist?tokendata="+tokens;
-   document.getElementById("StockSearchLink").href = "/searchStock?tokendata="+tokens;
 
         document.getElementById("NotifyListLink").href = "/notificationlist?tokendata="+tokens;
-   document.getElementById("TipSearchLink").href = "/alltipByDate?tokendata="+tokens;
- document.getElementById("AISearchLink").href = "/aiSearchByDate?tokendata="+tokens;
-document.getElementById("SoicalSearchLink").href = "/soicalSearchByDate?tokendata="+tokens;
+   
     
 });
 </script>
+<script type="text/javascript">
+ $('#dataTables').on('click', 'input.editor-active', function () {
 
+    var id = $(this).attr('id');
+    alert(id);
+    var table = $('#dataTables').DataTable();
+    var row = table.row(this.closest('tr')).data();
+    var result = confirm("Are you sure you want to unflag the comment?");
+    if(result){
+    var ids = id;
+    // alert(ids);
+    var formData = {id:ids};
+       $.ajax({
+        url : "/editflagData",
+        type: "POST",
+        data : formData,
+        success: function(data, textStatus, jqXHR)
+        {
+            //data - response from server
+            var datak = JSON.stringify(data);
+            var dataResultp = JSON.parse(datak); 
+            alert("Comment Unflag Sucessfully !!");
+            // window.location.reload();
+        },
+        error: function (jqXHR, textStatus, errorThrown)
+        {
+           alert("Not updated !!");
+        }
+
+    });
+    } else {
+
+       window.location.reload();
+
+    }
+
+   });
+    
+
+</script>
 </body>
 
 </html>
