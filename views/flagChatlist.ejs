@@ -1,66 +1,107 @@
            <%- include partials/header %>
 
 
-       
-        <div class="container-fluid">
+           <div class="container-fluid">
 
-
-      <div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Flag Chat Detail List</h6>
-            </div>
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-bordered" id="dataTables" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
-                     <!--  <th>Id</th>
-                      <th>Reason</th> -->
-                      <th>Username</th>
-                      <th>Message</th>
-                      <th>Flag Status</th>
-                      <th>Flagged By</th>
-                      <th>Date</th>
-<!--                       <th>Action</th>
- -->                     <!--  <th>Status</th> -->
-                    </tr>
-                  </thead>
-                 <!--  <tfoot>
-                    <tr>
-                      <th>Name</th>
-                      <th>Position</th>
-                      <th>Office</th>
-                      <th>Age</th>
-                      <th>Start date</th>
-                      <th>Salary</th>
-                    </tr>
-                  </tfoot> -->
-                  <tbody>
-                      <% for (var i = 0; i < chatdata.length; i++) { %>
-                      <tr>
-                      <td><%= chatdata[i].data.userName %></td>
-                      <td><%= chatdata[i].data.message %></td>
-                      <td><% if(chatdata[i].data.flag[0].messageFlag == true) { %> <input id="<%= chatdata[i].ids %>" type="checkbox" class="editor-active" checked="checked"> <% } else { %><input type="checkbox" class="editor-active" id="<%= chatdata[i].ids %>"> <% } %></td>
-                       <td><script type="text/javascript">
-                          window.addEventListener("load", function() {
-  var url_string = window.location.href; 
-  var urls = new URL(url_string);
-  var tokens = urls.searchParams.get("tokendata");
- document.getElementById("flagChatdetaillink"+"<%= chatdata[i].ids %>").href = "/flagChatdetail?id=<%= chatdata[i].ids %>&tokendata="+tokens;
-});
-                       </script><a id="flagChatdetaillink<%= chatdata[i].ids %>"><%= chatdata[i].data.flag.length %> People</a> </td>
-                      <td><%= new Date(chatdata[i].data.createdDate).toLocaleDateString('en-US',{year: "numeric", month: "long", day: "numeric"}) %></td>
-                      
-                    </tr>
-                   <% } %>
-                   
-                  </tbody>
-                </table>
+            <!-- form user info -->
+             <div class="card shadow mb-4">
+              <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Flag Chat Detail List</h6>
               </div>
-            </div>
-          </div>
-
-        </div>
+               <div class="card-body">
+               <br>
+                <ul class="nav nav-tabs" role="tablist">
+                 <li class="nav-item">
+                   <a class="nav-link active" data-toggle="tab" href="#tabs-banner1" role="tab">Strategy Room</a>
+                 </li>
+                 <li class="nav-item">
+                   <a class="nav-link" data-toggle="tab" href="#tabs-banner2" role="tab">Basilnage Room</a>
+                 </li>
+                 </ul>
+                 <br>
+                 <div class="tab-content">
+                
+                 <div class="tab-pane active" id="tabs-banner1" role="tabpanel">
+                <div class="table-responsive">
+                  <table class="table table-bordered" id="dataTables" width="100%" cellspacing="0">
+                    <thead>
+                      <tr>
+                        <th>Username</th>
+                        <th>Message</th>
+                        <th>Flag Status</th>
+                        <th>Flagged By</th>
+                        <th>Date</th>
+                    <tbody>
+                      <% for (var i = 0; i < chatdata.length; i++) { %>
+                        <tr>
+                        <td><%= chatdata[i].data.userName %></td>
+                        <td><%= chatdata[i].data.message %></td>
+                        <td><% if(chatdata[i].data.flag[0].messageFlag == true) { %> <input id="<%= chatdata[i].ids %>" type="checkbox" class="editor-active" checked="checked"> <% } else { %><input type="checkbox" class="editor-active" id="<%= chatdata[i].ids %>"> <% } %></td>
+                         <td><script type="text/javascript">
+                            window.addEventListener("load", function() {
+    var url_string = window.location.href; 
+    var urls = new URL(url_string);
+    var tokens = urls.searchParams.get("tokendata");
+   document.getElementById("flagChatdetaillink"+"<%= chatdata[i].ids %>").href = "/flagChatdetail?id=<%= chatdata[i].ids %>&tokendata="+tokens;
+  });
+                         </script><a id="flagChatdetaillink<%= chatdata[i].ids %>"><%= chatdata[i].data.flag.length %> People</a> </td>
+                        <td><%= new Date(chatdata[i].data.createdDate).toLocaleDateString('en-US',{year: "numeric", month: "long", day: "numeric"}) %></td>
+                        
+                      </tr>
+                     <% } %>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+  
+                 <!-- banner  2-->
+              <div class="tab-pane" id="tabs-banner2" role="tabpanel">
+                <div class="tab-content">
+                          <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTables1" width="100%" cellspacing="0">
+                              <thead>
+                                <tr>
+                                  <th>Username</th>
+                                  <th>Messagesssss</th>
+                                  <th>Flag Status</th>
+                                  <th>Flagged By</th>
+                                  <th>Date</th>
+                              <tbody>
+                                <% for (var i = 0; i < chatdata.length; i++) { %>
+                                  <tr>
+                                  <td><%= chatdata[i].data.userName %></td>
+                                  <td><%= chatdata[i].data.message %></td>
+                                  <td><% if(chatdata[i].data.flag[0].messageFlag == true) { %> <input id="<%= chatdata[i].ids %>" type="checkbox" class="editor-active" checked="checked"> <% } else { %><input type="checkbox" class="editor-active" id="<%= chatdata[i].ids %>"> <% } %></td>
+                                   <td><script type="text/javascript">
+                                      window.addEventListener("load", function() {
+              var url_string = window.location.href; 
+              var urls = new URL(url_string);
+              var tokens = urls.searchParams.get("tokendata");
+             document.getElementById("flagChatdetaillink"+"<%= chatdata[i].ids %>").href = "/flagChatdetail?id=<%= chatdata[i].ids %>&tokendata="+tokens;
+            });
+                                   </script><a id="flagChatdetaillink<%= chatdata[i].ids %>"><%= chatdata[i].data.flag.length %> People</a> </td>
+                                  <td><%= new Date(chatdata[i].data.createdDate).toLocaleDateString('en-US',{year: "numeric", month: "long", day: "numeric"}) %></td>
+                                  
+                                </tr>
+                               <% } %>
+                              </tbody>
+                            </table>
+                         </div>
+              </div>
+              </div>
+              <br>
+     
+              </div>  <!--closing div of tab-content-->  
+  
+                 <br>
+  
+                 
+                 
+            </div> <!--closing div of card-body-->  
+                
+                
+             </div><!-- /form user info -->
+      </div>
 
       </div>
       <!-- End of Main Content -->
@@ -239,6 +280,49 @@ document.getElementById("NotifyLink").href = "/notification?tokendata="+tokens;
     var id = $(this).attr('id');
     alert(id);
     var table = $('#dataTables').DataTable();
+    var row = table.row(this.closest('tr')).data();
+    var result = confirm("Are you sure you want to unflag the comment?");
+    if(result){
+    var ids = id;
+    // alert(ids);
+    var formData = {id:ids};
+       $.ajax({
+        url : "/editflagData",
+        type: "POST",
+        data : formData,
+        success: function(data, textStatus, jqXHR)
+        {
+            //data - response from server
+            var datak = JSON.stringify(data);
+            var dataResultp = JSON.parse(datak); 
+            alert("Comment Unflag Sucessfully !!");
+            // window.location.reload();
+        },
+        error: function (jqXHR, textStatus, errorThrown)
+        {
+           alert("Not updated !!");
+        }
+
+    });
+    } else {
+
+       window.location.reload();
+
+    }
+
+   });
+    
+
+</script> 
+
+
+<!-- FOR DATA TABLE 1-->
+<script type="text/javascript">
+ $('#dataTables1').on('click', 'input.editor-active', function () {
+
+    var id = $(this).attr('id');
+    alert(id);
+    var table = $('#dataTables1').DataTable();
     var row = table.row(this.closest('tr')).data();
     var result = confirm("Are you sure you want to unflag the comment?");
     if(result){
