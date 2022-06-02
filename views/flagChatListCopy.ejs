@@ -1,6 +1,7 @@
 <%- include partials/header %>
 
-
+<link href="css/flash-main.css" rel="stylesheet" type="text/css">
+<script src="/js/flash-main.js"></script>
        
 <div class="container-fluid">
 
@@ -324,7 +325,8 @@ window.location.reload();
 $('#dataTables1').on('click', 'input.editor-active', function () {
 
 var id = $(this).attr('id');
-alert(id);
+// alert(id);
+window.FlashMessage.info(id, { timeout: 3000,});
 var table = $('#dataTables1').DataTable();
 var row = table.row(this.closest('tr')).data();
 var result = confirm("Are you sure you want to unflag the comment?");
@@ -341,12 +343,14 @@ success: function(data, textStatus, jqXHR)
     //data - response from server
     var datak = JSON.stringify(data);
     var dataResultp = JSON.parse(datak); 
-    alert("Comment Unflag Sucessfully !!");
+    // alert("Comment Unflag Sucessfully !!");
+    window.FlashMessage.success( " Comment Unflag Sucessfully !!", { timeout: 5000,});
     // window.location.reload();
 },
 error: function (jqXHR, textStatus, errorThrown)
 {
-   alert("Not updated !!");
+  //  alert("Not updated !!");
+  window.FlashMessage.error( " Not updated !!", { timeout: 5000,});
 }
 
 });

@@ -2,6 +2,9 @@
 
            <%- include partials/header %>
 
+           <link href="css/flash-main.css" rel="stylesheet" type="text/css">
+           <script src="/js/flash-main.js"></script>
+
 <style type="text/css">
 
 .sidebar li .submenu{ 
@@ -317,7 +320,8 @@ window.addEventListener("load", function() {
 
         error: function (jqXHR, textStatus, errorThrown)
         {
-           alert("No data");
+          //  alert("No data");
+          window.FlashMessage.error( " No data ", { timeout: 3000,});
         }
 
 

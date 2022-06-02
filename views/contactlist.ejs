@@ -1,4 +1,7 @@
 <%- include partials/header %>
+
+<link href="css/flash-main.css" rel="stylesheet" type="text/css">
+<script src="/js/flash-main.js"></script>
 <style type="text/css">
 .switch {
   position: relative;
@@ -465,7 +468,8 @@ window.addEventListener("load", function() {
     data[table.row($(this).parents('tr').get(0)).index()] = this.checked;
 
     var id = $(this).attr('id');
-    alert(id);
+    // alert(id);
+    window.FlashMessage.info( id, { timeout: 5000,});
    
    });
 
@@ -527,7 +531,8 @@ window.addEventListener("load", function() {
     data[table.row($(this).parents('tr').get(0)).index()] = this.checked;
 
     var id = $(this).attr('id');
-    alert(id);
+    // alert(id);
+    window.FlashMessage.info(id, { timeout: 5000,});
    
    });
 

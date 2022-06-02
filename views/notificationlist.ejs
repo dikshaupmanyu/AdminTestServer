@@ -1,5 +1,8 @@
-           <%- include partials/header %>
 
+<%- include partials/header %>
+
+<link href="css/flash-main.css" rel="stylesheet" type="text/css">
+<script src="/js/flash-main.js"></script>
 
        
         <div class="container-fluid">
@@ -188,7 +191,8 @@ fetch(url, {
                // alert(datak);
                 var dataResultp = JSON.parse(datak); 
                 // alert(dataResultp.title);
-                alert("Notification has been sent");
+                // alert("Notification has been sent");
+                window.FlashMessage.success('Notification has been sent !');
                 // window.location.reload("/notification?tokendata="+tokens); 
           
 

@@ -229,7 +229,8 @@ function createTask(task) {
    var loggedInName = "<%= userName %>";
 
    messaging.onMessage((payload) => {
-  alert('Message received. ', payload);
+  // alert('Message received. ', payload);
+  window.FlashMessage.success( "Message received.  " , payload, { timeout: 5000,});
   // ...
 });
 

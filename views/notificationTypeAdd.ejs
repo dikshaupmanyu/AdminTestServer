@@ -1,4 +1,6 @@
            <%- include partials/header %>
+           <link href="css/flash-main.css" rel="stylesheet" type="text/css">
+           <script src="/js/flash-main.js"></script>
 <style type="text/css">
 .switch {
   position: relative;
@@ -525,7 +527,8 @@ window.addEventListener("load", function() {
 
   
   if(title == "" || description == ""  || bannerids == ""){
-    alert("Please fill all the field");
+    // alert("Please fill all the field");
+    window.FlashMessage.error( " Please fill all the field", { timeout: 5000,});
   }else {
    
   var formdata = new FormData();
@@ -548,7 +551,8 @@ window.addEventListener("load", function() {
     }
 
 
-    alert(JSON.stringify(formdata));
+    // alert(JSON.stringify(formdata));
+    window.FlashMessage.info( JSON.stringify(formdata), { timeout: 5000,});
     
 
     var requestOptions = {
@@ -570,8 +574,10 @@ window.addEventListener("load", function() {
                // alert(datak);
                 var dataResultp = JSON.parse(datak); 
                 // alert(dataResultp.title);
-                alert("Notification has been sent");
-                window.location.reload("/notificationTypeAdd?tokendata="+tokens); 
+                // alert("Notification has been sent");
+                window.FlashMessage.success( " Notification has been sent", { timeout: 3000,});
+                // window.location.reload("/notificationTypeAdd?tokendata="+tokens); 
+                setTimeout(()=> { window.location.reload("/notificationTypeAdd?tokendata="+tokens)},3500)
           
 
        })

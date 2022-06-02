@@ -1,6 +1,7 @@
            <%- include partials/header %>
 
-
+           <link href="css/flash-main.css" rel="stylesheet" type="text/css">
+           <script src="/js/flash-main.js"></script>
        
         <div class="container-fluid">
 
@@ -135,9 +136,11 @@ window.addEventListener("load", function() {
    $('#dataTables').on('click', 'input.editor-active', function () {
 
     var id = $(this).attr('id');
-    alert(id);
+    // alert(id);
+    window.FlashMessage.info( id, { timeout: 3000,});
     var avls = $(this).attr('value'); 
-    alert(avls);
+    // alert(avls);
+    window.FlashMessage.info( avls, { timeout: 3000,});
     var table = $('#dataTables').DataTable();
     var row = table.row(this.closest('tr')).data();
     var result = confirm("Are you sure you want to unflag the comment?");
@@ -154,18 +157,20 @@ window.addEventListener("load", function() {
             //data - response from server
             var datak = JSON.stringify(data);
             var dataResultp = JSON.parse(datak); 
-            alert("Comment Unflag Sucessfully !!");
-            window.location.reload();
+            // alert("Comment Unflag Sucessfully !!");
+            window.FlashMessage.success( " Comment Unflag Sucessfully !!", { timeout: 3000,});
+            setTimeout(()=> { window.location.reload()},3500)
         },
         error: function (jqXHR, textStatus, errorThrown)
         {
-           alert("Not updated !!");
+          //  alert("Not updated !!");
+          window.FlashMessage.error( " Not updated !!", { timeout: 3000,});
         }
 
     });
     } else {
 
-       window.location.reload();
+      setTimeout(()=> { window.location.reload()},2000)
 
     }
 

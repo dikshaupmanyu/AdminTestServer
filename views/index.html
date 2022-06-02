@@ -18,6 +18,8 @@
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
+  <link href="css/flash.main.css" rel="stylesheet" type="text/css">
+  <script src="/js/flash.main.js"></script>
 </head>
 
 <body class="bg-gradient-primary">
@@ -138,7 +140,7 @@ $(document).ready(function(){
 $(function () {
 
    $('#butlogin').on('click', function() {
-    alert("hii");
+    // alert("hii");
     var userName = $('#uname').val();
     var password = $('#pswrd').val();
     if(userName!="" && password!="" ){
@@ -155,7 +157,8 @@ $(function () {
         cache:false,
         contentType: "application/json; charset=utf-8",
         success: function(data){
-          alert(data);
+          // alert(data);
+          window.FlashMessage.info( data, { timeout: 5000,});
           var dataResult = JSON.parse(data);
           if(dataResult.statusCode==200){
             location.href = "welcome.php";            
@@ -169,7 +172,8 @@ $(function () {
       });
     }
     else{
-      alert('Please fill all the field !');
+      // alert('Please fill all the field !');
+      window.FlashMessage.error( " Please fill all the field !", { timeout: 5000,});
     }
   });
 

@@ -1,7 +1,8 @@
            <%- include partials/header %>
 
 
-       
+           <link href="css/flash-main.css" rel="stylesheet" type="text/css">
+           <script src="/js/flash-main.js"></script>
         <div class="container-fluid">
 
 
@@ -252,11 +253,13 @@ fetch(url, {
             //data - response from server
             var datak = JSON.stringify(data);
             var dataResultp = JSON.parse(datak); 
-            alert("Comment Unflag Sucessfully !!");
+            // alert("Comment Unflag Sucessfully !!");
+            window.FlashMessage.success( " Comment Unflag Sucessfully !!", { timeout: 3000,});
         },
         error: function (jqXHR, textStatus, errorThrown)
         {
-           alert("Not updated !!");
+          //  alert("Not updated !!");
+          window.FlashMessage.error( " Not updated !!", { timeout: 3000,});
         }
 
     });

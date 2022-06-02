@@ -1,5 +1,6 @@
            <%- include partials/header %>
-
+           <link href="css/flash-main.css" rel="stylesheet" type="text/css">
+           <script src="/js/flash-main.js"></script>
 
        
         <div class="container-fluid">
@@ -240,13 +241,14 @@ window.addEventListener("load", function() {
             var datak = JSON.stringify(data);
             var dataResultp = JSON.parse(datak); 
             // alert(dataResultp);
-            alert("Delete Sucessfully !!");
-            window.location.reload();
-
+            // alert("Delete Sucessfully !!");
+            window.FlashMessage.success( " Delete Sucessfully !! ", { timeout: 3000,});
+            setTimeout(()=> { window.location.reload()},3500)
         },
         error: function (jqXHR, textStatus, errorThrown)
         {
-           alert("Not updated !!");
+          //  alert("Not updated !!");
+          window.FlashMessage.error( " Not updated !!", { timeout:3000,});
         }
 
        });
@@ -254,7 +256,7 @@ window.addEventListener("load", function() {
 
       } else {
 
-          window.location.reload();
+        setTimeout(()=> { window.location.reload()},2000)
 
       }
 

@@ -1,4 +1,7 @@
            <%- include partials/header %>
+
+           <link href="css/flash-main.css" rel="stylesheet" type="text/css">
+           <script src="/js/flash-main.js"></script>
 <style type="text/css">
 .switch {
   position: relative;
@@ -182,12 +185,14 @@ input:checked + .slider .off
                     // alert(toggleType);
                     if(toggleType == "All"){
                       switchStatus = $(this).is(':checked');
-                        alert("hiiii " + switchStatus);// To verify                     
+                        // alert("hiiii " + switchStatus);// To verify   
+                        window.FlashMessage.info(' hiiii ' + switchStatus , { timeout: 3000,});                  
                          $("#allss").val("All");
                     }else{
                       switchStatus = $(this).is(':checked');
                        // alert("You selected All User !");// To verify
-                        alert("hello " + switchStatus);
+                        // alert("hello " + switchStatus);
+                        window.FlashMessage.info(' hello '+ switchStatus, { timeout: 3000,});
                        $("#offss").val("Non-subscribed");
                      
 
@@ -461,7 +466,8 @@ window.addEventListener("load", function() {
     data[table.row($(this).parents('tr').get(0)).index()] = this.checked;
 
     var id = $(this).attr('id');
-    alert(id);
+    // alert(id);
+    window.FlashMessage.info(id, { timeout: 3000,});
    
    });
 
@@ -488,7 +494,8 @@ window.addEventListener("load", function() {
   // alert(bannerids);
 
   if(title == "" || description == ""  || bannerids == ""){
-    alert("Please fill all the field");
+    // alert("Please fill all the field");
+    window.FlashMessage.error( " Please fill all the field", { timeout: 3000,});
   }else {
    
   var formdata = new FormData();
@@ -525,7 +532,8 @@ window.addEventListener("load", function() {
                // alert(datak);
                 var dataResultp = JSON.parse(datak); 
                 // alert(dataResultp.title);
-                alert("Notification has been sent");
+                // alert("Notification has been sent");
+                window.FlashMessage.success( " Notification has been sent", { timeout: 3000,});
                 // window.location.reload("/notification?tokendata="+tokens); 
           
 

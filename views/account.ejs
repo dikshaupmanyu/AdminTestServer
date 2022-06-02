@@ -1,6 +1,6 @@
            <%- include partials/header %>
-
-
+           <link href="css/flash-main.css" rel="stylesheet" type="text/css">
+           <script src="/js/flash-main.js"></script>
        
         <div class="container-fluid">
 
@@ -509,7 +509,10 @@ document.getElementById("TipLink").href = "/tipList?tokendata="+tokens;
 
         error: function (jqXHR, textStatus, errorThrown)
         {
-           alert("No data");
+          window.FlashMessage.error('Notification has been sent ', {
+                  
+                  timeout: 3000,
+                });
         }
 
 
@@ -519,7 +522,11 @@ document.getElementById("TipLink").href = "/tipList?tokendata="+tokens;
       
     }
     else{
-      alert('Please fill all the field !');
+      // alert('Please fill all the field !');
+      window.FlashMessage.success('Please fill all the files ! ', {
+                  
+                  timeout: 3000,
+                });
     }
 
   
@@ -660,7 +667,9 @@ $('.containerk').append("<div class='sum' style='text-align:end;line-height:0px;
 
         error: function (jqXHR, textStatus, errorThrown)
         {
-           alert("No data");
+          window.FlashMessage.error('No Data', {
+        timeout: 3000,
+      });
         }
 
 
@@ -672,7 +681,9 @@ $('.containerk').append("<div class='sum' style='text-align:end;line-height:0px;
       
     }
     else{
-      alert('Please fill all the field !');
+      window.FlashMessage.error('Please fill all the files ! ', {
+        timeout:3000,
+      });
     }
   
   
