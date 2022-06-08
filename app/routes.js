@@ -122,9 +122,9 @@ app.get('/editBanner', function(req, res) {
 
     res.render('tipList.ejs');
   });
-  app.get('/manageList', function(req, res) {
+  app.get('/manageservice', function(req, res) {
 
-    res.render('manageList.ejs');
+    res.render('manageservice.ejs');
   });
 
   app.get('/updateData', function(req, res) {
