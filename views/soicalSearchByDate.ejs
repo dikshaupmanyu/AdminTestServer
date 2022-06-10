@@ -177,6 +177,23 @@ li.nav-item {
  </script>
    
    <%- include partials/commonlink %>
+
+   <script type="text/javascript">
+    window.addEventListener("load", function() {
+    var url_string = window.location.href; 
+    var urls = new URL(url_string);
+    var tokens = urls.searchParams.get("tokendata");
+  
+        document.getElementById("StockLinks").href = "/stocklist?tokendata="+tokens;
+     document.getElementById("StockSearchLink").href = "/searchStock?tokendata="+tokens;
+     document.getElementById("TipSearchLink").href = "/alltipByDate?tokendata="+tokens;
+     document.getElementById("AISearchLink").href = "/aiSearchByDate?tokendata="+tokens;
+  document.getElementById("SoicalSearchLink").href = "/soicalSearchByDate?tokendata="+tokens;
+  document.getElementById("PredictionLink").href = "/fiveDayPrediction?tokendata="+tokens;
+
+  });
+  </script>
+  
 <script src="https://momentjs.com/downloads/moment.js"></script>
 
 <script type="text/javascript">
