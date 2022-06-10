@@ -714,6 +714,17 @@ var filterdata=e.options[e.selectedIndex].text;
    
  <%- include partials/commonlink %>
 
+ <script type="text/javascript">
+    window.addEventListener("load", function() {
+    var url_string = window.location.href; 
+    var urls = new URL(url_string);
+    var tokens = urls.searchParams.get("tokendata");
+   
+          document.getElementById("typeNotification").href = "/notificationTypeAdd?tokendata="+tokens;
+  
+  });
+  </script>
+
 </body>
 
 </html>

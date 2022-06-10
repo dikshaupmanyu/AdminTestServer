@@ -8,13 +8,13 @@
 <!-- form user info -->
  <div class="card card-outline-secondary">
    <div class="card-header">
-     <h3 class="mb-0"> Management List</h3>
+     <h3 class="mb-0"> Services Management</h3>
    </div>
  </div><!-- /form user info -->
 
 <div class="card shadow mb-4">
  <div class="card-header py-3">
-   <h6 class="m-0 font-weight-bold text-primary">manage List</h6>
+   <h6 class="m-0 font-weight-bold text-primary">Services List</h6>
  </div>
 
 
@@ -30,27 +30,13 @@
          <tr>
            <!-- <th>Id</th> -->
           <!--  <th></th> -->
-           <th>Stock Symbol</th>
-           <th>Entry Point</th>
-           <th>Exit Point</th>
-           <th>Stop Point</th>
-           <th>Mentor</th>
-           <!-- <th>Action</th> -->
-           <th>Created Date</th>
+           <th>Title</th>
+           <th>Image</th>
+           <th>Mentor Name</th>
+           <th>Description</th>
+           <th>Price</th>
            <th>Action</th>
-<!--                       <th>Authenticate by Email</th>
-         </tr>
-       </thead>
-       <tfoot>
-         <tr>
-           <th>Name</th>
-           <th>Position</th>
-           <th>Office</th>
-           <th>Age</th>
-           <th>Start date</th>
-           <th>Salary</th>
-         </tr>
-       </tfoot> -->
+           
        <tbody>
        </tbody>
      </table>
@@ -139,103 +125,184 @@ window.addEventListener("load", function() {
 var url_string = window.location.href; 
 var urls = new URL(url_string);
 var tokens = urls.searchParams.get("tokendata");
-alert(tokens)
-var formdata = new FormData();
-formdata.append("offset", "0");
-formdata.append("limit", "500");
+// alert(tokens);
 
-var requestOptions = {
-method: 'POST',
-headers: {
-Authorization: 'Bearer ' + tokens,
-},
-body: formdata,
+$('#dataTables').on('click', 'a.updateStatusdata', function () {
 
-redirect: 'follow'
-};
+    var id = $(this).attr('id');
+    // alert(id);
+    var vals = $(this).attr('value');
+    // alert(vals);
+
+    var url ;
+    var formData;
+    var result ;
+    if(vals == "Active"){
+      result = confirm("Are you sure you want to Active?");
+      url = "https://apistest.tradetipsapp.com/api/serviceMentorSubscriptionPlan/disableServiceSubscriptionPlanById";
+      formData = {serviceSubscriptionPlanId : id};
+
+    }
+    if(vals == "Inactive"){
+      result = confirm("Are you sure you want to Inactive?");
+      url = "https://apistest.tradetipsapp.com/api/serviceMentorSubscriptionPlan/enableServiceSubscriptionPlanById";
+      formData = {serviceSubscriptionPlanId : id};
+
+    }
+    if(result){
+       $.ajax({
+        url : url,
+        type: "POST",
+        headers: {
+             Authorization: 'Bearer ' + tokens,
+        },
+        data : formData,
+        success: function(data, textStatus, jqXHR)
+        {
+            // alert("success");
+            //data - response from server
+            var datak = JSON.stringify(data);
+            var dataResultp = JSON.parse(datak); 
+            alert("Status updated Sucessfully !!");
+            window.location.reload();
+            // window.FlashMessage.status( " Status updated Sucessfully !!", { timeout: 3000,});
+            // setTimeout(()=> { window.location.reload()},3500)
+        },
+        error: function (jqXHR, textStatus, errorThrown)
+        {
+          // alert("fail");
+          alert("Not updated !!");
+          window.location.reload();
+
+          // window.FlashMessage.error( " Not updated !!", { timeout: 3000,});
+        }
+
+    });
+    } else {
+
+      setTimeout(()=> { window.location.reload()},3500)
+
+    }
+
+
+
+    // var url ;
+    // var result ;
+    // if(vals == "Active"){
+    //   result = confirm("Are you sure you want to Active?");
+    //   $.ajax({
+    //     url : "https://apistest.tradetipsapp.com/api/serviceMentorSubscriptionPlan/enableServiceSubscriptionPlanById",
+    //     type: "POST",
+    //     headers: {
+    //          Authorization: 'Bearer ' + tokens,
+    //     },
+    //     data : {serviceSubscriptionPlanId : id},
+    //     success: function(data, textStatus, jqXHR)
+    //     {
+    //         //data - response from server
+    //         var datak = JSON.stringify(data);
+    //         var dataResultp = JSON.parse(datak); 
+    //         // alert(dataResultp);
+    //         alert("Status updated Sucessfully !!");
+    //         // window.FlashMessage.status( " Status updated Sucessfully !!", { timeout: 3000,});
+    //         // setTimeout(()=> { window.location.reload()},3500)
+    //     },
+    //     error: function (jqXHR, textStatus, errorThrown)
+    //     {
+    //       alert("Not updated !!");
+    //       // window.FlashMessage.error( " Not updated !!", { timeout: 3000,});
+    //     }
+
+    //   });
+    
+    // }if(vals == "Inactive"){
+    //   result = confirm("Are you sure you want to Inactive?");
+    //   $.ajax({
+    //     url : "https://apistest.tradetipsapp.com/api/serviceMentorSubscriptionPlan/disableServiceSubscriptionPlanById",
+    //     type: "POST",
+    //     headers: {
+    //          Authorization: 'Bearer ' + tokens,
+    //     },
+    //     data : {serviceSubscriptionPlanId : id},
+    //     success: function(data, textStatus, jqXHR)
+    //     {
+    //         //data - response from server
+    //         var datak = JSON.stringify(data);
+    //         var dataResultp = JSON.parse(datak); 
+    //         // alert(dataResultp);
+    //         alert("Status updated Sucessfully !!");
+    //         // window.FlashMessage.status( " Status updated Sucessfully !!", { timeout: 3000,});
+    //         // setTimeout(()=> { window.location.reload()},3500)
+    //     },
+    //     error: function (jqXHR, textStatus, errorThrown)
+    //     {
+    //       alert("Not updated !!");
+    //       // window.FlashMessage.error( " Not updated !!", { timeout: 3000,});
+    //     }
+
+    //   });
+    
+    // }    
+    
+
+   });
+
 
 
 // //////////////////////////////////////////////////////////////////////////////////////
 
 
-$.ajax({
+           $.ajax({
               type: 'POST',
-              url: 'https://apistest.tradetipsapp.com/api/serviceMentorSubscriptionPlan/getAllTypeServicesForUser',
+              url: 'https://apistest.tradetipsapp.com/api/serviceMentorSubscriptionPlan/getAllServiceSubscriptionPlanDetails',
               headers: {
                 Authorization: 'Bearer '+ tokens,
                  },
-              data: {
-                  
-                },
                success: function(data) {
        
                  var datak = JSON.stringify(data);
                  var dataResult = JSON.parse(datak); 
-                 // console.log(dataResult);
+                  // alert(JSON.stringify(dataResult));
                   var len = dataResult.length;
+                  var lenghtss = dataResult.serviceSubscriptionMyMentorPlans.length;
+                  // alert(lenghtss);
 
-               if(dataResult.length == 0){
-                
-                  document.getElementById('dataTables').innerHTML="<br><p>You don't have any purchased services.</p>";
-                  $("#dataTables").css("text-align", "center");
-                  $("#dataTables").css("color", "white");
-
-               } else {
+             
 
                 let newtip = [];
-                  for(var i=0; i< dataResult.length; i++) {  
-
-                  if(dataResult[i].serviceTypeMaster.title == "Recommended"){
-                    newtip += '<div class="tips_wtlist_item"><div class="tips_wtlist_item_left"><h2>'+ dataResult[i].serviceTypeMaster.title +'</h2></div><div class="tips_wtlist_item_left"><h2><div class="pckg_item_img"><img src="https://apistest.tradetipsapp.com'+ dataResult[i].imageDetails +'" alt="images"></div></h2></div><div class="tips_wtlist_item_left"><h2>'+ dataResult[i].title +'</h2></div><div class="tips_wtlist_item_left"><h2 style="margin-left:20px;">'+ dataResult[i].descriptionOne +'</h2></div><div class="tips_wtlist_item_left"><h2 style="text-align:center;">$'+ dataResult[i].price.toFixed(2) +'</h2></div><div class="tips_wtlist_item_left"><h2><ul><li><div class="dropdown msg_option_dropdown"><a class="btn dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="images/more-icon.png" alt="images"></a><div class="dropdown-menu dropdown-menu-right"><ul><li><i class="fas fa-pencil-alt"></i><a href="/editService?id='+ dataResult[i].id +'&ids2=33428f3b-cf07-4861-875d-05d1189fdc71&sname=Recommended">Edit Service</a></li></ul></div></div></li></ul></h2></div></div>';
-                  }else{
+                  for(var i=0; i< dataResult.serviceSubscriptionMyMentorPlans.length; i++) {  
 
                   function checkimage(){   
                    var data ;
-                    if(!dataResult[i].imageDetails) {data = '<div class="tips_wtlist_item_left"><h2><div class="pckg_item_img"><img src="'+ dataResult[i].thumbnailImageUrl +'" alt="images"></div></h2></div>'; }else{data = '<div class="tips_wtlist_item_left"><h2><div class="pckg_item_img"><img src="https://apistest.tradetipsapp.com'+ dataResult[i].imageDetails +'" alt="images"></div></h2></div>';}
+                    if(!dataResult.serviceSubscriptionMyMentorPlans[i].imageDetails) {data = '<td><img src="'+ dataResult.serviceSubscriptionMyMentorPlans[i].thumbnailImageUrl +'" alt="images" height="150" width="150"></td>'; }else{data = '<td><img src="https://apistest.tradetipsapp.com'+ dataResult.serviceSubscriptionMyMentorPlans[i].imageDetails +'" height="150" width="150" alt="images"></td>';}
 
                     return data;
                   }
-                 
-                    newtip += '<div class="tips_wtlist_item"><div class="tips_wtlist_item_left"><h2>'+ dataResult[i].serviceTypeMaster.title +'</h2></div>'+ checkimage() +'<div class="tips_wtlist_item_left"><h2>'+ dataResult[i].title +'</h2></div><div class="tips_wtlist_item_left"><h2 style="margin-left:20px;">'+ dataResult[i].descriptionOne +'</h2></div><div class="tips_wtlist_item_left"><h2 style="text-align:center;">$'+ dataResult[i].price.toFixed(2) +'</h2></div><div class="tips_wtlist_item_left"><h2><ul><li><div class="dropdown msg_option_dropdown"><a class="btn dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="images/more-icon.png" alt="images"></a><div class="dropdown-menu dropdown-menu-right"><ul><li><i class="fas fa-pencil-alt"></i><a href="/editService?id='+ dataResult[i].id +'&ids2='+ dataResult[i].serviceTypeId +'&sname=Newsletter">Edit Service</a></li></ul></div></div></li></ul></h2></div></div>';
 
+                 function checksubscribeStatus(){   
+                   var datastatus ;
+                    if(dataResult.serviceSubscriptionMyMentorPlans[i].isActive == null || dataResult.serviceSubscriptionMyMentorPlans[i].isActive == true) {datastatus = '<a id="'+dataResult.serviceSubscriptionMyMentorPlans[i].id+'" class="updateStatusdata btn btn-primary" value="Active" style="color:white;">Active</a>'; }else{datastatus = '<a  class="updateStatusdata btn btn-primary" id="'+dataResult.serviceSubscriptionMyMentorPlans[i].id+'" value="Inactive" style="color:white;">Inactive</a>';}
+
+                    return datastatus;
                   }
+                 
+                    newtip += '<tr><td>'+ dataResult.serviceSubscriptionMyMentorPlans[i].title +'</td>'+ checkimage() +'<td>'+ dataResult.serviceSubscriptionMyMentorPlans[i].mentorName +'</td><td>'+ dataResult.serviceSubscriptionMyMentorPlans[i].descriptionOne +'</td><td>$'+ dataResult.serviceSubscriptionMyMentorPlans[i].price.toFixed(2) +'</td><td>'+ checksubscribeStatus() +'</td></tr>';
+
 
                   }
                    $("#dataTables").append(newtip);
 
-                }
-
+                
               }
 
             });
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
+ 
 
 
-const url = "https://apistest.tradetipsapp.com/api/serviceMentorSubscriptionPlan/getAllTypeServicesForUser";
-fetch(url, {
-method: "POST",
-headers: {
-Authorization: 'Bearer ' + tokens,
-},
-})
-.then(resp => resp.json())
-.then(function(data) {
-var datak = JSON.stringify(data);
-var dataResult = JSON.parse(datak); 
-var len = dataResult.length;
-$("#sel_user").empty();
-     for( var i = 0; i<len; i++){
-         var id = dataResult[i]['id'];
-         var name = dataResult[i]['userName'];
-         $("#sel_user").append("<option value='"+name+"'>"+name+"</option>");
-     }
+ 
 
-
-})
-.catch(function(error) {
-console.log(error);
-});
 
 });
 

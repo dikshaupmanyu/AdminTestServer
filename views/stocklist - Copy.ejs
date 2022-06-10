@@ -1,0 +1,606 @@
+           
+
+           <%- include partials/header %>
+
+<style type="text/css">
+
+.sidebar li .submenu{ 
+  list-style: none; 
+  margin: 0; 
+  padding: 0; 
+  padding-left: 1rem; 
+  padding-right: 1rem;
+}
+.sidebar .nav-link {
+    font-weight: 500;
+    color: var(--bs-dark);
+}
+.sidebar .nav-link:hover {
+    color: var(--bs-primary);
+}
+li.nav-item.active {
+  background: black;
+  color: white;
+}
+li.nav-item {
+    color: white;
+}
+
+</style>
+
+
+</head>
+
+<div class="container" style="margin-top: -30px;">
+<section class="section-content py-3">
+  <div class="row">
+     <aside class="col-lg-3"> 
+<!-- ============= COMPONENT ============== -->
+      <nav class="sidebar card py-2 mb-4" style="background: grey;color: black;border: grey;margin-left: -15px;">
+        <h2 style="color: white;margin-left: 10px;">Analytics</h2> 
+        <ul class="nav flex-column" id="nav_accordion">
+        <li class="nav-item active">
+          <a class="nav-link" id="StockLinks">Stock User Searched </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="StockSearchLink"> Stock By Date </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="TipSearchLink">Mentor Tip By Date</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="AISearchLink"> AI Tip Count By Date</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="SoicalSearchLink"> Social Chat Count By Date</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="PredictionLink"> 5-Day Prediction</a>
+        </li>
+      </ul>
+      </nav>
+<!-- ============= COMPONENT END// ============== --> 
+    </aside>
+  
+    <main class="col-lg-9">
+              <h4>Stock User Searched </h4> 
+              <div class="card-body">
+                <form autocomplete="off" class="form" role="form">
+                  <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">Choose User</label>
+                    <div class="col-lg-9">
+                      <select class="chosen form-control" id="sel_user" placeholder="Pick a User">
+                      </select>
+                    </div>
+                  </div>
+                  <!-- <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">Offset</label>
+                    <div class="col-lg-9">
+                      <input class="form-control" type="text" id="offset">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">Limit</label>
+                    <div class="col-lg-9">
+                      <input class="form-control" type="text" id="limit">
+                    </div>
+                  </div> -->
+                  <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label"></label>
+                    <div class="col-lg-9">
+                      <input class="btn btn-secondary" type="reset" value="Cancel"> 
+                      <input class="btn btn-primary" type="button" value="Search Stocks" id="butSaveData">
+                     </div>
+                  </div>
+                </form>
+
+                <div class="h5 mb-0 font-weight-bold text-gray-800">Total Counts : <span id="countStockListData">0</span></div>
+              </div>
+
+                <div class="card shadow mb-4">
+                  <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Stock List</h6>
+                  </div>
+
+
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <br>
+
+                      <div id="dataTablesdata"></div>
+<p>
+    <a href="#" id="btn-prev">Prev</a>
+    <a href="#" id="btn-next">Next</a>
+</p>
+<p>Page <span id="page"></span></p>
+                    </div>
+                  </div>
+                </div>
+
+                    <!--   <table class="table table-bordered" id="dataTables" width="100%" cellspacing="0">
+                        <thead>
+                          <tr>
+                            <th>Username</th>
+                            <th>Stock Symbol</th>
+                            <th>Stock Name</th>
+                           </tr>
+                          <tbody>
+                        </tbody>
+                      </table> -->
+                    </div>
+                  </div>
+                </div>
+
+    </main>
+  </div>
+</section>
+
+</div><!-- container //  -->
+
+       
+        <!-- <div class="container-fluid">
+
+            <div class="card card-outline-secondary">
+              <div class="card-header">
+                <h3 class="mb-0">Stock list of User</h3>
+              </div>
+              <div class="card-header">
+                <h5 class="mb-0"><a id="StockSearchLink">Search Stock By Date</a></h5>
+                <h5 class="mb-0"><a id="TipSearchLink">Search Tip By Date</a></h5>
+
+              </div>
+              <div class="card-body">
+                <form autocomplete="off" class="form" role="form">
+                  <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">Choose User</label>
+                    <div class="col-lg-9">
+                      <select class="chosen form-control" id="sel_user" placeholder="Pick a User">
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">Offset</label>
+                    <div class="col-lg-9">
+                      <input class="form-control" type="text" id="offset">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">Limit</label>
+                    <div class="col-lg-9">
+                      <input class="form-control" type="text" id="limit">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label"></label>
+                    <div class="col-lg-9">
+                      <input class="btn btn-secondary" type="reset" value="Cancel"> 
+                      <input class="btn btn-primary" type="button" value="Search Stocks" id="butSaveData">
+                     </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+
+        </div>
+ -->
+      </div>
+      <!-- End of Main Content -->
+
+                 <%- include partials/footer %>
+
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary" href="/">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+
+ <!-- jQuery -->
+ <!-- <script type="text/javascript" 
+ src="https://code.jquery.com/jquery-3.5.1.js">
+</script> -->
+
+<!-- DataTables CSS -->
+<link rel="stylesheet"
+href=
+"https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
+
+<!-- DataTables JS -->
+<!-- <script src=
+"https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js">
+</script> -->
+
+
+<script type="text/javascript">
+  $(document).ready(function () {
+//change selectboxes to selectize mode to be searchable
+   $("select").select2();
+});
+</script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="js/sb-admin-2.min.js"></script>
+<script src="js/choosen.js"></script>
+
+ <!-- Page level plugins -->
+  <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+  <!-- <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script> -->
+
+  <!-- Page level custom scripts -->
+  <script src="js/demo/datatables-demo.js"></script>
+
+
+  <script type="text/javascript">
+
+window.history.forward(); 
+        function noBack() { 
+            window.history.forward(); 
+        } 
+
+window.addEventListener("load", function() {
+
+  var url_string = window.location.href; 
+  var urls = new URL(url_string);
+  var tokens = urls.searchParams.get("tokendata");
+ 
+const url = "https://apistest.tradetipsapp.com/api/appUserWebModify/getAllAppUsers";
+fetch(url, {
+  method: "POST",
+  headers: {
+          Authorization: 'Bearer ' + tokens,
+        },
+})
+  .then(resp => resp.json())
+    .then(function(data) {
+       var datak = JSON.stringify(data);
+       var dataResult = JSON.parse(datak); 
+        var len = dataResult.length;
+          $("#sel_user").empty();
+          $("#sel_user").prepend("<option value='ALL'>ALL</option>");
+                for( var i = 0; i<len; i++){
+                    var id = dataResult[i]['id'];
+                    var name = dataResult[i]['userName'];
+                    $("#sel_user").append("<option value='"+name+"'>"+name+"</option>");
+                }
+
+       
+  })
+  .catch(function(error) {
+    console.log(error);
+  });
+               var formdata = {limit:"100",offset:"0"};
+               alert("It will take few seconds to load data Loading...");
+                 $.ajax({
+                   type: 'POST',
+                   url: 'https://apistest.tradetipsapp.com/api/dataAnalytics/getAllSearchStockOfUserByUserName',
+                   headers: {
+                     Authorization: 'Bearer '+ tokens
+                   },
+                   data: formdata,
+                   success: function(data, textStatus, jqXHR){
+                     var datak = JSON.stringify(data);
+                     // var dataResultp = JSON.parse(datak); 
+                     // var len = dataResultp.length;
+                      // $('#dataTables').empty();
+           
+                      // $("#countStockListData").text(len);
+           
+                      // if ( $.fn.DataTable.isDataTable('#dataTables') ) {
+                      //     $('#dataTables').DataTable().destroy();
+                      //    }
+
+                     var jsp_json_object = JSON.parse(datak); 
+                     var len = jsp_json_object.length;
+                     let jsp_current_page = 1;
+                     const jsp_records_per_page = 4;
+                     function jsp_num_pages() {
+                            return Math.ceil(jsp_json_object.length / jsp_records_per_page);
+                        }
+
+                        function jsp_prev_page() {
+                            if (jsp_current_page > 1) {
+                                jsp_current_page--;
+                                jsp_change_page(jsp_current_page);
+                            }
+                        }
+
+                        function jsp_next_page() {
+                            if (jsp_current_page < jsp_num_pages()) {
+                                jsp_current_page++;
+                                jsp_change_page(jsp_current_page);
+                            }
+                        }
+
+                        function jsp_change_page(page) {
+                            const btn_prev = document.getElementById('btn-prev');
+                            const btn_next = document.getElementById('btn-next');
+                            const listing_table = document.getElementById('dataTablesdata');
+                            alert(listing_table.innerHTML);
+                            let page_span = document.getElementById('page');
+                            
+                            if (page < 1) {
+                                page = 1;
+                            }
+                            if (page > jsp_num_pages()) {
+                                page = jsp_num_pages();
+                            }
+
+                            listing_table.innerHTML = '';
+
+                            for (let i = (page - 1) * jsp_records_per_page; i < (page * jsp_records_per_page) && i < jsp_json_object.length; i++) {
+                                listing_table.innerHTML += `${jsp_json_object[i].json_item}<br>`;
+                            }
+                            page_span.innerHTML = `${page}/${jsp_num_pages()}`;
+
+                            btn_prev.style.display = (page === 1) ? 'none' : 'inline-block';
+                            btn_next.style.display = (page === jsp_num_pages()) ? 'none' : 'inline-block';
+                        }
+
+                        // window.onload = () => {
+                            document.getElementById('btn-prev').addEventListener('click', (e) => {
+                                e.preventDefault();
+                                jsp_prev_page();
+                            });
+
+                            document.getElementById('btn-next').addEventListener('click', (e) => {
+                                e.preventDefault();
+                                jsp_next_page();
+                            });
+
+                            jsp_change_page(1);
+                        // };
+
+           
+                     //  $('#dataTables').dataTable( {
+                     //       "aaData": data,   
+                     //       "lengthMenu": [ 500, 1000, 2000, 3000, 4000, 5000 ],
+                     //       "pageLength": 500,
+                     //       "oLanguage": {
+                     //         "sSearch": "<span>Search Stocks</span> _INPUT_" //search
+                     //       },
+                     //       "columns": [
+                     //           { "data": "userName" ,
+                     //             "title" : "Username",
+                     //            "render": function(data, type, full, meta){
+                     //             return data;
+                     //           }
+                     //           },
+                     //           { "data": "userStockDetail.stockSymbol" ,
+                     //             "title" : "Stock Symbol",
+                     //              "render": function(data, type, full, meta){
+                     //               return data;
+                     //             }
+                     //            },
+                     //           { "data": "userStockDetail.stockName" ,
+                     //           "title" : "Stock Name",
+                     //          "render": function(data, type, full, meta){
+                     //           return data;
+                     //           }
+                     //          },             
+                     //       ],
+                     //       "deferRender": true,
+                     //       rowCallback: function ( row, data ) {
+                     //       // Set the checked state of the checkbox in the table
+                     //       // $('input.editor-active', row).prop( 'checked', data.isFlag == true );
+                     //       }
+            
+                     // });
+                
+               }
+
+             });
+$('#butSaveData').on('click', function() {
+    var UserSelect = $('#sel_user').val();
+    alert("It will take few seconds to load data Loading...");
+    if(UserSelect!=""){
+       var formdata = {userName : UserSelect,limit:"1000000",offset:"0"};
+       // alert(formdata.userName);
+       if(formdata.userName == "ALL"){
+        var formdata = {limit:"1000000",offset:"0"};
+          $.ajax({
+        type: 'POST',
+        url: 'https://apistest.tradetipsapp.com/api/dataAnalytics/getAllSearchStockOfUserByUserName',
+        headers: {
+          Authorization: 'Bearer '+ tokens
+        },
+        data: formdata,
+        success: function(data, textStatus, jqXHR){
+          var datak = JSON.stringify(data);
+          var dataResultp = JSON.parse(datak); 
+          var len = dataResultp.length;
+           $('#dataTables').empty();
+
+           $("#countStockListData").text(len);
+
+           if ( $.fn.DataTable.isDataTable('#dataTables') ) {
+               $('#dataTables').DataTable().destroy();
+              
+              }
+
+           $('#dataTables').dataTable( {
+                "aaData": data,   
+                "lengthMenu": [ 500, 1000, 2000, 3000, 4000, 5000 ],
+                "pageLength": 500,
+                "oLanguage": {
+                  "sSearch": "<span>Search Stocks</span> _INPUT_" //search
+                },
+                "columns": [
+                    { "data": "userName" ,
+                      "title" : "Username",
+                     "render": function(data, type, full, meta){
+                      return data;
+                    }
+                    },
+                    { "data": "userStockDetail.stockSymbol" ,
+                      "title" : "Stock Symbol",
+                       "render": function(data, type, full, meta){
+                        return data;
+                      }
+                     },
+                    { "data": "userStockDetail.stockName" ,
+                    "title" : "Stock Name",
+                   "render": function(data, type, full, meta){
+                    return data;
+                    }
+                   },             
+                ],
+                "deferRender": true,
+                rowCallback: function ( row, data ) {
+                // Set the checked state of the checkbox in the table
+                // $('input.editor-active', row).prop( 'checked', data.isFlag == true );
+                }
+
+          });
+
+        }
+
+    });
+
+       }else{
+          var formdata = {userName : UserSelect,limit:"1000",offset:"0"};
+          $.ajax({
+        type: 'POST',
+        url: 'https://apistest.tradetipsapp.com/api/dataAnalytics/getAllSearchStockOfUserByUserName',
+        headers: {
+          Authorization: 'Bearer '+ tokens
+        },
+        data: formdata,
+        success: function(data, textStatus, jqXHR){
+          var datak = JSON.stringify(data);
+          var dataResultp = JSON.parse(datak); 
+          var len = dataResultp.length;
+           $('#dataTables').empty();
+
+           $("#countStockListData").text(len);
+
+           if ( $.fn.DataTable.isDataTable('#dataTables') ) {
+               $('#dataTables').DataTable().destroy();
+              
+              }
+
+           $('#dataTables').dataTable( {
+                "aaData": data,   
+                "lengthMenu": [ 500, 1000, 2000, 3000, 4000, 5000 ],
+                "pageLength": 500,
+                "oLanguage": {
+                  "sSearch": "<span>Search Stocks</span> _INPUT_" //search
+                },
+                "columns": [
+                    { "data": "userName" ,
+                      "title" : "Username",
+                     "render": function(data, type, full, meta){
+                      return data;
+                    }
+                    },
+                    { "data": "userStockDetail.stockSymbol" ,
+                      "title" : "Stock Symbol",
+                       "render": function(data, type, full, meta){
+                        return data;
+                      }
+                     },
+                    { "data": "userStockDetail.stockName" ,
+                    "title" : "Stock Name",
+                   "render": function(data, type, full, meta){
+                    return data;
+                    }
+                   },             
+                ],
+                "deferRender": true,
+                rowCallback: function ( row, data ) {
+                // Set the checked state of the checkbox in the table
+                // $('input.editor-active', row).prop( 'checked', data.isFlag == true );
+                }
+
+          });
+
+        }
+
+    });
+
+
+       }
+    
+    }
+
+    });
+
+
+});
+
+
+
+ </script>
+ 
+ <script type="text/javascript">
+  window.addEventListener("load", function() {
+  var url_string = window.location.href; 
+  var urls = new URL(url_string);
+  var tokens = urls.searchParams.get("tokendata");
+  document.getElementById("dashboardLink").href = "/home?tokendata="+tokens;
+document.getElementById("TipLink").href = "/tipList?tokendata="+tokens;
+      document.getElementById("WaitingLink").href = "/waitinglist?tokendata="+tokens;
+
+   document.getElementById("HomeLink").href = "/home?tokendata="+tokens;
+  document.getElementById("UserLink").href = "/userlist?tokendata="+tokens;
+  // document.getElementById("UserCallLink").href = "/userlist?tokendata="+tokens;
+   document.getElementById("CommentLink").href = "/commentlist?tokendata="+tokens;
+   document.getElementById("ContactLink").href = "/contactlist?tokendata="+tokens;
+   document.getElementById("CSVLink").href = "/csvlist?tokendata="+tokens;
+ document.getElementById("FlagCallLink").href = "/flaglist?tokendata="+tokens;
+    document.getElementById("BannerLink").href = "/banner?tokendata="+tokens;
+document.getElementById("NotifyLink").href = "/notification?tokendata="+tokens;
+   document.getElementById("changePassLink").href = "/changePassword?tokendata="+tokens;  
+       document.getElementById("AccountLink").href = "/account?tokendata="+tokens;  
+           document.getElementById("NotifyListLink").href = "/notificationlist?tokendata="+tokens;
+  document.getElementById("FlagChatLink").href = "/flagChatlist?tokendata="+tokens;
+   document.getElementById("StockLink").href = "/stocklist?tokendata="+tokens;
+      document.getElementById("StockLinks").href = "/stocklist?tokendata="+tokens;
+   document.getElementById("StockSearchLink").href = "/searchStock?tokendata="+tokens;
+   document.getElementById("TipSearchLink").href = "/alltipByDate?tokendata="+tokens;
+   document.getElementById("AISearchLink").href = "/aiSearchByDate?tokendata="+tokens;
+document.getElementById("SoicalSearchLink").href = "/soicalSearchByDate?tokendata="+tokens;
+document.getElementById("PredictionLink").href = "/fiveDayPrediction?tokendata="+tokens;
+
+});
+</script>
+
+</body>
+
+</html>
