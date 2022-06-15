@@ -5,6 +5,7 @@
 <link href="css/confirm.css" rel="stylesheet" type="text/css">
 <script src="/js/confirm.js"></script>
 
+
 <div class="container-fluid">
 
 <!-- form user info -->
@@ -232,11 +233,10 @@ var id = $(this).attr('id');
 // alert(id);
 
 var url ;
-var result =   Confirm.open({
-  title: 'Delete Confirm',
-  message: 'Are you sure you want to delete ?',
-  onok: () => {
-    // if(result){
+var result =  Confirm.open({
+title: 'Delete Update ',
+message: 'Are you sure you want to delete ?',
+onok: () => {
 var formData = {commentId:id};
 url = "https://apistest.tradetipsapp.com/api/comment/deleteCommentByCommentId";
 $.ajax({
@@ -264,12 +264,10 @@ window.FlashMessage.error(' Not updated !!', { timeout: 3000,});
 }
 
 });
-
-
-  },
-  oncancel:  () => {
-    setTimeout(()=> { window.location.reload()},500)
-  }
+},
+oncancel : ()=>{
+window.FlashMessage.error(' Not updated !!', { timeout: 3000,});
+}
 })
 
 });
@@ -384,12 +382,10 @@ var id = $(this).attr('id');
 // alert(ids);
 
 var url ;
-var result =     Confirm.open({
-  title: 'Dee',
-  message: 'Are you sure you want to delete?")',
-  onok: () => {
-    
-if(result){
+var result =  Confirm.open({
+title: 'Delete Update',
+message: 'Are you sure you want to delete ?',
+onok: () => {
 var formData = {commentId:id};
 url = "https://apistest.tradetipsapp.com/api/comment/deleteCommentByCommentId";
 $.ajax({
@@ -417,14 +413,12 @@ window.FlashMessage.error('Not updated !!', { timeout: 3000,});
 }
 
 });
-
-
-} 
-  },
-  oncancel : ()=>{ 
-    setTimeout(()=> { window.location.reload()},500)
-  }
+},
+oncancle: ()=>{  window.FlashMessage.error('Not updated !!', { timeout: 3000,});}
 })
+// confirm("Are you sure you want to delete?");
+
+
 
 
 });
@@ -460,10 +454,9 @@ var ids = $(this).attr('id');
 var table = $('#dataTables').DataTable();
 var row = table.row(this.closest('tr')).data();
 var result =  Confirm.open({
-  title: 'Update Status',
-  message: 'Are you sure you want to update the status?',
-  onok: () => {
-    // if(result){
+title: 'Status Update',
+message: 'Are you sure you want to update the status?',
+onok: () => {
 var formData;
 var id = ids;
 // alert(id);
@@ -505,13 +498,12 @@ window.FlashMessage.error(' Not updated !!', { timeout: 3000,});
 }
 
 });
-    // }
-  },
-  oncancel :  () => {
-    setTimeout(()=> { window.location.reload()},500)
-  }
+},
+oncancle: ()=>{
+window.FlashMessage.error(' Not updated !!', { timeout: 3000,});
+}
 })
-
+// confirm("Are you sure you want to update the status?");
 
 
 });
@@ -542,42 +534,40 @@ $("#dataTables input[type=checkbox]:checked").each(function () {
 if (selected.length > 0) {
 
 var isDelete =  Confirm.open({
-  title: 'Delete Records',
-  message: 'Do you really want to delete records?',
-  onok: () => {
-    if (isDelete == true) {
+title: 'Delete Records',
+message: 'Do you really want to delete records?',
+onok: () => {
+if (isDelete == true) {
 
 for (var i = 0; i <= selected.length-1; i++) {
 
-      // AJAX Request
-      // alert("ajax cl");
-      // alert(selected);
-      var commentId = selected[i];
-      // alert(commentId);
-      $.ajax({
-         url: 'https://apistest.tradetipsapp.com/api/comment/deleteCommentByCommentId',
-         type: 'POST',
-         headers: {
-          Authorization: 'Bearer ' + tokens,
-         },
-         data: { commentId: commentId},
-         success: function(response){
-             // alert(response);
-            // $.each(selected, function( i,l ){
-            //     $("#tr_"+l).remove();
-            // });
-            window.location.reload();
-         }
-      });
-    } 
-  } 
-  window.FlashMessage.success(' Comment deleted Sucessfully !!', { timeout: 5000,});
-  }
+// AJAX Request
+// alert("ajax cl");
+// alert(selected);
+var commentId = selected[i];
+// alert(commentId);
+$.ajax({
+ url: 'https://apistest.tradetipsapp.com/api/comment/deleteCommentByCommentId',
+ type: 'POST',
+ headers: {
+  Authorization: 'Bearer ' + tokens,
+ },
+ data: { commentId: commentId},
+ success: function(response){
+     // alert(response);
+    // $.each(selected, function( i,l ){
+    //     $("#tr_"+l).remove();
+    // });
+    window.location.reload();
+ }
+});
+} 
+} 
+//  alert("Comment deleted Sucessfully !!");      
+window.FlashMessage.success(' Comment deleted Sucessfully !!', { timeout: 5000,});
+}
 })
 
-
-
- //  alert("Comment deleted Sucessfully !!");      
 
 }
 });

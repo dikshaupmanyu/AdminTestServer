@@ -236,7 +236,10 @@ fetch(url, {
     // alert(id);
     var table = $('#dataTables').DataTable();
     var row = table.row(this.closest('tr')).data();
-    var result = confirm("Are you sure you want to unflag the comment?");
+    var result = Confirm.open({
+  title: 'Unflag Comments',
+  message: 'Are you sure you want to unflag this comment?',
+  onok: () => {
     if(result){
     var ids = row["id"];
     var reason = row["flagReason"];
@@ -255,6 +258,7 @@ fetch(url, {
             var dataResultp = JSON.parse(datak); 
             // alert("Comment Unflag Sucessfully !!");
             window.FlashMessage.success( " Comment Unflag Sucessfully !!", { timeout: 3000,});
+            setTimeout(()=> { window.location.reload()},3100)
         },
         error: function (jqXHR, textStatus, errorThrown)
         {
@@ -263,11 +267,14 @@ fetch(url, {
         }
 
     });
-    } else {
-
-       window.location.reload();
-
-    }
+    } 
+  },
+  oncancel:  () => {
+    window.FlashMessage.error( " Not updated !!", { timeout: 3000,});
+    setTimeout(()=> { window.location.reload()},3100)
+  }
+})
+    
 
    });
 

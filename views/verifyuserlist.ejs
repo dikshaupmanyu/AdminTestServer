@@ -2,6 +2,8 @@
 
 
            <link href="css/flash-main.css" rel="stylesheet" type="text/css">
+           <link href="css/confirm.css" rel="stylesheet" type="text/css">
+<script src="/js/confirm.js"></script>
            
         <div class="container-fluid">
 
@@ -274,8 +276,11 @@ $.ajax({
     //alert(id);
     var table = $('#dataTables').DataTable();
     var row = table.row(this.closest('tr')).data();
-    var result = confirm("Are you sure you want to delete?");
-    if(result){
+    var result =   Confirm.open({
+  title: 'Delete Confirm',
+  message: 'Are you sure you want to delete ?',
+  onok: () => {
+    // if(result){
         // Delete logic goes here
     // var ids = row["id"];
     var formData = {appuserid:id};
@@ -304,11 +309,14 @@ $.ajax({
       }
 
     });
-    } else {
-
-       window.location.reload();
-
-    }
+    // } 
+  },
+  oncancel: ()=>{
+    setTimeout(()=> { window.location.reload()},500)
+  }
+})
+    
+   
            // $('#dataTables').DataTable().ajax.reload();
 
 
@@ -324,8 +332,11 @@ $.ajax({
     var table = $('#dataTables').DataTable();
     var row = table.row(this.closest('tr')).data();
     var url ;
-    var result = confirm("Are you sure you want to update?");
-    if(result){
+    var result =   Confirm.open({
+  title: 'Update Confirm',
+  message: 'Are you sure you want to update?',
+  onok: () => {
+    // if(result){
         // Delete logic goes here
     var userdata = row["userName"];
     var formData = {appUserName:userdata};
@@ -351,9 +362,9 @@ $.ajax({
             var datak = JSON.stringify(data);
             var dataResultp = JSON.parse(datak); 
             // alert("User updated Sucessfully !!");
-            window.FlashMessage.success( " User updated Sucessfully !!", { timeout: 3000,});
+            window.FlashMessage.success( " User updated Sucessfully !!", { timeout: 2000,});
             // window.location.reload();
-            setTimeout(()=> { window.location.reload()},3500)
+            setTimeout(()=> { window.location.reload()},2100)
         },
         error: function (jqXHR, textStatus, errorThrown)
         {
@@ -362,13 +373,12 @@ $.ajax({
         }
 
     });
-    } else {
-
-       window.location.reload();
-
-    }
-           // $('#dataTables').DataTable().ajax.reload();
-
+    // } 
+  },
+  oncancel: ()=>{
+    setTimeout(()=> { window.location.reload()},500)
+  }
+}) 
 
    });
 
@@ -383,12 +393,11 @@ $.ajax({
     var formData;
     var result ;
     if(vals == "Block"){
-      result = confirm("Are you sure you want to Block?");
-    }
-    if(vals == "Release"){
-      result = confirm("Are you sure you want to Release?");
-    }
-    if(result){
+      result =  Confirm.open({
+  title: 'Block Confirm ',
+  message: 'Are you sure you want to Block ?',
+  onok: () => {
+    // if(result){
         // Delete logic goes here
     var userdata = row["userName"];
     var useremail = row["email"];
@@ -431,11 +440,70 @@ $.ajax({
         }
 
     });
-    } else {
-
-       window.location.reload();
+    // }
+  },
+  oncancel: () => {
+    setTimeout(()=> { window.location.reload()},500)
+  }
+})
 
     }
+    if(vals == "Release"){
+      result =  Confirm.open({
+  title: 'Release Confirm ',
+  message: 'Are you sure you want to Release ?',
+  onok: () => {
+    // if(result){
+        // Delete logic goes here
+    var userdata = row["userName"];
+    var useremail = row["email"];
+    var userpass = row["password"];
+    var userId = row["id"];
+    var usertypeof = row["userType"];
+    var statusdata = row["status"];
+     // alert(statusdata);
+    if(statusdata == "Block") {
+          url = "https://apistest.tradetipsapp.com/api/appUserWebModify/appUserUpdateByUserName";
+         formData = {appUserName:userdata,appuserid:userId,userName:userdata,email:useremail,password:userpass,status:"Enable",firstName:"",middleName:"",lastName:"",gender:"",imageDetails:"",userLocation:"",userType:usertypeof,saved_stocks:"",savedMentors:"",description:""};
+      } else if(statusdata == "Enable") {
+          url = "https://apistest.tradetipsapp.com/api/appUserWebModify/appUserUpdateByUserName";
+          formData = {appUserName:userdata,appuserid:userId,userName:userdata,email:useremail,password:userpass,status:"Block",firstName:"",middleName:"",lastName:"",gender:"",imageDetails:"",userLocation:"",userType:usertypeof,saved_stocks:"",savedMentors:"",description:""};
+      } else if(statusdata == null) {
+          url = "https://apistest.tradetipsapp.com/api/appUserWebModify/appUserUpdateByUserName";
+          formData = {appUserName:userdata,appuserid:userId,userName:userdata,email:useremail,password:userpass,status:"Enable",firstName:"",middleName:"",lastName:"",gender:"",imageDetails:"",userLocation:"",userType:usertypeof,saved_stocks:"",savedMentors:"",description:""};
+      }
+       $.ajax({
+        url : url,
+        type: "POST",
+        headers: {
+             Authorization: 'Bearer ' + tokens,
+        },
+        data : formData,
+        success: function(data, textStatus, jqXHR)
+        {
+            //data - response from server
+            var datak = JSON.stringify(data);
+            var dataResultp = JSON.parse(datak); 
+            // alert("Status updated Sucessfully !!");
+            window.FlashMessage.success( " Status updated Sucessfully !!", { timeout: 3000,});
+            // window.location.reload();
+            setTimeout(()=> { window.location.reload()},3500)
+        },
+        error: function (jqXHR, textStatus, errorThrown)
+        {
+          //  alert("Not updated !!");
+          window.FlashMessage.error( " Not updated !!", { timeout: 3000,});
+        }
+
+    });
+    // }
+  },
+  oncancel: () => {
+    setTimeout(()=> { window.location.reload()},500)
+  }
+});
+    }
+    
 
 
    });

@@ -2,6 +2,8 @@
 
            <link href="css/flash-main.css" rel="stylesheet" type="text/css">
            <script src="/js/flash-main.js"></script>
+           <link href="css/confirm.css" rel="stylesheet" type="text/css">
+<script src="/js/confirm.js"></script>
            <div class="container-fluid">
 
             <!-- form user info -->
@@ -250,11 +252,15 @@ window.addEventListener("load", function() {
  $('#dataTables').on('click', 'input.editor-active', function () {
 
     var id = $(this).attr('id');
-    alert(id);
+    // alert(id);
     var table = $('#dataTables').DataTable();
     var row = table.row(this.closest('tr')).data();
-    var result = confirm("Are you sure you want to unflag the comment?");
-    if(result){
+    var result = 
+    Confirm.open({
+  title: 'Unflag comment',
+  message: 'Are you sure you want to unflag the comment?',
+  onok: () => {
+    // if(result){
     var ids = id;
     // alert(ids);
     var formData = {id:ids};
@@ -268,21 +274,26 @@ window.addEventListener("load", function() {
             var datak = JSON.stringify(data);
             var dataResultp = JSON.parse(datak); 
             // alert("Comment Unflag Sucessfully !!");
-            window.FlashMessage.succes( " Comment Unflag Sucessfully !!", { timeout: 3000,});
-            // window.location.reload();
+            window.FlashMessage.success( " Comment Unflag Sucessfully !!", { timeout: 3000,});
+           setTimeout(()=> { window.location.reload()},3100)
+            // window.location.reload({time});
         },
         error: function (jqXHR, textStatus, errorThrown)
         {
           //  alert("Not updated !!");
           window.FlashMessage.error( " Not updated !!", { timeout: 3000,});
+          setTimeout(()=> { window.location.reload()},3100)
         }
 
     });
-    } else {
+    // } 
+  },
+  oncancel:  () => { window.FlashMessage.error( " Not updated !!", { timeout: 3000,});
+  setTimeout(()=> { window.location.reload()},3100)
+              }
+})
+    // confirm("Are you sure you want to unflag the comment?");
 
-       window.location.reload();
-
-    }
 
    });
     
@@ -299,8 +310,11 @@ window.addEventListener("load", function() {
     window.FlashMessage.info( id, { timeout: 3000,});
     var table = $('#dataTables1').DataTable();
     var row = table.row(this.closest('tr')).data();
-    var result = confirm("Are you sure you want to unflag the comment?");
-    if(result){
+    var result = Confirm.open({
+  title: 'Unflag Comment',
+  message: 'Are you sure you want to unflag the comment?',
+  onok: () => {
+    // if(result){
     var ids = id;
     // alert(ids);
     var formData = {id:ids};
@@ -316,6 +330,7 @@ window.addEventListener("load", function() {
             // alert("Comment Unflag Sucessfully !!");
             window.FlashMessage.success( " Comment Unflag Sucessfully !!", { timeout: 3000,});
             // window.location.reload();
+            setTimeout(()=> { window.location.reload()},3100)
         },
         error: function (jqXHR, textStatus, errorThrown)
         {
@@ -324,11 +339,14 @@ window.addEventListener("load", function() {
         }
 
     });
-    } else {
+    // } 
+  },
+  oncancel:  () => {
+    window.FlashMessage.error( " Not updated !!", { timeout: 3000,});
+    setTimeout(()=> { window.location.reload()},3100)
+  }
+})
 
-       window.location.reload();
-
-    }
 
    });
     

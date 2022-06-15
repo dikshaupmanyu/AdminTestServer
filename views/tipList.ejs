@@ -1,6 +1,8 @@
            <%- include partials/header %>
            <link href="css/flash-main.css" rel="stylesheet" type="text/css">
            <script src="/js/flash-main.js"></script>
+           <link href="css/confirm.css" rel="stylesheet" type="text/css">
+<script src="/js/confirm.js"></script>
 
        
         <div class="container-fluid">
@@ -227,8 +229,11 @@ window.addEventListener("load", function() {
       // alert(id);
 
       var url ;
-      var result = confirm("Are you sure you want to delete?");
-      if(result){
+      var result =   Confirm.open({
+  title: 'Delete Confirm',
+  message: "Are you sure you want to delete?",
+  onok: () => {
+    // if(result){
       var formData = {tipId:id};
        url = "https://apistest.tradetipsapp.com/api/tip/deleteTipByTipId";
       $.ajax({
@@ -245,23 +250,26 @@ window.addEventListener("load", function() {
             var dataResultp = JSON.parse(datak); 
             // alert(dataResultp);
             // alert("Delete Sucessfully !!");
-            window.FlashMessage.success( " Delete Sucessfully !! ", { timeout: 3000,});
-            setTimeout(()=> { window.location.reload()},3500)
+            window.FlashMessage.success( " Delete Sucessfully !! ", { timeout: 2000,});
+            setTimeout(()=> { window.location.reload()},2100)
         },
         error: function (jqXHR, textStatus, errorThrown)
         {
           //  alert("Not updated !!");
-          window.FlashMessage.error( " Not updated !!", { timeout:3000,});
+          window.FlashMessage.error( " Not updated !!", { timeout:2000,});
         }
 
        });
       
 
-      } else {
+      // } 
+  },
+  oncancel: () => {
+    window.FlashMessage.error( " Not updated !!", { timeout:2000,});
+  }
+})
 
-        setTimeout(()=> { window.location.reload()},2000)
 
-      }
 
       });
 
