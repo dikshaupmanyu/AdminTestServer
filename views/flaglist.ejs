@@ -3,6 +3,8 @@
 
            <link href="css/flash-main.css" rel="stylesheet" type="text/css">
            <script src="/js/flash-main.js"></script>
+           <link href="css/confirm.css" rel="stylesheet" type="text/css">
+<script src="/js/confirm.js"></script>
         <div class="container-fluid">
 
 
@@ -240,7 +242,7 @@ fetch(url, {
   title: 'Unflag Comments',
   message: 'Are you sure you want to unflag this comment?',
   onok: () => {
-    if(result){
+    // if(result){
     var ids = row["id"];
     var reason = row["flagReason"];
     var formData = {id:ids,flagReason:reason};
@@ -267,7 +269,7 @@ fetch(url, {
         }
 
     });
-    } 
+    // } 
   },
   oncancel:  () => {
     window.FlashMessage.error( " Not updated !!", { timeout: 3000,});
