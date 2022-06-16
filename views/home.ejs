@@ -314,6 +314,19 @@ function logout() {
  </script>
    
    <%- include partials/commonlink %>
+   <script type="text/javascript">
+    window.addEventListener("load", function() {
+ var url_string = window.location.href; 
+ var urls = new URL(url_string);
+ var tokens = urls.searchParams.get("tokendata");
+  document.getElementById("UserCallLink").href = "/userlist?tokendata="+tokens;
+ document.getElementById("VerifyUserCallLink").href = "/verifyuserlist?tokendata="+tokens;
+  document.getElementById("NonVerifyUserCallLink").href = "/nonverifyuserlist?tokendata="+tokens;
+document.getElementById("dashboardLink").href = "/home?tokendata="+tokens;
+ document.getElementById("FlagCallsLink").href = "/flaglist?tokendata="+tokens;
+
+});
+</script>
 </body>
 
 </html>
