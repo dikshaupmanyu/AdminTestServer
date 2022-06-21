@@ -334,7 +334,7 @@
   title: 'Confirm Update',
   message: 'Are you sure you want to update?',
   onok: () => {
-    if (result) {
+    // if (result) {
             // Delete logic goes here
             var userdata = row["userName"];
             var formData = { appUserName: userdata };
@@ -369,7 +369,7 @@
               }
 
             });
-          } 
+          // } 
   },
   oncancel:  () => {
     window.FlashMessage.error(" Not updated !!", { timeout: 3000, });
@@ -398,7 +398,7 @@
               title: 'Block Confirm',
               message: 'Are you sure you want to Block?',
               onok: () => {
-                if (result) {
+                // if (result) {
                   // Delete logic goes here
                   var userdata = row["userName"];
                   var useremail = row["email"];
@@ -439,11 +439,11 @@
                     }
 
                   });
-                } else {
+                // } else {
 
-                  window.location.reload();
+                //   window.location.reload();
 
-                }
+                // }
               }
             })
 
@@ -455,7 +455,7 @@
               title: 'Release Confirm',
               message: 'Are you sure you want to Release?',
               onok: () => {
-                if (result) {
+                // if (result) {
                   // Delete logic goes here
                   var userdata = row["userName"];
                   var useremail = row["email"];
@@ -496,11 +496,11 @@
                     }
 
                   });
-                } else {
+                // } else {
 
-                  window.location.reload();
+                //   window.location.reload();
 
-                }
+                // }
               }
             })
 
