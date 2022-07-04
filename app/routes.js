@@ -1437,9 +1437,9 @@ app.get('/backmale', isLoggedIn, function(req, res) {
     
   });
 
-   app.get('/waitinglist',  function(req, res) {
+   app.get('/waitlist',  function(req, res) {
 
-        res.render('waitinglist.ejs');
+        res.render('waitlist.ejs');
      
     
   });
