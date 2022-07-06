@@ -291,7 +291,10 @@ document.getElementById("TipLink").href = "/tipList?tokendata="+tokens;
     var endDates = $('#end_date').val();
     // alert(endDates);
     // var formdata = {userName : UserSelect};
-    var tokens = "eyJhbGciOiJIUzUxMiJ9.eyJlbWFpbCI6ImphaW4uYWthc2hAbm92YXNvZnRjb3Jwcy5jb20iLCJzdWIiOiI3ZmM5MjRiNy05YTE4LTRhNDctYjJkMS01NDI4ZDNiYzE2MWQiLCJpYXQiOjE2MjMzMTI0ODAsImV4cCI6MTYyMzkxNzI4MH0.xyQVU5Qs9lX3MP7FE0wCW-vf2YtQ_rppCVbrBn_EydlawagF-8f-W10ThlyubVPfD8nSlQSwNIoDdX3YU62I1Q";
+    var url_string = window.location.href; 
+    var urls = new URL(url_string);
+     var tokens = urls.searchParams.get("tokendata");
+
 
     var formdata = {mentorId : UserSelect,startDate : startDates , endDate : endDates};
     if(UserSelect!=""){
@@ -537,7 +540,9 @@ document.getElementById("TipLink").href = "/tipList?tokendata="+tokens;
     var UserSelect = $('#sel_mentor').val();
     // alert(UserSelect);
     // var formdata = {userName : UserSelect};
-    var tokens = "eyJhbGciOiJIUzUxMiJ9.eyJlbWFpbCI6ImphaW4uYWthc2hAbm92YXNvZnRjb3Jwcy5jb20iLCJzdWIiOiI3ZmM5MjRiNy05YTE4LTRhNDctYjJkMS01NDI4ZDNiYzE2MWQiLCJpYXQiOjE2MjMzMTI0ODAsImV4cCI6MTYyMzkxNzI4MH0.xyQVU5Qs9lX3MP7FE0wCW-vf2YtQ_rppCVbrBn_EydlawagF-8f-W10ThlyubVPfD8nSlQSwNIoDdX3YU62I1Q";
+     var url_string = window.location.href; 
+    var urls = new URL(url_string);
+     var tokens = urls.searchParams.get("tokendata");
 
     var formdata = {userId : UserSelect};
     if(UserSelect!=""){
@@ -555,6 +560,7 @@ document.getElementById("TipLink").href = "/tipList?tokendata="+tokens;
           // alert(datak);
           // console.log(datak);
           var dataResultp = JSON.parse(datak); 
+          // alert(dataResultp);
           
           var len = dataResultp.length;
            // $('#dataTabless').empty();
