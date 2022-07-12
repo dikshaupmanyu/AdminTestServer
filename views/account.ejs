@@ -25,14 +25,21 @@
                         <div class="tab-pane active" id="post">
                           <form autocomplete="off" class="form" role="form">
                             <div class="form-group row">
-                              <label class="col-lg-3 col-form-label form-control-label">Choose Mentor</label>
-                              <div class="col-lg-9">
+                              <label class="col-lg-2 col-form-label form-control-label">Choose Mentor</label>
+                              <div class="col-lg-6">
                                 <select class="choosen form-control" id="sel_user" placeholder="Pick a User" style="background-color: #fff;" required="required">
+
                                 </select>
+                              </div>
+                              <div class="col-lg-4">
+                                <span style="margin-left: 20px;" class="containeruser"></span>
+                                <span class="containertrade"></span>
+                                <span style="margin-left: 20px;" class="containeruserall"></span>
+                                <span class="containertradeall"></span>
                               </div>
                             </div>
                             <div class="form-row">                        
-                                <label class="col-lg-2 col-form-label form-control-label">Start Date</label>
+                                <!-- <label class="col-lg-2 col-form-label form-control-label">Start Date</label>
                                 <div class="col-lg-3">
                                   <input class="form-control" type="date" id="start_date" min="1997-01-01" max="2030-12-31" placeholder="yyyy-mm-dd">
                                 </div>
@@ -43,32 +50,25 @@
                                  <label class="col-lg-2 col-form-label form-control-label">End Date</label>
                                 <div class="col-lg-3">
                                   <input class="form-control" type="date" id="end_date" min="1997-01-01" max="2030-12-31" placeholder="yyyy-mm-dd">
-                                </div>
-                            </div>
+                                </div> -->
+                            <!-- </div> -->
                             <br>
-                            <div class="form-group row">
-                              <label class="col-lg-3 col-form-label form-control-label"></label>
-                              <div class="col-lg-9">
-                                <input class="btn btn-secondary" type="reset" value="Cancel"> 
-                                <input class="btn btn-primary" type="button" value="Search Mentor" id="MentorBtnData">
-                               </div>
+                            <div class="col-lg-4">
+                              <input class="btn btn-secondary" type="reset" value="Cancel"> 
+                              <input class="btn btn-primary" type="button" value="Search Mentor" id="MentorBtnData">
+                            </div>
                             </div>
                           </form>
-                           <div class="form-group row">
+                           <!-- <div class="form-group row">
                               <div class="col-lg-9">
                                
                               </div>
-                              <!-- <div class="col-lg-3">
-                                <span><b>TradeTips Total</b>: <b>$15</b></span>
-                                <br>
-                                 <span><b>Mentor Total</b>: <b>$15</b></span>
 
-                              </div> -->
                               <div class="col-lg-3">
                                 <span style="margin-left: 20px;" class="containeruser"></span>
                                 <span class="containertrade"></span>
                               </div>
-                          </div>
+                          </div> -->
                          
                           <br>
                           <table class="table table-stripped" id="dataTablesf" width="100%" cellspacing="0">
@@ -92,19 +92,29 @@
                         <div class="tab-pane" id="link">
                           <form autocomplete="off" class="form" role="form">
                             <div class="form-group row">
-                              <label class="col-lg-3 col-form-label form-control-label">Choose User</label>
-                              <div class="col-lg-9">
+                              <label class="col-lg-2 col-form-label form-control-label">Choose User</label>
+                              <div class="col-lg-6">
                                 <select class="choosen form-control" id="sel_mentor" placeholder="Pick a User" style="width: 100%!important;">
                                 </select>
                               </div>
+                              </div>
+
+                              <div class="form-row">                        
+                                <!-- <label class="col-lg-2 col-form-label form-control-label">Start Date</label>
+                                <div class="col-lg-2">
+                                  <input class="form-control" type="date" id="start_date1" min="1997-01-01" max="2030-12-31" placeholder="yyyy-mm-dd">
+                                </div>
+
+                                 <label class="col-lg-2 col-form-label form-control-label">End Date</label>
+                                <div class="col-lg-2">
+                                  <input class="form-control" type="date" id="end_date1" min="1997-01-01" max="2030-12-31" placeholder="yyyy-mm-dd">
+                                </div> -->
+                                <div class="col-lg-4">
+                                  <input class="btn btn-secondary" type="reset" value="Cancel"> 
+                                  <input class="btn btn-primary" type="button" value="Search Users" id="UserbutSaveData">
+                                </div>
                             </div>
-                            <div class="form-group row">
-                              <label class="col-lg-3 col-form-label form-control-label"></label>
-                              <div class="col-lg-9">
-                                <input class="btn btn-secondary" type="reset" value="Cancel"> 
-                                <input class="btn btn-primary" type="button" value="Search Users" id="UserbutSaveData">
-                             </div>
-                            </div>                                                
+                            <br>                                              
                           </form>
                            <div class="form-group row">
                               <div class="col-lg-9">
@@ -112,7 +122,7 @@
                               </div>
                               <div class="col-lg-3">
                                 <span style="margin-left: 20px;" class="containerk"></span>
-
+                                <span style="margin-left: 20px;" class="containerkall"></span>
                               </div>
                            </div>
                          
@@ -236,9 +246,11 @@ fetch(url, {
         var len = dataResult.length;
           $("#sel_user").empty();
            $("#sel_mentor").empty();
+            $("#sel_mentor").prepend("<option value='All'>All</option>");
+             $("#sel_user").prepend("<option value='All'>All</option>");
                 for( var i = 0; i<len; i++){
                    var id = dataResult[i]['id'];
-                    var name = dataResult[i]['userName'];
+                    var name = dataResult[i]['userName'];                   
                     $("#sel_mentor").append("<option value='"+id+"'>"+name+"</option>");
 
                     if(data[i].isMentor == true){
@@ -256,6 +268,10 @@ fetch(url, {
   .catch(function(error) {
     console.log(error);
   });
+
+    
+// });
+
 
   document.getElementById("dashboardLink").href = "/home?tokendata="+tokens;
 document.getElementById("TipLink").href = "/tipList?tokendata="+tokens;
@@ -284,20 +300,254 @@ document.getElementById("TipLink").href = "/tipList?tokendata="+tokens;
 </script>
 
 <script type="text/javascript">
+  // ////////////////////////////
+
+  // <script type="text/javascript">
   $('#MentorBtnData').on('click', function() {
     var UserSelect = $('#sel_user').val();
+    // alert("Mentor is " + UserSelect);
     var startDates = $('#start_date').val();
-    // alert(startDates);
     var endDates = $('#end_date').val();
-    // alert(endDates);
-    // var formdata = {userName : UserSelect};
-    var url_string = window.location.href; 
-    var urls = new URL(url_string);
-     var tokens = urls.searchParams.get("tokendata");
-
+       var url_string = window.location.href; 
+  var urls = new URL(url_string);
+  var tokens = urls.searchParams.get("tokendata");
 
     var formdata = {mentorId : UserSelect,startDate : startDates , endDate : endDates};
-    if(UserSelect!=""){
+    if(UserSelect == "All"){
+      // alert("if condition")
+      // $('#dataTablesf').empty();
+
+
+    $.ajax({
+        type: 'POST',
+        url: 'https://apistest.tradetipsapp.com/api/stripe/getAllInvoicesForAllUsers',
+        headers: {
+          Authorization: 'Bearer '+ tokens
+        },
+        data: formdata,
+        success: function(data, textStatus, jqXHR)
+        {
+          // alert(data);
+          var datak = JSON.stringify(data);
+          var dataResultp = JSON.parse(datak); 
+          // if($('#dataTablesf').is(':empty'))
+          // alert(dataResultp);
+          var len = dataResultp.length;
+          // // alert(len);
+           // var serviceData = dataResultp.filter(function(s) { return s.productSubscription == null });
+  //          $('#dataTablesf').empty();
+  //          if ( $.fn.DataTable.isDataTable('#dataTablesf') ) {
+  //               $('#dataTablesf').DataTable().destroy();
+  //               $('.containeruserall').empty();
+  //               $('.containertradeall').empty();
+  //               $('.containeruser').empty();
+  //              $('.containertrade').empty();
+  //  }
+
+          if(len > 0){
+          
+              $('#dataTablesf').empty();
+
+             if ( $.fn.DataTable.isDataTable('#dataTablesf') ) {
+                 $('#dataTablesf').DataTable().destroy();
+                 $('.containeruserall').empty();
+                 $('.containertradeall').empty();
+                 $('.containeruser').empty();
+               $('.containertrade').empty();
+                }
+
+            }
+
+           $('#dataTablesf').dataTable({
+            retrieve: true,
+    paging: false,
+                "aaData": data,   
+                "lengthMenu": [ 500, 1000, 2000, 3000, 4000, 5000 ],
+                "pageLength": 500,
+                "order": [[ 2, "desc" ]], //or asc 
+                "columns": [
+
+                  
+                     {"title":"Username",
+                    "render" : function (data, type, row) {
+               
+                      if(row.productSubscription == null){
+
+
+                        var uname = row.serviceSubscription.userName;
+                       
+                      return uname;
+                       
+                      }else{
+
+                          // alert(JSON.stringify(row.productSubscription));
+
+                          var upname = row.productSubscription.userName;
+                       
+                      return upname;
+                       
+                      }
+                      }},
+                      {"title":"Mentorname",
+                    "render" : function (data, type, row) {
+               
+                      if(row.productSubscription == null){
+
+                        var uname = row.serviceSubscription.serviceSubscriptionPlan.mentorName;
+                       
+                      return uname;
+                       
+                      }else{
+
+                          var upname = "";
+                       
+                      return upname;
+                       
+                      }
+                      }},
+ 
+
+              
+                    // { "data": "serviceSubscription.userName",
+                    //   "title":"Username",
+                    //    "render": function(data, type, full, meta){
+                    //     return data;
+                    // }
+                    // },
+                    //  { "data": "serviceSubscription.serviceSubscriptionPlan.mentorName",
+                    //   "title":"Mentorname",
+                    //    "render": function(data, type, full, meta){
+                    //     return data;
+                    // }
+                    // },
+                    { 
+                      "data": "createdOn",
+                       "name":"date",
+                       "visible":true,
+                       "title":"Date Created",
+                       "render": function(data, type, full, meta){
+                        if(type == "display"){
+                                var date = new Date(data);
+                                var options = {year: "numeric", month: "long", day: "numeric"};
+
+                                var sdates =  date.toUTCString('en-US', options);
+                                var fstring = sdates.substring(0,16);
+                                return fstring;
+                        }
+
+                        return data;
+                      }
+                    },
+                    // { "data": "serviceSubscription.serviceSubscriptionPlan.stripeProductName",
+                    //   "title":"Subscription ",
+                    //    "render": function(data, type, full, meta){
+                    //     return data;
+                    // }
+                    // },
+                    //  { "data": "serviceSubscription.serviceSubscriptionPlan.serviceTypeMaster.serviceType",
+                    //   "title":"Service Type ",
+                    //    "render": function(data, type, full, meta){
+                    //     return data;
+                    // }
+                    // },
+                    {"title":"Subscription",
+                    "render" : function (data, type, row) {
+               
+                      if(row.productSubscription == null){
+
+                        var uname = row.serviceSubscription.serviceSubscriptionPlan.stripeProductName;
+                       
+                      return uname;
+                       
+                      }else{
+
+                          var upname = row.productSubscription.stripeSubscriptionId;
+                       
+                      return upname;
+                       
+                      }
+                      }},
+                      {"title":"Service Type",
+                    "render" : function (data, type, row) {
+               
+                      if(row.productSubscription == null){
+
+                        var uname = row.serviceSubscription.serviceSubscriptionPlan.serviceTypeMaster.serviceType;
+                       
+                      return uname;
+                       
+                      }else{
+
+                          var upname = row.productSubscription.subscriptionPlan.subscriptionType;
+                       
+                      return upname;
+                       
+                      }
+                      }},
+                    {
+                      "data": "amountPaid" ,
+                      "title": "Price",                  
+                      render: function (data, type, row, meta) {
+                         if(type === 'display'){
+                            var symbol = "$";
+
+                            var num = $.fn.dataTable.render.number(',', '.', 2, symbol).display(data);              
+                            return num ;           
+                         } else {           
+                            return data;
+                         }
+                      }
+                  },
+                  {
+                      "data": "amountPaid" , "sClass": "pricessMentorAll", "title": "Mentor Share", 
+                      render: function (data, type, row, meta) {
+                         if(type === 'display'){
+                            var num = "$" + (parseFloat(data * 80) / 100).toFixed(2);           
+                            return num ;           
+                         } else {           
+                            return data;
+                         }
+                      }
+                  },
+                    {
+                      "data": "amountPaid" , "sClass": "pricessTradetipsAll" , "title": "TradeTips Share",
+                      render: function (data, type, row, meta) {
+                         if(type === 'display'){
+                            var num = "$" + (parseFloat(data * 20) / 100).toFixed(2);           
+                            return num ;           
+                         } else {           
+                            return data;
+                         }
+                      }
+                  },          
+                ],
+                "deferRender": true,
+                rowCallback: function ( row, data ) {
+                // Set the checked state of the checkbox in the table
+                // $('input.editor-active', row).prop( 'checked', data.isFlag == true );
+              }
+
+           });
+
+           var totalfall = 0;
+           var totalftall = 0;
+
+            $("td.pricessMentorAll").each(function() {
+               totalfall += parseInt($(this).text().replace(/[$,]/g, ''));
+            });
+
+            $("td.pricessTradetipsAll").each(function() {
+              totalftall += parseInt($(this).text().replace(/[$,]/g, ''));            
+            });
+            
+            $('.containeruserall').append("<b>Total Mentor Share<b> :<b><span> $" + parseFloat(totalfall).toFixed(2) + "</span></b>");
+            $('.containertradeall').append("<b><br>Total TradeTips Share<b> :<b><span> $" + parseFloat(totalftall).toFixed(2)  + "</span></b>");  
+
+        }
+
+      });
+
+    }else{
       $.ajax({
         type: 'POST',
         url: 'https://apistest.tradetipsapp.com/api/stripe/getAllInvoicesByMentorId',
@@ -313,6 +563,19 @@ document.getElementById("TipLink").href = "/tipList?tokendata="+tokens;
           // if($('#dataTablesf').is(':empty'))
           // alert(dataResultp);
           var len = dataResultp.length;
+
+
+          $('#dataTablesf').empty();
+
+            if ( $.fn.DataTable.isDataTable('#dataTablesf') ) {
+                $('#dataTablesf').DataTable().destroy();
+                $('.containeruserall').empty();
+                $('.containertradeall').empty();
+                $('.containeruser').empty();
+                $('.containertrade').empty();
+
+              }
+
           // // alert(len);
           if(len > 0){
           $('#dataTablesf').empty();
@@ -325,9 +588,6 @@ document.getElementById("TipLink").href = "/tipList?tokendata="+tokens;
 
           }
          
-          // var serviceData = dataResultp.filter(function(s) { return s.productSubscription == null });
-
-          // var productData = dataResultp.filter(function(s) { return s.serviceSubscription == null });
 
            $('#dataTablesf').dataTable( {
             "aaData": data,   
@@ -341,21 +601,47 @@ document.getElementById("TipLink").href = "/tipList?tokendata="+tokens;
             // "oLanguage": {
             //   "sSearch": "<span>Search Comments</span> _INPUT_" //search
             // },
-
+            "order": [[ 2, "desc" ]], //or asc 
             "columns": [
             
-                { "data": "serviceSubscription.userName",
-                  "title":"Username",
-                   "render": function(data, type, full, meta){
-                    return data;
-                }
-                },
-                 { "data": "serviceSubscription.serviceSubscriptionPlan.mentorName",
-                  "title":"Mentorname",
-                   "render": function(data, type, full, meta){
-                    return data;
-                }
-                },
+                {"title":"Username",
+                    "render" : function (data, type, row) {
+               
+                      if(row.productSubscription == null){
+
+
+                        var uname = row.serviceSubscription.userName;
+                       
+                      return uname;
+                       
+                      }else{
+
+                          // alert(JSON.stringify(row.productSubscription));
+
+                          var upname = row.productSubscription.userName;
+                       
+                      return upname;
+                       
+                      }
+                      }},
+                      {"title":"Mentorname",
+                    "render" : function (data, type, row) {
+               
+                      if(row.productSubscription == null){
+
+                        var uname = row.serviceSubscription.serviceSubscriptionPlan.mentorName;
+                       
+                      return uname;
+                       
+                      }else{
+
+                          var upname = "";
+                       
+                      return upname;
+                       
+                      }
+                      }},
+ 
                 { 
                   "data": "createdOn",
                    "name":"date",
@@ -374,18 +660,52 @@ document.getElementById("TipLink").href = "/tipList?tokendata="+tokens;
                     return data;
                   }
                 },
-                { "data": "serviceSubscription.serviceSubscriptionPlan.stripeProductName",
-                  "title":"Subscription ",
-                   "render": function(data, type, full, meta){
-                    return data;
-                }
-                },
-                 { "data": "serviceSubscription.serviceSubscriptionPlan.serviceTypeMaster.serviceType",
-                  "title":"Service Type ",
-                   "render": function(data, type, full, meta){
-                    return data;
-                }
-                },
+                // { "data": "serviceSubscription.serviceSubscriptionPlan.stripeProductName",
+                //   "title":"Subscription ",
+                //    "render": function(data, type, full, meta){
+                //     return data;
+                // }
+                // },
+                //  { "data": "serviceSubscription.serviceSubscriptionPlan.serviceTypeMaster.serviceType",
+                //   "title":"Service Type ",
+                //    "render": function(data, type, full, meta){
+                //     return data;
+                // }
+                // },
+                 {"title":"Subscription",
+                    "render" : function (data, type, row) {
+               
+                      if(row.productSubscription == null){
+
+                        var uname = row.serviceSubscription.serviceSubscriptionPlan.stripeProductName;
+                       
+                      return uname;
+                       
+                      }else{
+
+                          var upname = row.productSubscription.stripeSubscriptionId;
+                       
+                      return upname;
+                       
+                      }
+                      }},
+                      {"title":"Service Type",
+                    "render" : function (data, type, row) {
+               
+                      if(row.productSubscription == null){
+
+                        var uname = row.serviceSubscription.serviceSubscriptionPlan.serviceTypeMaster.serviceType;
+                       
+                      return uname;
+                       
+                      }else{
+
+                          var upname = row.productSubscription.subscriptionPlan.subscriptionType;
+                       
+                      return upname;
+                       
+                      }
+                      }},
                 {
                   "data": "amountPaid" ,
                   "title": "Price",                  
@@ -404,7 +724,7 @@ document.getElementById("TipLink").href = "/tipList?tokendata="+tokens;
                   "data": "amountPaid" , "sClass": "pricessMentor", "title": "Mentor Share", 
                   render: function (data, type, row, meta) {
                      if(type === 'display'){
-                        var num = "$" + data * 20/100;              
+                        var num = "$" + (parseFloat(data * 80) / 100).toFixed(2);              
                         return num ;           
                      } else {           
                         return data;
@@ -415,7 +735,7 @@ document.getElementById("TipLink").href = "/tipList?tokendata="+tokens;
                   "data": "amountPaid" , "sClass": "pricessTradetips" , "title": "TradeTips Share",
                   render: function (data, type, row, meta) {
                      if(type === 'display'){
-                        var num = "$" + data * 80/100;              
+                        var num = "$" + (parseFloat(data * 20) / 100).toFixed(2);              
                         return num ;           
                      } else {           
                         return data;
@@ -484,8 +804,17 @@ document.getElementById("TipLink").href = "/tipList?tokendata="+tokens;
 
         });
 
+        // $('#dataTablesf').empty();
+
+          //  if ( $.fn.DataTable.isDataTable('#dataTablesf') ) {
+          //      $('#dataTablesf').DataTable().destroy();
+          //      $('.containeruser').empty();
+          //      $('.containertrade').empty();
+          //     }
+
            var totalf = 0;
            var totalft = 0;
+         
       $("td.pricessMentor").each(function() {
         // parseInt(num.replace(/[$,]/g, ''))
        // alert("hii");
@@ -501,9 +830,10 @@ document.getElementById("TipLink").href = "/tipList?tokendata="+tokens;
       
       });
 
-       $('.containeruser').append("<b>Total Mentor Share<b> :<b><span> $" + totalf + "</span></b>");
-       $('.containertrade').append("<b>Total TradeTips Share<b> :<b><span> $" + totalft + "</span></b>");
-        
+
+       $('.containeruser').append("<b>Total Mentor Share<b> :<b><span> $" + parseFloat(totalf).toFixed(2) + "</span></b>");
+       $('.containertrade').append("<b><br>Total TradeTips Share<b> :<b><span> $" + parseFloat(totalft).toFixed(2)  + "</span></b>");
+
     
        
 
@@ -512,9 +842,9 @@ document.getElementById("TipLink").href = "/tipList?tokendata="+tokens;
 
         error: function (jqXHR, textStatus, errorThrown)
         {
-          window.FlashMessage.success('Notification has been sent ', {
-                  
-                  timeout: 3000,
+          //  alert("No data");
+           window.FlashMessage.error('No data !', {
+                  timeout: 5000,
                 });
         }
 
@@ -524,18 +854,14 @@ document.getElementById("TipLink").href = "/tipList?tokendata="+tokens;
 
       
     }
-    else{
-      // alert('Please fill all the field !');
-      window.FlashMessage.error('Please fill all the files ! ', {
-                  
-                  timeout: 3000,
-                });
-    }
 
   
   
   });
 
+  /////////////////////////////////////////////////////////////////////////////////////
+
+  // /////////////////////////
    $('#UserbutSaveData').on('click', function() {
     var UserSelect = $('#sel_mentor').val();
     // alert(UserSelect);
@@ -544,8 +870,180 @@ document.getElementById("TipLink").href = "/tipList?tokendata="+tokens;
     var urls = new URL(url_string);
      var tokens = urls.searchParams.get("tokendata");
 
+    //  var startDates1 = "2020-01-01";
+    // var endDates1 = new Date().toISOString().slice(0, 10);
+
+    // var formdata = {userId : UserSelect,startDate : startDates1 , endDate : endDates1};
     var formdata = {userId : UserSelect};
-    if(UserSelect!=""){
+    if(UserSelect == "All"){
+         $.ajax({
+        type: 'POST',
+        url: 'https://apistest.tradetipsapp.com/api/stripe/getAllInvoicesForAllUsers',
+        headers: {
+          Authorization: 'Bearer '+ tokens
+        },
+        data: formdata,
+        success: function(data, textStatus, jqXHR)
+        {
+          // alert(data);
+          var datak = JSON.stringify(data);
+          // alert(datak);
+          // console.log(datak);
+          var dataResultp = JSON.parse(datak); 
+          // alert(dataResultp);
+          var len = dataResultp.length;
+           // $('#dataTabless').empty();
+
+           // if ( $.fn.DataTable.isDataTable('#dataTables') ) {
+           //     $('#dataTabless').DataTable().destroy();
+           //    }
+
+           // var serviceDatas = dataResultp.filter(function(s) { return s.productSubscription == null });
+
+          // var productDatas = dataResultp.filter(function(s) { return s.serviceSubscription == null });
+           if(len > 0){
+          $('#dataTabless').empty();
+
+           if ( $.fn.DataTable.isDataTable('#dataTabless') ) {
+               $('#dataTabless').DataTable().destroy();
+               $('.containerk').empty();
+               $('.containerkall').empty();
+              }
+
+          }
+         
+
+           $('#dataTabless').dataTable( {
+            retrieve: true,
+    paging: false,
+            "aaData": data,   
+            "lengthMenu": [ 500, 1000, 2000, 3000, 4000, 5000 ],
+            "pageLength": 500,
+            "order": [[ 1, "desc" ]],
+            // "aaSorting": [[ 0, "desc" ]],
+            // "columnDefs": [ {
+            // "targets": 4,
+            // "orderable": false
+            // } ],
+            "columns": [
+            
+                // { "data": "productSubscription.userId" },
+                // { "data": "serviceSubscription.userName" },
+                  {"title":"Username",
+                    "render" : function (data, type, row) {
+               
+                      if(row.productSubscription == null){
+
+
+                        var uname = row.serviceSubscription.userName;
+                       
+                      return uname;
+                       
+                      }else{
+
+                          // alert(JSON.stringify(row.productSubscription));
+
+                          var upname = row.productSubscription.userName;
+                       
+                      return upname;
+                       
+                      }
+                      }},
+                      
+ 
+                { "data": "createdOn",
+                   "name":"date",
+                   "visible":true,
+                   "title":"Date Created",
+                   "render": function(data, type, full, meta){
+                    if(type == "display"){
+                            var date = new Date(data);
+                            var options = {year: "numeric", month: "long", day: "numeric"};
+
+                            return date.toLocaleDateString('en-US', options);
+                    }
+
+                    return data;
+                  }
+                },  
+                {"title":"Subscription",
+                    "render" : function (data, type, row) {
+               
+                      if(row.productSubscription == null){
+
+                        var uname = row.serviceSubscription.serviceSubscriptionPlan.stripeProductName;
+                       
+                      return uname;
+                       
+                      }else{
+
+                          var upname = row.productSubscription.stripeSubscriptionId;
+                       
+                      return upname;
+                       
+                      }
+                      }},
+                      {"title":"Service Type",
+                    "render" : function (data, type, row) {
+               
+                      if(row.productSubscription == null){
+
+                        var uname = row.serviceSubscription.serviceSubscriptionPlan.serviceTypeMaster.serviceType;
+                       
+                      return uname;
+                       
+                      }else{
+
+                          var upname = row.productSubscription.subscriptionPlan.subscriptionType;
+                       
+                      return upname;
+                       
+                      }
+                      }},
+                    {
+                      "data": "amountPaid" , "sClass": "priceAll", "title":"Price",
+                      render: function (data, type, row, meta) {
+                         if(type === 'display'){
+                            var symbol = "$";
+
+                            var num = $.fn.dataTable.render.number(',', '.', 2, symbol).display(data);              
+                            return num ;           
+                         } else {           
+                            return data;
+                         }
+                      }
+                  },
+
+
+              // { "data" : "percentOff"},
+              // { "data" : "amountPaid" * "percentOff" / 100},              
+            ], 
+           
+            "deferRender": true,
+            rowCallback: function ( row, data ) {
+            // Set the checked state of the checkbox in the table
+            // $('input.editor-active', row).prop( 'checked', data.isFlag == true );
+        }
+
+
+
+        });
+
+        var totalAll = 0;
+        $('td.priceAll').each(function() {
+          // parseInt(num.replace(/[$,]/g, ''))
+
+          totalAll += parseInt($(this).text().replace(/[$,]/g, ''));
+          // alert(total);
+        });
+        $('.containerkall').append("<div class='sum' style='text-align:end;line-height:0px;'><b>Total<b> :<b><span> $" + parseFloat(totalAll).toFixed(2)  + "</span></b></div>");
+              
+
+      }
+
+      });
+
+    } else {
       $.ajax({
         type: 'POST',
         url: 'https://apistest.tradetipsapp.com/api/stripe/getAllInvoicesByUserId',
@@ -560,8 +1058,7 @@ document.getElementById("TipLink").href = "/tipList?tokendata="+tokens;
           // alert(datak);
           // console.log(datak);
           var dataResultp = JSON.parse(datak); 
-          // alert(dataResultp);
-          
+          // alert(JSON.stringify(dataResultp[0].serviceSubscription.serviceSubscriptionPlan));
           var len = dataResultp.length;
            // $('#dataTabless').empty();
 
@@ -569,9 +1066,14 @@ document.getElementById("TipLink").href = "/tipList?tokendata="+tokens;
            //     $('#dataTabless').DataTable().destroy();
            //    }
 
-          //    var serviceDatas = dataResultp.filter(function(s) { return s.productSubscription == null });
+           $('#dataTabless').empty();
 
-          // var productDatas = dataResultp.filter(function(s) { return s.serviceSubscription == null });
+          if ( $.fn.DataTable.isDataTable('#dataTabless') ) {
+              $('#dataTabless').DataTable().destroy();
+              $('.containerk').empty();
+              $('.containerkall').empty();
+             }
+        
            if(len > 0){
           $('#dataTabless').empty();
 
@@ -587,6 +1089,7 @@ document.getElementById("TipLink").href = "/tipList?tokendata="+tokens;
             "aaData": data,   
             "lengthMenu": [ 500, 1000, 2000, 3000, 4000, 5000 ],
             "pageLength": 500,
+            "order": [[ 1, "desc" ]],
             // "aaSorting": [[ 0, "desc" ]],
             // "columnDefs": [ {
             // "targets": 4,
@@ -596,12 +1099,27 @@ document.getElementById("TipLink").href = "/tipList?tokendata="+tokens;
             
                 // { "data": "productSubscription.userId" },
                 // { "data": "serviceSubscription.userName" },
-                 { "data": "productSubscription.userName",
-                  "title":"Username",
-                   "render": function(data, type, full, meta){
-                    return data;
-                  }
-                },
+                 {"title":"Username",
+                    "render" : function (data, type, row) {
+               
+                      if(row.productSubscription == null){
+
+
+                        var uname = row.serviceSubscription.userName;
+                       
+                      return uname;
+                       
+                      }else{
+
+                          // alert(JSON.stringify(row.productSubscription));
+
+                          var upname = row.productSubscription.userName;
+                       
+                      return upname;
+                       
+                      }
+                      }},
+                      
                 { "data": "createdOn",
                    "name":"date",
                    "visible":true,
@@ -617,18 +1135,40 @@ document.getElementById("TipLink").href = "/tipList?tokendata="+tokens;
                     return data;
                   }
             },  
-            { "data": "productSubscription.subscriptionPlan.subscriptionType",
-                  "title":"Subscription",
-                   "render": function(data, type, full, meta){
-                    return data;
-                  }
-                },
-                 { "data": "stripeSubscriptionId",
-                  "title":"Service Type",
-                   "render": function(data, type, full, meta){
-                    return data;
-                  }
-                },
+             {"title":"Subscription",
+                    "render" : function (data, type, row) {
+               
+                      if(row.productSubscription == null){
+
+                        var uname = row.serviceSubscription.serviceSubscriptionPlan.stripeProductName;
+                       
+                      return uname;
+                       
+                      }else{
+
+                          var upname = row.productSubscription.stripeSubscriptionId;
+                       
+                      return upname;
+                       
+                      }
+                      }},
+                      {"title":"Service Type",
+                    "render" : function (data, type, row) {
+               
+                      if(row.productSubscription == null){
+
+                        var uname = row.serviceSubscription.serviceSubscriptionPlan.serviceTypeMaster.serviceType;
+                       
+                      return uname;
+                       
+                      }else{
+
+                          var upname = row.productSubscription.subscriptionPlan.subscriptionType;
+                       
+                      return upname;
+                       
+                      }
+                      }},
                 {
                   "data": "amountPaid" , "sClass": "price", "title":"Price",
                   render: function (data, type, row, meta) {
@@ -686,11 +1226,7 @@ $('.containerk').append("<div class='sum' style='text-align:end;line-height:0px;
 
       
     }
-    else{
-      window.FlashMessage.error('Please fill all the files ! ', {
-        timeout:3000,
-      });
-    }
+
   
   
   });
