@@ -335,14 +335,14 @@ document.getElementById("TipLink").href = "/tipList?tokendata="+tokens;
           var len = dataResultp.length;
           // // alert(len);
            // var serviceData = dataResultp.filter(function(s) { return s.productSubscription == null });
-  //          $('#dataTablesf').empty();
-  //          if ( $.fn.DataTable.isDataTable('#dataTablesf') ) {
-  //               $('#dataTablesf').DataTable().destroy();
-  //               $('.containeruserall').empty();
-  //               $('.containertradeall').empty();
-  //               $('.containeruser').empty();
-  //              $('.containertrade').empty();
-  //  }
+           $('#dataTablesf').empty();
+           if ( $.fn.DataTable.isDataTable('#dataTablesf') ) {
+                $('#dataTablesf').DataTable().destroy();
+                $('.containeruserall').empty();
+                $('.containertradeall').empty();
+                $('.containeruser').empty();
+               $('.containertrade').empty();
+   }
 
           if(len > 0){
           
@@ -584,6 +584,7 @@ document.getElementById("TipLink").href = "/tipList?tokendata="+tokens;
                $('#dataTablesf').DataTable().destroy();
                $('.containeruser').empty();
                $('.containertrade').empty();
+               
               }
 
           }
@@ -901,6 +902,15 @@ document.getElementById("TipLink").href = "/tipList?tokendata="+tokens;
            // var serviceDatas = dataResultp.filter(function(s) { return s.productSubscription == null });
 
           // var productDatas = dataResultp.filter(function(s) { return s.serviceSubscription == null });
+
+          $('#dataTabless').empty();
+
+if ( $.fn.DataTable.isDataTable('#dataTabless') ) {
+    $('#dataTabless').DataTable().destroy();
+    $('.containerk').empty();
+    $('.containerkall').empty();
+   }
+   
            if(len > 0){
           $('#dataTabless').empty();
 
