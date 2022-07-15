@@ -683,15 +683,18 @@ var filterdata=e.options[e.selectedIndex].text;
                 var dataResultp = JSON.parse(datak); 
                 // alert(dataResultp.title);
                 // alert("Notification has been sent");
+                document.getElementById('notifySubmit').disabled = true;
                 window.FlashMessage.success('Notification has been sent ', {
                   
                   timeout: 5000,
                 });
+                setTimeout(function() {window.location.reload("/notification?tokendata="+tokens); }, 5100);
                 // window.location.reload("/notification?tokendata="+tokens); 
           
 
        })
       .catch(error => console.log('error', error));
+      // document.getElementById('notifySubmit').disabled = false;
 
 }
    
