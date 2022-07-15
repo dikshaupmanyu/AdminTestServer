@@ -15,6 +15,7 @@ var redis = require('redis');
 var cors = require('cors');
 var request = require('request');
 var http = require('http');
+var https = require('https');
 var Base64 = require('Base64');
 var expressJwt = require('express-jwt');
 var jwt = require('jsonwebtoken');
@@ -86,9 +87,9 @@ require('./app/routes.js')(app, passport); // load our routes and pass in our ap
 
 // launch ======================================================================
 // app.listen(port);
-// var httpServer = http.createServer(app);
-var httpsServer = https.createServer(credentials, app);
+var httpServer = http.createServer(app);
+// var httpsServer = https.createServer(credentials, app);
 
-// httpServer.listen(port);
-httpsServer.listen(5555);
+httpServer.listen(port);
+// httpsServer.listen(5555);
 console.log('The magic happens on port ' + port);
