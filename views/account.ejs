@@ -503,9 +503,10 @@
                   "title": "Price",
                   render: function (data, type, row, meta) {
                     if (type === 'display') {
+                      var priceval = data/100;
                       var symbol = "$";
 
-                      var num = $.fn.dataTable.render.number(',', '.', 2, symbol).display(data);
+                      var num = $.fn.dataTable.render.number(',', '.', 2, symbol).display(priceval);
                       return num;
                     } else {
                       return data;
@@ -516,7 +517,8 @@
                   "data": "amountPaid", "sClass": "pricessMentorAll", "title": "Mentor Share",
                   render: function (data, type, row, meta) {
                     if (type === 'display') {
-                      var num = "$" + (parseFloat(data * 80) / 100).toFixed(2);
+                      var priceval = data/100;
+                      var num = "$" + (parseFloat(priceval * 80) / 100).toFixed(2);
                       return num;
                     } else {
                       return data;
@@ -527,7 +529,8 @@
                   "data": "amountPaid", "sClass": "pricessTradetipsAll", "title": "TradeTips Share",
                   render: function (data, type, row, meta) {
                     if (type === 'display') {
-                      var num = "$" + (parseFloat(data * 20) / 100).toFixed(2);
+                      var priceval = data/100;
+                      var num = "$" + (parseFloat(priceval * 20) / 100).toFixed(2);
                       return num;
                     } else {
                       return data;
@@ -705,9 +708,10 @@
                   "data": "amountPaid", "sClass": "priceAll", "title": "Price",
                   render: function (data, type, row, meta) {
                     if (type === 'display') {
+                      var priceval = data/100;
                       var symbol = "$";
 
-                      var num = $.fn.dataTable.render.number(',', '.', 2, symbol).display(data);
+                      var num = $.fn.dataTable.render.number(',', '.', 2, symbol).display(priceval);
                       return num;
                     } else {
                       return data;
@@ -961,9 +965,10 @@
                     "title": "Price",
                     render: function (data, type, row, meta) {
                       if (type === 'display') {
+                        var priceval = data/100;
                         var symbol = "$";
 
-                        var num = $.fn.dataTable.render.number(',', '.', 2, symbol).display(data);
+                        var num = $.fn.dataTable.render.number(',', '.', 2, symbol).display(priceval);
                         return num;
                       } else {
                         return data;
@@ -974,7 +979,8 @@
                     "data": "amountPaid", "sClass": "pricessMentorAll", "title": "Mentor Share",
                     render: function (data, type, row, meta) {
                       if (type === 'display') {
-                        var num = "$" + (parseFloat(data * 80) / 100).toFixed(2);
+                        var priceval = data/100;
+                        var num = "$" + (parseFloat(priceval * 80) / 100).toFixed(2);
                         return num;
                       } else {
                         return data;
@@ -985,7 +991,8 @@
                     "data": "amountPaid", "sClass": "pricessTradetipsAll", "title": "TradeTips Share",
                     render: function (data, type, row, meta) {
                       if (type === 'display') {
-                        var num = "$" + (parseFloat(data * 20) / 100).toFixed(2);
+                        var priceval = data/100;
+                        var num = "$" + (parseFloat(priceval * 20) / 100).toFixed(2);
                         return num;
                       } else {
                         return data;
@@ -1191,9 +1198,10 @@
                     "title": "Price",
                     render: function (data, type, row, meta) {
                       if (type === 'display') {
+                        var priceval = data/100;
                         var symbol = "$";
 
-                        var num = $.fn.dataTable.render.number(',', '.', 2, symbol).display(data);
+                        var num = $.fn.dataTable.render.number(',', '.', 2, symbol).display(priceval);
                         return num;
                       } else {
                         return data;
@@ -1204,7 +1212,8 @@
                     "data": "amountPaid", "sClass": "pricessMentor", "title": "Mentor Share",
                     render: function (data, type, row, meta) {
                       if (type === 'display') {
-                        var num = "$" + (parseFloat(data * 80) / 100).toFixed(2);
+                        var priceval = data/100;
+                        var num = "$" + (parseFloat(priceval * 80) / 100).toFixed(2);
                         return num;
                       } else {
                         return data;
@@ -1215,7 +1224,8 @@
                     "data": "amountPaid", "sClass": "pricessTradetips", "title": "TradeTips Share",
                     render: function (data, type, row, meta) {
                       if (type === 'display') {
-                        var num = "$" + (parseFloat(data * 20) / 100).toFixed(2);
+                        var priceval = data/100;
+                        var num = "$" + (parseFloat(priceval * 20) / 100).toFixed(2);
                         return num;
                       } else {
                         return data;
@@ -1510,9 +1520,10 @@
                     "data": "amountPaid", "sClass": "priceAll", "title": "Price",
                     render: function (data, type, row, meta) {
                       if (type === 'display') {
+                        var priceval = data/100;
                         var symbol = "$";
 
-                        var num = $.fn.dataTable.render.number(',', '.', 2, symbol).display(data);
+                        var num = $.fn.dataTable.render.number(',', '.', 2, symbol).display(priceval);
                         return num;
                       } else {
                         return data;
@@ -1685,9 +1696,10 @@
                     "data": "amountPaid", "sClass": "price", "title": "Price",
                     render: function (data, type, row, meta) {
                       if (type === 'display') {
+                        var priceval = data/100;
                         var symbol = "$";
 
-                        var num = $.fn.dataTable.render.number(',', '.', 2, symbol).display(data);
+                        var num = $.fn.dataTable.render.number(',', '.', 2, symbol).display(priceval);
                         return num;
                       } else {
                         return data;
