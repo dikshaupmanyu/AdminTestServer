@@ -168,7 +168,7 @@ function noBack() {
 } 
 
 window.addEventListener("load", function() {
-
+  window.FlashMessage.info( " It will take few seconds to load data Loading...", { timeout: 3000,});
 var url_string = window.location.href; 
 var urls = new URL(url_string);
 var tokens = urls.searchParams.get("tokendata");

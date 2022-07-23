@@ -269,18 +269,18 @@ $.ajax({
 
                        if(data == null){
 
-                        return '<input type="button" class="updateStatusdata" value="Block">';
+                        return '<input type="button" class="updateStatusdata" id="yash' + row.id + '" value="Block">';
 
                         //  return '<a href="updateData?id='+row.id+'&username='+row.userName+'&tokendata='+tokens+'&status=1" id="userStatus">UnBlock</a>';
 
                         }else if(data == "Enable") {
 
-                           return '<input type="button" class="updateStatusdata" value="Block">';
+                           return '<input type="button" class="updateStatusdata" id="yash' + row.id + '" value="Block">';
                         //   return '<a href="updateData?id='+row.id+'&username='+row.userName+'&tokendata='+tokens+'&status=1" id="userStatus">UnBlock</a>';
 
                         }else {
                         //   return '<a href="updateData?id='+row.id+'&username='+row.userName+'&tokendata='+tokens+'&status=0" id="userStatus">Block</a>';
-                         return '<input type="button" class="updateStatusdata" value="Release">';
+                         return '<input type="button" class="updateStatusdata" id="yash' + row.id + '" value="Release">';
 
                         }
                        
@@ -538,21 +538,29 @@ $.ajax({
             //data - response from server
             var datak = JSON.stringify(data);
             var dataResultp = JSON.parse(datak); 
+            var T = dataResultp.object.id;
+
+                    window.FlashMessage.success(" Status updated Sucessfully !!", { timeout: 2000, });
+                    if (vals == "Block") {
+                      $("#yash" + T).attr('value', 'Release');
+                      console.log($("#yash" + T))
+                    }
             // alert("Status updated Sucessfully !!");
-            window.FlashMessage.success( " Status updated Sucessfully !!", { timeout: 2000,});
-            setTimeout(()=> { window.location.reload()},2100)
+            // window.FlashMessage.success( " Status updated Sucessfully !!", { timeout: 2000,});
+            // setTimeout(()=> { window.location.reload()},2100)
         },
         error: function (jqXHR, textStatus, errorThrown)
         {
           //  alert("Not updated !!");
           window.FlashMessage.error( " Not updated !!", { timeout: 2000,});
         }
-
-    });
-    // } 
+        
+      });
+      // } 
   },
   oncancel: ()=>{
-    setTimeout(()=> { window.location.reload()},500)
+    // setTimeout(()=> { window.location.reload()},500)
+      window.FlashMessage.error( " Not updated !!", { timeout: 2000,});
 
   }
 })
@@ -598,21 +606,28 @@ $.ajax({
             //data - response from server
             var datak = JSON.stringify(data);
             var dataResultp = JSON.parse(datak); 
+            var T = dataResultp.object.id;
+                    window.FlashMessage.success(" Status updated Sucessfully !!", { timeout: 2000, });
+                    if (vals == "Release") {
+                      $("#yash" + T).attr('value', 'Block');
+                      console.log($("#yash" + T))
+                    }
             // alert("Status updated Sucessfully !!");
-            window.FlashMessage.success( " Status updated Sucessfully !!", { timeout: 2000,});
-            setTimeout(()=> { window.location.reload()},2100)
+            // window.FlashMessage.success( " Status updated Sucessfully !!", { timeout: 2000,});
+            // setTimeout(()=> { window.location.reload()},2100)
         },
         error: function (jqXHR, textStatus, errorThrown)
         {
           //  alert("Not updated !!");
           window.FlashMessage.error( " Not updated !!", { timeout: 2100,});
         }
-
+        
     });
     // } 
   },
   oncancel: ()=>{
-    setTimeout(()=> { window.location.reload()},500)
+    // setTimeout(()=> { window.location.reload()},500)
+        window.FlashMessage.error( " Not updated !!", { timeout: 2100,});
   }
 })
       // confirm("Are you sure you want to Release?");
