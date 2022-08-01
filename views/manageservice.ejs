@@ -128,25 +128,22 @@ window.addEventListener("load", function() {
 var url_string = window.location.href; 
 var urls = new URL(url_string);
 var tokens = urls.searchParams.get("tokendata");
-// alert(tokens);
 
 $('#dataTables').on('click', 'a.updateStatusdata', function () {
 
     var id = $(this).attr('id');
     // alert(id);
     var vals = $(this).attr('value');
-    // alert(vals);
 
     var url ;
-    var formData;
+    var formData; 
     var result ;
-
     if(vals == "Active"){
       result =     Confirm.open({
       title: 'Active Confirm',
       message: 'Are you sure you want to change it to Inactive?',
       onok: () => {
-        if (vals == "Active"){
+        // if (vals == "Active"){
                   $.ajax({
                     url : url,
                     type: "POST",
@@ -156,12 +153,21 @@ $('#dataTables').on('click', 'a.updateStatusdata', function () {
                     data : formData,
                     success: function(data, textStatus, jqXHR)
                     {
+                      console.log(data)
 
                         var datak = JSON.stringify(data);
                         var dataResultp = JSON.parse(datak); 
-
-                        window.FlashMessage.success( " Status updated Sucessfully !!", { timeout: 3000,});
-                        setTimeout(()=> { window.location.reload()},3100)
+                        if(dataResultp == true){
+                          if(vals === "Active"){ 
+                            window.FlashMessage.success( " Status updated Sucessfully !!", { timeout: 3000,});
+                            $('#'+id).removeClass('btn-success')
+                            $('#'+id).addClass('btn-danger')
+                            $('#'+id).text('Inactive')
+                          }
+                        }else{
+                          alert('false')
+                        }
+                        // setTimeout(()=> { window.location.reload()},3100)
                     },
                     error: function (jqXHR, textStatus, errorThrown)
                     {
@@ -169,7 +175,7 @@ $('#dataTables').on('click', 'a.updateStatusdata', function () {
                     }
 
                     });
-                 }
+                //  }
       },
       oncancel:  () => {
                   window.FlashMessage.error( " Not updated !!", { timeout: 3000,});          
@@ -199,8 +205,17 @@ $('#dataTables').on('click', 'a.updateStatusdata', function () {
                         var datak = JSON.stringify(data);
                         var dataResultp = JSON.parse(datak); 
 
-                        window.FlashMessage.success( " Status updated Sucessfully !!", { timeout: 3000,});
-                        setTimeout(()=> { window.location.reload()},3100)
+                        if(dataResultp == true){
+                          // alert('true')
+                          if(vals === "Inactive"){ 
+                            window.FlashMessage.success( " Status updated Sucessfully !!", { timeout: 3000,});
+                            $("#"+id).removeClass('btn-danger')
+                            $("#"+id).addClass('btn-success')
+                            $('#'+id).text('Active')
+                          }
+                        }
+                        // window.FlashMessage.success( " Status updated Sucessfully !!", { timeout: 3000,});
+                        // setTimeout(()=> { window.location.reload()},3100)
                     },
                     error: function (jqXHR, textStatus, errorThrown)
                     {
@@ -216,6 +231,7 @@ $('#dataTables').on('click', 'a.updateStatusdata', function () {
     })
     url = "https://apistest.tradetipsapp.com/api/serviceMentorSubscriptionPlan/enableServiceSubscriptionPlanById";
       formData = {serviceSubscriptionPlanId : id};
+      
     }
 
     // if(result){
@@ -334,6 +350,7 @@ $('#dataTables').on('click', 'a.updateStatusdata', function () {
                  var datak = JSON.stringify(data);
                  var dataResult = JSON.parse(datak); 
                   // alert(JSON.stringify(dataResult));
+                  console.log(dataResult)
                   var len = dataResult.length;
                   var lenghtss = dataResult.serviceSubscriptionMyMentorPlans.length;
                   // alert(lenghtss);
@@ -352,9 +369,10 @@ $('#dataTables').on('click', 'a.updateStatusdata', function () {
 
                  function checksubscribeStatus(){   
                    var datastatus ;
-                    if(dataResult.serviceSubscriptionMyMentorPlans[i].isActive == null || dataResult.serviceSubscriptionMyMentorPlans[i].isActive == true) {datastatus = '<a id="'+dataResult.serviceSubscriptionMyMentorPlans[i].id+'" class="updateStatusdata btn btn-success" value="Active" style="color:white;">Active</a>'; }else{datastatus = '<a  class="updateStatusdata btn btn-danger" id="'+dataResult.serviceSubscriptionMyMentorPlans[i].id+'" value="Inactive" style="color:white;">Inactive</a>';}
-
+                    if(dataResult.serviceSubscriptionMyMentorPlans[i].isActive == null || dataResult.serviceSubscriptionMyMentorPlans[i].isActive == true) {datastatus = '<a id="'+dataResult.serviceSubscriptionMyMentorPlans[i].id+'" class="updateStatusdata btn btn-success"  value="Active" style="color:white;">Active</a>'; }else{datastatus = '<a  class="updateStatusdata btn btn-danger" id="'+dataResult.serviceSubscriptionMyMentorPlans[i].id+'" value="Inactive" style="color:white;">Inactive</a>';}
+                    // console.log(dataResult.serviceSubscriptionMyMentorPlans)
                     return datastatus;
+
                   }
                  
                     newtip += '<tr><td>'+ dataResult.serviceSubscriptionMyMentorPlans[i].title +'</td>'+ checkimage() +'<td>'+ dataResult.serviceSubscriptionMyMentorPlans[i].mentorName +'</td><td>'+ dataResult.serviceSubscriptionMyMentorPlans[i].descriptionOne +'</td><td>$'+ dataResult.serviceSubscriptionMyMentorPlans[i].price.toFixed(2) +'</td><td>'+ checksubscribeStatus() +'</td></tr>';

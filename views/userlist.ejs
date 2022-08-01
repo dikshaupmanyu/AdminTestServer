@@ -180,10 +180,10 @@ $.ajax({
             "aaData": data,   
             "lengthMenu": [20, 50, 100, 200, 300, 400, 500 ,800,1000,1200,1500 ],
             "pageLength": 50,
-            "aaSorting": [[ 4, "desc" ]],
+            "aaSorting": [[ 5, "desc" ]],
             "columnDefs": [ {
             "targets": 4,
-            "orderable": false
+            "orderable":false
             } ],
             "columns": [
                 { "data": "id" },
@@ -405,7 +405,7 @@ $.ajax({
             var dataResultp = JSON.parse(datak); 
             // alert("User updated Sucessfully !!");
             window.FlashMessage.success( " User updated Sucessfully !!", { timeout: 2000,});
-            setTimeout(()=> { window.location.reload()},2100)
+            // setTimeout(()=> { window.location.reload()},2100)
         },
         error: function (jqXHR, textStatus, errorThrown)
         {
@@ -467,8 +467,8 @@ $.ajax({
             var datak = JSON.stringify(data);
             var dataResultp = JSON.parse(datak); 
             // alert("User updated Sucessfully !!");
-            window.FlashMessage.sucess( " User updated Sucessfully !!", { timeout: 2000,});
-            setTimeout(()=> { window.location.reload()},2100)
+            window.FlashMessage.success( " User updated Sucessfully !!", { timeout: 2000,});
+            // setTimeout(()=> { window.location.reload()},2100)
         },
         error: function (jqXHR, textStatus, errorThrown)
         {

@@ -168,7 +168,7 @@ function noBack() {
 } 
 
 window.addEventListener("load", function() {
-  window.FlashMessage.info( " It will take few seconds to load data Loading...", { timeout: 3000,});
+  window.FlashMessage.info( " It will take few seconds to load data Loading...", { timeout: 2000,});
 var url_string = window.location.href; 
 var urls = new URL(url_string);
 var tokens = urls.searchParams.get("tokendata");
@@ -209,8 +209,8 @@ $('#dataTables').dataTable( {
            // alert(row.status);
            if(row.status == "deleted"){
             return '<button>Already deleted</button>'
-           }else{
-             return '<button id="' + row.id + '" class="deleteButtons">Delete</button>'
+           }else{ 
+             return '<button id="' +row.id + '" class="deleteButtons">Delete</button>'
 
            }
     }
@@ -251,10 +251,9 @@ success: function(data, textStatus, jqXHR)
  //data - response from server
  var datak = JSON.stringify(data);
  var dataResultp = JSON.parse(datak); 
- // alert(dataResultp);
- // alert("Delete Sucessfully !!"); 
+  $('#'+id).text('Already deleted')
   window.FlashMessage.success('Delete Sucessfully !! ', { timeout: 3000,});
-  setTimeout(()=> { window.location.reload()},3500)
+  // setTimeout(()=> { window.location.reload()},3500)
 
 },
 error: function (jqXHR, textStatus, errorThrown)
@@ -407,7 +406,7 @@ success: function(data, textStatus, jqXHR)
  // alert(dataResultp);
  // alert("Delete Sucessfully !!");
  window.FlashMessage.success(' Delete Sucessfully ', { timeout:3000,});
- setTimeout(()=> { window.location.reload()},3500)
+//  setTimeout(()=> { window.location.reload()},3500)
 
 },
 error: function (jqXHR, textStatus, errorThrown)
