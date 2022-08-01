@@ -163,6 +163,9 @@ $('#dataTables').on('click', 'a.updateStatusdata', function () {
                             $('#'+id).removeClass('btn-success')
                             $('#'+id).addClass('btn-danger')
                             $('#'+id).text('Inactive')
+                            $('#'+id).attr('value','Inactive')
+
+
                           }
                         }else{
                           alert('false')
@@ -212,6 +215,7 @@ $('#dataTables').on('click', 'a.updateStatusdata', function () {
                             $("#"+id).removeClass('btn-danger')
                             $("#"+id).addClass('btn-success')
                             $('#'+id).text('Active')
+                            $('#'+id).attr('value','Active')
                           }
                         }
                         // window.FlashMessage.success( " Status updated Sucessfully !!", { timeout: 3000,});
