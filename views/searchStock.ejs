@@ -243,6 +243,7 @@ href=
   <!-- Custom scripts for all pages-->
   <script src="js/sb-admin-2.min.js"></script>
 <script src="js/choosen.js"></script>
+<script src="js/amajiLoader.js"></script>
 
  <!-- Page level plugins -->
   <!-- <script src="vendor/datatables/jquery.dataTables.min.js"></script> -->
@@ -291,7 +292,8 @@ href=
     var endDates = new Date();
     var finalenddate = moment(endDates).format("YYYY-MM-DD HH:mm:ss");
     var formdata = {fromDate : finalstartdate , toDate : finalenddate};
-    window.FlashMessage.info( " It will take few seconds to load data Loading...", { timeout: 3000,});
+    AmagiLoader.show();
+    // window.FlashMessage.info( " It will take few seconds to load data Loading...", { timeout: 3000,});
       $.ajax({
         type: 'POST',
         url: 'https://apistest.tradetipsapp.com/api/dataAnalytics/getAllSearchStockByDate',
@@ -322,7 +324,7 @@ href=
 
            $("#countStockData").text(len);
 
-         
+           AmagiLoader.hide();
             $('#dataTablesf').dataTable( {
             "aaData": data,   
             "lengthMenu": [ 500, 1000, 2000, 3000, 4000, 5000 ],
@@ -384,7 +386,8 @@ href=
 
       });
   $('#MentorBtnData').on('click', function() {
-    window.FlashMessage.info( " It will take few seconds to load data Loading...", { timeout: 3000,});
+    AmagiLoader.show();
+    // window.FlashMessage.info( " It will take few seconds to load data Loading...", { timeout: 3000,});
     var startDates = $('#start_date').val();
     // alert(moment(startDates).format("YYYY-MM-DD HH:mm:ss"));
     var finalstartdate = moment(startDates).format("YYYY-MM-DD HH:mm:ss");
@@ -421,7 +424,7 @@ href=
 
            $("#countStockData").text(len);
 
-         
+           AmagiLoader.hide();
             $('#dataTablesf').dataTable( {
             "aaData": data,   
             "lengthMenu": [ 500, 1000, 2000, 3000, 4000, 5000 ],

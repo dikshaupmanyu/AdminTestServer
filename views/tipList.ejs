@@ -2,7 +2,8 @@
            <link href="css/flash-main.css" rel="stylesheet" type="text/css">
            <script src="/js/flash-main.js"></script>
            <link href="css/confirm.css" rel="stylesheet" type="text/css">
-<script src="/js/confirm.js"></script>
+            <script src="/js/confirm.js"></script>
+            <script src="js/amajiLoader.js"></script>
 
        
         <div class="container-fluid">
@@ -139,7 +140,8 @@ window.history.forward();
 
 
 window.addEventListener("load", function() {
-  window.FlashMessage.info( " It will take few seconds to load data Loading...", { timeout: 3000,});
+  AmagiLoader.show();
+  // window.FlashMessage.info( " It will take few seconds to load data Loading...", { timeout: 3000,});
   var url_string = window.location.href; 
   var urls = new URL(url_string);
   var tokens = urls.searchParams.get("tokendata");
@@ -159,6 +161,7 @@ window.addEventListener("load", function() {
   fetch("https://apistest.tradetipsapp.com/api/tip/getAllTipsWithoutCommentsPagination", requestOptions)
   .then(resp => resp.json())
     .then(function(data) {
+      AmagiLoader.hide();
            $('#dataTables').dataTable( {
             "aaData": data, 
             "lengthMenu": [ 500, 1000, 2000, 3000, 4000, 5000 ],

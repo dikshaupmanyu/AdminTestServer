@@ -85,6 +85,7 @@
 
   <!-- Page level custom scripts -->
   <script src="js/demo/datatables-demo.js"></script>
+  <script src="js/amajiLoader.js"></script>
   
 
   <script type="text/javascript">
@@ -153,6 +154,7 @@ fetch(url, {
 
    $('#dataTables').on('click', 'button.sendNotifyagain', function (e) {
  
+    AmagiLoader.show();
   var table = $('#dataTables').DataTable();
   var row = table.row(this.closest('tr')).data();
   var bannerids = $(this).attr('id');
@@ -165,9 +167,10 @@ fetch(url, {
   // alert(filterUser);
 
   if(title == "" || description == ""  || bannerids == ""){
+    AmagiLoader.hide();
     alert("Please fill all the field");
   }else {
-   
+    
   var formdata = new FormData();
     formdata.append("title", title);
     formdata.append("description", description);
@@ -192,6 +195,7 @@ fetch(url, {
                 var dataResultp = JSON.parse(datak); 
                 // alert(dataResultp.title);
                 // alert("Notification has been sent");
+                AmagiLoader.hide();
                 window.FlashMessage.success('Notification has been sent !');
                 // window.location.reload("/notification?tokendata="+tokens); 
           

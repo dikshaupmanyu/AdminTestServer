@@ -4,6 +4,7 @@
 <script src="/js/flash-main.js"></script>
 <link href="css/confirm.css" rel="stylesheet" type="text/css">
 <script src="/js/confirm.js"></script>
+<script src="js/amajiLoader.js"></script>
 
 <div class="container-fluid">
 
@@ -168,7 +169,8 @@ function noBack() {
 } 
 
 window.addEventListener("load", function() {
-  window.FlashMessage.info( " It will take few seconds to load data Loading...", { timeout: 2000,});
+  AmagiLoader.show();
+  // window.FlashMessage.info( " It will take few seconds to load data Loading...", { timeout: 2000,});
 var url_string = window.location.href; 
 var urls = new URL(url_string);
 var tokens = urls.searchParams.get("tokendata");
@@ -188,6 +190,7 @@ redirect: 'follow'
 fetch("https://apistest.tradetipsapp.com/api/comment/getAllComments", requestOptions)
 .then(resp => resp.json())
 .then(function(data) {
+  AmagiLoader.hide();
 $('#dataTables').dataTable( {
  "aaData": data, 
  "lengthMenu": [ 500, 1000, 2000, 3000, 4000, 5000 ],

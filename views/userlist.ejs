@@ -123,6 +123,7 @@
   <script src="js/demo/datatables-demo.js"></script>
 
   <script src="js/flash-main.js"></script>
+  <script src="js/amajiLoader.js"></script>
 
   <!-- <script type="text/javascript" src="dist/pagination.min.js"></script> -->
   <!-- 
@@ -143,7 +144,7 @@
 
 
 window.addEventListener("load", function() {
-
+  AmagiLoader.show();
    // alert(window.location.href);
 
   var url_string = window.location.href; 
@@ -176,6 +177,7 @@ $.ajax({
        var dataResult = JSON.parse(datak); 
        // console.log(dataResult);
         var len = dataResult.length;
+        AmagiLoader.hide();
            $('#dataTables').dataTable( {
             "aaData": data,   
             "lengthMenu": [20, 50, 100, 200, 300, 400, 500 ,800,1000,1200,1500 ],

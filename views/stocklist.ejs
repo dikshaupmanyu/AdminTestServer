@@ -3,6 +3,7 @@
            <%- include partials/header %>
            <link href="css/flash-main.css" rel="stylesheet" type="text/css">
            <script src="/js/flash-main.js"></script>
+           <script src="js/amajiLoader.js"></script>
 <style type="text/css">
 
 .sidebar li .submenu{ 
@@ -644,9 +645,9 @@ fetch(url, {
 
              // });
 $('#butSaveData').on('click', function() {
+  AmagiLoader.show();
+  // window.FlashMessage.info( " It will take few seconds to load data Loading...", { timeout: 5000,});
     var UserSelect = $('#sel_user').val();
-    // alert("It will take few seconds to load data Loading...");
-    window.FlashMessage.info( " It will take few seconds to load data Loading...", { timeout: 5000,});
     if(UserSelect!=""){
        var formdata = {userName : UserSelect,limit:"1000000",offset:"0"};
        // alert(formdata.userName);
@@ -671,7 +672,7 @@ $('#butSaveData').on('click', function() {
                $('#dataTables').DataTable().destroy();
               
               }
-
+              AmagiLoader.hide();
            $('#dataTables').dataTable( {
                 "aaData": data,   
                 "lengthMenu": [ 500, 1000, 2000, 3000, 4000, 5000 ],
@@ -712,6 +713,7 @@ $('#butSaveData').on('click', function() {
     });
 
        }else{
+        AmagiLoader.show();
           var formdata = {userName : UserSelect,limit:"1000",offset:"0"};
           $.ajax({
         type: 'POST',
@@ -732,7 +734,7 @@ $('#butSaveData').on('click', function() {
                $('#dataTables').DataTable().destroy();
               
               }
-
+              AmagiLoader.hide();
            $('#dataTables').dataTable( {
                 "aaData": data,   
                 "lengthMenu": [ 500, 1000, 2000, 3000, 4000, 5000 ],
