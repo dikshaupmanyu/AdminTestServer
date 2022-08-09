@@ -22,7 +22,7 @@
                 <table class="table table-bordered" id="dataTables" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>Id</th>
+                      <!-- <th>Id</th> -->
                       <th>UserName</th>
                       <th>Email</th>
                       <th>Mentor</th>
@@ -182,13 +182,13 @@ $.ajax({
             "aaData": data,   
             "lengthMenu": [20, 50, 100, 200, 300, 400, 500 ,800,1000,1200,1500 ],
             "pageLength": 50,
-            "aaSorting": [[ 5, "desc" ]],
-            "columnDefs": [ {
-            "targets": 4,
-            "orderable":false
-            } ],
+            "aaSorting": [[ 4, "desc" ]],
+            // "columnDefs": [ {
+            // "targets": 4,
+            // "orderable":false
+            // } ],
             "columns": [
-                { "data": "id" },
+                // { "data": "id" },
                 { "data": "userName" },
                 { "data": "email" },
                 // { "data": "isMentor" },
