@@ -483,19 +483,24 @@
                       {"title":"Service Type",
                     "render" : function (data, type, row) {
                
-                      if(row.productSubscription == null){
+                      if(row.productSubscription  || row.serviceSubscription == null){
 
-                        var uname = row.serviceSubscription.serviceSubscriptionPlan.serviceTypeMaster.serviceType;
-                       
-                      return uname;
-                       
-                      }else{
+                        var uaname = "";
+                        return uaname;
+
+
+
+                        }else if ( row.serviceSubscription == null){
 
                           var upname = "";
-                       
-                      return upname;
-                       
-                      }
+
+                        return upname;
+
+                        }else{
+                        var uname =  row.serviceSubscription.serviceSubscriptionPlan.serviceTypeMaster.serviceType;
+
+                        return uname;
+                        }
                       }},
                 {
                   "data": "amountPaid",
@@ -682,19 +687,24 @@
                       {"title":"Service Type",
                     "render" : function (data, type, row) {
                
-                      if(row.productSubscription == null){
+                      if(row.productSubscription  || row.serviceSubscription == null){
 
-                        var uname = row.serviceSubscription.serviceSubscriptionPlan.serviceTypeMaster.serviceType;
-                       
-                      return uname;
-                       
-                      }else{
+                            var uaname = "";
+                            return uaname;
 
-                          var upname = "";
-                       
-                      return upname;
-                       
-                      }
+
+
+                            }else if ( row.serviceSubscription == null){
+
+                              var upname = "";
+
+                            return upname;
+
+                            }else{
+                            var uname =  row.serviceSubscription.serviceSubscriptionPlan.serviceTypeMaster.serviceType;
+
+                            return uname;
+                            }
                       }},
                 {
                   "data": "amountPaid", "sClass": "priceAll", "title": "Price",
@@ -771,22 +781,22 @@
             data: formdata,
             success: function (data, textStatus, jqXHR) {
               // alert(data);
-              console.log(data)
+              // console.log(data)
               var datak = JSON.stringify(data);
               var dataResultp = JSON.parse(datak);
               // if($('#dataTablesf').is(':empty'))
-              // alert(dataResultp);
+              console.log(dataResultp);
               var len = dataResultp.length;
               // // alert(len);
               // var serviceData = dataResultp.filter(function(s) { return s.productSubscription == null });
-              $('#dataTablesf').empty();
-              if ($.fn.DataTable.isDataTable('#dataTablesf')) {
-                $('#dataTablesf').DataTable().destroy();
-                $('.containeruserall').empty();
-                $('.containertradeall').empty();
-                $('.containeruser').empty();
-                $('.containertrade').empty();
-              }
+              // $('#dataTablesf').empty();
+              // if ($.fn.DataTable.isDataTable('#dataTablesf')) {
+              //   $('#dataTablesf').DataTable().destroy();
+              //   $('.containeruserall').empty();
+              //   $('.containertradeall').empty();
+              //   $('.containeruser').empty();
+              //   $('.containertrade').empty();
+              // }
 
               if (len > 0) {
 
@@ -926,22 +936,28 @@
                       return upname;
                        
                       }
-                      }},
+                      }}, 
+
                       {"title":"Service Type",
                     "render" : function (data, type, row) {
                
-                      if(row.productSubscription == null){
+                      if(row.productSubscription  || row.serviceSubscription == null){
 
-                        var uname = row.serviceSubscription.serviceSubscriptionPlan.serviceTypeMaster.serviceType;
+                        var uaname = "";
+                        return uaname;
+
                        
-                      return uname;
                        
-                      }else{
+                      }else if ( row.serviceSubscription == null){
 
                           var upname = "";
                        
                       return upname;
                        
+                      }else{
+                        var uname =  row.serviceSubscription.serviceSubscriptionPlan.serviceTypeMaster.serviceType;
+                       
+                       return uname;
                       }
                       }},
                   {
@@ -1166,19 +1182,25 @@
                       {"title":"Service Type",
                     "render" : function (data, type, row) {
                
-                      if(row.productSubscription == null){
+                      if(row.productSubscription  || row.serviceSubscription == null){
 
-                        var uname = row.serviceSubscription.serviceSubscriptionPlan.serviceTypeMaster.serviceType;
-                       
-                      return uname;
-                       
-                      }else{
+                        var uaname = "";
+                        return uaname;
+
+
+
+                        }else if ( row.serviceSubscription == null){
 
                           var upname = "";
-                       
-                      return upname;
-                       
-                      }
+
+                        return upname;
+
+                        }else{
+                        var uname =  row.serviceSubscription.serviceSubscriptionPlan.serviceTypeMaster.serviceType;
+
+                        return uname;
+                        }
+                      
                       }},
                   {
                     "data": "amountPaid",
@@ -1483,18 +1505,23 @@
                       {"title":"Service Type",
                     "render" : function (data, type, row) {
                
-                      if(row.productSubscription == null){
+                      if(row.productSubscription  || row.serviceSubscription == null){
 
-                        var uname = row.serviceSubscription.serviceSubscriptionPlan.serviceTypeMaster.serviceType;
-                       
-                      return uname;
-                       
-                      }else{
+                      var uaname = "";
+                      return uaname;
 
-                          var upname = "";
-                       
+
+
+                      }else if ( row.serviceSubscription == null){
+
+                        var upname = "";
+
                       return upname;
-                       
+
+                      }else{
+                      var uname =  row.serviceSubscription.serviceSubscriptionPlan.serviceTypeMaster.serviceType;
+
+                      return uname;
                       }
                       }},
                   {
@@ -1661,19 +1688,24 @@
                       {"title":"Service Type",
                     "render" : function (data, type, row) {
                
-                      if(row.productSubscription == null){
+                      if(row.productSubscription  || row.serviceSubscription == null){
 
-                        var uname = row.serviceSubscription.serviceSubscriptionPlan.serviceTypeMaster.serviceType;
-                       
-                      return uname;
-                       
-                      }else{
+                          var uaname = "";
+                          return uaname;
 
-                          var upname = "";
-                       
-                      return upname;
-                       
-                      }
+
+
+                          }else if ( row.serviceSubscription == null){
+
+                            var upname = "";
+
+                          return upname;
+
+                          }else{
+                          var uname =  row.serviceSubscription.serviceSubscriptionPlan.serviceTypeMaster.serviceType;
+
+                          return uname;
+                          }
                       }},
                   {
                     "data": "amountPaid", "sClass": "price", "title": "Price",
