@@ -115,6 +115,7 @@ fetch(url, {
     .then(function(data) {
            $('#dataTables').dataTable( {
             "aaData": data, 
+            "order": [[ 3, "desc" ]],
             "columns": [
                 { "data": "title"},
                 { "data": "userType" },
