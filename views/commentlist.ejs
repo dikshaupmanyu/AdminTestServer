@@ -5,6 +5,7 @@
 <link href="css/confirm.css" rel="stylesheet" type="text/css">
 <script src="/js/confirm.js"></script>
 <script src="js/amajiLoader.js"></script>
+<link rel="stylesheet" type="text/css" href="dist/pagination.min.css">
 
 <div class="container-fluid">
 
@@ -89,6 +90,12 @@
        <tbody>
        </tbody>
      </table>
+
+     <div class="box">
+      <ul id="example-1" class="pagination"></ul>
+      <div class="show"></div>
+  </div>
+
    </div>
  </div>
 </div>
@@ -160,6 +167,7 @@ $("select").select2();
 <!-- Page level custom scripts -->
 <script src="js/demo/datatables-demo.js"></script>
 
+<script type="text/javascript" src="dist/pagination.min.js"></script>
 
 <script type="text/javascript">
 
@@ -169,62 +177,166 @@ function noBack() {
 } 
 
 window.addEventListener("load", function() {
-  AmagiLoader.show();
+  // AmagiLoader.show();
   // window.FlashMessage.info( " It will take few seconds to load data Loading...", { timeout: 2000,});
 var url_string = window.location.href; 
 var urls = new URL(url_string);
 var tokens = urls.searchParams.get("tokendata");
-var formdata = new FormData();
-formdata.append("offset", "0");
-formdata.append("limit", "500");
+// var formdata = new FormData();
+// formdata.append("offset", "0");
+// formdata.append("limit", "500");
 
-var requestOptions = {
-method: 'POST',
-headers: {
-Authorization: 'Bearer ' + tokens,
-},
-body: formdata,
-redirect: 'follow'
-};
+  var datasize = 50;
+  var datano = 0 ;
+function showingdata(pageNo,pageSize,currentpage){
+              
+                var form = new FormData();
+              form.append("offset", pageNo);
+                 form.append("limit", pageSize);
 
-fetch("https://apistest.tradetipsapp.com/api/comment/getAllComments", requestOptions)
-.then(resp => resp.json())
-.then(function(data) {
-  AmagiLoader.hide();
-$('#dataTables').dataTable( {
- "aaData": data, 
- "lengthMenu": [ 500, 1000, 2000, 3000, 4000, 5000 ],
- "pageLength": 500,
- // "aaSorting": [[ 0, "desc" ]],
- // "columnDefs": [ {
- // "targets": 4,
- // "orderable": false
- // } ],
- "oLanguage": {
-   "sSearch": "<span>Search Comments</span> _INPUT_" //search
- },
- "columns": [
+                var settings = {
+                  "async": true,
+                  "crossDomain": true,
+                  "url": "https://apistest.tradetipsapp.com/api/comment/getAllComments",
+                  "method": "POST",
+                  "headers": {
+                    "authorization": "Bearer "+ tokens,
+                    "cache-control": "no-cache",
+                    "postman-token": "2cc661ec-8140-df73-6bb1-494e836c9f15"
+                  },
+                  "processData": false,
+                  "contentType": false,
+                  "data": form
+                }
+
+                $.ajax(settings).done(function (response) {
+                    var datak = JSON.stringify(response);
+                      var dataResultps = JSON.parse(datak); 
+                     const listing_table = document.getElementById('dataTables');
+                      var jsp_json_object = dataResultps; 
+                      console.log(jsp_json_object)
+                      for(let i = 0; i < jsp_json_object.length ; i++){
+                          // console.log(jsp_json_object[i].stockSymbol);
+                          if( jsp_json_object[i].status == 'deleted'){
+
+                            listing_table.innerHTML += `<tr><td>${jsp_json_object[i].commentDetails}</td><td>${jsp_json_object[i].appUser.userName}</td><td><button>Already deleted</button></td></tr>`;
+                          }else{
+                            listing_table.innerHTML += `<tr><td>${jsp_json_object[i].commentDetails}</td><td>${jsp_json_object[i].appUser.userName}</td><td><button id=${jsp_json_object[i].id} class="deleteButtons">Delete</button></td></tr>`;
+
+                          }
+                        }
+                      });
+                     
+      }
+
+                AmagiLoader.show();
+                var pageSize = 100;
+                var pageNo = 0
+                  $.ajax({
+                   type: 'POST',
+                   url: 'https://apistest.tradetipsapp.com/api/comment/getAllComments',
+                   headers: {
+                     Authorization: 'Bearer '+ tokens
+                   },
+                  //  data: {pageSize:limit,pageNo:offset},
+                   data: {offset:pageNo,limit:pageSize},
+                   success: function (data) {
+                    // alert("done")
+                      var datak = JSON.stringify(data);
+                      var dataResultps = JSON.parse(datak); 
+                      console.log(dataResultps)
+                      var finalvalss =dataResultps.length;
+
+
+                      // console.log(pageSizes)
+                      // $("#countStockListData").text(finalvalss);
+                       const listing_table = document.getElementById('dataTables');
+                      var jsp_json_object = dataResultps; 
+                      console.log(jsp_json_object.length)
+                      AmagiLoader.hide();
+                      for(let i = 0; i < jsp_json_object.length ; i++){  
+                        if( jsp_json_object[i].status == 'deleted'){
+
+                                listing_table.innerHTML += `<tr><td>${jsp_json_object[i].commentDetails}</td><td>${jsp_json_object[i].appUser.userName}</td><td><button>Already deleted</button></td></tr>`;
+                                }else{
+                                listing_table.innerHTML += `<tr><td>${jsp_json_object[i].commentDetails}</td><td>${jsp_json_object[i].appUser.userName}</td><td><button  id=${jsp_json_object[i].id} class="deleteButtons">Delete</button></td></tr>`;
+
+                                }
+                        }
+                      $('#example-1').pagination({
+                        total: finalvalss, 
+                        current: 1, 
+                        length: 20, 
+                        size: 1, 
+                        globalSearch:true,
+                        click: function(options,$target) {
+
+                          if(options.current == 2){
+                            showingdata(options.total,options.length);
+                            }
+                            else{
+                              options.total = options.total + options.length * options.current - (options.length *2)
+                              showingdata(options.total,options.length,options.current);
+                            }
+
+
+                          console.log(options.length);
+                            $target.next(".show").text('Current Page : '+options.current);
+
+                        }
+                      });
+                    }
+
+                  }); 
+
+                  // /////////////
+// var requestOptions = {
+// method: 'POST',
+// headers: {
+// Authorization: 'Bearer ' + tokens,
+// },
+// body: formdata,
+// redirect: 'follow'
+// };
+
+// fetch("https://apistest.tradetipsapp.com/api/comment/getAllComments", requestOptions)
+// .then(resp => resp.json())
+// .then(function(data) {
+//   AmagiLoader.hide();
+// $('#dataTables').dataTable( {
+//  "aaData": data, 
+//  "lengthMenu": [ 500, 1000, 2000, 3000, 4000, 5000 ],
+//  "pageLength": 20,
+//  // "aaSorting": [[ 0, "desc" ]],
+//  // "columnDefs": [ {
+//  // "targets": 4,
+//  // "orderable": false
+//  // } ],
+//  "oLanguage": {
+//    "sSearch": "<span>Search Comments</span> _INPUT_" //search
+//  },
+//  "columns": [
      
-     { "data": "commentDetails" },
-     { "data": "appUser.userName" },
-     { 'data': null,
-      'render': function (data, type, row) {
-           // alert(row.status);
-           if(row.status == "deleted"){
-            return '<button>Already deleted</button>'
-           }else{ 
-             return '<button id="' +row.id + '" class="deleteButtons">Delete</button>'
+//      { "data": "commentDetails" },
+//      { "data": "appUser.userName" },
+//      { 'data': null,
+//       'render': function (data, type, row) {
+//            // alert(row.status);
+//            if(row.status == "deleted"){
+//             return '<button>Already deleted</button>'
+//            }else{ 
+//              return '<button id="' +row.id + '" class="deleteButtons">Delete</button>'
 
-           }
-    }
-   },          
- ],
- "deferRender": true,
- rowCallback: function ( row, data ) {
+//            }
+//     }
+//    },          
+//  ],
+//  "deferRender": true,
+//  rowCallback: function ( row, data ) {
  
-}
+// }
 
-});
+// });
 
 
 $('#dataTables').on('click', 'button.deleteButtons', function () {
@@ -277,7 +389,7 @@ window.FlashMessage.error(' Not updated !!', { timeout: 3000,});
 });
 
 
-});
+// });
 
 
 const url = "https://apistest.tradetipsapp.com/api/appUserWebModify/getAllAppUsers";
@@ -339,7 +451,7 @@ if ( $.fn.DataTable.isDataTable('#dataTables') ) {
 $('#dataTables').dataTable( {
  "aaData": data,   
  "lengthMenu": [ 500, 1000, 2000, 3000, 4000, 5000 ],
- "pageLength": 500,
+ "pageLength": 20,
  // "aaSorting": [[ 0, "desc" ]],
  // "columnDefs": [ {
  // "targets": 4,

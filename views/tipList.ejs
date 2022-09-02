@@ -4,6 +4,7 @@
            <link href="css/confirm.css" rel="stylesheet" type="text/css">
             <script src="/js/confirm.js"></script>
             <script src="js/amajiLoader.js"></script>
+            <link rel="stylesheet" type="text/css" href="dist/pagination.min.css">
 
        
         <div class="container-fluid">
@@ -57,6 +58,13 @@
                   <tbody>
                   </tbody>
                 </table>
+
+                <div class="box">
+                  <ul id="example-1" class="pagination"></ul>
+                  <div class="show"></div>
+              </div>
+
+
               </div>
             </div>
           </div>
@@ -128,6 +136,7 @@
   <!-- Page level custom scripts -->
   <script src="js/demo/datatables-demo.js"></script>
 
+  <script type="text/javascript" src="dist/pagination.min.js"></script>
 
   <script type="text/javascript">
 
@@ -140,66 +149,80 @@ window.history.forward();
 
 
 window.addEventListener("load", function() {
-  AmagiLoader.show();
-  // window.FlashMessage.info( " It will take few seconds to load data Loading...", { timeout: 3000,});
-  var url_string = window.location.href; 
+
+    var url_string = window.location.href; 
   var urls = new URL(url_string);
   var tokens = urls.searchParams.get("tokendata");
-  var formdata = new FormData();
-  formdata.append("offset", "0");
-  formdata.append("limit", "500");
+  // var formdata = new FormData();
+  // formdata.append("offset", "0");
+  // formdata.append("limit", "500");
 
-  var requestOptions = {
-    method: 'POST',
-    headers: {
-          Authorization: 'Bearer ' + tokens,
-        },
-    body: formdata,
-    redirect: 'follow'
-  };
+// /////////////////////////start
 
-  fetch("https://apistest.tradetipsapp.com/api/tip/getAllTipsWithoutCommentsPagination", requestOptions)
-  .then(resp => resp.json())
-    .then(function(data) {
-      AmagiLoader.hide();
-           $('#dataTables').dataTable( {
-            "aaData": data, 
-            "lengthMenu": [ 500, 1000, 2000, 3000, 4000, 5000 ],
-            "pageLength": 500,
-            "aaSorting": [[ 5, "desc" ]],
-            // "columnDefs": [ {
-            // "targets": ,
-            // "orderable": false
-            // } ],
-            "oLanguage": {
-              "sSearch": "<span>Search Tips</span> _INPUT_" //search
-            },
-            "columns": [
-                
-                { "data": "stockName" },
-                { "data": "entryPoint",
-                 "render": function (data, type, full) {
-                       return parseFloat(data).toFixed(2);
-                  }
-                 },
-                { "data": "exitPoint" ,
-                 "render": function (data, type, full) {
-                       return parseFloat(data).toFixed(2);
-                  }
-                },
-                { "data": "stopPoint" ,
-                 "render": function (data, type, full) {
-                       return parseFloat(data).toFixed(2);
-                  }
-                },
-                { "data": "appUser.userName" },
-                { 
-                 "data": "createdOn",
-                 "name":"date",
-                 "visible":true,
-                 "title":"Date Created",
-                 "render": function(data, type, full, meta){
-                  if(type == "display"){
+
+function showingdata(pageNo,pageSize){
+
+              // alert('offset' + pageNo);
+
+              //  var valdata = {pageSize:pageSize,pageNo:pageNo};
+
+              var form = new FormData();
+                form.append("offset", pageNo);
+                form.append("limit", pageSize);
+
+                var settings = {
+                  "async": true,
+                  "crossDomain": true,
+                  "url": "https://apistest.tradetipsapp.com/api/tip/getAllTipsWithoutCommentsPagination",
+                  "method": "POST",
+                  "headers": {
+                    "authorization": "Bearer "+ tokens,
+                    "cache-control": "no-cache",
+                    "postman-token": "2cc661ec-8140-df73-6bb1-494e836c9f15"
+                  },
+                  "processData": false,
+                  "contentType": false,
+                  "data": form
+                }
+
+                $.ajax(settings).done(function (response) {
+                    var datak = JSON.stringify(response);
+                      var dataResultps = JSON.parse(datak); 
+                     const listing_table = document.getElementById('dataTables');
+                      var jsp_json_object = dataResultps; 
+                      console.log(jsp_json_object
+                      )
+                      // alert(jsp_json_object);
+                      for(let i = 0; i < jsp_json_object.length ; i++){
+                          // console.log(jsp_json_object[i].stockSymbol);
+                           listing_table.innerHTML += `<tr><td>${jsp_json_object[i].stockName}</td><td>${jsp_json_object[i].exitPoint}</td><td>${jsp_json_object[i].stopPoint}</td><td>${jsp_json_object[i].appUser.userName}</td><td>${jsp_json_object[i].createdOn}</td><td>${jsp_json_object[i].null}</td></tr>`
+                        }
+                    
+                });
+      }
+
+      AmagiLoader.show();
+                  $.ajax({
+                   type: 'POST',
+                   url: 'https://apistest.tradetipsapp.com/api/tip/getAllTipsWithoutCommentsPagination',
+                   headers: {
+                     Authorization: 'Bearer '+ tokens
+                   },
+                   data: {limit:100,offset:0},
+                    success: function (data) {
+                      var datak = JSON.stringify(data);
+                      var dataResultps = JSON.parse(datak); 
+                      var finalvalss = dataResultps.length;
+                      // alert(finalvalss)
+                      // $("#countStockListData").text(finalvalss);
+                       const listing_table = document.getElementById('dataTables');
+                      var jsp_json_object = dataResultps; 
+                      console.log(jsp_json_object)
+                      AmagiLoader.hide();
+                      for(let i = 0; i < jsp_json_object.length ; i++){
+                          // console.log(jsp_json_object[i]);
+                          var createon = function(data, type, full, meta){
+                                              if(type == "display"){
                           var date = new Date(data);
                           var options = {year: "numeric", month: "long", day: "numeric"};
 
@@ -207,77 +230,177 @@ window.addEventListener("load", function() {
                   }
 
                   return data;
-                }
+                          }
+                           listing_table.innerHTML += `<tr><td>${jsp_json_object[i].stockName}
+                            <td>${jsp_json_object[i].entryPoint}</td>
+                            <td>${jsp_json_object[i].exitPoint}</td>
+                            <td>${jsp_json_object[i].stopPoint}</td>
+                            <td>${jsp_json_object[i].appUser.userName}</td>
+                            <td>${jsp_json_object[i].createdOn}</td>
+                            <td><button id=${jsp_json_object[i].id} class="deleteButtons">Remove</button></td></tr>`;
+                        }
+                      $('#example-1').pagination({
+                        total: finalvalss, // 总数据条数
+                        current: 1, // 当前页码
+                        length: 20, // 每页数据量
+                        size: 1, // 显示按钮个数
+                        globalSearch:true,
+                        click: function(options,$target) { // 点击按钮事件
+                          console.log(options);
+                            $target.next(".show").text('Current Page : '+options.current);
 
-                },
-                { 'data': null,
-                 'render': function (data, type, row) {
-                       return '<button id="' + row.id + '" class="deleteButtons">Remove</button>'
-               }
-              },               
-            ],
-            "deferRender": true,
-            rowCallback: function ( row, data ) {
+                            if(options.current == 2){
+
+                              showingdata(options.total,options.length);
+                            }else{
+                              options.total = options.total + options.length * options.current - (options.length *2)
+                              showingdata(options.total,options.length);
+                            }
+                        }
+                      });
+                    }
+
+                  }); 
+
+
+
+
+
+  // //////////end
+
+//   AmagiLoader.show();
+//   window.FlashMessage.info( " It will take few seconds to load data Loading...", { timeout: 3000,});
+
+
+//   var requestOptions = {
+//     method: 'POST',
+//     headers: {
+//           Authorization: 'Bearer ' + tokens,
+//         },
+//     body: formdata,
+//     redirect: 'follow'
+//   };
+
+//   fetch("https://apistest.tradetipsapp.com/api/tip/getAllTipsWithoutCommentsPagination", requestOptions)
+//   .then(resp => resp.json())
+//     .then(function(data) {
+//       AmagiLoader.hide();
+//            $('#dataTables').dataTable( {
+//             "aaData": data, 
+//             "lengthMenu": [ 500, 1000, 2000, 3000, 4000, 5000 ],
+//             "pageLength": 500,
+//             "aaSorting": [[ 5, "desc" ]],
+//             // "columnDefs": [ {
+//             // "targets": ,
+//             // "orderable": false
+//             // } ],
+//             "oLanguage": {
+//               "sSearch": "<span>Search Tips</span> _INPUT_" //search
+//             },
+//             "columns": [
+                
+//                 { "data": "stockName" },
+//                 { "data": "entryPoint",
+//                  "render": function (data, type, full) {
+//                        return parseFloat(data).toFixed(2);
+//                   }
+//                  },
+//                 { "data": "exitPoint" ,
+//                  "render": function (data, type, full) {
+//                        return parseFloat(data).toFixed(2);
+//                   }
+//                 },
+//                 { "data": "stopPoint" ,
+//                  "render": function (data, type, full) {
+//                        return parseFloat(data).toFixed(2);
+//                   }
+//                 },
+//                 { "data": "appUser.userName" },
+//                 { 
+//                  "data": "createdOn",
+//                  "name":"date",
+//                  "visible":true,
+//                  "title":"Date Created",
+//                  "render": function(data, type, full, meta){
+//                   if(type == "display"){
+//                           var date = new Date(data);
+//                           var options = {year: "numeric", month: "long", day: "numeric"};
+
+//                           return date.toLocaleDateString('en-US', options);
+//                   }
+
+//                   return data;
+//                 }
+
+//                 },
+//                 { 'data': null,
+//                  'render': function (data, type, row) {
+//                        return '<button id="' + row.id + '" class="deleteButtons">Remove</button>'
+//                }
+//               },               
+//             ],
+//             "deferRender": true,
+//             rowCallback: function ( row, data ) {
             
-        }
+//         }
 
-        });
+//         });
 
 
-    $('#dataTables').on('click', 'button.deleteButtons', function () {
+//     $('#dataTables').on('click', 'button.deleteButtons', function () {
 
-      // alert("fff");
+//       // alert("fff");
 
-      var id = $(this).attr('id');
-      // alert(id);
+//       var id = $(this).attr('id');
+//       // alert(id);
 
-      var url ;
-      var result =   Confirm.open({
-  title: 'Delete Confirm',
-  message: "Are you sure you want to delete?",
-  onok: () => {
-    // if(result){
-      var formData = {tipId:id};
-       url = "https://apistest.tradetipsapp.com/api/tip/deleteTipByTipId";
-      $.ajax({
-        url : url,
-        type: "POST",
-        headers: {
-             Authorization: 'Bearer ' + tokens,
-        },
-        data : formData,
-        success: function(data, textStatus, jqXHR)
-        {
-            //data - response from server
-            var datak = JSON.stringify(data);
-            var dataResultp = JSON.parse(datak); 
-            // alert(dataResultp);
-            // alert("Delete Sucessfully !!");
-            window.FlashMessage.success( " Delete Sucessfully !! ", { timeout: 2000,});
-            setTimeout(()=> { window.location.reload()},2100)
-        },
-        error: function (jqXHR, textStatus, errorThrown)
-        {
-          //  alert("Not updated !!");
-          window.FlashMessage.error( " Not updated !!", { timeout:2000,});
-        }
+//       var url ;
+//       var result =   Confirm.open({
+//   title: 'Delete Confirm',
+//   message: "Are you sure you want to delete?",
+//   onok: () => {
+//     // if(result){
+//       var formData = {tipId:id};
+//        url = "https://apistest.tradetipsapp.com/api/tip/deleteTipByTipId";
+//       $.ajax({
+//         url : url,
+//         type: "POST",
+//         headers: {
+//              Authorization: 'Bearer ' + tokens,
+//         },
+//         data : formData,
+//         success: function(data, textStatus, jqXHR)
+//         {
+//             //data - response from server
+//             var datak = JSON.stringify(data);
+//             var dataResultp = JSON.parse(datak); 
+//             // alert(dataResultp);
+//             // alert("Delete Sucessfully !!");
+//             window.FlashMessage.success( " Delete Sucessfully !! ", { timeout: 2000,});
+//             setTimeout(()=> { window.location.reload()},2100)
+//         },
+//         error: function (jqXHR, textStatus, errorThrown)
+//         {
+//           //  alert("Not updated !!");
+//           window.FlashMessage.error( " Not updated !!", { timeout:2000,});
+//         }
 
-       });
+//        });
       
 
-      // } 
-  },
-  oncancel: () => {
-    window.FlashMessage.error( " Not updated !!", { timeout:2000,});
-  }
-})
+//       // } 
+//   },
+//   oncancel: () => {
+//     window.FlashMessage.error( " Not updated !!", { timeout:2000,});
+//   }
+// })
 
 
 
-      });
+//       });
 
 
-      });
+//       });
 
  
 const url = "https://apistest.tradetipsapp.com/api/appUserWebModify/getAllAppUsers";
