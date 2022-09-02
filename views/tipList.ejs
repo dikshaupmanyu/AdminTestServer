@@ -194,8 +194,13 @@ function showingdata(pageNo,pageSize){
                       )
                       // alert(jsp_json_object);
                       for(let i = 0; i < jsp_json_object.length ; i++){
-                          // console.log(jsp_json_object[i].stockSymbol);
-                           listing_table.innerHTML += `<tr><td>${jsp_json_object[i].stockName}</td><td>${jsp_json_object[i].exitPoint}</td><td>${jsp_json_object[i].stopPoint}</td><td>${jsp_json_object[i].appUser.userName}</td><td>${jsp_json_object[i].createdOn}</td><td>${jsp_json_object[i].null}</td></tr>`
+                        listing_table.innerHTML += `<tr><td>${jsp_json_object[i].stockName}
+                            <td>${jsp_json_object[i].entryPoint}</td>
+                            <td>${jsp_json_object[i].exitPoint}</td>
+                            <td>${jsp_json_object[i].stopPoint}</td>
+                            <td>${jsp_json_object[i].appUser.userName}</td>
+                            <td>${jsp_json_object[i].createdOn}</td>
+                            <td><button id=${jsp_json_object[i].id} class="deleteButtons">Remove</button></td></tr>`;
                         }
                     
                 });
