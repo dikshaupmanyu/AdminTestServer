@@ -2,6 +2,7 @@
 
   <link href="css/flash-main.css" rel="stylesheet" type="text/css">
   <script src="/js/flash-main.js"></script>
+  <script src="js/amajiLoader.js"></script>
   <link rel="stylesheet" type="text/css" href="dist/pagination.min.css">
   <style type="text/css">
     .switch {
@@ -678,7 +679,7 @@
                 // alert("Please fill all the field");
                 window.FlashMessage.error(" Please fill all the field", { timeout: 3000, });
               } else {
-
+                AmagiLoader.show();
                 var formdata = new FormData();
                 formdata.append("title", title);
                 formdata.append("description", description);
@@ -708,7 +709,7 @@
                 fetch("https://apistest.tradetipsapp.com/api/adBannerSimpleNotification/sendFCMNotificationForSimpleAdBannerWithUserType", requestOptions)
                   .then(response => response.json())
                   .then(result => {
-
+                    AmagiLoader.hide();
                     var datak = JSON.stringify(result);
                     // alert(datak);
                     var dataResultp = JSON.parse(datak);

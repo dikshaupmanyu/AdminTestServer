@@ -2,6 +2,7 @@
 
 <link href="css/flash-main.css" rel="stylesheet" type="text/css">
 <script src="/js/flash-main.js"></script>
+<script src="js/amajiLoader.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/emoji-button@0.6.0/dist/index.min.js"></script>
     <script>
       window.addEventListener('DOMContentLoaded', () => {
@@ -862,8 +863,6 @@ $("#bannerSubmitbannerone").on('click', function (e) {
   var longDescription2 = tinymce.get("longDescriptionss2").getContent();
   var longDescription3 = tinymce.get("longDescriptionsss3").getContent();
   var file1 = document.getElementById("imageDetailss1").files[0];
-  // var youtubeimcsrc = $('#newImage1').attr('src');
-  // alert(youtubeimcsrc);
   var fullPath1 = $("#imageDetailss1").val();
   // alert(fullPath);   
   var filename1 = fullPath1.replace(/^.*[\\\/]/, '');
@@ -955,6 +954,7 @@ $("#bannerSubmitbannerone").on('click', function (e) {
       window.FlashMessage.error(' Please fill all the field', { timeout: 3000,});
          
       }else{
+        AmagiLoader.show();
         var formdata = new FormData();
         formdata.append("adBannerId", ids);
         
@@ -1018,6 +1018,7 @@ $("#bannerSubmitbannerone").on('click', function (e) {
                 .then(response => response.json())
                 .then(result => {
                       
+                  AmagiLoader.hide();
                           var datak = JSON.stringify(result);
                           // alert(datak);
                           var dataResultp = JSON.parse(datak); 
@@ -1175,7 +1176,7 @@ $("#bannerSubmit").on('click', function (e) {
     // alert("Please fill all the field");
     window.FlashMessage.error(' Please fill all the field', { timeout: 3000,});
   }else {
-      
+    AmagiLoader.show();
         var formdata = new FormData();
         formdata.append("adBannerId", ids);
         formdata.append("title", title);
@@ -1198,14 +1199,10 @@ $("#bannerSubmit").on('click', function (e) {
     fetch("https://apistest.tradetipsapp.com/api/adBannerSimple/modifySimpleAdBanner", requestOptions)
       .then(response => response.json())
       .then(result => {
-            
+        AmagiLoader.hide();
                 var datak = JSON.stringify(result);
-                // alert(datak);
                 var dataResultp = JSON.parse(datak); 
-                // alert(dataResultp.title);
-                // alert("Your banner "+dataResultp.title+" Updated successfully");
                 window.FlashMessage.success(' Your banner '+dataResultp.title+' updated successfully', { timeout: 3000,});
-                // window.location.href = "/banner?tokendata="+tokens; 
                 setTimeout(()=> { window.location.href="/banner?tokendata="+tokens;},3500)
                 // window.location.reload("/banner?tokendata="+tokens); 
               // $(".successmsg").html('<spa>"Your banner '+dataResultp.title+' was submitted successfully"</span>');
@@ -1234,7 +1231,7 @@ $("#bannerSubmit").on('click', function (e) {
         fetch("https://apistest.tradetipsapp.com/api/adBannerSimple/modifySimpleAdBanner", requestOptions)
           .then(response => response.json())
           .then(result => {
-                
+            AmagiLoader.hide();
                     var datak = JSON.stringify(result);
                     // alert(datak);
                     var dataResultp = JSON.parse(datak); 
