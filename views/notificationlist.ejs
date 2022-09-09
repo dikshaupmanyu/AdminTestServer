@@ -138,7 +138,7 @@ fetch(url, {
                },
                { 'data': null,
                  'render': function (data, type, row) {
-                       return '<button id="' + row.adBannerId + '" data-title="'+row.title+'" data-description="'+row.description+'" data-userType="'+row.userType+'" class="sendNotifyagain">Send Again</button> | <a href="editNotification?id='+row.id+'&title='+row.title+'&bannerid='+ row.adBannerId +'&description='+ row.description +'&type='+ row.userType +'&tokendata='+tokens+'"><button>Edit</button></a>'
+                       return '<button id="' + row.adBannerId + '" data-title="'+row.title+'" data-description="'+row.description+'" data-userType="'+row.userType+'" class="sendNotifyagain" style="width:45%">Send Again</button> | <a href="editNotification?id='+row.id+'&title='+row.title+'&bannerid='+ row.adBannerId +'&description='+ row.description +'&type='+ row.userType +'&tokendata='+tokens+'"><button style="width:45%">Edit</button></a>'
                }
               
               },    

@@ -147,7 +147,7 @@ window.addEventListener("load", function() {
   var tokens = urls.searchParams.get("tokendata");
   var formdata = new FormData();
   formdata.append("offset", "0");
-  formdata.append("limit", "500");
+  formdata.append("limit", "1000000");
 
   var requestOptions = {
     method: 'POST',
@@ -164,8 +164,8 @@ window.addEventListener("load", function() {
       AmagiLoader.hide();
            $('#dataTables').dataTable( {
             "aaData": data, 
-            "lengthMenu": [ 500, 1000, 2000, 3000, 4000, 5000 ],
-            "pageLength": 500,
+            "lengthMenu": [ 10, 20, 50, 100, 200, 300, 400, 500 ,800,1000,1200,1500  ],
+            "pageLength": 50,
             "aaSorting": [[ 5, "desc" ]],
             // "columnDefs": [ {
             // "targets": ,
@@ -212,7 +212,7 @@ window.addEventListener("load", function() {
                 },
                 { 'data': null,
                  'render': function (data, type, row) {
-                       return '<button id="' + row.id + '" class="deleteButtons">Remove</button>'
+                       return '<button id="' + row.id + '" class="deleteButtons" style="width:100%">Remove</button>'
                }
               },               
             ],
