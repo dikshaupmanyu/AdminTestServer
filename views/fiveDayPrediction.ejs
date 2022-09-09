@@ -220,7 +220,7 @@ href=
 "https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js">
 </script>
 
-<script type="text/javascript" src="dist/pagination.min.js"></script>
+<!-- <script type="text/javascript" src="dist/pagination.min.js"></script> -->
 
   <!-- Custom scripts for all pages-->
   <script src="js/sb-admin-2.min.js"></script>
@@ -342,8 +342,9 @@ window.addEventListener("load", function() {
       });
   
   });
-<<<<<<< HEAD
-  var form = new FormData();
+
+    // ///////////////////////// prediction by count
+    var form = new FormData();
 form.append("limit", "100000");
 form.append("offset", "0");
 
@@ -358,157 +359,34 @@ var settings = {
   "mimeType": "multipart/form-data",
   "data": form
 }
-=======
->>>>>>> 1cafb8abc0ce46f7c11d2cbb23569f3bf6af61ff
-
-  // ///////////////////////// prediction by count
-
-<<<<<<< HEAD
+$.ajax(settings).done(function (response) {
+       var dataResultsdetail = JSON.parse(response); 
            $('#dataTabletwo').dataTable( {
            "aaData": dataResultsdetail, 
            "lengthMenu": [ 10, 20, 50, 100, 200, 300, 400, 500 ,800,1000,1200,1500  ],
            "pageLength": 20,
            "order": [[ 1, "desc" ]],
              "columns": [
-=======
 
-  function showingdata(pageNo,pageSize,currentpage){
-              
-              var form = new FormData();
-            form.append("offset", pageNo);
-               form.append("limit", pageSize);
-
-              var settings = {
-                "async": true,
-                "crossDomain": true,
-                "url": "https://apistest.tradetipsapp.com/api/stockNonDefaultCountRecord/getStockNonDefaultCountRecordByDate",
-                "method": "POST",
-                "headers": {
-                  "authorization": "Bearer "+ tokens,
-                  "cache-control": "no-cache",
-                  "postman-token": "2cc661ec-8140-df73-6bb1-494e836c9f15"
-                },
-                "processData": false,
-                "contentType": false,
-                "data": form
-              }
-
-              $.ajax(settings).done(function (response) {
-                  var datak = JSON.stringify(response);
-                    var dataResultps = JSON.parse(datak); 
-                   const listing_table = document.getElementById('dataTabletwo');
-                    var jsp_json_object = dataResultps; 
-                    console.log(jsp_json_object)
-                    for(let i = 0; i < jsp_json_object.length ; i++){
-                      listing_table.innerHTML += `<tr><td>${jsp_json_object[i].stockSymbol}</td><td>${jsp_json_object[i].count}</td></tr>`;
-                      }
-                    });
-                   
-    }
-
-              AmagiLoader.show();
-              var pageSize = 50;
-              var pageNo = 0
-                $.ajax({
-                 type: 'POST',
-                 url: 'https://apistest.tradetipsapp.com/api/stockNonDefaultCountRecord/getStockNonDefaultCountRecordByDate',
-                 headers: {
-                   Authorization: 'Bearer '+ tokens
-                 },
-                //  data: {pageSize:limit,pageNo:offset},
-                 data: {offset:pageNo,limit:pageSize},
-                 success: function (data) {
-                  // alert("done")
-                    var datak = JSON.stringify(data);
-                    var dataResultps = JSON.parse(datak); 
-                    console.log(dataResultps)
-                    var finalvalss =dataResultps.length;
-
-                     const listing_table = document.getElementById('dataTabletwo');
-                    var jsp_json_object = dataResultps; 
-                    console.log(jsp_json_object.length)
-                    AmagiLoader.hide();
-                    for(let i = 0; i < jsp_json_object.length ; i++){  
-                      listing_table.innerHTML += `<tr><td>${jsp_json_object[i].stockSymbol}</td><td>${jsp_json_object[i].count}</td></tr>`;
-                      }
-                    $('#example-1').pagination({
-                      total: finalvalss, 
-                      current: 1, 
-                      length: 10, 
-                      size: 1, 
-                      globalSearch:true,
-                      click: function(options,$target) {
-
-                        if(options.current == 2){
-                          showingdata(options.total,options.length);
-                          }
-                          else{
-                            options.total = options.total + options.length * options.current - (options.length *2)
-                            showingdata(options.total,options.length,options.current);
-                          }
-
-
-                        console.log(options.length);
-                          $target.next(".show").text('Current Page : '+options.current);
-
-                      }
-                    });
-                  }
-
-                }); 
-
-  // ///////////////////////////////////////////////////////////////////////////////////////
-//   var form = new FormData();
-// // form.append("limit", "500");
-// // form.append("offset", "0");
-
-// var settings = {
-//   "url": "https://apistest.tradetipsapp.com/api/stockNonDefaultCountRecord/getStockNonDefaultCountRecordByDate",
-//   "method": "POST",
-//   "headers": {
-//     "authorization": 'Bearer ' + tokens,
-//   },
-//   "processData": false,
-//   "contentType": false,
-//   "mimeType": "multipart/form-data",
-//   "data": form
-// }
-
-// $.ajax(settings).done(function (response) {
-//        var dataResultsdetail = JSON.parse(response); 
-
-//            $('#dataTabletwo').dataTable( {
-//            "aaData": dataResultsdetail, 
-//            "lengthMenu": [ 500, 1000, 2000, 3000, 4000, 5000 ],
-//            "pageLength": 500,
-//            "order": [[ 1, "desc" ]],
-//              "columns": [
->>>>>>> 1cafb8abc0ce46f7c11d2cbb23569f3bf6af61ff
                
-//                { "data": "stockSymbol"},
-//                { "data": "count"}               
-//            ],
-//            "deferRender": true,
-//            rowCallback: function ( row, data ) {
+               { "data": "stockSymbol"},
+               { "data": "count"}               
+           ],
+           "deferRender": true,
+           rowCallback: function ( row, data ) {
            
-//        }
+       }
 
-//       });
-// });
-
+      });
+});
 
 ////////////////////////////////////////////////////////////////////////////////
 
 //  prediction by date
 AmagiLoader.show();
  var form1 = new FormData();
-<<<<<<< HEAD
-  form1.append("limit", "100000");
-  form1.append("offset", "0");
-=======
   // form1.append("limit", "500");
   // form1.append("offset", "0");
->>>>>>> 1cafb8abc0ce46f7c11d2cbb23569f3bf6af61ff
 
 const url1 = "https://apistest.tradetipsapp.com/api/stockNonDefaultDateRecord/getAllStockNonDefaultDateRecord";
 fetch(url1, {
@@ -529,13 +407,8 @@ fetch(url1, {
           AmagiLoader.hide();
            $('#dataTableone').dataTable( {
            "aaData": dataResults, 
-<<<<<<< HEAD
-           "lengthMenu": [ 10, 20, 50, 100, 200, 300, 400, 500 ,800,1000,1200,1500  ],
+           "lengthMenu":[ 10, 20, 50, 100, 200, 300, 400, 500 ,800,1000,1200,1500  ],
            "pageLength": 20,
-=======
-           "lengthMenu": [ 100,500, 1000, 2000, 3000, 4000, 5000 ],
-           "pageLength": 100,
->>>>>>> 1cafb8abc0ce46f7c11d2cbb23569f3bf6af61ff
             // "ordering": false,
             "order": [[ 2, "desc" ]],
              "columns": [

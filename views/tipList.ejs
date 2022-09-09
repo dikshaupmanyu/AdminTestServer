@@ -1,179 +1,182 @@
-           <%- include partials/header %>
-           <link href="css/flash-main.css" rel="stylesheet" type="text/css">
-           <script src="/js/flash-main.js"></script>
-           <link href="css/confirm.css" rel="stylesheet" type="text/css">
-            <script src="/js/confirm.js"></script>
-            <script src="js/amajiLoader.js"></script>
-            <link rel="stylesheet" type="text/css" href="dist/pagination.min.css">
-
-       
-        <div class="container-fluid">
-
-           <!-- form user info -->
-            <div class="card card-outline-secondary">
-              <div class="card-header">
-                <h3 class="mb-0">Tips Management</h3>
-              </div>
-            </div><!-- /form user info -->
-
-          <div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Tips List</h6>
-            </div>
+<%- include partials/header %>
+<link href="css/flash-main.css" rel="stylesheet" type="text/css">
+<script src="/js/flash-main.js"></script>
+<link href="css/confirm.css" rel="stylesheet" type="text/css">
+ <script src="/js/confirm.js"></script>
+ <script src="js/amajiLoader.js"></script>
+ <link rel="stylesheet" type="text/css" href="dist/pagination.min.css">
 
 
-            <div class="card-body">
-              <div class="table-responsive">
+<div class="container-fluid">
 
-            <!--   <input type="button" class="btn btn-primary" id="btn_" value="Delete All Comment" /> -->
+<!-- form user info -->
+ <div class="card card-outline-secondary">
+   <div class="card-header">
+     <h3 class="mb-0">Tips Management</h3>
+   </div>
+ </div><!-- /form user info -->
 
-                <br>
-
-                <table class="table table-bordered" id="dataTables" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
-                      <!-- <th>Id</th> -->
-                     <!--  <th></th> -->
-                      <th>Stock Symbol</th>
-                      <th>Entry Point</th>
-                      <th>Exit Point</th>
-                      <th>Stop Point</th>
-                      <th>Mentor</th>
-                      <!-- <th>Action</th> -->
-                      <th>Created Date</th>
-                      <th>Action</th>
- <!--                       <th>Authenticate by Email</th>
-                    </tr>
-                  </thead>
-                  <tfoot>
-                    <tr>
-                      <th>Name</th>
-                      <th>Position</th>
-                      <th>Office</th>
-                      <th>Age</th>
-                      <th>Start date</th>
-                      <th>Salary</th>
-                    </tr>
-                  </tfoot> -->
-                  <tbody>
-                  </tbody>
-                </table>
-
-                <div class="box">
-                  <ul id="example-1" class="pagination"></ul>
-                  <div class="show"></div>
-              </div>
+<div class="card shadow mb-4">
+ <div class="card-header py-3">
+   <h6 class="m-0 font-weight-bold text-primary">Tips List</h6>
+ </div>
 
 
-              </div>
-            </div>
-          </div>
+ <div class="card-body">
+   <div class="table-responsive">
 
-        </div>
+ <!--   <input type="button" class="btn btn-primary" id="btn_" value="Delete All Comment" /> -->
 
-      </div>
-      <!-- End of Main Content -->
+     <br>
 
-                 <%- include partials/footer %>
+     <table class="table table-bordered" id="dataTables" width="100%" cellspacing="0">
+       <thead>
+         <tr>
+           <!-- <th>Id</th> -->
+          <!--  <th></th> -->
+           <th>Stock Symbol</th>
+           <th>Entry Point</th>
+           <th>Exit Point</th>
+           <th>Stop Point</th>
+           <th>Mentor</th>
+           <!-- <th>Action</th> -->
+           <th>Created Date</th>
+           <th>Action</th>
+<!--                       <th>Authenticate by Email</th>
+         </tr>
+       </thead>
+       <tfoot>
+         <tr>
+           <th>Name</th>
+           <th>Position</th>
+           <th>Office</th>
+           <th>Age</th>
+           <th>Start date</th>
+           <th>Salary</th>
+         </tr>
+       </tfoot> -->
+       <tbody>
+       </tbody>
+     </table>
+
+     <div class="box">
+       <ul id="example-1" class="pagination"></ul>
+       <div class="show"></div>
+   </div>
 
 
-    </div>
-    <!-- End of Content Wrapper -->
+   </div>
+ </div>
+</div>
 
-  </div>
-  <!-- End of Page Wrapper -->
+</div>
 
-  <!-- Scroll to Top Button-->
-  <a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-  </a>
+</div>
+<!-- End of Main Content -->
 
-  <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="/">Logout</a>
-        </div>
-      </div>
-    </div>
-  </div>
+      <%- include partials/footer %>
 
-  <!-- Bootstrap core JavaScript-->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Core plugin JavaScript-->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+</div>
+<!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+<i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+<div class="modal-header">
+<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+ <span aria-hidden="true">×</span>
+</button>
+</div>
+<div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+<div class="modal-footer">
+<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+<a class="btn btn-primary" href="/">Logout</a>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Bootstrap core JavaScript-->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
 <script type="text/javascript">
-  $(document).ready(function () {
+$(document).ready(function () {
 //change selectboxes to selectize mode to be searchable
-   $("select").select2();
+$("select").select2();
 });
 </script>
 
-  <!-- Custom scripts for all pages-->
-  <script src="js/sb-admin-2.min.js"></script>
+<!-- Custom scripts for all pages-->
+<script src="js/sb-admin-2.min.js"></script>
 <script src="js/choosen.js"></script>
 
- <!-- Page level plugins -->
-  <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-  <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+<!-- Page level plugins -->
+<script src="vendor/datatables/jquery.dataTables.min.js"></script>
+<script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
-  <!-- Page level custom scripts -->
-  <script src="js/demo/datatables-demo.js"></script>
+<!-- Page level custom scripts -->
+<script src="js/demo/datatables-demo.js"></script>
 
-  <script type="text/javascript" src="dist/pagination.min.js"></script>
+<script type="text/javascript" src="dist/pagination.min.js"></script>
 
-  <script type="text/javascript">
+<script type="text/javascript">
 
 window.history.forward(); 
-        function noBack() { 
-            window.history.forward(); 
-        } 
+function noBack() { 
+ window.history.forward(); 
+} 
 
-        
+
 
 
 window.addEventListener("load", function() {
 
-    var url_string = window.location.href; 
-  var urls = new URL(url_string);
-  var tokens = urls.searchParams.get("tokendata");
-<<<<<<< HEAD
-  var formdata = new FormData();
-  formdata.append("offset", "0");
-  formdata.append("limit", "1000000");
-=======
-  // var formdata = new FormData();
-  // formdata.append("offset", "0");
-  // formdata.append("limit", "500");
->>>>>>> 1cafb8abc0ce46f7c11d2cbb23569f3bf6af61ff
+var url_string = window.location.href; 
+var urls = new URL(url_string);
+var tokens = urls.searchParams.get("tokendata");
+var formdata = new FormData();
+formdata.append("offset", "0");
+formdata.append("limit", "100000");
+  AmagiLoader.show();
+  window.FlashMessage.info( " It will take few seconds to load data Loading...", { timeout: 3000,});
 
-// /////////////////////////start
 
-<<<<<<< HEAD
+  var requestOptions = {
+    method: 'POST',
+    headers: {
+          Authorization: 'Bearer ' + tokens,
+        },
+    body: formdata,
+    redirect: 'follow'
+  };
+
   fetch("https://apistest.tradetipsapp.com/api/tip/getAllTipsWithoutCommentsPagination", requestOptions)
   .then(resp => resp.json())
     .then(function(data) {
       AmagiLoader.hide();
            $('#dataTables').dataTable( {
             "aaData": data, 
-            "lengthMenu": [ 10, 20, 50, 100, 200, 300, 400, 500 ,800,1000,1200,1500  ],
-            "pageLength": 50,
+            "lengthMenu":  [10, 20, 50, 100, 200, 300, 400, 500 ,800,1000,1200,1500  ],
+            "pageLength": 20,
             "aaSorting": [[ 5, "desc" ]],
             // "columnDefs": [ {
             // "targets": ,
@@ -183,7 +186,7 @@ window.addEventListener("load", function() {
               "sSearch": "<span>Search Tips</span> _INPUT_" //search
             },
             "columns": [
-                
+     
                 { "data": "stockName" },
                 { "data": "entryPoint",
                  "render": function (data, type, full) {
@@ -210,304 +213,114 @@ window.addEventListener("load", function() {
                   if(type == "display"){
                           var date = new Date(data);
                           var options = {year: "numeric", month: "long", day: "numeric"};
-=======
->>>>>>> 1cafb8abc0ce46f7c11d2cbb23569f3bf6af61ff
 
-function showingdata(pageNo,pageSize){
+                          return date.toLocaleDateString('en-US', options);
+                  }
 
-<<<<<<< HEAD
                   return data;
                 }
 
                 },
                 { 'data': null,
                  'render': function (data, type, row) {
-                       return '<button id="' + row.id + '" class="deleteButtons" style="width:100%">Remove</button>'
+                       return '<button id="' + row.id + '" class="deleteButtons">Remove</button>'
                }
               },               
             ],
             "deferRender": true,
             rowCallback: function ( row, data ) {
-            
-        }
-=======
-              // alert('offset' + pageNo);
->>>>>>> 1cafb8abc0ce46f7c11d2cbb23569f3bf6af61ff
-
-              //  var valdata = {pageSize:pageSize,pageNo:pageNo};
-
-              var form = new FormData();
-                form.append("offset", pageNo);
-                form.append("limit", pageSize);
-
-                var settings = {
-                  "async": true,
-                  "crossDomain": true,
-                  "url": "https://apistest.tradetipsapp.com/api/tip/getAllTipsWithoutCommentsPagination",
-                  "method": "POST",
-                  "headers": {
-                    "authorization": "Bearer "+ tokens,
-                    "cache-control": "no-cache",
-                    "postman-token": "2cc661ec-8140-df73-6bb1-494e836c9f15"
-                  },
-                  "processData": false,
-                  "contentType": false,
-                  "data": form
-                }
-
-                $.ajax(settings).done(function (response) {
-                    var datak = JSON.stringify(response);
-                      var dataResultps = JSON.parse(datak); 
-                     const listing_table = document.getElementById('dataTables');
-                      var jsp_json_object = dataResultps; 
-                      console.log(jsp_json_object
-                      )
-                      // alert(jsp_json_object);
-                      for(let i = 0; i < jsp_json_object.length ; i++){
-                        listing_table.innerHTML += `<tr><td>${jsp_json_object[i].stockName}
-                            <td>${jsp_json_object[i].entryPoint}</td>
-                            <td>${jsp_json_object[i].exitPoint}</td>
-                            <td>${jsp_json_object[i].stopPoint}</td>
-                            <td>${jsp_json_object[i].appUser.userName}</td>
-                            <td>${jsp_json_object[i].createdOn}</td>
-                            <td><button id=${jsp_json_object[i].id} class="deleteButtons">Remove</button></td></tr>`;
-                        }
-                    
-                });
-      }
-
-      AmagiLoader.show();
-                  $.ajax({
-                   type: 'POST',
-                   url: 'https://apistest.tradetipsapp.com/api/tip/getAllTipsWithoutCommentsPagination',
-                   headers: {
-                     Authorization: 'Bearer '+ tokens
-                   },
-                   data: {limit:100,offset:0},
-                    success: function (data) {
-                      var datak = JSON.stringify(data);
-                      var dataResultps = JSON.parse(datak); 
-                      var finalvalss = dataResultps.length;
-                      // alert(finalvalss)
-                      // $("#countStockListData").text(finalvalss);
-                       const listing_table = document.getElementById('dataTables');
-                      var jsp_json_object = dataResultps; 
-                      console.log(jsp_json_object)
-                      AmagiLoader.hide();
-                      for(let i = 0; i < jsp_json_object.length ; i++){
-                          // console.log(jsp_json_object[i]);
-                          var createon = function(data, type, full, meta){
-                                              if(type == "display"){
-                          var date = new Date(data);
-                          var options = {year: "numeric", month: "long", day: "numeric"};
-
-                          return date.toLocaleDateString('en-US', options);
-                  }
-
-                  return data;
-                          }
-                           listing_table.innerHTML += `<tr><td>${jsp_json_object[i].stockName}
-                            <td>${jsp_json_object[i].entryPoint}</td>
-                            <td>${jsp_json_object[i].exitPoint}</td>
-                            <td>${jsp_json_object[i].stopPoint}</td>
-                            <td>${jsp_json_object[i].appUser.userName}</td>
-                            <td>${jsp_json_object[i].createdOn}</td>
-                            <td><button id=${jsp_json_object[i].id} class="deleteButtons">Remove</button></td></tr>`;
-                        }
-                      $('#example-1').pagination({
-                        total: finalvalss, // 总数据条数
-                        current: 1, // 当前页码
-                        length: 20, // 每页数据量
-                        size: 1, // 显示按钮个数
-                        globalSearch:true,
-                        click: function(options,$target) { // 点击按钮事件
-                          console.log(options);
-                            $target.next(".show").text('Current Page : '+options.current);
-
-                            if(options.current == 2){
-
-                              showingdata(options.total,options.length);
-                            }else{
-                              options.total = options.total + options.length * options.current - (options.length *2)
-                              showingdata(options.total,options.length);
-                            }
-                        }
-                      });
-                    }
-
-                  }); 
-
-
-
-
-
-  // //////////end
-
-//   AmagiLoader.show();
-//   window.FlashMessage.info( " It will take few seconds to load data Loading...", { timeout: 3000,});
-
-
-//   var requestOptions = {
-//     method: 'POST',
-//     headers: {
-//           Authorization: 'Bearer ' + tokens,
-//         },
-//     body: formdata,
-//     redirect: 'follow'
-//   };
-
-//   fetch("https://apistest.tradetipsapp.com/api/tip/getAllTipsWithoutCommentsPagination", requestOptions)
-//   .then(resp => resp.json())
-//     .then(function(data) {
-//       AmagiLoader.hide();
-//            $('#dataTables').dataTable( {
-//             "aaData": data, 
-//             "lengthMenu": [ 500, 1000, 2000, 3000, 4000, 5000 ],
-//             "pageLength": 500,
-//             "aaSorting": [[ 5, "desc" ]],
-//             // "columnDefs": [ {
-//             // "targets": ,
-//             // "orderable": false
-//             // } ],
-//             "oLanguage": {
-//               "sSearch": "<span>Search Tips</span> _INPUT_" //search
-//             },
-//             "columns": [
-                
-//                 { "data": "stockName" },
-//                 { "data": "entryPoint",
-//                  "render": function (data, type, full) {
-//                        return parseFloat(data).toFixed(2);
-//                   }
-//                  },
-//                 { "data": "exitPoint" ,
-//                  "render": function (data, type, full) {
-//                        return parseFloat(data).toFixed(2);
-//                   }
-//                 },
-//                 { "data": "stopPoint" ,
-//                  "render": function (data, type, full) {
-//                        return parseFloat(data).toFixed(2);
-//                   }
-//                 },
-//                 { "data": "appUser.userName" },
-//                 { 
-//                  "data": "createdOn",
-//                  "name":"date",
-//                  "visible":true,
-//                  "title":"Date Created",
-//                  "render": function(data, type, full, meta){
-//                   if(type == "display"){
-//                           var date = new Date(data);
-//                           var options = {year: "numeric", month: "long", day: "numeric"};
-
-//                           return date.toLocaleDateString('en-US', options);
-//                   }
-
-//                   return data;
-//                 }
-
-//                 },
-//                 { 'data': null,
-//                  'render': function (data, type, row) {
-//                        return '<button id="' + row.id + '" class="deleteButtons">Remove</button>'
-//                }
-//               },               
-//             ],
-//             "deferRender": true,
-//             rowCallback: function ( row, data ) {
-            
-//         }
-
-//         });
-
-
-//     $('#dataTables').on('click', 'button.deleteButtons', function () {
-
-//       // alert("fff");
-
-//       var id = $(this).attr('id');
-//       // alert(id);
-
-//       var url ;
-//       var result =   Confirm.open({
-//   title: 'Delete Confirm',
-//   message: "Are you sure you want to delete?",
-//   onok: () => {
-//     // if(result){
-//       var formData = {tipId:id};
-//        url = "https://apistest.tradetipsapp.com/api/tip/deleteTipByTipId";
-//       $.ajax({
-//         url : url,
-//         type: "POST",
-//         headers: {
-//              Authorization: 'Bearer ' + tokens,
-//         },
-//         data : formData,
-//         success: function(data, textStatus, jqXHR)
-//         {
-//             //data - response from server
-//             var datak = JSON.stringify(data);
-//             var dataResultp = JSON.parse(datak); 
-//             // alert(dataResultp);
-//             // alert("Delete Sucessfully !!");
-//             window.FlashMessage.success( " Delete Sucessfully !! ", { timeout: 2000,});
-//             setTimeout(()=> { window.location.reload()},2100)
-//         },
-//         error: function (jqXHR, textStatus, errorThrown)
-//         {
-//           //  alert("Not updated !!");
-//           window.FlashMessage.error( " Not updated !!", { timeout:2000,});
-//         }
-
-//        });
-      
-
-//       // } 
-//   },
-//   oncancel: () => {
-//     window.FlashMessage.error( " Not updated !!", { timeout:2000,});
-//   }
-// })
-
-
-
-//       });
-
-
-//       });
-
  
+        }
+
+        });
+
+
+    $('#dataTables').on('click', 'button.deleteButtons', function () {
+
+      // alert("fff");
+
+      var id = $(this).attr('id');
+      // alert(id);
+
+      var url ;
+      var result =   Confirm.open({
+  title: 'Delete Confirm',
+  message: "Are you sure you want to delete?",
+  onok: () => {
+    // if(result){
+      var formData = {tipId:id};
+       url = "https://apistest.tradetipsapp.com/api/tip/deleteTipByTipId";
+      $.ajax({
+        url : url,
+        type: "POST",
+        headers: {
+             Authorization: 'Bearer ' + tokens,
+        },
+        data : formData,
+        success: function(data, textStatus, jqXHR)
+        {
+            //data - response from server
+            var datak = JSON.stringify(data);
+            var dataResultp = JSON.parse(datak); 
+            // alert(dataResultp);
+            // alert("Delete Sucessfully !!");
+            window.FlashMessage.success( " Delete Sucessfully !! ", { timeout: 2000,});
+            setTimeout(()=> { window.location.reload()},2100)
+        },
+        error: function (jqXHR, textStatus, errorThrown)
+        {
+          //  alert("Not updated !!");
+          window.FlashMessage.error( " Not updated !!", { timeout:2000,});
+        }
+
+       });
+
+
+      // } 
+  },
+  oncancel: () => {
+    window.FlashMessage.error( " Not updated !!", { timeout:2000,});
+  }
+})
+
+
+
+      });
+
+
+      });
+
+
 const url = "https://apistest.tradetipsapp.com/api/appUserWebModify/getAllAppUsers";
 fetch(url, {
-  method: "POST",
-  headers: {
-          Authorization: 'Bearer ' + tokens,
-        },
+method: "POST",
+headers: {
+Authorization: 'Bearer ' + tokens,
+},
 })
-  .then(resp => resp.json())
-    .then(function(data) {
-       var datak = JSON.stringify(data);
-       var dataResult = JSON.parse(datak); 
-        var len = dataResult.length;
-          $("#sel_user").empty();
-                for( var i = 0; i<len; i++){
-                    var id = dataResult[i]['id'];
-                    var name = dataResult[i]['userName'];
-                    $("#sel_user").append("<option value='"+name+"'>"+name+"</option>");
-                }
+.then(resp => resp.json())
+.then(function(data) {
+var datak = JSON.stringify(data);
+var dataResult = JSON.parse(datak); 
+var len = dataResult.length;
+$("#sel_user").empty();
+     for( var i = 0; i<len; i++){
+         var id = dataResult[i]['id'];
+         var name = dataResult[i]['userName'];
+         $("#sel_user").append("<option value='"+name+"'>"+name+"</option>");
+     }
 
-       
-  })
-  .catch(function(error) {
-    console.log(error);
-  });
+
+})
+.catch(function(error) {
+console.log(error);
+});
 
 });
-   
- </script>
- 
- <%- include partials/commonlink %>
+
+</script>
+
+<%- include partials/commonlink %>
 
 </body>
 

@@ -369,14 +369,6 @@
         var url_string = window.location.href;
         var urls = new URL(url_string);
         var tokens = urls.searchParams.get("tokendata");
-        // alert(tokens);
-
-        // $(function() {
-        //    var value = "44c96691-7a4c-4e49-a3c8-9a69a3af5413";
-        //    $("input[name='selectBanner'][value="+value+"]").attr('checked', true);
-
-        //    });
-
 
         var formdata = new FormData();
         // formdata.append("offset", "0");
@@ -401,130 +393,6 @@
               $("#userFull").append("<option value='" + username + "'>" + username + "</option>");
             }
           });
-
-        // ///////////////////////////////////////////////////////////
-
-        // function showingdata(pageNo,pageSize,currentpage){
-        //                 var form = new FormData();
-        //               form.append("offset", pageNo);
-        //                  form.append("limit", pageSize);
-
-        //                 var settings = {
-        //                   "async": true,
-        //                   "crossDomain": true,
-        //                   "url": "https://apistest.tradetipsapp.com/api/adBannerSimple/getAllSimpleAdBanner",
-        //                   "method": "POST",
-        //                   "headers": {
-        //                     "authorization": "Bearer "+ tokens,
-        //                     "cache-control": "no-cache",
-        //                     "postman-token": "2cc661ec-8140-df73-6bb1-494e836c9f15"
-        //                   },
-        //                   "processData": false,
-        //                   "contentType": false,
-        //                   "data": form
-        //                 }
-
-        //                 $.ajax(settings).done(function (response) {
-        //                     var datak = JSON.stringify(response);
-        //                       var dataResultps = JSON.parse(datak); 
-        //                      const listing_table = document.getElementById('dataTables');
-        //                       var jsp_json_object = dataResultps; 
-        //                       console.log(jsp_json_object)
-        //                       for(let i = 0; i < jsp_json_object.length ; i++){
-        //                           // console.log(jsp_json_object[i].stockSymbol);
-        //                           if(jsp_json_object[i].isSingleBanner == true){
-        //                           listing_table.innerHTML += `<tr>
-        //                            <td><input type="checkbox" id=${jsp_json_object[i].id} class="locationthemes" value="'+ data +'"/></td>
-        //                            <td>${jsp_json_object[i].title}</td>
-
-        //                            <td>${jsp_json_object[i].shortDescription}</td>
-        //                            <td><img src="https://apistest.tradetipsapp.com' + ${jsp_json_object[i].image} + '" class="avatar" width="50" height="50"/></td>
-        //                            </tr>`;
-        //                         }else{
-        //                           listing_table.innerHTML += `<tr>
-        //                            <td><input type="checkbox" id=${jsp_json_object[i].id} class="locationthemes" value="'+ data +'"/></td>
-        //                            <td>${jsp_json_object[i].title1}</td>
-
-        //                            <td>${jsp_json_object[i].shortDescription1}</td>
-        //                            <td><img src="https://apistest.tradetipsapp.com' + ${jsp_json_object[i].image1} + '" class="avatar" width="50" height="50"/></td>
-        //                            </tr>`;
-        //                         }
-        //                         }
-        //                       });
-
-        //       }
-
-        //                 // AmagiLoader.show();
-        //                 var pageSize = 10;
-        //                 var pageNo = 0
-        //                   $.ajax({
-        //                    type: 'POST',
-        //                    url: 'https://apistest.tradetipsapp.com/api/adBannerSimple/getAllSimpleAdBanner',
-        //                    headers: {
-        //                      Authorization: 'Bearer '+ tokens
-        //                    },
-        //                   //  data: {pageSize:limit,pageNo:offset},
-        //                    data: {offset:pageNo,limit:pageSize},
-        //                    success: function (data) {
-        //                     // alert("done")
-        //                       var datak = JSON.stringify(data);
-        //                       var dataResultps = JSON.parse(datak); 
-        //                       console.log(dataResultps)
-        //                       var finalvalss =dataResultps.length;
-
-        //                        const listing_table = document.getElementById('dataTables');
-        //                       var jsp_json_object = dataResultps; 
-        //                       console.log(jsp_json_object.length)
-        //                       // AmagiLoader.hide();
-        //                       for(let i = 0; i < jsp_json_object.length ; i++){  
-
-        //                         if(jsp_json_object[i].isSingleBanner == true){
-        //                           listing_table.innerHTML += `<tr>
-        //                            <td><input type="checkbox" id=${jsp_json_object[i].id} class="locationthemes" value="'+ data +'"/></td>
-        //                            <td>${jsp_json_object[i].title}</td>
-
-        //                            <td>${jsp_json_object[i].shortDescription}</td>
-        //                            <td><img src="https://apistest.tradetipsapp.com' + ${jsp_json_object[i].image} + '" class="avatar" width="50" height="50"/></td>
-        //                            </tr>`;
-        //                         }else{
-        //                           listing_table.innerHTML += `<tr>
-        //                            <td><input type="checkbox" id=${jsp_json_object[i].id} class="locationthemes" value="'+ data +'"/></td>
-        //                            <td>${jsp_json_object[i].title1}</td>
-
-        //                            <td>${jsp_json_object[i].shortDescription1}</td>
-        //                            <td><img src="https://apistest.tradetipsapp.com' + ${jsp_json_object[i].image1} + '" class="avatar" width="50" height="50"/></td>
-        //                            </tr>`;
-        //                         }
-
-        //                         }
-        //                       $('#example-1').pagination({
-        //                         total: finalvalss, 
-        //                         current: 1, 
-        //                         length: 2, 
-        //                         size: 1, 
-        //                         globalSearch:true,
-        //                         click: function(options,$target) {
-
-        //                           if(options.current == 2){
-        //                             showingdata(options.total,options.length);
-        //                             }
-        //                             else{
-        //                               options.total = options.total + options.length * options.current - (options.length *2)
-        //                               showingdata(options.total,options.length,options.current);
-        //                             }
-
-
-        //                           console.log(options.length);
-        //                             $target.next(".show").text('Current Page : '+options.current);
-
-        //                         }
-        //                       });
-        //                     }
-
-        //                   }); 
-
-
-        // //////////////////////////////////////////////////////////////
 
         var formdata = new FormData();
         // formdata.append("offset", "0");
@@ -561,117 +429,14 @@
 
             // if(document.getElementById(bannerType).value){
 
-<<<<<<< HEAD
-<script type="text/javascript">
-  $(document).ready(function () {
-//change selectboxes to selectize mode to be searchable
-   $("select").select2();
-});
-</script>
-
-  <!-- Custom scripts for all pages-->
-  <script src="js/sb-admin-2.min.js"></script>
-<script src="js/choosen.js"></script>
-
- <!-- Page level plugins -->
-  <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-  <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-  <!-- Page level custom scripts -->
-  <script src="js/demo/datatables-demo.js"></script>
-
-
-  <script type="text/javascript">
-
-window.history.forward(); 
-        function noBack() { 
-            window.history.forward(); 
-        } 
-function test(a) {
-    var x = (a.value || a.options[a.selectedIndex].value);  //crossbrowser solution =)
-    // alert(x);
-}
-
-
-window.addEventListener("load", function() {
-
-
-  var url_string = window.location.href; 
-  var urls = new URL(url_string);
- var tokens = urls.searchParams.get("tokendata");
- // alert(tokens);
-
- // $(function() {
- //    var value = "44c96691-7a4c-4e49-a3c8-9a69a3af5413";
- //    $("input[name='selectBanner'][value="+value+"]").attr('checked', true);
-
- //    });
-   
-
-  var formdata = new FormData();
-  formdata.append("offset", "0");
-  formdata.append("limit", "100000");
-
-  var requestOptions = {
-    method: 'POST',
-    headers: {
-          Authorization: 'Bearer ' + tokens,
-        },
-    body: formdata,
-    redirect: 'follow'
-  };
-
-  fetch("https://apistest.tradetipsapp.com/api/appUserWebModify/getAllAppUsers", requestOptions)
-  .then(resp => resp.json())
-    .then(function(data) {
-      // console.log(data);
-      for( var i = 0; i< data.length; i++){
-          var userid = data[i]['id'];
-          var username = data[i]['userName'];
-          $("#userFull").append("<option value='"+username+"'>"+username+"</option>");
-       }         
-  });
-
-  var formdata = new FormData();
-  formdata.append("offset", "0");
-  formdata.append("limit", "100000");
-
-  var requestOptions = {
-    method: 'POST',
-    headers: {
-          Authorization: 'Bearer ' + tokens,
-        },
-    body: formdata,
-    redirect: 'follow'
-  };
-
-  fetch("https://apistest.tradetipsapp.com/api/adBannerSimple/getAllSimpleAdBanner", requestOptions)
-  .then(resp => resp.json())
-    .then(function(data) {
-       var datak = JSON.stringify(data);
-       var dataResult = JSON.parse(datak); 
-        var len = dataResult.length;
-         // var countdataa = dataResult.filter(function(s) { return s.isActive; });
-         var bannerType = urls.searchParams.get("bannerid");
-         // alert(bannerType);
-          // var countdataa = dataResult.filter(function(s) { return s.id == bannerType; });
-          // alert(JSON.stringify(countdataa));
-          var value = "44c96691-7a4c-4e49-a3c8-9a69a3af5413" ;
-          var $radios = $('input:radio[class=selectBanner]');
-
-          if($radios.is(':checked') === false) {
-              $radios.filter('[value=' + value + ']').attr('checked', true);
-          }  
-=======
             // }
             // document.getElementById(bannerType).checked = true;
->>>>>>> 1cafb8abc0ce46f7c11d2cbb23569f3bf6af61ff
 
 
             $('#dataTables').dataTable({
               "aaData": dataResult,
-              "lengthMenu": [500, 1000, 2000, 3000, 4000, 5000],
-              "pageLength": 500,
+              "lengthMenu":  [10, 20, 50, 100, 200, 300, 400, 500 ,800,1000,1200,1500  ],
+              "pageLength": 50,
               // "aaSorting": [[ 0, "desc" ]],
               // "columnDefs": [ {
               // "targets": 4,
@@ -684,18 +449,6 @@ window.addEventListener("load", function() {
                   "render": function (data, row) {
                     return '<input type="radio" name="selectBanner" id="' + data + '" class="locationthemes" value="' + data + '" checked="checked"/>';
 
-<<<<<<< HEAD
-           $('#dataTables').dataTable( {
-            "aaData": dataResult, 
-            "lengthMenu": [10,20, 50, 100, 200, 300, 400, 500 ,800,1000,1200,1500 ],
-            "pageLength": 500,
-            // "aaSorting": [[ 0, "desc" ]],
-            // "columnDefs": [ {
-            // "targets": 4,
-            // "orderable": false
-            // } ],
-=======
->>>>>>> 1cafb8abc0ce46f7c11d2cbb23569f3bf6af61ff
 
                   }
                 },
