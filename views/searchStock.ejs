@@ -77,7 +77,7 @@ table.dataTable thead .sorting_desc_disabled::after {
 } */
 
 </style>
-
+<link rel="stylesheet" type="text/css" href="dist/pagination.min.css">
 
 </head>
 
@@ -164,6 +164,12 @@ table.dataTable thead .sorting_desc_disabled::after {
                           <tbody>
                         </tbody>
                       </table>
+
+                      <div class="box">
+                        <ul id="example-1" class="pagination"></ul>
+                        <div class="show"></div>
+                    </div>
+
                     </div>
                   </div>
                 </div>
@@ -230,6 +236,9 @@ table.dataTable thead .sorting_desc_disabled::after {
  src="https://code.jquery.com/jquery-3.5.1.js">
 </script>
 
+
+<script type="text/javascript" src="dist/pagination.min.js"></script>
+
 <!-- DataTables CSS -->
 <link rel="stylesheet"
 href=
@@ -288,6 +297,8 @@ href=
   var tokens = urls.searchParams.get("tokendata");
 
 
+
+// /////////////////////////////////////////////////////////////////////////////////////////////////////
     var finalstartdate = "2020-01-01 00:00:00";
     var endDates = new Date();
     var finalenddate = moment(endDates).format("YYYY-MM-DD HH:mm:ss");

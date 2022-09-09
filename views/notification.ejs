@@ -1,5 +1,6 @@
 <%- include partials/header %>
 <link href="css/flash-main.css" rel="stylesheet" type="text/css">
+<script src="js/amajiLoader.js"></script>
 <!-- <link href="css/flash.css" rel="stylesheet" type="text/css"> -->
 <style type="text/css">
 .switch {
@@ -470,11 +471,6 @@ window.addEventListener("load", function() {
             "lengthMenu": [ 10, 20, 50, 100, 200, 300, 400, 500 ,800,1000,1200,1500  ],
             "pageLength": 50,
             "order": [[ 5 , "desc" ]],
-            // "aaSorting": [[ 0, "desc" ]],
-            // "columnDefs": [ {
-            // "targets": 4,
-            // "orderable": false
-            // } ],
 
             "columns": [
                 {
@@ -681,7 +677,7 @@ var filterdata=e.options[e.selectedIndex].text;
                   timeout: 5000,
                 });
   }else {
-   
+    AmagiLoader.show();
   var formdata = new FormData();
     formdata.append("title", title);
     formdata.append("description", description);
@@ -717,6 +713,7 @@ var filterdata=e.options[e.selectedIndex].text;
                 var dataResultp = JSON.parse(datak); 
                 // alert(dataResultp.title);
                 // alert("Notification has been sent");
+                AmagiLoader.hide();
                 document.getElementById('notifySubmit').disabled = true;
                 window.FlashMessage.success('Notification has been sent ', {
                   

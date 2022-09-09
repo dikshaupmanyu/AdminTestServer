@@ -376,7 +376,7 @@ fetch(url, {
   var datano = 0 ;
 
     function showingdata(pageNo,pageSize){
-              // alert(pageNo,pageSize);
+              alert(pageNo);
 
                var valdata = {pageSize:pageSize,pageNo:pageNo};
 
@@ -404,7 +404,7 @@ fetch(url, {
                       var dataResultps = JSON.parse(datak); 
                      const listing_table = document.getElementById('dataTablesdata');
                       var jsp_json_object = dataResultps.userStockDetailList; 
-                      // alert(jsp_json_object);
+                      console.log(jsp_json_object);
                       for(let i = 0; i < jsp_json_object.length ; i++){
                           // console.log(jsp_json_object[i].stockSymbol);
                            listing_table.innerHTML += `<tr><td>${jsp_json_object[i].userName}</td><td>${jsp_json_object[i].userStockDetail.stockName}</td><td>${jsp_json_object[i].userStockDetail.stockSymbol}</td></tr>`;
@@ -445,11 +445,14 @@ fetch(url, {
                    headers: {
                      Authorization: 'Bearer '+ tokens
                    },
-                   data: {pageSize:50,pageNo:1},
+                   data: {pageSize:10,pageNo:1},
                     success: function (data) {
+                      console.log(data)
                       var datak = JSON.stringify(data);
                       var dataResultps = JSON.parse(datak); 
                       var finalvalss = dataResultps.totalCount;
+                      console.log(finalvalss)
+                      console.log(dataResultps)
                       $("#countStockListData").text(finalvalss);
                        const listing_table = document.getElementById('dataTablesdata');
                       var jsp_json_object = dataResultps.userStockDetailList; 
@@ -643,7 +646,7 @@ fetch(url, {
                 
              //   }
 
-             // });
+            //  });
 $('#butSaveData').on('click', function() {
   AmagiLoader.show();
   // window.FlashMessage.info( " It will take few seconds to load data Loading...", { timeout: 5000,});

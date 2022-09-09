@@ -5,11 +5,15 @@
 <link href="css/confirm.css" rel="stylesheet" type="text/css">
 <script src="/js/confirm.js"></script>
 <script src="js/amajiLoader.js"></script>
+<<<<<<< HEAD
 <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css"></link>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script> -->
 
 <!-- <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script> -->
 
+=======
+<link rel="stylesheet" type="text/css" href="dist/pagination.min.css">
+>>>>>>> 1cafb8abc0ce46f7c11d2cbb23569f3bf6af61ff
 
 <div class="container-fluid">
 
@@ -94,6 +98,12 @@
        <tbody>
        </tbody>
      </table>
+
+     <div class="box">
+      <ul id="example-1" class="pagination"></ul>
+      <div class="show"></div>
+  </div>
+
    </div>
  </div>
 </div>
@@ -168,6 +178,7 @@ $("select").select2();
 <!-- Page level custom scripts -->
 <script src="js/demo/datatables-demo.js"></script>
 
+<script type="text/javascript" src="dist/pagination.min.js"></script>
 
 
 
@@ -179,11 +190,12 @@ function noBack() {
 } 
 
 window.addEventListener("load", function() {
-  AmagiLoader.show();
+  // AmagiLoader.show();
   // window.FlashMessage.info( " It will take few seconds to load data Loading...", { timeout: 2000,});
 var url_string = window.location.href; 
 var urls = new URL(url_string);
 var tokens = urls.searchParams.get("tokendata");
+<<<<<<< HEAD
   // var formdata = new FormData();
   // formdata.append("offset", "0");
   // formdata.append("limit", "500");
@@ -238,6 +250,116 @@ var tokens = urls.searchParams.get("tokendata");
 
 
 // //////////////
+=======
+// var formdata = new FormData();
+// formdata.append("offset", "0");
+// formdata.append("limit", "500");
+
+  var datasize = 50;
+  var datano = 0 ;
+function showingdata(pageNo,pageSize,currentpage){
+              
+                var form = new FormData();
+              form.append("offset", pageNo);
+                 form.append("limit", pageSize);
+
+                var settings = {
+                  "async": true,
+                  "crossDomain": true,
+                  "url": "https://apistest.tradetipsapp.com/api/comment/getAllComments",
+                  "method": "POST",
+                  "headers": {
+                    "authorization": "Bearer "+ tokens,
+                    "cache-control": "no-cache",
+                    "postman-token": "2cc661ec-8140-df73-6bb1-494e836c9f15"
+                  },
+                  "processData": false,
+                  "contentType": false,
+                  "data": form
+                }
+
+                $.ajax(settings).done(function (response) {
+                    var datak = JSON.stringify(response);
+                      var dataResultps = JSON.parse(datak); 
+                     const listing_table = document.getElementById('dataTables');
+                      var jsp_json_object = dataResultps; 
+                      console.log(jsp_json_object)
+                      for(let i = 0; i < jsp_json_object.length ; i++){
+                          // console.log(jsp_json_object[i].stockSymbol);
+                          if( jsp_json_object[i].status == 'deleted'){
+
+                            listing_table.innerHTML += `<tr><td>${jsp_json_object[i].commentDetails}</td><td>${jsp_json_object[i].appUser.userName}</td><td><button>Already deleted</button></td></tr>`;
+                          }else{
+                            listing_table.innerHTML += `<tr><td>${jsp_json_object[i].commentDetails}</td><td>${jsp_json_object[i].appUser.userName}</td><td><button id=${jsp_json_object[i].id} class="deleteButtons">Delete</button></td></tr>`;
+
+                          }
+                        }
+                      });
+                     
+      }
+
+                AmagiLoader.show();
+                var pageSize = 100;
+                var pageNo = 0
+                  $.ajax({
+                   type: 'POST',
+                   url: 'https://apistest.tradetipsapp.com/api/comment/getAllComments',
+                   headers: {
+                     Authorization: 'Bearer '+ tokens
+                   },
+                  //  data: {pageSize:limit,pageNo:offset},
+                   data: {offset:pageNo,limit:pageSize},
+                   success: function (data) {
+                    // alert("done")
+                      var datak = JSON.stringify(data);
+                      var dataResultps = JSON.parse(datak); 
+                      console.log(dataResultps)
+                      var finalvalss =dataResultps.length;
+
+
+                      // console.log(pageSizes)
+                      // $("#countStockListData").text(finalvalss);
+                       const listing_table = document.getElementById('dataTables');
+                      var jsp_json_object = dataResultps; 
+                      console.log(jsp_json_object.length)
+                      AmagiLoader.hide();
+                      for(let i = 0; i < jsp_json_object.length ; i++){  
+                        if( jsp_json_object[i].status == 'deleted'){
+
+                                listing_table.innerHTML += `<tr><td>${jsp_json_object[i].commentDetails}</td><td>${jsp_json_object[i].appUser.userName}</td><td><button>Already deleted</button></td></tr>`;
+                                }else{
+                                listing_table.innerHTML += `<tr><td>${jsp_json_object[i].commentDetails}</td><td>${jsp_json_object[i].appUser.userName}</td><td><button  id=${jsp_json_object[i].id} class="deleteButtons">Delete</button></td></tr>`;
+
+                                }
+                        }
+                      $('#example-1').pagination({
+                        total: finalvalss, 
+                        current: 1, 
+                        length: 20, 
+                        size: 1, 
+                        globalSearch:true,
+                        click: function(options,$target) {
+
+                          if(options.current == 2){
+                            showingdata(options.total,options.length);
+                            }
+                            else{
+                              options.total = options.total + options.length * options.current - (options.length *2)
+                              showingdata(options.total,options.length,options.current);
+                            }
+
+
+                          console.log(options.length);
+                            $target.next(".show").text('Current Page : '+options.current);
+
+                        }
+                      });
+                    }
+
+                  }); 
+
+                  // /////////////
+>>>>>>> 1cafb8abc0ce46f7c11d2cbb23569f3bf6af61ff
 // var requestOptions = {
 // method: 'POST',
 // headers: {
@@ -254,7 +376,11 @@ var tokens = urls.searchParams.get("tokendata");
 // $('#dataTables').dataTable( {
 //  "aaData": data, 
 //  "lengthMenu": [ 500, 1000, 2000, 3000, 4000, 5000 ],
+<<<<<<< HEAD
 //  "pageLength": 100,
+=======
+//  "pageLength": 20,
+>>>>>>> 1cafb8abc0ce46f7c11d2cbb23569f3bf6af61ff
 //  // "aaSorting": [[ 0, "desc" ]],
 //  // "columnDefs": [ {
 //  // "targets": 4,
@@ -398,8 +524,13 @@ if ( $.fn.DataTable.isDataTable('#dataTables') ) {
 
 $('#dataTables').dataTable( {
  "aaData": data,   
+<<<<<<< HEAD
  "lengthMenu": [10, 20, 50, 100, 200, 300, 400, 500 ,800,1000,1200,1500  ],
  "pageLength": 50,
+=======
+ "lengthMenu": [ 500, 1000, 2000, 3000, 4000, 5000 ],
+ "pageLength": 20,
+>>>>>>> 1cafb8abc0ce46f7c11d2cbb23569f3bf6af61ff
  // "aaSorting": [[ 0, "desc" ]],
  // "columnDefs": [ {
  // "targets": 4,
